@@ -24,7 +24,7 @@ class App extends HookConsumerWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           scaffoldMessengerKey: scaffoldMessengerKey,
-          title: Strings.appName,
+          title: AppStrings.appName,
           theme: ThemeData(
             primaryColor: AppColors.white,
             textTheme: AppTextTheme.textThemeData),

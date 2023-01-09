@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 @Immutable()
-class Strings {
+class AppStrings {
   static const String appName = "Elvan Admin";
   static const String orders = "Orders";
   static const String newOrders = "New Orders";
