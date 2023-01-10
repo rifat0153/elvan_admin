@@ -1,5 +1,7 @@
 import 'package:elvan_admin/app/router/app_router.dart';
-import 'package:elvan_admin/shared/constants/strings.dart';
+import 'package:elvan_admin/shared/constants/app_colors.dart';
+import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_admin/shared/constants/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,7 +24,10 @@ class App extends HookConsumerWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           scaffoldMessengerKey: scaffoldMessengerKey,
-          title: Strings.appName,
+          title: AppStrings.appName,
+          theme: ThemeData(
+            primaryColor: AppColors.white,
+            textTheme: AppTextTheme.textThemeData),
           routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),   
         );
