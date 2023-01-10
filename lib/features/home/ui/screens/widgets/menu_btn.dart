@@ -24,6 +24,7 @@ class MenuBtn extends HookConsumerWidget {
         width: 264,
         height: 44,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               title,
@@ -32,17 +33,20 @@ class MenuBtn extends HookConsumerWidget {
                   .titleMedium
                   ?.copyWith(color: isClick.value ? AppColors.primaryRed : AppColors.gray),
             ),
+
             Container(
               height: 16,
               constraints: const BoxConstraints(minWidth: 27),
               decoration: BoxDecoration(
                   color: AppColors.primaryRed,
                   borderRadius: BorderRadius.circular(AppSize.radiusMD)),
-              child: Text("$count",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge
-                      ?.copyWith(color: AppColors.white)),
+              child: Center(
+                child: Text("$count",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall
+                        ?.copyWith(color: AppColors.white)),
+              ),
             )
           ],
         ),

@@ -9,7 +9,7 @@ class NewOrderScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final menu = ref.watch(menuProvider.notifier);
+    final menuNotifier = ref.watch(menuProvider.notifier);
 
     return SizedBox(
       width: double.infinity,
@@ -19,13 +19,14 @@ class NewOrderScreen extends HookConsumerWidget {
         children: [
           HomeAppBar(
               onClick: () {
-                print("----click");
-                menu.open();
+                menuNotifier.open();
               },
               title: AppStrings.newOrders),
           Expanded(
               child: Column(
-            children: const [Text(AppStrings.newOrders)],
+            children: [
+              Text(AppStrings.newOrders)
+            ],
           ))
         ],
       ),

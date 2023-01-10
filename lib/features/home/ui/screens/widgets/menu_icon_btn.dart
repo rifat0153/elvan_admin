@@ -7,22 +7,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class MenuIconBtn extends HookConsumerWidget {
   final void Function() onClick;
   final String path;
-  const MenuIconBtn({Key? key, required this.onClick, required this.path})
+  final int seleectedIndex;
+  final int index;
+  const MenuIconBtn({Key? key, required this.onClick, required this.path, required this.index, required this.seleectedIndex})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isClick = useState<bool>(false);
     return InkWell(
-      onTap: () {
-        isClick.value = !isClick.value;
-        onClick();
-      },
+      onTap: onClick,
       child: SizedBox(
         width: 18,
         height: 18,
         child: SvgPicture.asset(path,
-            color: isClick.value ? AppColors.primaryRed : AppColors.grayA7),
+            color: seleectedIndex == index ? AppColors.primaryRed : AppColors.grayA7),
       ),
     );
   }

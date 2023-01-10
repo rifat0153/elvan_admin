@@ -21,6 +21,7 @@ class ProcceingScreen extends HookConsumerWidget {
               onClick: () {
                 menu.open();
               },
+              isDetails: true,
               title: AppStrings.processing),
           Expanded(
               child: Column(

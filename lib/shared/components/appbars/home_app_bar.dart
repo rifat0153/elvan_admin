@@ -25,30 +25,36 @@ class HomeAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                //****************** MenuBtn */
-                Padding(
-                  padding: const EdgeInsets.only(left: 27),
-                  child: InkWell(
-                    onTap: onClick,
-                    child: SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: SvgPicture.asset(AppAssets.menu),
+            IntrinsicHeight(
+              child: Row(
+                children: [
+                  //****************** MenuBtn */
+                  Padding(
+                    padding: const EdgeInsets.only(left: 27),
+                    child: InkWell(
+                      onTap: onClick,
+                      child: SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: SvgPicture.asset(AppAssets.menu),
+                      ),
                     ),
                   ),
-                ),
-                //**********Page title */
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.headline3?.copyWith(color: AppColors.black),
+                  //**********Page title */
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline3
+                          ?.copyWith(color: AppColors.black),
+                    ),
                   ),
-                ),
-                const Spacer(),
-              ],
+                  const Spacer(),
+                 
+                ],
+              ),
             ),
             //*******Divider */
             Divider()
