@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show immutable;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @immutable
 class AppSize {
@@ -19,6 +21,7 @@ class AppSize {
 
   static const double radiusXS = 4;
   static const double radiusSM = 8;
+  static const double radiusSL = 12;
   static const double radiusMD = 16;
   static const double radiusLG = 24;
   static const double radiusXL = 32;
@@ -33,4 +36,17 @@ class AppSize {
   static const double iconSize2XL = 48;
   static const double iconSize3XL = 64;
   static const double iconSize4XL = 96;
+
+  static double fontSize36 = ScreenUtil().setSp(36);
+  static double fontSize24 = ScreenUtil().setSp(24);
+  static double fontSize16 = ScreenUtil().setSp(16);
+  static double fontSize14 = ScreenUtil().setSp(14);
+  static double fontSize12 = ScreenUtil().setSp(12);
+  static double fontSize11 = ScreenUtil().setSp(11);
+
+  static double width(BuildContext context) =>
+      MediaQuery.of(context).size.width;
+      
+  static double hight(BuildContext context) =>
+      MediaQuery.of(context).size.height;
 }

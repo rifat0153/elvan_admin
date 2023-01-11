@@ -17,7 +17,7 @@ class App extends HookConsumerWidget {
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
 
     return ScreenUtilInit(
-      designSize: const Size(1920, 1080),
+      designSize: const Size(1512, 1048),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {

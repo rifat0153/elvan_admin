@@ -11,6 +11,7 @@ class AppStrings {
   static const String delivered = "Delivered";
   static const String nameAndPhone = "Name & Phone";
   static const String orderedTime = "Ordered Time";
+  static const String amount = "Amount";
   static const String orderedItems = "Ordered Items";
   static const String transectionDetails = "Transection Details";
   static const String subTotal = "Sub Total";
