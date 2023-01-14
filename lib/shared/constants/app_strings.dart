@@ -5,7 +5,7 @@ class AppStrings {
   static const String appName = "Elvan Admin";
   static const String orders = "Orders";
   static const String newOrders = "New Orders";
-  static const String orderDetails = "Orders details";
+  static const String orderDetails = "Order details";
   static const String processing = "Processing";
   static const String ready = "Ready";
   static const String delivered = "Delivered";
@@ -16,7 +16,7 @@ class AppStrings {
   static const String transectionDetails = "Transection Details";
   static const String subTotal = "Sub Total";
   static const String charge = "Charge";
-  static const String tax = "TAX";
+  static const String tax = "TAX (15%)";
   static const String total = "Total";
   static const String remaning = "Remaning";
   static const String hour = "Hour";

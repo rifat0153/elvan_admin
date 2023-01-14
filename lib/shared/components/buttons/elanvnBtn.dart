@@ -7,11 +7,13 @@ class ElvanBtn extends StatelessWidget {
   final void Function() onClick;
   final double width;
   final Color color;
+  final Color textColor;
   const ElvanBtn({
     Key? key,
     required this.title,
     this.width = 99.0,
     this.color = AppColors.primaryRed,
+    this.textColor = AppColors.white,
     required this.onClick,
   }) : super(key: key);
 
@@ -33,7 +35,7 @@ class ElvanBtn extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .labelLarge
-                ?.copyWith(color: AppColors.white),
+                ?.copyWith(color: textColor),
           ),
         ));
   }

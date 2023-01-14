@@ -22,7 +22,7 @@ class OrderInfoWidget extends StatelessWidget {
                 .labelLarge
                 ?.copyWith(color: AppColors.gray),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Text(
             "$value",
             style: Theme.of(context).textTheme.titleMedium,

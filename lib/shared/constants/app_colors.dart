@@ -12,4 +12,5 @@ class AppColors {
   static const gray400 = Color(0xFFE8E8E8);
   static const black = Color(0xFF000000);
   static const green = Color(0xFFABEF8A);
+  static const divider = Color.fromARGB(255, 211, 210, 210);
 }

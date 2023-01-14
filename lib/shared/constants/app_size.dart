@@ -37,16 +37,16 @@ class AppSize {
   static const double iconSize3XL = 64;
   static const double iconSize4XL = 96;
 
-  static double fontSize36 = ScreenUtil().setSp(36);
-  static double fontSize24 = ScreenUtil().setSp(24);
-  static double fontSize16 = ScreenUtil().setSp(16);
-  static double fontSize14 = ScreenUtil().setSp(14);
-  static double fontSize12 = ScreenUtil().setSp(12);
-  static double fontSize11 = ScreenUtil().setSp(11);
+  static double fontSize36 = 36; //ScreenUtil().setSp(36);
+  static double fontSize24 = 24; // ScreenUtil().setSp(24);
+  static double fontSize16 = 16; //ScreenUtil().setSp(16);
+  static double fontSize14 = 14; //ScreenUtil().setSp(14);
+  static double fontSize12 = 12; // ScreenUtil().setSp(12);
+  static double fontSize11 = 11; //ScreenUtil().setSp(11);
 
   static double width(BuildContext context) =>
       MediaQuery.of(context).size.width;
-      
+
   static double hight(BuildContext context) =>
       MediaQuery.of(context).size.height;
 }

@@ -14,11 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 
-import '../../features/delivered/ui/screens/delivered_screen.dart' as _i5;
 import '../../features/home/ui/screens/home_screen.dart' as _i1;
+import '../../features/order/ui/screens/delivered_screen.dart' as _i5;
 import '../../features/order/ui/screens/new_order_screen.dart' as _i2;
-import '../../features/processing/ui/screens/processing_screen.dart' as _i3;
-import '../../features/ready/ui/screens/ready_screen.dart' as _i4;
+import '../../features/order/ui/screens/processing_screen.dart' as _i3;
+import '../../features/order/ui/screens/ready_screen.dart' as _i4;
 
 class AppRouter extends _i6.RootStackRouter {
   AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])

@@ -11,12 +11,15 @@ class OrderTimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: Axis.vertical,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         //** Timer Form */
-        Row(
+        Flex(
+          direction: Axis.horizontal,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             EIconBtn(
               onClick: () {},
@@ -43,18 +46,25 @@ class OrderTimer extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 20,),
-        Row(
-          children: [
-            ElvanBtn(
-                title: AppStrings.reject,
-                color: AppColors.grayA7,
-                onClick: () {}),
-           const SizedBox(
-              width: 20,
+        const SizedBox(height: 20,),
+        SizedBox(
+          width: AppSize.width(context) / 6.5,
+          child: Center(
+            child: Wrap(
+              direction: Axis.horizontal,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                ElvanBtn(
+                    title: AppStrings.reject,
+                    color: AppColors.primaryRed,
+                    onClick: () {}),
+               const SizedBox(
+                  width: 20,
+                ),
+                ElvanBtn(title: AppStrings.accept, color: AppColors.green,textColor: AppColors.black, onClick: () {})
+              ],
             ),
-            ElvanBtn(title: AppStrings.accept, onClick: () {})
-          ],
+          ),
         )
       ],
     );

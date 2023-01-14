@@ -26,10 +26,10 @@ class App extends HookConsumerWidget {
           scaffoldMessengerKey: scaffoldMessengerKey,
           title: AppStrings.appName,
           theme: ThemeData(
-            primaryColor: AppColors.white,
-            textTheme: AppTextTheme.textThemeData),
+              primaryColor: AppColors.white,
+              textTheme: AppTextTheme.textThemeData),
           routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(),   
+          routeInformationParser: appRouter.defaultRouteParser(),
         );
       },
     );

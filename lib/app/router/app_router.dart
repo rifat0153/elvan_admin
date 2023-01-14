@@ -1,9 +1,9 @@
 import 'package:auto_route/annotations.dart';
-import 'package:elvan_admin/features/delivered/ui/screens/delivered_screen.dart';
+import 'package:elvan_admin/features/order/ui/screens/delivered_screen.dart';
 import 'package:elvan_admin/features/home/ui/screens/home_screen.dart';
 import 'package:elvan_admin/features/order/ui/screens/new_order_screen.dart';
-import 'package:elvan_admin/features/processing/ui/screens/processing_screen.dart';
-import 'package:elvan_admin/features/ready/ui/screens/ready_screen.dart';
+import 'package:elvan_admin/features/order/ui/screens/processing_screen.dart';
+import 'package:elvan_admin/features/order/ui/screens/ready_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app_router.gr.dart';

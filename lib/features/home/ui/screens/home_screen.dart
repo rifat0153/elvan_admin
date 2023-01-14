@@ -144,10 +144,13 @@ class HomeScreen extends HookConsumerWidget {
                   height: double.infinity,
                   transform: Matrix4.translationValues(
                       menuState.xOffset, menuState.yOffset, 1.0),
-                  color: Colors.white,
+                  color: AppColors.white,
                   child: child,
                 ),
               ),
+
+ 
+              
             ],
           ),
         );
