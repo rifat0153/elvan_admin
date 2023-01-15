@@ -7,7 +7,8 @@ class NewItemState with _$NewItemState {
   const factory NewItemState({
     @Default(false) bool isOpenDetatils,
     @Default(0) double xOffset,
-    @Default(30) int minutes,
+    @Default(0) int minutes,
+    @Default(false) bool isAccpet,
     int? selectedindex,
   }) = _NewItemState;
 }

@@ -1,3 +1,4 @@
+import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -12,7 +13,27 @@ class OrderDeatilsTimer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final today = useState<DateTime>(DateTime.now());
+    final minutes = useState<int>(0);
+    final state = ref.watch(newOrderProvider);
+    final notifier = ref.watch(newOrderProvider.notifier);
 
+    useEffect(() {
+      // if (state.isAccpet) {
+      //   minutes.value = state.minutes;
+      //   today.value = DateTime.now().add(
+      //     Duration(
+      //       minutes: minutes.value,
+      //     ),
+      //   );
+      // } else {
+      //   minutes.value = 0;
+      //    today.value = DateTime.now().add(
+      //     Duration(
+      //       minutes: minutes.value,
+      //     ),
+      //   );
+      // }
+    }, const []);
     return Container(
       width: 242,
       height: 112,
@@ -37,10 +58,10 @@ class OrderDeatilsTimer extends HookConsumerWidget {
                 ?.copyWith(color: AppColors.primaryRed),
             format: CountDownTimerFormat.hoursMinutesSeconds,
             endTime: DateTime.now().add(
-              const Duration(
-                minutes: 2,
-              ),
-            ),
+          Duration(
+            minutes: state.isAccpet ? state.minutes : 0
+          ),
+        ),
             onEnd: () {
               print("Timer finished");
             },

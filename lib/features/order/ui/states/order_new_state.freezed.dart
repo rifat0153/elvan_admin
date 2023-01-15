@@ -19,6 +19,7 @@ mixin _$NewItemState {
   bool get isOpenDetatils => throw _privateConstructorUsedError;
   double get xOffset => throw _privateConstructorUsedError;
   int get minutes => throw _privateConstructorUsedError;
+  bool get isAccpet => throw _privateConstructorUsedError;
   int? get selectedindex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,7 +34,11 @@ abstract class $NewItemStateCopyWith<$Res> {
       _$NewItemStateCopyWithImpl<$Res, NewItemState>;
   @useResult
   $Res call(
-      {bool isOpenDetatils, double xOffset, int minutes, int? selectedindex});
+      {bool isOpenDetatils,
+      double xOffset,
+      int minutes,
+      bool isAccpet,
+      int? selectedindex});
 }
 
 /// @nodoc
@@ -52,6 +57,7 @@ class _$NewItemStateCopyWithImpl<$Res, $Val extends NewItemState>
     Object? isOpenDetatils = null,
     Object? xOffset = null,
     Object? minutes = null,
+    Object? isAccpet = null,
     Object? selectedindex = freezed,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +73,10 @@ class _$NewItemStateCopyWithImpl<$Res, $Val extends NewItemState>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
+      isAccpet: null == isAccpet
+          ? _value.isAccpet
+          : isAccpet // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedindex: freezed == selectedindex
           ? _value.selectedindex
           : selectedindex // ignore: cast_nullable_to_non_nullable
@@ -84,7 +94,11 @@ abstract class _$$_NewItemStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isOpenDetatils, double xOffset, int minutes, int? selectedindex});
+      {bool isOpenDetatils,
+      double xOffset,
+      int minutes,
+      bool isAccpet,
+      int? selectedindex});
 }
 
 /// @nodoc
@@ -101,6 +115,7 @@ class __$$_NewItemStateCopyWithImpl<$Res>
     Object? isOpenDetatils = null,
     Object? xOffset = null,
     Object? minutes = null,
+    Object? isAccpet = null,
     Object? selectedindex = freezed,
   }) {
     return _then(_$_NewItemState(
@@ -116,6 +131,10 @@ class __$$_NewItemStateCopyWithImpl<$Res>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
+      isAccpet: null == isAccpet
+          ? _value.isAccpet
+          : isAccpet // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectedindex: freezed == selectedindex
           ? _value.selectedindex
           : selectedindex // ignore: cast_nullable_to_non_nullable
@@ -130,7 +149,8 @@ class _$_NewItemState implements _NewItemState {
   const _$_NewItemState(
       {this.isOpenDetatils = false,
       this.xOffset = 0,
-      this.minutes = 30,
+      this.minutes = 0,
+      this.isAccpet = false,
       this.selectedindex});
 
   @override
@@ -143,11 +163,14 @@ class _$_NewItemState implements _NewItemState {
   @JsonKey()
   final int minutes;
   @override
+  @JsonKey()
+  final bool isAccpet;
+  @override
   final int? selectedindex;
 
   @override
   String toString() {
-    return 'NewItemState(isOpenDetatils: $isOpenDetatils, xOffset: $xOffset, minutes: $minutes, selectedindex: $selectedindex)';
+    return 'NewItemState(isOpenDetatils: $isOpenDetatils, xOffset: $xOffset, minutes: $minutes, isAccpet: $isAccpet, selectedindex: $selectedindex)';
   }
 
   @override
@@ -159,13 +182,15 @@ class _$_NewItemState implements _NewItemState {
                 other.isOpenDetatils == isOpenDetatils) &&
             (identical(other.xOffset, xOffset) || other.xOffset == xOffset) &&
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
+            (identical(other.isAccpet, isAccpet) ||
+                other.isAccpet == isAccpet) &&
             (identical(other.selectedindex, selectedindex) ||
                 other.selectedindex == selectedindex));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isOpenDetatils, xOffset, minutes, selectedindex);
+  int get hashCode => Object.hash(
+      runtimeType, isOpenDetatils, xOffset, minutes, isAccpet, selectedindex);
 
   @JsonKey(ignore: true)
   @override
@@ -179,6 +204,7 @@ abstract class _NewItemState implements NewItemState {
       {final bool isOpenDetatils,
       final double xOffset,
       final int minutes,
+      final bool isAccpet,
       final int? selectedindex}) = _$_NewItemState;
 
   @override
@@ -187,6 +213,8 @@ abstract class _NewItemState implements NewItemState {
   double get xOffset;
   @override
   int get minutes;
+  @override
+  bool get isAccpet;
   @override
   int? get selectedindex;
   @override

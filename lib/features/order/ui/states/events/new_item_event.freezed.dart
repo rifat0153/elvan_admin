@@ -20,24 +20,21 @@ mixin _$NewItemEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic data) onAccept,
     required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinIncrement,
-    required TResult Function(int min) onMinDecrement,
+    required TResult Function(int min) onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic data)? onAccept,
     TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinIncrement,
-    TResult? Function(int min)? onMinDecrement,
+    TResult? Function(int min)? onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic data)? onAccept,
     TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinIncrement,
-    TResult Function(int min)? onMinDecrement,
+    TResult Function(int min)? onMinutes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,26 +42,21 @@ mixin _$NewItemEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinIncrement value)
-        onMinIncrement,
-    required TResult Function(_NewItemEvent_OnMinDecrement value)
-        onMinDecrement,
+    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult? Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,8 +148,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic data) onAccept,
     required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinIncrement,
-    required TResult Function(int min) onMinDecrement,
+    required TResult Function(int min) onMinutes,
   }) {
     return onAccept(data);
   }
@@ -167,8 +158,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic data)? onAccept,
     TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinIncrement,
-    TResult? Function(int min)? onMinDecrement,
+    TResult? Function(int min)? onMinutes,
   }) {
     return onAccept?.call(data);
   }
@@ -178,8 +168,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic data)? onAccept,
     TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinIncrement,
-    TResult Function(int min)? onMinDecrement,
+    TResult Function(int min)? onMinutes,
     required TResult orElse(),
   }) {
     if (onAccept != null) {
@@ -193,10 +182,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinIncrement value)
-        onMinIncrement,
-    required TResult Function(_NewItemEvent_OnMinDecrement value)
-        onMinDecrement,
+    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) {
     return onAccept(this);
   }
@@ -206,8 +192,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult? Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) {
     return onAccept?.call(this);
   }
@@ -217,8 +202,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) {
     if (onAccept != null) {
@@ -306,8 +290,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic data) onAccept,
     required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinIncrement,
-    required TResult Function(int min) onMinDecrement,
+    required TResult Function(int min) onMinutes,
   }) {
     return onReject(data);
   }
@@ -317,8 +300,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic data)? onAccept,
     TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinIncrement,
-    TResult? Function(int min)? onMinDecrement,
+    TResult? Function(int min)? onMinutes,
   }) {
     return onReject?.call(data);
   }
@@ -328,8 +310,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic data)? onAccept,
     TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinIncrement,
-    TResult Function(int min)? onMinDecrement,
+    TResult Function(int min)? onMinutes,
     required TResult orElse(),
   }) {
     if (onReject != null) {
@@ -343,10 +324,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinIncrement value)
-        onMinIncrement,
-    required TResult Function(_NewItemEvent_OnMinDecrement value)
-        onMinDecrement,
+    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) {
     return onReject(this);
   }
@@ -356,8 +334,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult? Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) {
     return onReject?.call(this);
   }
@@ -367,8 +344,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) {
     if (onReject != null) {
@@ -389,22 +365,20 @@ abstract class _NewItemEvent_OnReject implements NewItemEvent {
 }
 
 /// @nodoc
-abstract class _$$_NewItemEvent_OnMinIncrementCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnMinIncrementCopyWith(
-          _$_NewItemEvent_OnMinIncrement value,
-          $Res Function(_$_NewItemEvent_OnMinIncrement) then) =
-      __$$_NewItemEvent_OnMinIncrementCopyWithImpl<$Res>;
+abstract class _$$_NewItemEvent_OnMinutesCopyWith<$Res> {
+  factory _$$_NewItemEvent_OnMinutesCopyWith(_$_NewItemEvent_OnMinutes value,
+          $Res Function(_$_NewItemEvent_OnMinutes) then) =
+      __$$_NewItemEvent_OnMinutesCopyWithImpl<$Res>;
   @useResult
   $Res call({int min});
 }
 
 /// @nodoc
-class __$$_NewItemEvent_OnMinIncrementCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnMinIncrement>
-    implements _$$_NewItemEvent_OnMinIncrementCopyWith<$Res> {
-  __$$_NewItemEvent_OnMinIncrementCopyWithImpl(
-      _$_NewItemEvent_OnMinIncrement _value,
-      $Res Function(_$_NewItemEvent_OnMinIncrement) _then)
+class __$$_NewItemEvent_OnMinutesCopyWithImpl<$Res>
+    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnMinutes>
+    implements _$$_NewItemEvent_OnMinutesCopyWith<$Res> {
+  __$$_NewItemEvent_OnMinutesCopyWithImpl(_$_NewItemEvent_OnMinutes _value,
+      $Res Function(_$_NewItemEvent_OnMinutes) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -412,8 +386,8 @@ class __$$_NewItemEvent_OnMinIncrementCopyWithImpl<$Res>
   $Res call({
     Object? min = null,
   }) {
-    return _then(_$_NewItemEvent_OnMinIncrement(
-      min: null == min
+    return _then(_$_NewItemEvent_OnMinutes(
+      null == min
           ? _value.min
           : min // ignore: cast_nullable_to_non_nullable
               as int,
@@ -423,22 +397,22 @@ class __$$_NewItemEvent_OnMinIncrementCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
-  const _$_NewItemEvent_OnMinIncrement({required this.min});
+class _$_NewItemEvent_OnMinutes implements _NewItemEvent_OnMinutes {
+  const _$_NewItemEvent_OnMinutes(this.min);
 
   @override
   final int min;
 
   @override
   String toString() {
-    return 'NewItemEvent.onMinIncrement(min: $min)';
+    return 'NewItemEvent.onMinutes(min: $min)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnMinIncrement &&
+            other is _$_NewItemEvent_OnMinutes &&
             (identical(other.min, min) || other.min == min));
   }
 
@@ -448,19 +422,18 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnMinIncrementCopyWith<_$_NewItemEvent_OnMinIncrement>
-      get copyWith => __$$_NewItemEvent_OnMinIncrementCopyWithImpl<
-          _$_NewItemEvent_OnMinIncrement>(this, _$identity);
+  _$$_NewItemEvent_OnMinutesCopyWith<_$_NewItemEvent_OnMinutes> get copyWith =>
+      __$$_NewItemEvent_OnMinutesCopyWithImpl<_$_NewItemEvent_OnMinutes>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(dynamic data) onAccept,
     required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinIncrement,
-    required TResult Function(int min) onMinDecrement,
+    required TResult Function(int min) onMinutes,
   }) {
-    return onMinIncrement(min);
+    return onMinutes(min);
   }
 
   @override
@@ -468,10 +441,9 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(dynamic data)? onAccept,
     TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinIncrement,
-    TResult? Function(int min)? onMinDecrement,
+    TResult? Function(int min)? onMinutes,
   }) {
-    return onMinIncrement?.call(min);
+    return onMinutes?.call(min);
   }
 
   @override
@@ -479,12 +451,11 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(dynamic data)? onAccept,
     TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinIncrement,
-    TResult Function(int min)? onMinDecrement,
+    TResult Function(int min)? onMinutes,
     required TResult orElse(),
   }) {
-    if (onMinIncrement != null) {
-      return onMinIncrement(min);
+    if (onMinutes != null) {
+      return onMinutes(min);
     }
     return orElse();
   }
@@ -494,12 +465,9 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinIncrement value)
-        onMinIncrement,
-    required TResult Function(_NewItemEvent_OnMinDecrement value)
-        onMinDecrement,
+    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) {
-    return onMinIncrement(this);
+    return onMinutes(this);
   }
 
   @override
@@ -507,10 +475,9 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult? Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) {
-    return onMinIncrement?.call(this);
+    return onMinutes?.call(this);
   }
 
   @override
@@ -518,174 +485,22 @@ class _$_NewItemEvent_OnMinIncrement implements _NewItemEvent_OnMinIncrement {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
+    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) {
-    if (onMinIncrement != null) {
-      return onMinIncrement(this);
+    if (onMinutes != null) {
+      return onMinutes(this);
     }
     return orElse();
   }
 }
 
-abstract class _NewItemEvent_OnMinIncrement implements NewItemEvent {
-  const factory _NewItemEvent_OnMinIncrement({required final int min}) =
-      _$_NewItemEvent_OnMinIncrement;
+abstract class _NewItemEvent_OnMinutes implements NewItemEvent {
+  const factory _NewItemEvent_OnMinutes(final int min) =
+      _$_NewItemEvent_OnMinutes;
 
   int get min;
   @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnMinIncrementCopyWith<_$_NewItemEvent_OnMinIncrement>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_NewItemEvent_OnMinDecrementCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnMinDecrementCopyWith(
-          _$_NewItemEvent_OnMinDecrement value,
-          $Res Function(_$_NewItemEvent_OnMinDecrement) then) =
-      __$$_NewItemEvent_OnMinDecrementCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int min});
-}
-
-/// @nodoc
-class __$$_NewItemEvent_OnMinDecrementCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnMinDecrement>
-    implements _$$_NewItemEvent_OnMinDecrementCopyWith<$Res> {
-  __$$_NewItemEvent_OnMinDecrementCopyWithImpl(
-      _$_NewItemEvent_OnMinDecrement _value,
-      $Res Function(_$_NewItemEvent_OnMinDecrement) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? min = null,
-  }) {
-    return _then(_$_NewItemEvent_OnMinDecrement(
-      min: null == min
-          ? _value.min
-          : min // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_NewItemEvent_OnMinDecrement implements _NewItemEvent_OnMinDecrement {
-  const _$_NewItemEvent_OnMinDecrement({required this.min});
-
-  @override
-  final int min;
-
-  @override
-  String toString() {
-    return 'NewItemEvent.onMinDecrement(min: $min)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnMinDecrement &&
-            (identical(other.min, min) || other.min == min));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, min);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnMinDecrementCopyWith<_$_NewItemEvent_OnMinDecrement>
-      get copyWith => __$$_NewItemEvent_OnMinDecrementCopyWithImpl<
-          _$_NewItemEvent_OnMinDecrement>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(dynamic data) onAccept,
-    required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinIncrement,
-    required TResult Function(int min) onMinDecrement,
-  }) {
-    return onMinDecrement(min);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic data)? onAccept,
-    TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinIncrement,
-    TResult? Function(int min)? onMinDecrement,
-  }) {
-    return onMinDecrement?.call(min);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic data)? onAccept,
-    TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinIncrement,
-    TResult Function(int min)? onMinDecrement,
-    required TResult orElse(),
-  }) {
-    if (onMinDecrement != null) {
-      return onMinDecrement(min);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_NewItemEvent_OnAccept value) onAccept,
-    required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinIncrement value)
-        onMinIncrement,
-    required TResult Function(_NewItemEvent_OnMinDecrement value)
-        onMinDecrement,
-  }) {
-    return onMinDecrement(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
-    TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult? Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
-  }) {
-    return onMinDecrement?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NewItemEvent_OnAccept value)? onAccept,
-    TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinIncrement value)? onMinIncrement,
-    TResult Function(_NewItemEvent_OnMinDecrement value)? onMinDecrement,
-    required TResult orElse(),
-  }) {
-    if (onMinDecrement != null) {
-      return onMinDecrement(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NewItemEvent_OnMinDecrement implements NewItemEvent {
-  const factory _NewItemEvent_OnMinDecrement({required final int min}) =
-      _$_NewItemEvent_OnMinDecrement;
-
-  int get min;
-  @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnMinDecrementCopyWith<_$_NewItemEvent_OnMinDecrement>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_NewItemEvent_OnMinutesCopyWith<_$_NewItemEvent_OnMinutes> get copyWith =>
+      throw _privateConstructorUsedError;
 }

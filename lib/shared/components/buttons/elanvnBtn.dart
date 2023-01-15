@@ -1,6 +1,7 @@
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ElvanBtn extends StatelessWidget {
   final String title;
@@ -24,7 +25,7 @@ class ElvanBtn extends StatelessWidget {
         
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(color),
-          fixedSize: MaterialStateProperty.all(Size(width, 40)),
+          fixedSize:  MaterialStateProperty.all(Size(width, 40.w)),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.radiusXL),
           ))
