@@ -1,7 +1,5 @@
-import 'package:elvan_admin/features/home/ui/states/menu_state.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
-import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,6 +12,7 @@ class NewOrderNotifier extends StateNotifier<NewItemState> {
   NewOrderNotifier() : super(const NewItemState());
 
   void selecteItem({required BuildContext context, required int index}) {
+    
     if (state.selectedindex != null) {
       if (state.selectedindex == index) {
         state = state.copyWith(
@@ -42,7 +41,7 @@ class NewOrderNotifier extends StateNotifier<NewItemState> {
 
   void _onAccept(dynamic d) {
     print("-------a----click");
-
+    
     state = state.copyWith(isAccpet: true);
     state = state.copyWith(minutes: state.minutes);
   }

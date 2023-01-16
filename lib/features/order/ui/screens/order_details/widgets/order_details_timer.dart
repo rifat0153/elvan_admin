@@ -1,4 +1,6 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_conutdown.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -16,23 +18,29 @@ class OrderDeatilsTimer extends HookConsumerWidget {
     final minutes = useState<int>(0);
     final state = ref.watch(newOrderProvider);
     final notifier = ref.watch(newOrderProvider.notifier);
-
+    final timerState = ref.watch(timerProvider);
+    String strDigits(int n) => n.toString().padLeft(2, '0');
+    final days = strDigits(timerState.duration.inDays);
+    // Step 7
+    final hours = strDigits(timerState.duration.inHours.remainder(24));
+    final min= strDigits(timerState.duration.inMinutes.remainder(60));
+    final seconds = strDigits(timerState.duration.inSeconds.remainder(60));
     useEffect(() {
-      // if (state.isAccpet) {
-      //   minutes.value = state.minutes;
-      //   today.value = DateTime.now().add(
-      //     Duration(
-      //       minutes: minutes.value,
-      //     ),
-      //   );
-      // } else {
-      //   minutes.value = 0;
-      //    today.value = DateTime.now().add(
-      //     Duration(
-      //       minutes: minutes.value,
-      //     ),
-      //   );
-      // }
+      if (state.isAccpet) {
+        minutes.value = state.minutes;
+        today.value = DateTime.now().add(
+          Duration(
+            minutes: minutes.value,
+          ),
+        );
+      } else {
+        minutes.value = 0;
+        today.value = DateTime.now().add(
+          Duration(
+            minutes: minutes.value,
+          ),
+        );
+      }
     }, const []);
     return Container(
       width: 242,
@@ -45,29 +53,47 @@ class OrderDeatilsTimer extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.only(bottom: 20,top: 10),
             child: Text(
               AppStrings.remaning,
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
-          TimerCountdown(
-            timeTextStyle: Theme.of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(color: AppColors.primaryRed),
-            format: CountDownTimerFormat.hoursMinutesSeconds,
-            endTime: DateTime.now().add(
-          Duration(
-            minutes: state.isAccpet ? state.minutes : 0
-          ),
-        ),
-            onEnd: () {
-              print("Timer finished");
-            },
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              timeItem(context: context,title: AppStrings.hour,value: hours),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(":",style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),),
+              ),
+              timeItem(context: context,title: AppStrings.min,value: min),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(":",style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),),
+              ),
+              timeItem(context: context,title: AppStrings.sec,value: seconds),
+            ],
+          )
         ],
       ),
     );
+  }
+
+  Column timeItem({required BuildContext context,required String title, required value}) {
+    return Column(
+          children: [
+            Text(
+                '$value',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed)),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                  '$title',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray)),
+            ),
+          ],
+        );
   }
 }

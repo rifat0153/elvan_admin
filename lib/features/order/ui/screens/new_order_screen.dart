@@ -1,5 +1,6 @@
 import 'package:elvan_admin/features/home/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/order_details.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_item.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
@@ -25,7 +26,7 @@ class NewOrderScreen extends HookConsumerWidget {
           duration: const Duration(milliseconds: 500),
           child: Container(
             color: AppColors.white,
-            width:AppSize.width(context) - orderDeatilsState.xOffset,
+            width: AppSize.width(context) - orderDeatilsState.xOffset,
             height: double.infinity,
             child: Column(
               mainAxisSize: MainAxisSize.max,

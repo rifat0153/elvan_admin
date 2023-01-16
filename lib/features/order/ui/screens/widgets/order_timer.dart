@@ -1,4 +1,5 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
@@ -92,7 +93,8 @@ class OrderTimer extends HookConsumerWidget {
                       color: AppColors.primaryRed,
                       onClick: () {
                         print("---click");
-                        notifier.onEvent( const NewItemEvent.onReject(null));
+                        ref.read(timerProvider.notifier).stopTimer();
+                        notifier.onEvent(const NewItemEvent.onReject(null));
                       }),
                 ),
                 Padding(
@@ -102,7 +104,9 @@ class OrderTimer extends HookConsumerWidget {
                       color: AppColors.green,
                       textColor: AppColors.black,
                       onClick: () {
-                        notifier.onEvent( const NewItemEvent.onAccept(data: ''));
+                        ref.read(timerProvider.notifier).setTimer(minutes.value);
+                        ref.read(timerProvider.notifier).start();
+                        notifier.onEvent(const NewItemEvent.onAccept(data: ''));
                       }),
                 )
               ],
