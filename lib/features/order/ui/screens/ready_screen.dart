@@ -1,4 +1,4 @@
-import 'package:elvan_admin/features/home/ui/notifier/menu_notifier.dart';
+import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';

@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MenuState {
   bool get isOpenMenu => throw _privateConstructorUsedError;
   double get xOffset => throw _privateConstructorUsedError;
+  double get xOffsetSubChild => throw _privateConstructorUsedError;
+  double get xOffsetTab => throw _privateConstructorUsedError;
   double get yOffset => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +32,12 @@ abstract class $MenuStateCopyWith<$Res> {
   factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) =
       _$MenuStateCopyWithImpl<$Res, MenuState>;
   @useResult
-  $Res call({bool isOpenMenu, double xOffset, double yOffset});
+  $Res call(
+      {bool isOpenMenu,
+      double xOffset,
+      double xOffsetSubChild,
+      double xOffsetTab,
+      double yOffset});
 }
 
 /// @nodoc
@@ -48,6 +55,8 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
   $Res call({
     Object? isOpenMenu = null,
     Object? xOffset = null,
+    Object? xOffsetSubChild = null,
+    Object? xOffsetTab = null,
     Object? yOffset = null,
   }) {
     return _then(_value.copyWith(
@@ -58,6 +67,14 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
       xOffset: null == xOffset
           ? _value.xOffset
           : xOffset // ignore: cast_nullable_to_non_nullable
+              as double,
+      xOffsetSubChild: null == xOffsetSubChild
+          ? _value.xOffsetSubChild
+          : xOffsetSubChild // ignore: cast_nullable_to_non_nullable
+              as double,
+      xOffsetTab: null == xOffsetTab
+          ? _value.xOffsetTab
+          : xOffsetTab // ignore: cast_nullable_to_non_nullable
               as double,
       yOffset: null == yOffset
           ? _value.yOffset
@@ -74,7 +91,12 @@ abstract class _$$_MenuStateCopyWith<$Res> implements $MenuStateCopyWith<$Res> {
       __$$_MenuStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isOpenMenu, double xOffset, double yOffset});
+  $Res call(
+      {bool isOpenMenu,
+      double xOffset,
+      double xOffsetSubChild,
+      double xOffsetTab,
+      double yOffset});
 }
 
 /// @nodoc
@@ -90,6 +112,8 @@ class __$$_MenuStateCopyWithImpl<$Res>
   $Res call({
     Object? isOpenMenu = null,
     Object? xOffset = null,
+    Object? xOffsetSubChild = null,
+    Object? xOffsetTab = null,
     Object? yOffset = null,
   }) {
     return _then(_$_MenuState(
@@ -100,6 +124,14 @@ class __$$_MenuStateCopyWithImpl<$Res>
       xOffset: null == xOffset
           ? _value.xOffset
           : xOffset // ignore: cast_nullable_to_non_nullable
+              as double,
+      xOffsetSubChild: null == xOffsetSubChild
+          ? _value.xOffsetSubChild
+          : xOffsetSubChild // ignore: cast_nullable_to_non_nullable
+              as double,
+      xOffsetTab: null == xOffsetTab
+          ? _value.xOffsetTab
+          : xOffsetTab // ignore: cast_nullable_to_non_nullable
               as double,
       yOffset: null == yOffset
           ? _value.yOffset
@@ -113,7 +145,11 @@ class __$$_MenuStateCopyWithImpl<$Res>
 
 class _$_MenuState implements _MenuState {
   const _$_MenuState(
-      {this.isOpenMenu = false, this.xOffset = 0, this.yOffset = 0});
+      {this.isOpenMenu = false,
+      this.xOffset = 0,
+      this.xOffsetSubChild = 0,
+      this.xOffsetTab = 0,
+      this.yOffset = 0});
 
   @override
   @JsonKey()
@@ -123,11 +159,17 @@ class _$_MenuState implements _MenuState {
   final double xOffset;
   @override
   @JsonKey()
+  final double xOffsetSubChild;
+  @override
+  @JsonKey()
+  final double xOffsetTab;
+  @override
+  @JsonKey()
   final double yOffset;
 
   @override
   String toString() {
-    return 'MenuState(isOpenMenu: $isOpenMenu, xOffset: $xOffset, yOffset: $yOffset)';
+    return 'MenuState(isOpenMenu: $isOpenMenu, xOffset: $xOffset, xOffsetSubChild: $xOffsetSubChild, xOffsetTab: $xOffsetTab, yOffset: $yOffset)';
   }
 
   @override
@@ -138,11 +180,16 @@ class _$_MenuState implements _MenuState {
             (identical(other.isOpenMenu, isOpenMenu) ||
                 other.isOpenMenu == isOpenMenu) &&
             (identical(other.xOffset, xOffset) || other.xOffset == xOffset) &&
+            (identical(other.xOffsetSubChild, xOffsetSubChild) ||
+                other.xOffsetSubChild == xOffsetSubChild) &&
+            (identical(other.xOffsetTab, xOffsetTab) ||
+                other.xOffsetTab == xOffsetTab) &&
             (identical(other.yOffset, yOffset) || other.yOffset == yOffset));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isOpenMenu, xOffset, yOffset);
+  int get hashCode => Object.hash(
+      runtimeType, isOpenMenu, xOffset, xOffsetSubChild, xOffsetTab, yOffset);
 
   @JsonKey(ignore: true)
   @override
@@ -155,12 +202,18 @@ abstract class _MenuState implements MenuState {
   const factory _MenuState(
       {final bool isOpenMenu,
       final double xOffset,
+      final double xOffsetSubChild,
+      final double xOffsetTab,
       final double yOffset}) = _$_MenuState;
 
   @override
   bool get isOpenMenu;
   @override
   double get xOffset;
+  @override
+  double get xOffsetSubChild;
+  @override
+  double get xOffsetTab;
   @override
   double get yOffset;
   @override

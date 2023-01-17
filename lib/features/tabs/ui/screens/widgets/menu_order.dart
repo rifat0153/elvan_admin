@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/navigation_provider.dart';
-import 'package:elvan_admin/features/home/ui/screens/widgets/menu_btn.dart';
+import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_btn.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

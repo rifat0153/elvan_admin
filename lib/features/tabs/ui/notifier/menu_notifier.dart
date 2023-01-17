@@ -1,4 +1,4 @@
-import 'package:elvan_admin/features/home/ui/states/menu_state.dart';
+import 'package:elvan_admin/features/tabs/ui/states/menu_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final menuProvider = StateNotifierProvider<MenuNotifier, MenuState>((ref) {
@@ -10,7 +10,12 @@ class MenuNotifier extends StateNotifier<MenuState> {
 
   void open() {
   state =  state.copyWith(
-        isOpenMenu: !state.isOpenMenu, xOffset: state.isOpenMenu ? 384 : 0);
+        isOpenMenu: !state.isOpenMenu, 
+        xOffset: state.isOpenMenu ? 312 : 0,
+        xOffsetSubChild: state.isOpenMenu ? 0 : 0,
+        xOffsetTab: state.isOpenMenu ? 79 : 0,
+        
+        );
   }
 
   void close() {

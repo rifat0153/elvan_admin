@@ -10,8 +10,8 @@ class OrderInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 140.w,
+    return Container(
+      padding: const EdgeInsets.only(left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,11 +22,14 @@ class OrderInfoWidget extends StatelessWidget {
                 .labelLarge
                 ?.copyWith(color: AppColors.gray),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             "$value",
             style: Theme.of(context).textTheme.titleMedium,
             maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

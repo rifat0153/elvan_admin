@@ -11,7 +11,7 @@ class ECard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10,bottom: 10),
-      constraints: BoxConstraints(maxWidth: 161.w,),
+      constraints: const BoxConstraints(maxWidth: 161),
       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
      
       decoration: BoxDecoration(

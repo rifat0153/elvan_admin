@@ -19,15 +19,13 @@ class OrderTimer extends HookConsumerWidget {
     final state = ref.watch(newOrderProvider);
     final notifier = ref.watch(newOrderProvider.notifier);
     final minutes = useState<int>(30);
-    return Flex(
-      direction: Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
         //** Timer Form */
-        Flex(
-          direction:
-              AppSize.width(context) < 610 ? Axis.vertical : Axis.horizontal,
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -44,8 +42,8 @@ class OrderTimer extends HookConsumerWidget {
               ),
             ),
             Container(
-              width: 77.w,
-              height: 70.w,
+              width: 77,
+              height: 70,
               margin: const EdgeInsets.symmetric(horizontal: 6),
               decoration: BoxDecoration(
                 border: Border.all(color: AppColors.grayA7, width: 2),
@@ -55,6 +53,7 @@ class OrderTimer extends HookConsumerWidget {
                 child: Text(
                   "${minutes.value} min",
                   style: Theme.of(context).textTheme.labelLarge,
+                  textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.clip,
                 ),
@@ -77,41 +76,34 @@ class OrderTimer extends HookConsumerWidget {
         const SizedBox(
           height: 10,
         ),
-        Container(
-          constraints: BoxConstraints(
-            maxWidth: AppSize.width(context) / 6.2,
-          ),
-          child: Center(
-            child: Wrap(
-              direction: Axis.horizontal,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ElvanBtn(
-                      title: AppStrings.reject,
-                      color: AppColors.primaryRed,
-                      onClick: () {
-                        print("---click");
-                        ref.read(timerProvider.notifier).stopTimer();
-                        notifier.onEvent(const NewItemEvent.onReject(null));
-                      }),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ElvanBtn(
-                      title: AppStrings.accept,
-                      color: AppColors.green,
-                      textColor: AppColors.black,
-                      onClick: () {
-                        ref.read(timerProvider.notifier).setTimer(minutes.value);
-                        ref.read(timerProvider.notifier).start();
-                        notifier.onEvent(const NewItemEvent.onAccept(data: ''));
-                      }),
-                )
-              ],
+        Wrap(
+          direction: Axis.horizontal,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ElvanBtn(
+                  title: AppStrings.reject,
+                  color: AppColors.primaryRed,
+                  onClick: () {
+                    print("---click");
+                    ref.read(timerProvider.notifier).stopTimer();
+                    notifier.onEvent(const NewItemEvent.onReject(null));
+                  }),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ElvanBtn(
+                  title: AppStrings.accept,
+                  color: AppColors.green,
+                  textColor: AppColors.black,
+                  onClick: () {
+                    ref.read(timerProvider.notifier).setTimer(minutes.value);
+                    ref.read(timerProvider.notifier).start();
+                    notifier.onEvent(const NewItemEvent.onAccept(data: ''));
+                  }),
+            )
+          ],
         )
       ],
     );

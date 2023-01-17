@@ -3,16 +3,16 @@ import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ElvanBtn extends StatelessWidget {
+class ElvanSmallBtn extends StatelessWidget {
   final String title;
   final void Function() onClick;
   final double width;
   final Color color;
   final Color textColor;
-  const ElvanBtn({
+  const ElvanSmallBtn({
     Key? key,
     required this.title,
-    this.width = 99.0,
+    this.width = 70.0,
     this.color = AppColors.primaryRed,
     this.textColor = AppColors.white,
     required this.onClick,
@@ -25,7 +25,7 @@ class ElvanBtn extends StatelessWidget {
         
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(color),
-          fixedSize:  MaterialStateProperty.all(Size(width,40)),
+          fixedSize:  MaterialStateProperty.all(Size(width,30)),
          // padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 20,vertical: 15)),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSize.radiusXL),
@@ -36,7 +36,7 @@ class ElvanBtn extends StatelessWidget {
             title,
             style: Theme.of(context)
                 .textTheme
-                .labelLarge
+                .caption
                 ?.copyWith(color: textColor),
           ),
         ));
