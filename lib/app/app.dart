@@ -17,7 +17,7 @@ class App extends HookConsumerWidget {
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
 
     return ScreenUtilInit(
-      designSize: const Size(1920, 1080),
+      designSize: const Size(1512, 1048),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -26,10 +26,10 @@ class App extends HookConsumerWidget {
           scaffoldMessengerKey: scaffoldMessengerKey,
           title: AppStrings.appName,
           theme: ThemeData(
-            primaryColor: AppColors.white,
-            textTheme: AppTextTheme.textThemeData),
+              primaryColor: AppColors.white,
+              textTheme: AppTextTheme.textThemeData),
           routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(),   
+          routeInformationParser: appRouter.defaultRouteParser(),
         );
       },
     );

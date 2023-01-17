@@ -47,7 +47,7 @@ class HomeAppBar extends StatelessWidget {
                       title,
                       style: Theme.of(context)
                           .textTheme
-                          .headline3
+                          .headlineSmall
                           ?.copyWith(color: AppColors.black),
                     ),
                   ),
@@ -57,7 +57,7 @@ class HomeAppBar extends StatelessWidget {
               ),
             ),
             //*******Divider */
-            Divider()
+            const Divider()
           ],
         ),
       ),

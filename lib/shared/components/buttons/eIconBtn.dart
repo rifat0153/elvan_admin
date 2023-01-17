@@ -16,9 +16,9 @@ class EIconBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: onClick,
-        icon: Icon(
+    return InkWell(
+        onTap: onClick,
+        child: Icon(
           iconData,
           color: color,
           size: size,
