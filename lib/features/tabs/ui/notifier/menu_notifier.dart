@@ -9,16 +9,19 @@ class MenuNotifier extends StateNotifier<MenuState> {
   MenuNotifier() : super(const MenuState());
 
   void open() {
-  state =  state.copyWith(
-        isOpenMenu: !state.isOpenMenu, 
-        xOffset: state.isOpenMenu ? 312 : 0,
-        xOffsetSubChild: state.isOpenMenu ? 0 : 0,
-        xOffsetTab: state.isOpenMenu ? 79 : 0,
-        
-        );
+    state = state.copyWith(
+      isOpenMenu: !state.isOpenMenu,
+    );
+    state = state.copyWith(
+      xOffset: state.isOpenMenu ? 312 : 0,
+      xOffsetSubChild: state.isOpenMenu ? 0 : 0,
+      xOffsetTab: state.isOpenMenu ? 79 : 0,
+    );
   }
 
+  bool menuOpen() => state.isOpenMenu;
+
   void close() {
-   state = state.copyWith(isOpenMenu: false);
+    state = state.copyWith(isOpenMenu: false);
   }
 }

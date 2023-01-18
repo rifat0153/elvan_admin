@@ -1,10 +1,10 @@
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
-class OrderDetailsRow extends StatelessWidget {
+class OrderDetailsRowTab extends StatelessWidget {
   final String title;
   final double value;
-  const OrderDetailsRow({
+  const OrderDetailsRowTab({
     Key? key,
     required this.title,
     this.value = 0.0
@@ -21,14 +21,14 @@ class OrderDetailsRow extends StatelessWidget {
             flex: 2,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
           Expanded(
             flex: 1,
             child: Text(
               "${AppStrings.dollar} ${value}",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
         ],

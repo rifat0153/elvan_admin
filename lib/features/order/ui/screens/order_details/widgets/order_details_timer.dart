@@ -23,7 +23,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
     final days = strDigits(timerState.duration.inDays);
     // Step 7
     final hours = strDigits(timerState.duration.inHours.remainder(24));
-    final min= strDigits(timerState.duration.inMinutes.remainder(60));
+    final min = strDigits(timerState.duration.inMinutes.remainder(60));
     final seconds = strDigits(timerState.duration.inSeconds.remainder(60));
     useEffect(() {
       if (state.isAccpet) {
@@ -43,8 +43,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
       }
     }, const []);
     return Container(
-      width: 242,
-      height: 112,
+      padding: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
           color: AppColors.grayF7,
           borderRadius: BorderRadius.circular(AppSize.radiusSL)),
@@ -53,7 +52,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 20,top: 10),
+            padding: const EdgeInsets.only(bottom: 20, top: 10),
             child: Text(
               AppStrings.remaning,
               style: Theme.of(context).textTheme.labelSmall,
@@ -63,17 +62,29 @@ class OrderDeatilsTimer extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              timeItem(context: context,title: AppStrings.hour,value: hours),
+              timeItem(context: context, title: AppStrings.hour, value: hours),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Text(":",style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),),
+                child: Text(
+                  ":",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(color: AppColors.primaryRed),
+                ),
               ),
-              timeItem(context: context,title: AppStrings.min,value: min),
+              timeItem(context: context, title: AppStrings.min, value: min),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Text(":",style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),),
+                child: Text(
+                  ":",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall
+                      ?.copyWith(color: AppColors.primaryRed),
+                ),
               ),
-              timeItem(context: context,title: AppStrings.sec,value: seconds),
+              timeItem(context: context, title: AppStrings.sec, value: seconds),
             ],
           )
         ],
@@ -81,19 +92,24 @@ class OrderDeatilsTimer extends HookConsumerWidget {
     );
   }
 
-  Column timeItem({required BuildContext context,required String title, required value}) {
+  Column timeItem(
+      {required BuildContext context, required String title, required value}) {
     return Column(
-          children: [
-            Text(
-                '$value',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed)),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                  '$title',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray)),
-            ),
-          ],
-        );
+      children: [
+        Text('$value',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(color: AppColors.primaryRed)),
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text('$title',
+              style: Theme.of(context)
+                  .textTheme
+                  .labelSmall
+                  ?.copyWith(color: AppColors.gray)),
+        ),
+      ],
+    );
   }
 }

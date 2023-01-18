@@ -1,21 +1,22 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/food_variants.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/food_variants_sl.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/order_info.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/order_info_m.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/order_timer.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/widgets/order_timer_sl.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants_tabs.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/order_info_tab.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer_tab.dart';
 import 'package:elvan_admin/shared/components/cards/eCard.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OrderItemSL extends HookConsumerWidget {
+class OrderItemTab extends HookConsumerWidget {
   final int index;
   final int? selectedInedx;
   final void Function() onClick;
-  const OrderItemSL(
+  const OrderItemTab(
       {Key? key,
       required this.index,
       this.selectedInedx,
@@ -27,8 +28,7 @@ class OrderItemSL extends HookConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          constraints: BoxConstraints(maxWidth: AppSize.width(context) / 1.1),
+        Expanded(
           child: GestureDetector(
             onTap: onClick,
             child: Card(
@@ -44,31 +44,29 @@ class OrderItemSL extends HookConsumerWidget {
                 constraints: const BoxConstraints(
                   minHeight: 198,
                 ),
-                padding: const EdgeInsets.all(24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //** row by Order info section */
-                    Container(
-                      constraints: BoxConstraints(
-                        maxWidth: AppSize.width(context) / 2.4,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          OrderInfoM(),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          FoodVarientsSL()
-                        ],
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: OrderInfo(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10,),
+                      child: Text(
+                        AppStrings.varients,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: AppColors.gray),
                       ),
                     ),
-
+                    const FoodVarientsTab(),
                     //** row by Order set time section */
-                    const OrderTimerSL()
+                    const OrderTimerTab()
                   ],
                 ),
               ),

@@ -4,6 +4,11 @@ import 'package:flutter/foundation.dart';
 class AppAssets {
   const AppAssets._();
 
+// image
+  static const String pizza = "assets/images/piza.png";
+
+
+// svgs 
   static const String logo = "assets/svgs/logo.svg";
   static const String dashboard = "assets/svgs/dashboard.svg";
   static const String home = "assets/svgs/home.svg";

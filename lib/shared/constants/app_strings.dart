@@ -19,11 +19,24 @@ class AppStrings {
   static const String tax = "TAX (15%)";
   static const String total = "Total";
   static const String remaning = "Remaning";
+  static const String varients = "Varients";
   static const String hour = "Hour";
   static const String min = "Min";
   static const String sec = "Sec";
   static const String ongoingTotal = "Ongoing Total";
   static const String deliver = "Deliver";
+
+  static const String settings = "Settings";
+  static const String foodItems = "Food Items";
+  static const String foodCategory = "Food Category";
+  static const String name = "name";
+  static const String price = "price";
+  static const String categoryName = "Category Name";
+  static const String totalItem = "Total Item";
+  static const String addNew = "Add New";
+  static const String edit = "Edit";
+  static const String addOnItems = "Add-on-items";
+  static const String time = "Timer";
 
   static const String reject = "Reject";
   static const String accept = "Accept";

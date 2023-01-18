@@ -1,4 +1,5 @@
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
@@ -6,8 +7,8 @@ import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OrderDetatils extends HookConsumerWidget {
-  const OrderDetatils({Key? key}) : super(key: key);
+class OrderDetatilsTab extends HookConsumerWidget {
+  const OrderDetatilsTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -76,19 +77,19 @@ class OrderDetatils extends HookConsumerWidget {
               return ListTile(
                 title: Text(
                   "Margerita Pizza",
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleSmall,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
                   "with Prawn, Extra Sauce and Cheese",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.caption,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: Text(
                   "${AppStrings.multi} 2",
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               );
             },
@@ -112,18 +113,18 @@ class OrderDetatils extends HookConsumerWidget {
         ),
 
         //******************* Order SubTotal */
-        const OrderDetailsRow(
+        const OrderDetailsRowTab(
           title: AppStrings.subTotal,
           value: 4563,
         ),
         //******************* Order Charge */
-        const OrderDetailsRow(
+        const OrderDetailsRowTab(
           title: AppStrings.charge,
           value: 63,
         ),
 
         //******************* Order Tax */
-        const OrderDetailsRow(
+        const OrderDetailsRowTab(
           title: AppStrings.tax,
           value: 3,
         ),

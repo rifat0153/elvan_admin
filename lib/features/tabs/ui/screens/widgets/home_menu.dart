@@ -5,9 +5,9 @@ import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MenuOrder extends HookConsumerWidget {
+class HomeMenu extends HookConsumerWidget {
   final TabsRouter router;
-  const MenuOrder({
+  const HomeMenu({
     required this.router,
     Key? key,
   }) : super(key: key);
@@ -30,7 +30,7 @@ class MenuOrder extends HookConsumerWidget {
 
         //************ NewOrder */
         Padding(
-          padding: const EdgeInsets.only(top: 34, left: 24),
+          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
               onClick: () {
                 router.setActiveIndex(0);
@@ -39,7 +39,7 @@ class MenuOrder extends HookConsumerWidget {
         ),
         //************ Processing */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24),
+          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
               onClick: () {
                  router.setActiveIndex(1);
@@ -48,7 +48,7 @@ class MenuOrder extends HookConsumerWidget {
         ),
         //************ Ready */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24),
+          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
               onClick: () {
                  router.setActiveIndex(2);
@@ -57,7 +57,7 @@ class MenuOrder extends HookConsumerWidget {
         ),
         //************ Delivered */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24),
+          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
               onClick: () {
                  router.setActiveIndex(3);
