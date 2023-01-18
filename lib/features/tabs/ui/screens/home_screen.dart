@@ -44,15 +44,11 @@ class HomeScreen extends HookConsumerWidget {
         return Scaffold(
           body: Stack(
             children: [
-              // ************* Menu Layout ****************
               SizedBox(
                 width: double.infinity,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    //*********  Layout one  ****** */
-
-                    //*********  Layout Two ****** */
                     AnimatedContainer(
                       curve: Curves.easeOut,
                       duration: const Duration(milliseconds: 500),
