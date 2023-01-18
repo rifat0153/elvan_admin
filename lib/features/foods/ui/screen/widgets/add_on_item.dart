@@ -1,4 +1,5 @@
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
+import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -41,25 +42,33 @@ class AddOnItem extends StatelessWidget {
               DataColumn(
                 label: Text(
                   AppStrings.name,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: ResponsiveLayout.isMobile(context)
+                      ? Theme.of(context).textTheme.bodySmall
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               DataColumn(
                 label: Text(
                   AppStrings.price,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: ResponsiveLayout.isMobile(context)
+                      ? Theme.of(context).textTheme.bodySmall
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               DataColumn(
                 label: Text(
                   "",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: ResponsiveLayout.isMobile(context)
+                      ? Theme.of(context).textTheme.bodySmall
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               DataColumn(
                 label: Text(
                   "",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: ResponsiveLayout.isMobile(context)
+                      ? Theme.of(context).textTheme.bodySmall
+                      : Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ],

@@ -1,4 +1,6 @@
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
+import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item_tab.dart';
+import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
@@ -35,10 +37,12 @@ class AddItemScreen extends HookConsumerWidget {
               children: [
                 ListView.builder(
                   itemCount: 4,
-                   physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return AddOnItem();
+                    return ResponsiveLayout.isDesktop(context)
+                        ? const AddOnItem()
+                        : const AddOnItemTab();
                   },
                 ),
               ],

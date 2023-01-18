@@ -1,6 +1,7 @@
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
+import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -44,91 +45,206 @@ class FoodsScreen extends HookConsumerWidget {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20),
-                  child: DataTable(
-                    columns: [
-                      DataColumn(
-                        label: Text(
-                          AppStrings.categoryName,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          AppStrings.totalItem,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          "",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                    ],
-                    rows: List.generate(
-                        100,
-                        (index) => DataRow(cells: [
-                              DataCell(
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      AppAssets.pizza,
-                                      width: 30,
-                                      height: 30,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "Pizza",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(color: AppColors.gray),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              DataCell(
-                                Text(
-                                  "7",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(color: AppColors.gray),
-                                ),
-                              ),
-                              DataCell(
-                                TextButton(
-                                  onPressed: (() {}),
-                                  child: Text(
-                                    AppStrings.edit,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: AppColors.primaryRed),
-                                  ),
-                                ),
-                              ),
-                              DataCell(Switch(
-                                activeColor: AppColors.primaryRed,
-                                value: false,
-                                onChanged: (value) {},
-                              )),
-                            ])).toList(),
-                  ),
-                )
+               ResponsiveLayout.isDesktop(context) ? desktopDataTable(context) :tabDataTable(context)
               ],
             ),
           ))
+        ],
+      ),
+    );
+  }
+
+  Padding desktopDataTable(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: DataTable(
+        columns: [
+          DataColumn(
+            label: Text(
+              AppStrings.categoryName,
+              style:  Theme.of(context).textTheme.titleSmall,
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              AppStrings.totalItem,
+              style:  Theme.of(context).textTheme.titleSmall,
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              "",
+              style:  Theme.of(context).textTheme.titleSmall,
+            ),
+          ),
+          DataColumn(
+            label: Text(
+              "",
+              style:  Theme.of(context).textTheme.titleSmall,
+            ),
+          ),
+        ],
+        rows: List.generate(
+            100,
+            (index) => DataRow(cells: [
+                  DataCell(
+                    Row(
+                      children: [
+                        Image.asset(
+                          AppAssets.pizza,
+                          width: 30,
+                          height: 30,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              "Pizza dsfkajsklfjas'dlsjfkjsdkljfsladjfkl",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(color: AppColors.gray),
+                              maxLines: 3,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      "7",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(color: AppColors.gray),
+                    ),
+                  ),
+                  DataCell(
+                    TextButton(
+                      onPressed: (() {}),
+                      child: Text(
+                        AppStrings.edit,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(color: AppColors.primaryRed),
+                      ),
+                    ),
+                  ),
+                  DataCell(Switch(
+                    activeColor: AppColors.primaryRed,
+                    value: false,
+                    onChanged: (value) {},
+                  )),
+                ])).toList(),
+      ),
+    );
+  }
+
+  Padding tabDataTable(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: Row(
+        children: [
+          Expanded(
+            child: FittedBox(
+              child: DataTable(
+                columns: [
+                  DataColumn(
+                    label: Text(
+                      AppStrings.categoryName,
+                      style: ResponsiveLayout.isMobile(context)
+                          ? Theme.of(context).textTheme.bodySmall
+                          : Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      AppStrings.totalItem,
+                      style: ResponsiveLayout.isMobile(context)
+                          ? Theme.of(context).textTheme.bodySmall
+                          : Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      "",
+                      style: ResponsiveLayout.isMobile(context)
+                          ? Theme.of(context).textTheme.bodySmall
+                          : Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      "",
+                      style: ResponsiveLayout.isMobile(context)
+                          ? Theme.of(context).textTheme.bodySmall
+                          : Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                ],
+                rows: List.generate(
+                    100,
+                    (index) => DataRow(cells: [
+                          DataCell(
+                            Row(
+                              children: [
+                                Image.asset(
+                                  AppAssets.pizza,
+                                  width: 30,
+                                  height: 30,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "Pizza dsfkajsklfjas'dlsjfkjsdkljfsladjfkl",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(color: AppColors.gray),
+                                      maxLines: 3,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          DataCell(
+                            Text(
+                              "7",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(color: AppColors.gray),
+                            ),
+                          ),
+                          DataCell(
+                            TextButton(
+                              onPressed: (() {}),
+                              child: Text(
+                                AppStrings.edit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(color: AppColors.primaryRed),
+                              ),
+                            ),
+                          ),
+                          DataCell(Switch(
+                            activeColor: AppColors.primaryRed,
+                            value: false,
+                            onChanged: (value) {},
+                          )),
+                        ])).toList(),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 @Immutable()
 class AppStrings {
   static const String appName = "Elvan Admin";
+  static const String loginSubTitle = "Please fill your detail to access your account.";
   static const String orders = "Orders";
   static const String newOrders = "New Orders";
   static const String orderDetails = "Order details";
@@ -35,8 +36,13 @@ class AppStrings {
   static const String totalItem = "Total Item";
   static const String addNew = "Add New";
   static const String edit = "Edit";
+  static const String save = "Save";
   static const String addOnItems = "Add-on-items";
-  static const String time = "Timer";
+  static const String time = "Times";
+  static const String orderHours = "Order Hours";
+  static const String takingOrder = "Taking orders";
+  static const String setDeliveryTime = "Set delivery time";
+  static const String setestimatedTime = "Set estimated delivery time";
 
   static const String reject = "Reject";
   static const String accept = "Accept";
