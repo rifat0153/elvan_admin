@@ -14,7 +14,7 @@ class OrderDetatils extends HookConsumerWidget {
     return Container(
       decoration: const BoxDecoration(
           border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
-      width: 288,
+      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

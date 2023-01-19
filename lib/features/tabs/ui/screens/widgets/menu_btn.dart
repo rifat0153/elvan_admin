@@ -34,7 +34,7 @@ class MenuBtn extends HookConsumerWidget {
                   ?.copyWith(color: isClick.value ? AppColors.primaryRed : AppColors.gray),
             ),
 
-            Container(
+         count != 0 ?   Container(
               height: 16,
               constraints: const BoxConstraints(minWidth: 27),
               decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class MenuBtn extends HookConsumerWidget {
                         .labelSmall
                         ?.copyWith(color: AppColors.white)),
               ),
-            )
+            ): Container()
           ],
         ),
       ),

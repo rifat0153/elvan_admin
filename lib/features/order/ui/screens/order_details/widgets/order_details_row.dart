@@ -17,13 +17,19 @@ class OrderDetailsRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium,
+          Expanded(
+            flex: 2,
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
-          Text(
-            "${AppStrings.dollar} ${value}",
-            style: Theme.of(context).textTheme.titleMedium,
+          Expanded(
+            flex: 1,
+            child: Text(
+              "${AppStrings.dollar} ${value}",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
         ],
       ),

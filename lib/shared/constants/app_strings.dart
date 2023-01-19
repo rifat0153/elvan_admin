@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 @Immutable()
 class AppStrings {
   static const String appName = "Elvan Admin";
+  static const String loginSubTitle = "Please fill your detail to access your account.";
   static const String orders = "Orders";
   static const String newOrders = "New Orders";
   static const String orderDetails = "Order details";
@@ -19,17 +20,45 @@ class AppStrings {
   static const String tax = "TAX (15%)";
   static const String total = "Total";
   static const String remaning = "Remaning";
+  static const String varients = "Varients";
   static const String hour = "Hour";
   static const String min = "Min";
   static const String sec = "Sec";
   static const String ongoingTotal = "Ongoing Total";
   static const String deliver = "Deliver";
 
+  static const String settings = "Settings";
+  static const String foodItems = "Food Items";
+  static const String foodCategory = "Food Category";
+  static const String name = "name";
+  static const String price = "price";
+  static const String categoryName = "Category Name";
+  static const String totalItem = "Total Item";
+  static const String addNew = "Add New";
+  static const String edit = "Edit";
+  static const String save = "Save";
+  static const String addOnItems = "Add-on-items";
+  static const String time = "Times";
+  static const String orderHours = "Order Hours";
+  static const String takingOrder = "Taking orders";
+  static const String setDeliveryTime = "Set delivery time";
+  static const String setestimatedTime = "Set estimated delivery time";
+
   static const String reject = "Reject";
   static const String accept = "Accept";
 
   static const String dollar = "\$";
   static const String multi = "×";
+
+  static const String emailHint = "example@gmail.com";
+  static const String emailEmpty = 'Please enter email';
+  static const String emailNotMatch = "You have entered an invalid e-mail address. Please try again.";
+  static const String passwordHint = "Password";
+  static const String passwordEmpty = "Please enter some text";
+  static const String password6Characters = 'at least enter 6 characters';
+  static const String login = 'Login';
+
+
 
 
   //optional

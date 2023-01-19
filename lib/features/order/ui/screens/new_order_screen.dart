@@ -1,9 +1,10 @@
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/order_details.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_xl.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_desktop.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
@@ -36,9 +37,7 @@ class NewOrderScreen extends HookConsumerWidget {
                     menuNotifier.open();
                   },
                   title: AppStrings.newOrders),
-              SizedBox(
-                width: AppSize.width(context),
-                height: AppSize.hight(context) - 80,
+              Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -55,6 +54,8 @@ class NewOrderScreen extends HookConsumerWidget {
                               Scaffold.of(context).openEndDrawer();
                               orderDeatilsNotifier.selecteItem(
                                   context: context, index: index);
+                                                  ref.read(orderDtatilsProvider.notifier).setOrder();
+
                             },
                           );
                         },

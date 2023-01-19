@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.dart';
+import 'package:elvan_admin/app/router/app_router.gr.dart';
+import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_admin/shared/constants/app_text_theme.dart';
@@ -14,6 +17,7 @@ class App extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = ref.watch(appRouterProvider);
+    final authNotifer = ref.watch(authNotifierProvider.notifier);
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
 
     return ScreenUtilInit(
@@ -27,8 +31,18 @@ class App extends HookConsumerWidget {
           title: AppStrings.appName,
           theme: ThemeData(
               primaryColor: AppColors.white,
+              colorScheme: ThemeData().colorScheme.copyWith(
+                    secondary: AppColors.primaryRed,
+                    primary: AppColors.primaryRed
+                  ),
               textTheme: AppTextTheme.textThemeData),
-          routerDelegate: appRouter.delegate(),
+          routerDelegate: AutoRouterDelegate.declarative(appRouter,
+              routes: (_) => [
+                    if (authNotifer.isAuthenticated)
+                      const Home()
+                    else
+                      const Login()
+                  ]),
           routeInformationParser: appRouter.defaultRouteParser(),
         );
       },
