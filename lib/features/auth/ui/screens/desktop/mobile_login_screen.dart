@@ -16,16 +16,8 @@ class MobileLoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
-    final isAuthenticated = ref.read(
-      authNotifierProvider.notifier.select((v) => v.isAuthenticated),
-    );
 
-    final emailTextController = useTextEditingController();
-    final passwordTextController = useTextEditingController();
-
-    final currentRoute = ref.read(appRouterProvider).current.path;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Column(
@@ -34,7 +26,6 @@ class MobileLoginScreen extends HookConsumerWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Container(
-          
             child: Column(
               children: [
                 //**************Headlinge */
@@ -46,9 +37,9 @@ class MobileLoginScreen extends HookConsumerWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child: SizedBox(
-                        width: 120,
-                        height: 90,
-                        child: SvgPicture.asset(AppAssets.logo)),
+                          width: 120,
+                          height: 90,
+                          child: SvgPicture.asset(AppAssets.logo)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -74,7 +65,20 @@ class MobileLoginScreen extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.all(40),
                   child: LoginForm(),
-                )
+                ),
+
+                authNotifier.error == null
+                    ? Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          "${authNotifier.error}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(color: AppColors.primaryRed),
+                        ),
+                      )
+                    : Container()
               ],
             ),
           )

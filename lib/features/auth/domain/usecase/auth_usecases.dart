@@ -56,14 +56,14 @@ class AuthUseCases {
         Failure(message: 'User is null'),
       );
     }
-
+    print("${user.displayName} ${user.uid}");
     final elvanUser = await getUserUseCase(userId: user.uid);
-
     return elvanUser.when(
       success: (elvanUser) {
         return Result.success(elvanUser);
       },
       failure: (failure) {
+        print("${failure.message}");
         return Result.failure(failure);
       },
     );
@@ -85,5 +85,14 @@ class AuthUseCases {
 
   Future<bool> signOutUseCase() async {
     return authRepository.signOut();
+  }
+
+  Future<Result<User>> register({
+    required String name,
+    required String email,
+    required String password,
+  }) {
+    return authRepository.registerUsingEmailPassword(
+        name: name, email: email, password: password);
   }
 }

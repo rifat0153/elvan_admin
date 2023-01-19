@@ -1,6 +1,6 @@
-
 import 'dart:async';
 
+import 'package:elvan_admin/app/router/navigation_provider.dart';
 import 'package:elvan_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_state.dart';
@@ -21,6 +21,14 @@ class AuthNotifier extends Notifier<AuthState> {
   bool get isAuthenticated => state.maybeWhen(
         authenticated: (elvanUser) => true,
         orElse: () => false,
+      );
+  bool get isLoading => state.maybeWhen(
+        loading: () => true,
+        orElse: () => false,
+      );
+  String? get error => state.maybeWhen(
+        error: (message) => message,
+        orElse: () => "",
       );
 
   @override
@@ -59,7 +67,8 @@ class AuthNotifier extends Notifier<AuthState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = const AuthState.loading();
-        final result = authUseCase.signInWithEmailAndPasswordUseCase(email: email, password: password);
+        final result =
+            authUseCase.register(name: "", email: email, password: password);
       },
       resetPassword: (email) {},
       goToRegisterScreen: () {
@@ -84,14 +93,33 @@ class AuthNotifier extends Notifier<AuthState> {
   Future loginAndGetUserData(String email, String password) async {
     state = const AuthState.loading();
 
-    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result =
+        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
 
     result.when(
       success: (elvanUser) {
+        print("-----------${elvanUser.email}");
         state = AuthState.authenticated(elvanUser);
+        ref.read(navigatorProvider.notifier).popAllPushTabRoute();
+      },
+      failure: (message) {
+        state = AuthState.error(message.toString());
+      },
+    );
+  }
+
+  Future register(String email, String password) async {
+    state = const AuthState.loading();
+
+    final result = await authUseCase.register(
+        email: email, password: password, name: "Rayhan");
+
+    result.when(
+      success: (elvanUser) {
+        state = AuthState.error(elvanUser.displayName.toString());
       },
       failure: (message) {
         state = AuthState.error(message.toString());

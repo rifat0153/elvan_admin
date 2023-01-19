@@ -1,4 +1,3 @@
-
 import 'package:elvan_admin/core/result/result.dart';
 import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,4 +15,10 @@ abstract class AuthRepository {
   Stream<User?> getUserStream();
 
   Future<bool> signOut();
+
+  Future<Result<User>> registerUsingEmailPassword({
+    required String name,
+    required String email,
+    required String password,
+  });
 }

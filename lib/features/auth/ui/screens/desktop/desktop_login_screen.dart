@@ -1,4 +1,5 @@
 import 'package:elvan_admin/app/router/app_router.dart';
+import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/features/auth/ui/screens/widgets/login_form.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
@@ -16,16 +17,8 @@ class DesktopLoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authNotifierProvider);
     final authNotifier = ref.read(authNotifierProvider.notifier);
-    final isAuthenticated = ref.read(
-      authNotifierProvider.notifier.select((v) => v.isAuthenticated),
-    );
 
-    final emailTextController = useTextEditingController();
-    final passwordTextController = useTextEditingController();
-
-    final currentRoute = ref.read(appRouterProvider).current.path;
     return Scaffold(
       backgroundColor: AppColors.grayF7,
       body: SizedBox(
@@ -39,7 +32,10 @@ class DesktopLoginScreen extends HookConsumerWidget {
             Card(
               child: Container(
                 constraints: BoxConstraints(
-                    maxWidth: ResponsiveLayout.isTablet(context) ? AppSize.width(context) / 2  : AppSize.width(context) / 4,),
+                  maxWidth: ResponsiveLayout.isTablet(context)
+                      ? AppSize.width(context) / 2
+                      : AppSize.width(context) / 4,
+                ),
                 child: Column(
                   children: [
                     //**************Headlinge */
@@ -51,9 +47,9 @@ class DesktopLoginScreen extends HookConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: SizedBox(
-                            width: 120,
-                            height: 90,
-                            child: SvgPicture.asset(AppAssets.logo)),
+                              width: 120,
+                              height: 90,
+                              child: SvgPicture.asset(AppAssets.logo)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -79,7 +75,20 @@ class DesktopLoginScreen extends HookConsumerWidget {
                     Padding(
                       padding: const EdgeInsets.all(40),
                       child: LoginForm(),
-                    )
+                    ),
+
+                    authNotifier.error == null
+                        ? Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              authNotifier.error!,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(color: AppColors.primaryRed),
+                            ),
+                          )
+                        : Container()
                   ],
                 ),
               ),

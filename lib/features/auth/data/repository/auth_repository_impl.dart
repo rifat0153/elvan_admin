@@ -85,4 +85,44 @@ class AuthRepositoryImpl implements AuthRepository {
   Stream<User?> getUserStream() {
     return firebaseAuth.authStateChanges();
   }
+
+  @override
+  Future<Result<User>> registerUsingEmailPassword({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential =
+          await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+      await user?.updateDisplayName(name);
+      await user?.reload();
+      ElvanUserDto dto = ElvanUserDto(
+          id: "2",
+          uid: userCredential.user?.uid,
+          email: user?.email,
+          name: name,
+          role: "user");
+      await firebaseFirestore
+          .collection('elvan_users')
+          .doc(user?.uid)
+          .set(dto.toJson());
+      return Result.success(user!);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+      return Result.failure(Failure(error: "Error", message: e.message));
+    } catch (e) {
+      print(e);
+      return Result.failure(Failure(error: "Error", message: e.toString()));
+    }
+  }
 }
