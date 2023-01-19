@@ -50,6 +50,16 @@ class AppStrings {
   static const String dollar = "\$";
   static const String multi = "×";
 
+  static const String emailHint = "example@gmail.com";
+  static const String emailEmpty = 'Please enter email';
+  static const String emailNotMatch = "You have entered an invalid e-mail address. Please try again.";
+  static const String passwordHint = "Password";
+  static const String passwordEmpty = "Please enter some text";
+  static const String password6Characters = 'at least enter 6 characters';
+  static const String login = 'Login';
+
+
+
 
   //optional
   static const String pizza = "Pizza";
