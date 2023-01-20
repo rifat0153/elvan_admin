@@ -16,7 +16,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'app_router.gr.dart';
 
 final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
-  return AppRouter();
+  return AppRouter(authGuard: AuthGuard());
 });
 
 @MaterialAutoRouter(
@@ -33,6 +33,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
         name: "Dashboard",
         page: LeftTabScreen,
         initial: true,
+        guards: [AuthGuard],
         children: [
           AutoRoute(path: 'home', name: "Home", page: HomeScreen, children: [
             AutoRoute(path: '', page: NewOrderScreen),
@@ -44,6 +45,7 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
               path: 'settings',
               name: "Settings",
               page: SettingsScreen,
+            
               children: [
                 AutoRoute(path: 'foods', page: FoodsScreen),
                 AutoRoute(path: 'add', page: AddItemScreen),

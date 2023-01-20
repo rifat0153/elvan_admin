@@ -58,15 +58,23 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<User?> singInWithEmailAndPassword({
+  Future<Result<User?>> singInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    final userCredential = await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential.user;
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return Result.success(userCredential.user);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      return Result.failure(Failure(error: "Error", message: e.message));
+    } catch (e) {
+      print(e);
+      return Result.failure(Failure(error: "Error", message: e.toString()));
+    }
   }
 
   @override
@@ -124,5 +132,26 @@ class AuthRepositoryImpl implements AuthRepository {
       print(e);
       return Result.failure(Failure(error: "Error", message: e.toString()));
     }
+  }
+
+  @override
+  Future<User?> getCurrentUser() async {
+    User? firebaseUser = firebaseAuth.currentUser;
+    return firebaseUser;
+  }
+  
+  @override
+  Future<ElvanUserDto?> getUser({required String userId}) async {
+     final user = await firebaseFirestore
+          .collection(
+            Constants.firebaseCollectionUsers,
+          )
+          .withConverter(
+            fromFirestore: (snapshot, _) =>
+                ElvanUserDto.fromJson(snapshot.data()!),
+            toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+          )
+          .doc(userId)
+          .get();
   }
 }

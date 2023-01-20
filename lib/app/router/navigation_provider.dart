@@ -30,5 +30,9 @@ class NavigatorNotifier extends Notifier<void> {
     _router.pushNamed('/');
   }
 
+ void popAllLogout() {
+    _router.popUntilRoot();
+    _router.pushNamed('/login');
+  }
 
 }

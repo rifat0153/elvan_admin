@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$OrderDetatilsState {
   bool get isOpenDetatils => throw _privateConstructorUsedError;
   int get minutes => throw _privateConstructorUsedError;
+  int get xOffset => throw _privateConstructorUsedError;
   OrderDto? get order => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,7 @@ abstract class $OrderDetatilsStateCopyWith<$Res> {
           OrderDetatilsState value, $Res Function(OrderDetatilsState) then) =
       _$OrderDetatilsStateCopyWithImpl<$Res, OrderDetatilsState>;
   @useResult
-  $Res call({bool isOpenDetatils, int minutes, OrderDto? order});
+  $Res call({bool isOpenDetatils, int minutes, int xOffset, OrderDto? order});
 
   $OrderDtoCopyWith<$Res>? get order;
 }
@@ -51,6 +52,7 @@ class _$OrderDetatilsStateCopyWithImpl<$Res, $Val extends OrderDetatilsState>
   $Res call({
     Object? isOpenDetatils = null,
     Object? minutes = null,
+    Object? xOffset = null,
     Object? order = freezed,
   }) {
     return _then(_value.copyWith(
@@ -61,6 +63,10 @@ class _$OrderDetatilsStateCopyWithImpl<$Res, $Val extends OrderDetatilsState>
       minutes: null == minutes
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      xOffset: null == xOffset
+          ? _value.xOffset
+          : xOffset // ignore: cast_nullable_to_non_nullable
               as int,
       order: freezed == order
           ? _value.order
@@ -90,7 +96,7 @@ abstract class _$$_OrderDetatilsStateCopyWith<$Res>
       __$$_OrderDetatilsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isOpenDetatils, int minutes, OrderDto? order});
+  $Res call({bool isOpenDetatils, int minutes, int xOffset, OrderDto? order});
 
   @override
   $OrderDtoCopyWith<$Res>? get order;
@@ -109,6 +115,7 @@ class __$$_OrderDetatilsStateCopyWithImpl<$Res>
   $Res call({
     Object? isOpenDetatils = null,
     Object? minutes = null,
+    Object? xOffset = null,
     Object? order = freezed,
   }) {
     return _then(_$_OrderDetatilsState(
@@ -119,6 +126,10 @@ class __$$_OrderDetatilsStateCopyWithImpl<$Res>
       minutes: null == minutes
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      xOffset: null == xOffset
+          ? _value.xOffset
+          : xOffset // ignore: cast_nullable_to_non_nullable
               as int,
       order: freezed == order
           ? _value.order
@@ -132,7 +143,10 @@ class __$$_OrderDetatilsStateCopyWithImpl<$Res>
 
 class _$_OrderDetatilsState implements _OrderDetatilsState {
   const _$_OrderDetatilsState(
-      {this.isOpenDetatils = false, this.minutes = 0, this.order});
+      {this.isOpenDetatils = false,
+      this.minutes = 0,
+      this.xOffset = 0,
+      this.order});
 
   @override
   @JsonKey()
@@ -141,11 +155,14 @@ class _$_OrderDetatilsState implements _OrderDetatilsState {
   @JsonKey()
   final int minutes;
   @override
+  @JsonKey()
+  final int xOffset;
+  @override
   final OrderDto? order;
 
   @override
   String toString() {
-    return 'OrderDetatilsState(isOpenDetatils: $isOpenDetatils, minutes: $minutes, order: $order)';
+    return 'OrderDetatilsState(isOpenDetatils: $isOpenDetatils, minutes: $minutes, xOffset: $xOffset, order: $order)';
   }
 
   @override
@@ -156,11 +173,13 @@ class _$_OrderDetatilsState implements _OrderDetatilsState {
             (identical(other.isOpenDetatils, isOpenDetatils) ||
                 other.isOpenDetatils == isOpenDetatils) &&
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
+            (identical(other.xOffset, xOffset) || other.xOffset == xOffset) &&
             (identical(other.order, order) || other.order == order));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isOpenDetatils, minutes, order);
+  int get hashCode =>
+      Object.hash(runtimeType, isOpenDetatils, minutes, xOffset, order);
 
   @JsonKey(ignore: true)
   @override
@@ -174,12 +193,15 @@ abstract class _OrderDetatilsState implements OrderDetatilsState {
   const factory _OrderDetatilsState(
       {final bool isOpenDetatils,
       final int minutes,
+      final int xOffset,
       final OrderDto? order}) = _$_OrderDetatilsState;
 
   @override
   bool get isOpenDetatils;
   @override
   int get minutes;
+  @override
+  int get xOffset;
   @override
   OrderDto? get order;
   @override

@@ -1,8 +1,11 @@
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
+import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,10 +14,10 @@ class OrderDetatils extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(orderDtatilsProvider);
     return Container(
       decoration: const BoxDecoration(
           border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
-      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +45,7 @@ class OrderDetatils extends HookConsumerWidget {
           SizedBox(
             height: AppSize.hight(context) - 100,
             child: SingleChildScrollView(
-              child: body(context),
+              child: body(context, state),
             ),
           ),
         ],
@@ -50,7 +53,7 @@ class OrderDetatils extends HookConsumerWidget {
     );
   }
 
-  Widget body(BuildContext context) {
+  Widget body(BuildContext context, OrderDetatilsState state) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,25 +72,26 @@ class OrderDetatils extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: state.order?.items.length ?? 0,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
+              CartItemDto item = state.order!.items[index];
               return ListTile(
                 title: Text(
-                  "Margerita Pizza",
+                  item.foodItem.title,
                   style: Theme.of(context).textTheme.titleLarge,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  "with Prawn, Extra Sauce and Cheese",
+                  "",
                   style: Theme.of(context).textTheme.titleMedium,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
                 trailing: Text(
-                  "${AppStrings.multi} 2",
+                  "${AppStrings.multi} ${item.quantity}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               );
@@ -112,20 +116,20 @@ class OrderDetatils extends HookConsumerWidget {
         ),
 
         //******************* Order SubTotal */
-        const OrderDetailsRow(
+        OrderDetailsRow(
           title: AppStrings.subTotal,
-          value: 4563,
+          value: state.order?.subTotal ?? 0.0,
         ),
-        //******************* Order Charge */
-        const OrderDetailsRow(
-          title: AppStrings.charge,
-          value: 63,
+        //******************* Order Discount */
+        OrderDetailsRow(
+          title: AppStrings.discount,
+          value: state.order?.discount ?? 0.0,
         ),
 
         //******************* Order Tax */
         const OrderDetailsRow(
           title: AppStrings.tax,
-          value: 3,
+          value: 0,
         ),
 
         //******************* Order Total */
@@ -146,7 +150,7 @@ class OrderDetatils extends HookConsumerWidget {
                 ),
               ),
               Text(
-                "${AppStrings.dollar} 46394",
+                "${AppStrings.dollar} ${state.order?.total}",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
@@ -154,7 +158,7 @@ class OrderDetatils extends HookConsumerWidget {
         ),
         //******************* Order Total */
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Divider(thickness: 2),
         ),
 
@@ -163,7 +167,7 @@ class OrderDetatils extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-               OrderDeatilsTimer(),
+              OrderDeatilsTimer(),
             ],
           ),
         )

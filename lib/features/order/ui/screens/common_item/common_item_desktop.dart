@@ -3,19 +3,20 @@ import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommonItemDesktop extends HookConsumerWidget {
-  final int index;
-  final int? selectedInedx;
+  final OrderDto order;
+  final OrderDto? selectedOrder;
   final void Function() onClick;
   final void Function() onBtnClick;
   final String btnTitle;
   const CommonItemDesktop(
       {Key? key,
-      required this.index,
-      this.selectedInedx,
+      required this.order,
+      this.selectedOrder,
       required this.btnTitle,
       required this.onBtnClick,
       required this.onClick})
@@ -33,16 +34,16 @@ class CommonItemDesktop extends HookConsumerWidget {
               onTap: onClick,
               child: Card(
                 shape: RoundedRectangleBorder(
-                    side: selectedInedx != null
+                    side: selectedOrder != null
                         ? BorderSide(
-                            color: index == selectedInedx
+                            color: order.id == selectedOrder?.id
                                 ? AppColors.primaryRed
                                 : AppColors.grayA7)
                         : const BorderSide(color: AppColors.grayA7),
                     borderRadius: BorderRadius.circular(AppSize.radiusSL)),
                 child: Container(
-                  // constraints:
-                  //     BoxConstraints(maxWidth: AppSize.width(context) / 1.5),
+                  // constraOrderDtos:
+                  //     BoxConstraOrderDtos(maxWidth: AppSize.width(context) / 1.5),
                   padding: const EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -55,12 +56,16 @@ class CommonItemDesktop extends HookConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            OrderInfo(),
+                          children: [
+                            OrderInfo(
+                              order: order,
+                            ),
                             SizedBox(
                               height: 40,
                             ),
-                            FoodVarients()
+                            FoodVarients(
+                              order: order,
+                            )
                           ],
                         ),
                       ),
@@ -75,7 +80,6 @@ class CommonItemDesktop extends HookConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                      
                                 Padding(
                                   padding: EdgeInsets.only(right: 10),
                                   child: ElvanBtn(

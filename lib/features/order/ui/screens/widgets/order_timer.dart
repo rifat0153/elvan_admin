@@ -18,7 +18,7 @@ class OrderTimer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newOrderProvider);
-    final notifier = ref.watch(newOrderProvider.notifier);
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value > 0) {
                     minutes.value--;
-                    notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                       notifier.setMin(minutes.value);
                   }
                 },
                 iconData: Icons.do_not_disturb_on,
@@ -66,7 +66,7 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value >= 0) {
                     minutes.value++;
-                    notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                       notifier.setMin(minutes.value);
                   }
                 },
                 iconData: Icons.add_circle,
@@ -89,7 +89,6 @@ class OrderTimer extends HookConsumerWidget {
                   onClick: () {
                     print("---click");
                     ref.read(timerProvider.notifier).stopTimer();
-                    notifier.onEvent(const NewItemEvent.onReject(null));
                   }),
             ),
             Padding(
@@ -101,7 +100,6 @@ class OrderTimer extends HookConsumerWidget {
                   onClick: () {
                     ref.read(timerProvider.notifier).setTimer(minutes.value);
                     ref.read(timerProvider.notifier).start();
-                    notifier.onEvent(const NewItemEvent.onAccept(data: ''));
                   }),
             )
           ],

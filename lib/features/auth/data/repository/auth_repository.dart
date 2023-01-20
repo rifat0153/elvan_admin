@@ -3,12 +3,13 @@ import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {
-  Future<User?> singInWithEmailAndPassword({
+  Future<Result<User?>> singInWithEmailAndPassword({
     required String email,
     required String password,
   });
 
   Future<Result<ElvanUserDto>> getElvanUser({required String userId});
+  Future<ElvanUserDto?> getUser({required String userId});
 
   Future<User?> signInAnyonymously();
 
@@ -21,4 +22,6 @@ abstract class AuthRepository {
     required String email,
     required String password,
   });
+
+  Future<User?> getCurrentUser();
 }

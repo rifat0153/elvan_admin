@@ -17,10 +17,11 @@ class AppStrings {
   static const String transectionDetails = "Transection Details";
   static const String subTotal = "Sub Total";
   static const String charge = "Charge";
+  static const String discount = "Discount";
   static const String tax = "TAX (15%)";
   static const String total = "Total";
   static const String remaning = "Remaning";
-  static const String varients = "Varients";
+  static const String varients = "Instructions";
   static const String hour = "Hour";
   static const String min = "Min";
   static const String sec = "Sec";
@@ -57,6 +58,8 @@ class AppStrings {
   static const String passwordEmpty = "Please enter some text";
   static const String password6Characters = 'at least enter 6 characters';
   static const String login = 'Login';
+  static const String logout = 'Logout';
+  static const String noOrder = 'No Order yet';
 
 
 

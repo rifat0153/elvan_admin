@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
+import 'package:elvan_admin/core/firebase/firebase_providers.dart';
+import 'package:elvan_admin/features/auth/providers/auth_providers.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -16,8 +18,11 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appRouter = ref.watch(appRouterProvider);
-    final authNotifer = ref.watch(authNotifierProvider.notifier);
+        final appRouter = ref.watch(appRouterProvider);
+    final authState = ref.watch(authNotifierProvider);
+    final firebaseAuth = ref.watch(firebaseAuthProvider);
+    
+
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
 
     return ScreenUtilInit(
@@ -36,13 +41,7 @@ class App extends HookConsumerWidget {
                     primary: AppColors.primaryRed
                   ),
               textTheme: AppTextTheme.textThemeData),
-          routerDelegate: AutoRouterDelegate.declarative(appRouter,
-              routes: (_) => [
-                    if (authNotifer.isAuthenticated)
-                      const Home()
-                    else
-                      const Login()
-                  ]),
+          routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),
         );
       },

@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class LoginForm extends HookConsumerWidget {
   LoginForm({Key? key}) : super(key: key);
 
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -99,7 +99,9 @@ class LoginForm extends HookConsumerWidget {
                 width: double.infinity,
                 height: 40,
                 child: ElevatedButton(
+                  
                   style: ButtonStyle(
+                    
                     backgroundColor:
                         MaterialStateProperty.all(AppColors.primaryRed),
                     shape: MaterialStateProperty.all(
@@ -108,7 +110,7 @@ class LoginForm extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: authState.loading ?  (){} : () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState!.validate()) {
                       print("-------------click");
@@ -120,7 +122,7 @@ class LoginForm extends HookConsumerWidget {
                     }
                   },
 
-                  child: authNotifier.isLoading
+                  child: authState.loading
                       ? const Center(
                           child: SizedBox(
                             width: 20,

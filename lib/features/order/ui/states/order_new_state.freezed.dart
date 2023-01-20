@@ -20,7 +20,7 @@ mixin _$NewItemState {
   double get xOffset => throw _privateConstructorUsedError;
   int get minutes => throw _privateConstructorUsedError;
   bool get isAccpet => throw _privateConstructorUsedError;
-  int? get selectedindex => throw _privateConstructorUsedError;
+  List<OrderDto> get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewItemStateCopyWith<NewItemState> get copyWith =>
@@ -38,7 +38,7 @@ abstract class $NewItemStateCopyWith<$Res> {
       double xOffset,
       int minutes,
       bool isAccpet,
-      int? selectedindex});
+      List<OrderDto> data});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$NewItemStateCopyWithImpl<$Res, $Val extends NewItemState>
     Object? xOffset = null,
     Object? minutes = null,
     Object? isAccpet = null,
-    Object? selectedindex = freezed,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
       isOpenDetatils: null == isOpenDetatils
@@ -77,10 +77,10 @@ class _$NewItemStateCopyWithImpl<$Res, $Val extends NewItemState>
           ? _value.isAccpet
           : isAccpet // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedindex: freezed == selectedindex
-          ? _value.selectedindex
-          : selectedindex // ignore: cast_nullable_to_non_nullable
-              as int?,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<OrderDto>,
     ) as $Val);
   }
 }
@@ -98,7 +98,7 @@ abstract class _$$_NewItemStateCopyWith<$Res>
       double xOffset,
       int minutes,
       bool isAccpet,
-      int? selectedindex});
+      List<OrderDto> data});
 }
 
 /// @nodoc
@@ -116,7 +116,7 @@ class __$$_NewItemStateCopyWithImpl<$Res>
     Object? xOffset = null,
     Object? minutes = null,
     Object? isAccpet = null,
-    Object? selectedindex = freezed,
+    Object? data = null,
   }) {
     return _then(_$_NewItemState(
       isOpenDetatils: null == isOpenDetatils
@@ -135,10 +135,10 @@ class __$$_NewItemStateCopyWithImpl<$Res>
           ? _value.isAccpet
           : isAccpet // ignore: cast_nullable_to_non_nullable
               as bool,
-      selectedindex: freezed == selectedindex
-          ? _value.selectedindex
-          : selectedindex // ignore: cast_nullable_to_non_nullable
-              as int?,
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<OrderDto>,
     ));
   }
 }
@@ -151,7 +151,8 @@ class _$_NewItemState implements _NewItemState {
       this.xOffset = 0,
       this.minutes = 0,
       this.isAccpet = false,
-      this.selectedindex});
+      final List<OrderDto> data = const []})
+      : _data = data;
 
   @override
   @JsonKey()
@@ -165,12 +166,18 @@ class _$_NewItemState implements _NewItemState {
   @override
   @JsonKey()
   final bool isAccpet;
+  final List<OrderDto> _data;
   @override
-  final int? selectedindex;
+  @JsonKey()
+  List<OrderDto> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
-    return 'NewItemState(isOpenDetatils: $isOpenDetatils, xOffset: $xOffset, minutes: $minutes, isAccpet: $isAccpet, selectedindex: $selectedindex)';
+    return 'NewItemState(isOpenDetatils: $isOpenDetatils, xOffset: $xOffset, minutes: $minutes, isAccpet: $isAccpet, data: $data)';
   }
 
   @override
@@ -184,13 +191,12 @@ class _$_NewItemState implements _NewItemState {
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
             (identical(other.isAccpet, isAccpet) ||
                 other.isAccpet == isAccpet) &&
-            (identical(other.selectedindex, selectedindex) ||
-                other.selectedindex == selectedindex));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isOpenDetatils, xOffset, minutes, isAccpet, selectedindex);
+  int get hashCode => Object.hash(runtimeType, isOpenDetatils, xOffset, minutes,
+      isAccpet, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -205,7 +211,7 @@ abstract class _NewItemState implements NewItemState {
       final double xOffset,
       final int minutes,
       final bool isAccpet,
-      final int? selectedindex}) = _$_NewItemState;
+      final List<OrderDto> data}) = _$_NewItemState;
 
   @override
   bool get isOpenDetatils;
@@ -216,7 +222,7 @@ abstract class _NewItemState implements NewItemState {
   @override
   bool get isAccpet;
   @override
-  int? get selectedindex;
+  List<OrderDto> get data;
   @override
   @JsonKey(ignore: true)
   _$$_NewItemStateCopyWith<_$_NewItemState> get copyWith =>

@@ -1,5 +1,4 @@
 import 'package:elvan_admin/app/router/app_router.dart';
-import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/features/auth/ui/screens/widgets/login_form.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
@@ -18,6 +17,7 @@ class DesktopLoginScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.read(authNotifierProvider.notifier);
+    final authState = ref.read(authNotifierProvider);
 
     return Scaffold(
       backgroundColor: AppColors.grayF7,
@@ -77,11 +77,11 @@ class DesktopLoginScreen extends HookConsumerWidget {
                       child: LoginForm(),
                     ),
 
-                    authNotifier.error == null
+                    authState.error != null
                         ? Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Text(
-                              authNotifier.error!,
+                              authState.error!,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge

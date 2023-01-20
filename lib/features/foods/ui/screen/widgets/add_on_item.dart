@@ -3,10 +3,12 @@ import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart'
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:flutter/material.dart';
 
 class AddOnItem extends StatelessWidget {
-  const AddOnItem({Key? key}) : super(key: key);
+  final List<FoodItemDto> foodItems;
+  const AddOnItem({Key? key,required this.foodItems}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class AddOnItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Pizza",
+                "",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
@@ -72,9 +74,7 @@ class AddOnItem extends StatelessWidget {
                 ),
               ),
             ],
-            rows: List.generate(
-                10,
-                (index) => DataRow(cells: [
+            rows: foodItems.map((e) => DataRow(cells: [
                       DataCell(
                         Row(
                           children: [
@@ -86,7 +86,7 @@ class AddOnItem extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "Pizza",
+                                "${e.title}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
@@ -98,7 +98,7 @@ class AddOnItem extends StatelessWidget {
                       ),
                       DataCell(
                         Text(
-                          "${AppStrings.dollar} 7",
+                          "${AppStrings.dollar} ${e.price}",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge
@@ -122,7 +122,7 @@ class AddOnItem extends StatelessWidget {
                         value: false,
                         onChanged: (value) {},
                       )),
-                    ])).toList(),
+                    ])).toList()
           ),
         )
       ],

@@ -51,25 +51,24 @@ class AuthUseCases {
       password: password,
     );
 
-    if (user == null) {
-      return const Result.failure(
-        Failure(message: 'User is null'),
+    return user.when(success: (data) async {
+      final elvanUser = await getUserUseCase(userId: data!.uid);
+      return elvanUser.when(
+        success: (elvanUser) {
+          return Result.success(elvanUser);
+        },
+        failure: (failure) {
+          print("${failure.message}");
+          return Result.failure(failure);
+        },
       );
-    }
-    print("${user.displayName} ${user.uid}");
-    final elvanUser = await getUserUseCase(userId: user.uid);
-    return elvanUser.when(
-      success: (elvanUser) {
-        return Result.success(elvanUser);
-      },
-      failure: (failure) {
-        print("${failure.message}");
-        return Result.failure(failure);
-      },
-    );
+    }, failure: (failure) {
+      print("${failure.message}");
+      return Result.failure(failure);
+    });
   }
 
-  Future<User?> signInWithEmailAndPasswordUseCase({
+  Future<Result<User?>> signInWithEmailAndPasswordUseCase({
     required String email,
     required String password,
   }) async {
@@ -94,5 +93,15 @@ class AuthUseCases {
   }) {
     return authRepository.registerUsingEmailPassword(
         name: name, email: email, password: password);
+  }
+
+  Future<User?> getCurrentUser() {
+    return authRepository.getCurrentUser();
+  }
+   Future<ElvanUser?> getOrderedUser({required String userId}) async {
+    final user = await authRepository.getUser(userId: userId);
+    if (user != null) {
+      return ElvanUser.fromDto(user);
+    }
   }
 }

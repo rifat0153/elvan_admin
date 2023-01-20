@@ -17,6 +17,7 @@ class MobileLoginScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.read(authNotifierProvider.notifier);
+    final authState = ref.read(authNotifierProvider);
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -67,11 +68,11 @@ class MobileLoginScreen extends HookConsumerWidget {
                   child: LoginForm(),
                 ),
 
-                authNotifier.error == null
+                authState.error != null
                     ? Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          "${authNotifier.error}",
+                          "${authState.error}",
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge

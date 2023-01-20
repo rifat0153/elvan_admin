@@ -4,17 +4,18 @@ import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_tab.
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_desktop.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 
 import 'package:flutter/material.dart';
 
 class ReadyItem extends StatelessWidget {
-  final int index;
-  final int? selectedInedx;
+  final OrderDto order;
+  final OrderDto? selectedOrder;
   final void Function() onClick;
   const ReadyItem(
       {Key? key,
-      required this.index,
-      this.selectedInedx,
+      required this.order,
+      this.selectedOrder,
       required this.onClick})
       : super(key: key);
 
@@ -22,26 +23,26 @@ class ReadyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveLayout(
         mobile: CommonItemTab(
-            index: index,
-            selectedInedx: selectedInedx,
+            order: order,
+            selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
             onBtnClick: () {}),
         tablet: CommonItemTab(
-            index: index,
-            selectedInedx: selectedInedx,
+            order: order,
+            selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
             onBtnClick: () {}),
         desktop: CommonItemDesktop(
-            index: index,
-            selectedInedx: selectedInedx,
+            order: order,
+            selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
             onBtnClick: () {}),
         smallMobile: CommonItemTab(
-            index: index,
-            selectedInedx: selectedInedx,
+            order: order,
+            selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
             onBtnClick: () {}));

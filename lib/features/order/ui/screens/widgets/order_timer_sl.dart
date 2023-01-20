@@ -1,4 +1,5 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
@@ -18,7 +19,7 @@ class OrderTimerSL extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newOrderProvider);
-    final notifier = ref.watch(newOrderProvider.notifier);
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +37,7 @@ class OrderTimerSL extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value > 0) {
                     minutes.value--;
-                    notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                    notifier.setMin(minutes.value);
                   }
                 },
                 iconData: Icons.do_not_disturb_on,
@@ -63,11 +64,10 @@ class OrderTimerSL extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: EIconBtn(
-                
                 onClick: () {
                   if (minutes.value >= 0) {
                     minutes.value++;
-                    notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                     notifier.setMin(minutes.value);
                   }
                 },
                 iconData: Icons.add_circle,
@@ -77,7 +77,6 @@ class OrderTimerSL extends HookConsumerWidget {
         ),
         const SizedBox(
           height: 10,
-          
         ),
         Wrap(
           direction: Axis.horizontal,
@@ -86,26 +85,26 @@ class OrderTimerSL extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElvanSmallBtn(
-                width: 70,
+                  width: 70,
                   title: AppStrings.reject,
                   color: AppColors.primaryRed,
                   onClick: () {
                     print("---click");
                     ref.read(timerProvider.notifier).stopTimer();
-                    notifier.onEvent(const NewItemEvent.onReject(null));
+                   
                   }),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElvanSmallBtn(
-                width: 70,
+                  width: 70,
                   title: AppStrings.accept,
                   color: AppColors.green,
                   textColor: AppColors.black,
                   onClick: () {
                     ref.read(timerProvider.notifier).setTimer(minutes.value);
                     ref.read(timerProvider.notifier).start();
-                    notifier.onEvent(const NewItemEvent.onAccept(data: ''));
+                   
                   }),
             )
           ],

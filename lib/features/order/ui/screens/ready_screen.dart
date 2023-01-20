@@ -1,4 +1,5 @@
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/ready_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/ready_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
@@ -18,8 +19,9 @@ class ReadyScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuNotifier = ref.watch(menuProvider.notifier);
-    final orderDeatilsState = ref.watch(newOrderProvider);
-    final orderDeatilsNotifier = ref.watch(newOrderProvider.notifier);
+    final state = ref.watch(readyOrderProvider);
+    final notifier = ref.watch(readyOrderProvider.notifier);
+      final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
     return Stack(
       children: [
         //****************Order Details */
@@ -41,25 +43,53 @@ class ReadyScreen extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ListView.builder(
-                        itemCount: 10,
+                      state.when(loading: 
+                      () {
+                        return  SizedBox(
+                           width: AppSize.width(context),
+                              height: AppSize.hight(context),
+                         child: const Center(
+                           child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: CircularProgressIndicator(),
+                            ),
+                         ),
+                        );
+                      }, 
+                      data: (data) => ListView.builder(
+                        itemCount: data.length,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return ReadyItem(
-                            index: index,
-                            selectedInedx: orderDeatilsState.selectedindex,
+                            order: data[index],
+                            selectedOrder: data[index],
                             onClick: () {
                               Scaffold.of(context).openEndDrawer();
-                              orderDeatilsNotifier.selecteItem(
-                                  context: context, index: index);
-                              ref
-                                  .read(orderDtatilsProvider.notifier)
-                                  .setOrder();
+                                orderDetatilsNotifier.selecteItem(
+                                      context: context, order: data[index]);
                             },
                           );
                         },
-                      ),
+                      ), 
+                      
+                      error:  (err ,st) {
+                        return SizedBox(
+                        width: AppSize.width(context),
+                              height: AppSize.hight(context),
+                         child:Center(
+                            child: Text(
+                              "${err}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(color: AppColors.primaryRed),
+                            ),
+                          )
+                        );
+                      }, )
+                      
                     ],
                   ),
                 ),

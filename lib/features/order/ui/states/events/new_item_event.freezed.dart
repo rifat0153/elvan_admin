@@ -16,25 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewItemEvent {
+  OrderDto get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic data) onAccept,
-    required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinutes,
+    required TResult Function(OrderDto data) onAccept,
+    required TResult Function(OrderDto data) onReject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic data)? onAccept,
-    TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinutes,
+    TResult? Function(OrderDto data)? onAccept,
+    TResult? Function(OrderDto data)? onReject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic data)? onAccept,
-    TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinutes,
+    TResult Function(OrderDto data)? onAccept,
+    TResult Function(OrderDto data)? onReject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,23 +40,24 @@ mixin _$NewItemEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $NewItemEventCopyWith<NewItemEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +66,10 @@ abstract class $NewItemEventCopyWith<$Res> {
   factory $NewItemEventCopyWith(
           NewItemEvent value, $Res Function(NewItemEvent) then) =
       _$NewItemEventCopyWithImpl<$Res, NewItemEvent>;
+  @useResult
+  $Res call({OrderDto data});
+
+  $OrderDtoCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -78,15 +81,41 @@ class _$NewItemEventCopyWithImpl<$Res, $Val extends NewItemEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as OrderDto,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderDtoCopyWith<$Res> get data {
+    return $OrderDtoCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_NewItemEvent_OnAcceptCopyWith<$Res> {
+abstract class _$$_NewItemEvent_OnAcceptCopyWith<$Res>
+    implements $NewItemEventCopyWith<$Res> {
   factory _$$_NewItemEvent_OnAcceptCopyWith(_$_NewItemEvent_OnAccept value,
           $Res Function(_$_NewItemEvent_OnAccept) then) =
       __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({dynamic data});
+  $Res call({OrderDto data});
+
+  @override
+  $OrderDtoCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -100,13 +129,13 @@ class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$_NewItemEvent_OnAccept(
-      data: freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as OrderDto,
     ));
   }
 }
@@ -114,10 +143,10 @@ class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
-  const _$_NewItemEvent_OnAccept({this.data});
+  const _$_NewItemEvent_OnAccept({required this.data});
 
   @override
-  final dynamic data;
+  final OrderDto data;
 
   @override
   String toString() {
@@ -129,12 +158,11 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewItemEvent_OnAccept &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -146,9 +174,8 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic data) onAccept,
-    required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinutes,
+    required TResult Function(OrderDto data) onAccept,
+    required TResult Function(OrderDto data) onReject,
   }) {
     return onAccept(data);
   }
@@ -156,9 +183,8 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic data)? onAccept,
-    TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinutes,
+    TResult? Function(OrderDto data)? onAccept,
+    TResult? Function(OrderDto data)? onReject,
   }) {
     return onAccept?.call(data);
   }
@@ -166,9 +192,8 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic data)? onAccept,
-    TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinutes,
+    TResult Function(OrderDto data)? onAccept,
+    TResult Function(OrderDto data)? onReject,
     required TResult orElse(),
   }) {
     if (onAccept != null) {
@@ -182,7 +207,6 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) {
     return onAccept(this);
   }
@@ -192,7 +216,6 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) {
     return onAccept?.call(this);
   }
@@ -202,7 +225,6 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) {
     if (onAccept != null) {
@@ -213,22 +235,29 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
 }
 
 abstract class _NewItemEvent_OnAccept implements NewItemEvent {
-  const factory _NewItemEvent_OnAccept({final dynamic data}) =
+  const factory _NewItemEvent_OnAccept({required final OrderDto data}) =
       _$_NewItemEvent_OnAccept;
 
-  dynamic get data;
+  @override
+  OrderDto get data;
+  @override
   @JsonKey(ignore: true)
   _$$_NewItemEvent_OnAcceptCopyWith<_$_NewItemEvent_OnAccept> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_NewItemEvent_OnRejectCopyWith<$Res> {
+abstract class _$$_NewItemEvent_OnRejectCopyWith<$Res>
+    implements $NewItemEventCopyWith<$Res> {
   factory _$$_NewItemEvent_OnRejectCopyWith(_$_NewItemEvent_OnReject value,
           $Res Function(_$_NewItemEvent_OnReject) then) =
       __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({dynamic data});
+  $Res call({OrderDto data});
+
+  @override
+  $OrderDtoCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -242,13 +271,13 @@ class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$_NewItemEvent_OnReject(
-      freezed == data
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as OrderDto,
     ));
   }
 }
@@ -256,10 +285,10 @@ class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
-  const _$_NewItemEvent_OnReject(this.data);
+  const _$_NewItemEvent_OnReject({required this.data});
 
   @override
-  final dynamic data;
+  final OrderDto data;
 
   @override
   String toString() {
@@ -271,12 +300,11 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewItemEvent_OnReject &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -288,9 +316,8 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(dynamic data) onAccept,
-    required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinutes,
+    required TResult Function(OrderDto data) onAccept,
+    required TResult Function(OrderDto data) onReject,
   }) {
     return onReject(data);
   }
@@ -298,9 +325,8 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic data)? onAccept,
-    TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinutes,
+    TResult? Function(OrderDto data)? onAccept,
+    TResult? Function(OrderDto data)? onReject,
   }) {
     return onReject?.call(data);
   }
@@ -308,9 +334,8 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic data)? onAccept,
-    TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinutes,
+    TResult Function(OrderDto data)? onAccept,
+    TResult Function(OrderDto data)? onReject,
     required TResult orElse(),
   }) {
     if (onReject != null) {
@@ -324,7 +349,6 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult map<TResult extends Object?>({
     required TResult Function(_NewItemEvent_OnAccept value) onAccept,
     required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
   }) {
     return onReject(this);
   }
@@ -334,7 +358,6 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
   }) {
     return onReject?.call(this);
   }
@@ -344,7 +367,6 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewItemEvent_OnAccept value)? onAccept,
     TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
     required TResult orElse(),
   }) {
     if (onReject != null) {
@@ -355,152 +377,13 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
 }
 
 abstract class _NewItemEvent_OnReject implements NewItemEvent {
-  const factory _NewItemEvent_OnReject(final dynamic data) =
+  const factory _NewItemEvent_OnReject({required final OrderDto data}) =
       _$_NewItemEvent_OnReject;
 
-  dynamic get data;
+  @override
+  OrderDto get data;
+  @override
   @JsonKey(ignore: true)
   _$$_NewItemEvent_OnRejectCopyWith<_$_NewItemEvent_OnReject> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_NewItemEvent_OnMinutesCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnMinutesCopyWith(_$_NewItemEvent_OnMinutes value,
-          $Res Function(_$_NewItemEvent_OnMinutes) then) =
-      __$$_NewItemEvent_OnMinutesCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int min});
-}
-
-/// @nodoc
-class __$$_NewItemEvent_OnMinutesCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnMinutes>
-    implements _$$_NewItemEvent_OnMinutesCopyWith<$Res> {
-  __$$_NewItemEvent_OnMinutesCopyWithImpl(_$_NewItemEvent_OnMinutes _value,
-      $Res Function(_$_NewItemEvent_OnMinutes) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? min = null,
-  }) {
-    return _then(_$_NewItemEvent_OnMinutes(
-      null == min
-          ? _value.min
-          : min // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_NewItemEvent_OnMinutes implements _NewItemEvent_OnMinutes {
-  const _$_NewItemEvent_OnMinutes(this.min);
-
-  @override
-  final int min;
-
-  @override
-  String toString() {
-    return 'NewItemEvent.onMinutes(min: $min)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnMinutes &&
-            (identical(other.min, min) || other.min == min));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, min);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnMinutesCopyWith<_$_NewItemEvent_OnMinutes> get copyWith =>
-      __$$_NewItemEvent_OnMinutesCopyWithImpl<_$_NewItemEvent_OnMinutes>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(dynamic data) onAccept,
-    required TResult Function(dynamic data) onReject,
-    required TResult Function(int min) onMinutes,
-  }) {
-    return onMinutes(min);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(dynamic data)? onAccept,
-    TResult? Function(dynamic data)? onReject,
-    TResult? Function(int min)? onMinutes,
-  }) {
-    return onMinutes?.call(min);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(dynamic data)? onAccept,
-    TResult Function(dynamic data)? onReject,
-    TResult Function(int min)? onMinutes,
-    required TResult orElse(),
-  }) {
-    if (onMinutes != null) {
-      return onMinutes(min);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_NewItemEvent_OnAccept value) onAccept,
-    required TResult Function(_NewItemEvent_OnReject value) onReject,
-    required TResult Function(_NewItemEvent_OnMinutes value) onMinutes,
-  }) {
-    return onMinutes(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_NewItemEvent_OnAccept value)? onAccept,
-    TResult? Function(_NewItemEvent_OnReject value)? onReject,
-    TResult? Function(_NewItemEvent_OnMinutes value)? onMinutes,
-  }) {
-    return onMinutes?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_NewItemEvent_OnAccept value)? onAccept,
-    TResult Function(_NewItemEvent_OnReject value)? onReject,
-    TResult Function(_NewItemEvent_OnMinutes value)? onMinutes,
-    required TResult orElse(),
-  }) {
-    if (onMinutes != null) {
-      return onMinutes(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NewItemEvent_OnMinutes implements NewItemEvent {
-  const factory _NewItemEvent_OnMinutes(final int min) =
-      _$_NewItemEvent_OnMinutes;
-
-  int get min;
-  @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnMinutesCopyWith<_$_NewItemEvent_OnMinutes> get copyWith =>
       throw _privateConstructorUsedError;
 }

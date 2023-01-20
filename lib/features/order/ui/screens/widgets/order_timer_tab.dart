@@ -19,7 +19,7 @@ class OrderTimerTab extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newOrderProvider);
-    final notifier = ref.watch(newOrderProvider.notifier);
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,7 +39,7 @@ class OrderTimerTab extends HookConsumerWidget {
   }
 
   Row btnsSection(
-      WidgetRef ref, NewOrderNotifier notifier, ValueNotifier<int> minutes) {
+      WidgetRef ref, OrderDetatilsNotifier notifier, ValueNotifier<int> minutes) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +52,7 @@ class OrderTimerTab extends HookConsumerWidget {
               onClick: () {
                 print("---click");
                 ref.read(timerProvider.notifier).stopTimer();
-                notifier.onEvent(const NewItemEvent.onReject(null));
+
               }),
         ),
         Padding(
@@ -64,14 +64,13 @@ class OrderTimerTab extends HookConsumerWidget {
               onClick: () {
                 ref.read(timerProvider.notifier).setTimer(minutes.value);
                 ref.read(timerProvider.notifier).start();
-                notifier.onEvent(const NewItemEvent.onAccept(data: ''));
               }),
         )
       ],
     );
   }
 
-  Row timerSection(ValueNotifier<int> minutes, NewOrderNotifier notifier,
+  Row timerSection(ValueNotifier<int> minutes, OrderDetatilsNotifier notifier,
       BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +82,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value > 0) {
                 minutes.value--;
-                notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                   notifier.setMin(minutes.value);
               }
             },
             iconData: Icons.do_not_disturb_on,
@@ -113,7 +112,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value >= 0) {
                 minutes.value++;
-                notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                   notifier.setMin(minutes.value);
               }
             },
             iconData: Icons.add_circle,

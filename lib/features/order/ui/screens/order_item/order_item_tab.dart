@@ -9,17 +9,18 @@ import 'package:elvan_admin/shared/components/cards/eCard.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderItemTab extends HookConsumerWidget {
-  final int index;
-  final int? selectedInedx;
+  final OrderDto order;
+  final OrderDto? selectedOrder;
   final void Function() onClick;
   const OrderItemTab(
       {Key? key,
-      required this.index,
-      this.selectedInedx,
+      required this.order,
+      this.selectedOrder,
       required this.onClick})
       : super(key: key);
 
@@ -33,9 +34,10 @@ class OrderItemTab extends HookConsumerWidget {
             onTap: onClick,
             child: Card(
               shape: RoundedRectangleBorder(
-                  side: selectedInedx != null
+                  side: selectedOrder != null
                       ? BorderSide(
-                          color: index == selectedInedx
+                          color: order.id ==
+                                  selectedOrder?.id
                               ? AppColors.primaryRed
                               : AppColors.grayA7)
                       : const BorderSide(color: AppColors.grayA7),
@@ -50,12 +52,16 @@ class OrderItemTab extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //** row by Order info section */
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: OrderInfo(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: OrderInfo(
+                        order: order,
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 10,),
+                      padding: const EdgeInsets.only(
+                        bottom: 10,
+                      ),
                       child: Text(
                         AppStrings.varients,
                         style: Theme.of(context)
@@ -64,7 +70,9 @@ class OrderItemTab extends HookConsumerWidget {
                             ?.copyWith(color: AppColors.gray),
                       ),
                     ),
-                    const FoodVarientsTab(),
+                    FoodVarientsTab(
+                      order: order,
+                    ),
                     //** row by Order set time section */
                     const OrderTimerTab()
                   ],

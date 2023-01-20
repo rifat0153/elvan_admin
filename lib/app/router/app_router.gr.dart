@@ -25,10 +25,15 @@ import '../../features/tabs/ui/screens/home_screen.dart' as _i3;
 import '../../features/tabs/ui/screens/left_tab_screent.dart' as _i2;
 import '../../features/tabs/ui/screens/settings_screen.dart' as _i4;
 import '../../features/timer/ui/screens/timer_screen.dart' as _i11;
+import 'route_gaurds.dart' as _i14;
 
 class AppRouter extends _i12.RootStackRouter {
-  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter({
+    _i13.GlobalKey<_i13.NavigatorState>? navigatorKey,
+    required this.authGuard,
+  }) : super(navigatorKey);
+
+  final _i14.AuthGuard authGuard;
 
   @override
   final Map<String, _i12.PageFactory> pagesMap = {
@@ -115,6 +120,7 @@ class AppRouter extends _i12.RootStackRouter {
         _i12.RouteConfig(
           Dashboard.name,
           path: '/dashboard',
+          guards: [authGuard],
           children: [
             _i12.RouteConfig(
               Home.name,

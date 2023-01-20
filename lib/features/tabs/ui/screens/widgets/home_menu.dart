@@ -32,6 +32,8 @@ class HomeMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
+            index: 0,
+            selectedIndex: router.activeIndex,
               onClick: () {
                 router.setActiveIndex(0);
               },
@@ -41,6 +43,8 @@ class HomeMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
+             selectedIndex: router.activeIndex,
+             index: 1,
               onClick: () {
                  router.setActiveIndex(1);
               },
@@ -50,6 +54,8 @@ class HomeMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
+             selectedIndex: router.activeIndex,
+             index: 2,
               onClick: () {
                  router.setActiveIndex(2);
               },
@@ -59,6 +65,8 @@ class HomeMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
+              selectedIndex: router.activeIndex,
+              index: 3,
               onClick: () {
                  router.setActiveIndex(3);
               },

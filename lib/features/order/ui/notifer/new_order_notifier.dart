@@ -1,53 +1,62 @@
+import 'dart:async';
+
+import 'package:elvan_admin/features/order/domain/usecase/new_order_usecase.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
+import 'package:elvan_shared/core/ui_state/ui_state.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final newOrderProvider =
-    StateNotifierProvider<NewOrderNotifier, NewItemState>((ref) {
-  return NewOrderNotifier();
-});
+    NotifierProvider<NewOrderNotifier, UiState<List<OrderDto>>>(
+        NewOrderNotifier.new);
 
-class NewOrderNotifier extends StateNotifier<NewItemState> {
-  NewOrderNotifier() : super(const NewItemState());
+class NewOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
+  NewOrderNotifier() : super();
 
-  void selecteItem({required BuildContext context, required int index}) {
-    
-    if (state.selectedindex != null) {
-      if (state.selectedindex == index) {
-        state = state.copyWith(
-            selectedindex: index, isOpenDetatils: !state.isOpenDetatils);
-      } else {
-        state = state.copyWith(selectedindex: index, isOpenDetatils: true);
-      }
-    } else {
-      state = state.copyWith(
-          selectedindex: index, isOpenDetatils: !state.isOpenDetatils);
-    }
-    state = state.copyWith(xOffset: state.isOpenDetatils ? 288 : 0);
+  late NewOrderUsecase newOrderUsecase;
+  late final StreamSubscription<List<OrderDto>> orderSubscription;
+
+  @override
+  UiState<List<OrderDto>> build() {
+    getData();
+
+    ref.onDispose(() {
+      orderSubscription.cancel();
+    });
+
+    return const UiState.loading();
   }
 
-  void close() {
-    state = state.copyWith(isOpenDetatils: false);
+  getData() {
+    newOrderUsecase = ref.read(newOrderUsecaseProvider);
+
+    final result = newOrderUsecase.getNewStream();
+    result.when(
+      success: (data) {
+        print(data.toString());
+        orderSubscription = data.listen(handleOrderStream);
+      },
+      failure: (failure) {
+        state = UiState.error(failure.message);
+      },
+    );
+  }
+
+  handleOrderStream(List<OrderDto> orderDto) {
+    print(orderDto.length);
+    state = UiState.data(orderDto);
   }
 
   void onEvent(NewItemEvent event) {
-    event.when(onAccept: _onAccept, onReject: _onReject, onMinutes: _setMin);
+    event.when(onAccept: _onAccept, onReject: _onReject);
   }
 
-  void _setMin(int min) {
-    state = state.copyWith(minutes: min);
-  }
-
-  void _onAccept(dynamic d) {
+  void _onAccept(OrderDto order) {
     print("-------a----click");
-    
-    state = state.copyWith(isAccpet: true);
-    state = state.copyWith(minutes: state.minutes);
   }
 
-  void _onReject(dynamic d) {
-    print("-----r------click");
-    state = state.copyWith(isAccpet: false, minutes: 0);
-  }
+  void _onReject(OrderDto order) {}
 }

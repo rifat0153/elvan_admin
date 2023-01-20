@@ -18,19 +18,6 @@ class AuthNotifier extends Notifier<AuthState> {
   late final AuthUseCases authUseCase;
   late final StreamSubscription<User?> authStateChangesSubscription;
 
-  bool get isAuthenticated => state.maybeWhen(
-        authenticated: (elvanUser) => true,
-        orElse: () => false,
-      );
-  bool get isLoading => state.maybeWhen(
-        loading: () => true,
-        orElse: () => false,
-      );
-  String? get error => state.maybeWhen(
-        error: (message) => message,
-        orElse: () => "",
-      );
-
   @override
   build() {
     // setup (just like widget initState)
@@ -46,7 +33,7 @@ class AuthNotifier extends Notifier<AuthState> {
     });
 
     // return the initial state of the notifier
-    return const AuthState.unAuthenticated();
+    return const AuthState();
   }
 
   void handleUserStream(User? user) {
@@ -61,18 +48,17 @@ class AuthNotifier extends Notifier<AuthState> {
       // loginWithPasswordAndEmail: login,
       loginWithPasswordAndEmail: loginAndGetUserData,
       logout: () {
-        state = const AuthState.loading();
+        state = state.copyWith(loading: true);
         authUseCase.signOutUseCase();
-        state = const AuthState.unAuthenticated();
       },
       registerWithEmailAndPassword: (email, password) {
-        state = const AuthState.loading();
+        state = state.copyWith(loading: true);
         final result =
             authUseCase.register(name: "", email: email, password: password);
       },
       resetPassword: (email) {},
       goToRegisterScreen: () {
-        state = const AuthState.loading();
+        state = state.copyWith(loading: true);
       },
     );
   }
@@ -82,16 +68,16 @@ class AuthNotifier extends Notifier<AuthState> {
 
     result.when(
       success: (elvanUser) {
-        state = AuthState.authenticated(elvanUser);
+        state = state.copyWith(elvanUser: elvanUser,loading: state.loading,error: state.error);
       },
       failure: (failure) {
-        state = const AuthState.unAuthenticated();
+        state = state.copyWith(error: failure.message,loading: state.loading);
       },
     );
   }
 
   Future loginAndGetUserData(String email, String password) async {
-    state = const AuthState.loading();
+    state = state.copyWith(loading: true);
 
     final result =
         await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
@@ -102,27 +88,31 @@ class AuthNotifier extends Notifier<AuthState> {
     result.when(
       success: (elvanUser) {
         print("-----------${elvanUser.email}");
-        state = AuthState.authenticated(elvanUser);
+
+        state = state.copyWith(elvanUser: elvanUser, loading: false);
+        state = state;
         ref.read(navigatorProvider.notifier).popAllPushTabRoute();
       },
       failure: (message) {
-        state = AuthState.error(message.toString());
+        print("---error--------${message.message}");
+        state = state.copyWith(error: message.message, loading: false);
+        state = state;
       },
     );
   }
 
   Future register(String email, String password) async {
-    state = const AuthState.loading();
+    //state = const AuthState.loading();
 
     final result = await authUseCase.register(
         email: email, password: password, name: "Rayhan");
 
     result.when(
       success: (elvanUser) {
-        state = AuthState.error(elvanUser.displayName.toString());
+        // state = AuthState.error(elvanUser.displayName.toString());
       },
       failure: (message) {
-        state = AuthState.error(message.toString());
+        //state = AuthState.error(message.toString());
       },
     );
   }

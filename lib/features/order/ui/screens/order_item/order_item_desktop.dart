@@ -5,17 +5,18 @@ import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer.dart';
 import 'package:elvan_admin/shared/components/cards/eCard.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderItemDesktop extends HookConsumerWidget {
-  final int index;
-  final int? selectedInedx;
+  final OrderDto order;
+  final OrderDto? selectedOrder;
   final void Function() onClick;
   const OrderItemDesktop(
       {Key? key,
-      required this.index,
-      this.selectedInedx,
+      required this.order,
+      this.selectedOrder,
       required this.onClick})
       : super(key: key);
 
@@ -31,15 +32,15 @@ class OrderItemDesktop extends HookConsumerWidget {
               onTap: onClick,
               child: Card(
                 shape: RoundedRectangleBorder(
-                    side: selectedInedx != null
+                    side: selectedOrder != null
                         ? BorderSide(
-                            color: index == selectedInedx
+                            color: order.id ==
+                                    selectedOrder?.id
                                 ? AppColors.primaryRed
                                 : AppColors.grayA7)
                         : const BorderSide(color: AppColors.grayA7),
                     borderRadius: BorderRadius.circular(AppSize.radiusSL)),
                 child: Container(
-           
                   // constraints:
                   //     BoxConstraints(maxWidth: AppSize.width(context) / 1.5),
                   padding: const EdgeInsets.all(20),
@@ -53,16 +54,20 @@ class OrderItemDesktop extends HookConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            OrderInfo(),
+                          children: [
+                            OrderInfo(
+                              order: order,
+                            ),
                             SizedBox(
                               height: 40,
                             ),
-                            FoodVarients()
+                            FoodVarients(
+                              order: order,
+                            )
                           ],
                         ),
                       ),
-          
+
                       //** row by Order set time section */
                       const Expanded(flex: 2, child: OrderTimer())
                     ],

@@ -16,61 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) =>
+  bool get loading => throw _privateConstructorUsedError;
+  ElvanUser? get elvanUser => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -78,6 +29,10 @@ mixin _$AuthState {
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
+  @useResult
+  $Res call({bool loading, ElvanUser? elvanUser, String? error});
+
+  $ElvanUserCopyWith<$Res>? get elvanUser;
 }
 
 /// @nodoc
@@ -89,562 +44,83 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$_AuthState_LoadingCopyWith<$Res> {
-  factory _$$_AuthState_LoadingCopyWith(_$_AuthState_Loading value,
-          $Res Function(_$_AuthState_Loading) then) =
-      __$$_AuthState_LoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AuthState_LoadingCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState_Loading>
-    implements _$$_AuthState_LoadingCopyWith<$Res> {
-  __$$_AuthState_LoadingCopyWithImpl(
-      _$_AuthState_Loading _value, $Res Function(_$_AuthState_Loading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_AuthState_Loading implements _AuthState_Loading {
-  const _$_AuthState_Loading();
-
-  @override
-  String toString() {
-    return 'AuthState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AuthState_Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AuthState_Loading implements AuthState {
-  const factory _AuthState_Loading() = _$_AuthState_Loading;
-}
-
-/// @nodoc
-abstract class _$$_AuthState_UnKnownCopyWith<$Res> {
-  factory _$$_AuthState_UnKnownCopyWith(_$_AuthState_UnKnown value,
-          $Res Function(_$_AuthState_UnKnown) then) =
-      __$$_AuthState_UnKnownCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AuthState_UnKnownCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState_UnKnown>
-    implements _$$_AuthState_UnKnownCopyWith<$Res> {
-  __$$_AuthState_UnKnownCopyWithImpl(
-      _$_AuthState_UnKnown _value, $Res Function(_$_AuthState_UnKnown) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_AuthState_UnKnown implements _AuthState_UnKnown {
-  const _$_AuthState_UnKnown();
-
-  @override
-  String toString() {
-    return 'AuthState.unKnown()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AuthState_UnKnown);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) {
-    return unKnown();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) {
-    return unKnown?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) {
-    if (unKnown != null) {
-      return unKnown();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) {
-    return unKnown(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) {
-    return unKnown?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (unKnown != null) {
-      return unKnown(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AuthState_UnKnown implements AuthState {
-  const factory _AuthState_UnKnown() = _$_AuthState_UnKnown;
-}
-
-/// @nodoc
-abstract class _$$_AuthState_AuthenticatedCopyWith<$Res> {
-  factory _$$_AuthState_AuthenticatedCopyWith(_$_AuthState_Authenticated value,
-          $Res Function(_$_AuthState_Authenticated) then) =
-      __$$_AuthState_AuthenticatedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ElvanUser elvanUser});
-
-  $ElvanUserCopyWith<$Res> get elvanUser;
-}
-
-/// @nodoc
-class __$$_AuthState_AuthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState_Authenticated>
-    implements _$$_AuthState_AuthenticatedCopyWith<$Res> {
-  __$$_AuthState_AuthenticatedCopyWithImpl(_$_AuthState_Authenticated _value,
-      $Res Function(_$_AuthState_Authenticated) _then)
-      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elvanUser = null,
+    Object? loading = null,
+    Object? elvanUser = freezed,
+    Object? error = freezed,
   }) {
-    return _then(_$_AuthState_Authenticated(
-      null == elvanUser
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      elvanUser: freezed == elvanUser
           ? _value.elvanUser
           : elvanUser // ignore: cast_nullable_to_non_nullable
-              as ElvanUser,
-    ));
+              as ElvanUser?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ElvanUserCopyWith<$Res> get elvanUser {
-    return $ElvanUserCopyWith<$Res>(_value.elvanUser, (value) {
-      return _then(_value.copyWith(elvanUser: value));
+  $ElvanUserCopyWith<$Res>? get elvanUser {
+    if (_value.elvanUser == null) {
+      return null;
+    }
+
+    return $ElvanUserCopyWith<$Res>(_value.elvanUser!, (value) {
+      return _then(_value.copyWith(elvanUser: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-
-class _$_AuthState_Authenticated implements _AuthState_Authenticated {
-  const _$_AuthState_Authenticated(this.elvanUser);
-
+abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$$_AuthStateCopyWith(
+          _$_AuthState value, $Res Function(_$_AuthState) then) =
+      __$$_AuthStateCopyWithImpl<$Res>;
   @override
-  final ElvanUser elvanUser;
-
-  @override
-  String toString() {
-    return 'AuthState.authenticated(elvanUser: $elvanUser)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AuthState_Authenticated &&
-            (identical(other.elvanUser, elvanUser) ||
-                other.elvanUser == elvanUser));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, elvanUser);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AuthState_AuthenticatedCopyWith<_$_AuthState_Authenticated>
-      get copyWith =>
-          __$$_AuthState_AuthenticatedCopyWithImpl<_$_AuthState_Authenticated>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) {
-    return authenticated(elvanUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) {
-    return authenticated?.call(elvanUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) {
-    if (authenticated != null) {
-      return authenticated(elvanUser);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) {
-    return authenticated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) {
-    return authenticated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (authenticated != null) {
-      return authenticated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AuthState_Authenticated implements AuthState {
-  const factory _AuthState_Authenticated(final ElvanUser elvanUser) =
-      _$_AuthState_Authenticated;
-
-  ElvanUser get elvanUser;
-  @JsonKey(ignore: true)
-  _$$_AuthState_AuthenticatedCopyWith<_$_AuthState_Authenticated>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_AuthState_UnAuthenticatedCopyWith<$Res> {
-  factory _$$_AuthState_UnAuthenticatedCopyWith(
-          _$_AuthState_UnAuthenticated value,
-          $Res Function(_$_AuthState_UnAuthenticated) then) =
-      __$$_AuthState_UnAuthenticatedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AuthState_UnAuthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState_UnAuthenticated>
-    implements _$$_AuthState_UnAuthenticatedCopyWith<$Res> {
-  __$$_AuthState_UnAuthenticatedCopyWithImpl(
-      _$_AuthState_UnAuthenticated _value,
-      $Res Function(_$_AuthState_UnAuthenticated) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_AuthState_UnAuthenticated implements _AuthState_UnAuthenticated {
-  const _$_AuthState_UnAuthenticated();
-
-  @override
-  String toString() {
-    return 'AuthState.unAuthenticated()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AuthState_UnAuthenticated);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) {
-    return unAuthenticated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) {
-    return unAuthenticated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) {
-    if (unAuthenticated != null) {
-      return unAuthenticated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) {
-    return unAuthenticated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) {
-    return unAuthenticated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (unAuthenticated != null) {
-      return unAuthenticated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AuthState_UnAuthenticated implements AuthState {
-  const factory _AuthState_UnAuthenticated() = _$_AuthState_UnAuthenticated;
-}
-
-/// @nodoc
-abstract class _$$_AuthState_ErrorCopyWith<$Res> {
-  factory _$$_AuthState_ErrorCopyWith(
-          _$_AuthState_Error value, $Res Function(_$_AuthState_Error) then) =
-      __$$_AuthState_ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? message});
+  $Res call({bool loading, ElvanUser? elvanUser, String? error});
+
+  @override
+  $ElvanUserCopyWith<$Res>? get elvanUser;
 }
 
 /// @nodoc
-class __$$_AuthState_ErrorCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState_Error>
-    implements _$$_AuthState_ErrorCopyWith<$Res> {
-  __$$_AuthState_ErrorCopyWithImpl(
-      _$_AuthState_Error _value, $Res Function(_$_AuthState_Error) _then)
+class __$$_AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState>
+    implements _$$_AuthStateCopyWith<$Res> {
+  __$$_AuthStateCopyWithImpl(
+      _$_AuthState _value, $Res Function(_$_AuthState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? loading = null,
+    Object? elvanUser = freezed,
+    Object? error = freezed,
   }) {
-    return _then(_$_AuthState_Error(
-      freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+    return _then(_$_AuthState(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      elvanUser: freezed == elvanUser
+          ? _value.elvanUser
+          : elvanUser // ignore: cast_nullable_to_non_nullable
+              as ElvanUser?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -652,120 +128,57 @@ class __$$_AuthState_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AuthState_Error implements _AuthState_Error {
-  const _$_AuthState_Error([this.message]);
+class _$_AuthState implements _AuthState {
+  const _$_AuthState({this.loading = false, this.elvanUser, this.error});
 
   @override
-  final String? message;
+  @JsonKey()
+  final bool loading;
+  @override
+  final ElvanUser? elvanUser;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'AuthState.error(message: $message)';
+    return 'AuthState(loading: $loading, elvanUser: $elvanUser, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AuthState_Error &&
-            (identical(other.message, message) || other.message == message));
+            other is _$_AuthState &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.elvanUser, elvanUser) ||
+                other.elvanUser == elvanUser) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, loading, elvanUser, error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthState_ErrorCopyWith<_$_AuthState_Error> get copyWith =>
-      __$$_AuthState_ErrorCopyWithImpl<_$_AuthState_Error>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() unKnown,
-    required TResult Function(ElvanUser elvanUser) authenticated,
-    required TResult Function() unAuthenticated,
-    required TResult Function(String? message) error,
-  }) {
-    return error(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? unKnown,
-    TResult? Function(ElvanUser elvanUser)? authenticated,
-    TResult? Function()? unAuthenticated,
-    TResult? Function(String? message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? unKnown,
-    TResult Function(ElvanUser elvanUser)? authenticated,
-    TResult Function()? unAuthenticated,
-    TResult Function(String? message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AuthState_Loading value) loading,
-    required TResult Function(_AuthState_UnKnown value) unKnown,
-    required TResult Function(_AuthState_Authenticated value) authenticated,
-    required TResult Function(_AuthState_UnAuthenticated value) unAuthenticated,
-    required TResult Function(_AuthState_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthState_Loading value)? loading,
-    TResult? Function(_AuthState_UnKnown value)? unKnown,
-    TResult? Function(_AuthState_Authenticated value)? authenticated,
-    TResult? Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult? Function(_AuthState_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthState_Loading value)? loading,
-    TResult Function(_AuthState_UnKnown value)? unKnown,
-    TResult Function(_AuthState_Authenticated value)? authenticated,
-    TResult Function(_AuthState_UnAuthenticated value)? unAuthenticated,
-    TResult Function(_AuthState_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
 }
 
-abstract class _AuthState_Error implements AuthState {
-  const factory _AuthState_Error([final String? message]) = _$_AuthState_Error;
+abstract class _AuthState implements AuthState {
+  const factory _AuthState(
+      {final bool loading,
+      final ElvanUser? elvanUser,
+      final String? error}) = _$_AuthState;
 
-  String? get message;
+  @override
+  bool get loading;
+  @override
+  ElvanUser? get elvanUser;
+  @override
+  String? get error;
+  @override
   @JsonKey(ignore: true)
-  _$$_AuthState_ErrorCopyWith<_$_AuthState_Error> get copyWith =>
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
       throw _privateConstructorUsedError;
 }

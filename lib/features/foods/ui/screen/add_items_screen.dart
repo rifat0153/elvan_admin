@@ -1,6 +1,8 @@
+import 'package:elvan_admin/features/foods/ui/screen/notifier/food_notifier.dart';
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item_tab.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
+import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
@@ -17,6 +19,7 @@ class AddItemScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuNotifier = ref.watch(menuProvider.notifier);
+    final state = ref.watch(foodProvider);
 
     return Container(
       width: double.infinity,
@@ -35,16 +38,41 @@ class AddItemScreen extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                ListView.builder(
-                  itemCount: 4,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ResponsiveLayout.isDesktop(context)
-                        ? const AddOnItem()
-                        : const AddOnItemTab();
-                  },
-                ),
+                state.when(
+                        loading: () {
+                          return SizedBox(
+                            width: AppSize.width(context),
+                            height: AppSize.hight(context),
+                            child: const Center(
+                              child: SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          );
+                        },
+                        data: (data) {
+                              return ResponsiveLayout.isDesktop(context)
+                        ?  AddOnItem(foodItems: data,)
+                        :  AddOnItemTab(foodItems: data,);
+                        },
+                        error: (err, st) {
+                          return SizedBox(
+                              width: AppSize.width(context),
+                              height: AppSize.hight(context),
+                              child: Center(
+                                child: Text(
+                                  "${err}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(color: AppColors.primaryRed),
+                                ),
+                              ));
+                        },
+                      )
+              
               ],
             ),
           ))
