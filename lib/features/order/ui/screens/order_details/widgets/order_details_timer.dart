@@ -25,12 +25,9 @@ class OrderDeatilsTimer extends HookConsumerWidget {
     final min = strDigits(timerState.duration.inMinutes.remainder(60));
     final seconds = strDigits(timerState.duration.inSeconds.remainder(60));
     useEffect(() {
-        minutes.value = state.minutes;
-        today.value = DateTime.now().add(
-          Duration(
-            minutes: minutes.value,
-          ),
-        );
+      if (state.time != null) {
+        today.value = state.time!;
+      }
       // if (state.isAccpet) {
       //   minutes.value = state.minutes;
       //   today.value = DateTime.now().add(

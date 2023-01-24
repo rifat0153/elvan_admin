@@ -69,7 +69,7 @@ class OrderItemDesktop extends HookConsumerWidget {
                       ),
 
                       //** row by Order set time section */
-                      const Expanded(flex: 2, child: OrderTimer())
+                       Expanded(flex: 2, child: OrderTimer(order: order,))
                     ],
                   ),
                 ),

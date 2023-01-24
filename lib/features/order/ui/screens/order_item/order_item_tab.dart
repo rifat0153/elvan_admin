@@ -74,7 +74,7 @@ class OrderItemTab extends HookConsumerWidget {
                       order: order,
                     ),
                     //** row by Order set time section */
-                    const OrderTimerTab()
+                     OrderTimerTab(order: order,)
                   ],
                 ),
               ),
