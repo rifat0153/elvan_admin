@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
 import 'package:elvan_admin/features/order/provider/timer_provider.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
@@ -18,52 +19,24 @@ class OrderDeatilsTimer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final today = useState<DateTime>(DateTime.now());
-      String strDigits(int n) => n.toString().padLeft(2, '0');
+    String strDigits(int n) => n.toString().padLeft(2, '0');
     final countdownTimer =
         useState<Timer>(Timer(const Duration(seconds: 0), (() {})));
     final duration = useState<Duration>(Duration(seconds: 0));
     final state = ref.watch(orderDtatilsProvider);
-   final days = strDigits(duration.value.inDays);
-      // Step 7
-     final hours = strDigits(duration.value.inHours.remainder(24));
-     final min = strDigits(duration.value.inMinutes.remainder(60));
-    final  seconds =
-         strDigits(duration.value.inSeconds.remainder(60));
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
+    final days = strDigits(duration.value.inDays);
+    final orderTimerNotifier = ref.watch(orderTimerUsecaseProvider);
+    final timerState = ref.watch(timerProvider);
+    final hours = strDigits(timerState.duration.inHours.remainder(24));
+    final min = strDigits(timerState.duration.inMinutes.remainder(60));
+    final seconds = strDigits(timerState.duration.inSeconds.remainder(60));
+
     useEffect(() {
+      print("order item id ${state.order?.id}");
       if (state.time != null) {
         today.value = state.time!;
-        duration.value = Duration(minutes: state.time!.minute);
-        countdownTimer.value = Timer.periodic(
-          const Duration(seconds: 1),
-          (timer) {
-            const reduceSecondsBy = 1;
-            final seconds = duration.value.inSeconds - reduceSecondsBy;
-            if (seconds < 0) {
-              countdownTimer.value.cancel();
-            } else {
-              duration.value = Duration(seconds: seconds);
-            }
-          },
-        );
       }
-
-
-  
-      // if (state.isAccpet) {
-      //   minutes.value = state.minutes;
-      //   today.value = DateTime.now().add(
-      //     Duration(
-      //       minutes: minutes.value,
-      //     ),
-      //   );
-      // } else {
-      //   minutes.value = 0;
-      //   today.value = DateTime.now().add(
-      //     Duration(
-      //       minutes: minutes.value,
-      //     ),
-      //   );
-      // }
     }, const []);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -85,8 +58,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              timeItem(
-                  context: context, title: AppStrings.hour, value: hours),
+              timeItem(context: context, title: AppStrings.hour, value: hours),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
@@ -97,8 +69,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
                       ?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(
-                  context: context, title: AppStrings.min, value: min),
+              timeItem(context: context, title: AppStrings.min, value: min),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
@@ -109,10 +80,7 @@ class OrderDeatilsTimer extends HookConsumerWidget {
                       ?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(
-                  context: context,
-                  title: AppStrings.sec,
-                  value: seconds),
+              timeItem(context: context, title: AppStrings.sec, value: seconds),
             ],
           )
         ],

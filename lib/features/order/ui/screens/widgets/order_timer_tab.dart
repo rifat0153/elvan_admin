@@ -2,6 +2,7 @@ import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
+import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/features/timer/ui/notifier/timer_notifier.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
@@ -25,11 +26,20 @@ class OrderTimerTab extends HookConsumerWidget {
     final state = ref.watch(newOrderProvider);
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
-      final defaultTimer = ref.watch(defaultTimerProvider);
+    final defaultTimer = ref.watch(defaultTimerProvider);
+    final defaultNotifier = ref.watch(timerUsecaseProvider);
 
     useEffect(() {
-      if (order.status.status == OrderStatus.pending) {
-        minutes.value = defaultTimer.minutes;
+      if (order.status.name == OrderStatus.pending.name) {
+        defaultNotifier.getDefaultTimer().then((value) {
+          value.when(
+            success: ((data) {
+              minutes.value = data.defaultTime;
+              notifier.setMin(orderId: order.id, min: data.defaultTime);
+            }),
+            failure: (failure) {},
+          );
+        });
       }
     }, const []);
     return Row(
@@ -92,7 +102,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value > 0) {
                 minutes.value--;
-                notifier.setMin(min:minutes.value,orderId: order.id);
+                notifier.setMin(min: minutes.value, orderId: order.id);
               }
             },
             iconData: Icons.do_not_disturb_on,
@@ -122,7 +132,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value >= 0) {
                 minutes.value++;
-                notifier.setMin(min:minutes.value,orderId: order.id);
+                notifier.setMin(min: minutes.value, orderId: order.id);
               }
             },
             iconData: Icons.add_circle,
