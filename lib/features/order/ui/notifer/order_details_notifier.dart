@@ -21,7 +21,9 @@ class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
   Future<void> selecteItem(
       {required BuildContext context, required OrderDto order}) async {
     int second = await ref.read(orderTimerUsecaseProvider).getSecondTime(
-        orderId: order.id, isAccept: order.status == OrderStatus.accepted);
+        orderId: order.id, isAccept: order.status.name == OrderStatus.pending.name);
+    print(second);
+    print(order.id);
     if (state.order != null) {
       if (state.order!.id == order.id) {
         state = state.copyWith(
@@ -54,20 +56,22 @@ class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
     required String orderId,
     required int min,
   }) {
+    print("--------$orderId--set min $min");
     state = state.copyWith(
         time: DateTime.now().add(
       Duration(
         minutes: min,
       ),
     ));
-    if (state.time != null) {
-      ref
+     ref
           .read(orderTimerUsecaseProvider)
           .setTime(orderId: orderId, time: state.time!);
-    }
   }
 
   void close() {
     state = state.copyWith(isOpenDetatils: false);
   }
+
+
+  
 }

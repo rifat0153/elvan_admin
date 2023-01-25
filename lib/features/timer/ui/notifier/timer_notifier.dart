@@ -39,7 +39,6 @@ class TimerNotifier extends Notifier<DefaultTimerState> {
         state = state.copyWith(error: failure.message);
       },
     );
-    state = state;
   }
 
   setTakingHour(bool isTaking) {

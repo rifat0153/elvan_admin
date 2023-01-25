@@ -9,5 +9,6 @@ class OrderDetatilsState with _$OrderDetatilsState {
       {@Default(false) bool isOpenDetatils,
       DateTime? time,
       @Default(0) int xOffset,
+      
       OrderDto? order}) = _OrderDetatilsState;
 }
