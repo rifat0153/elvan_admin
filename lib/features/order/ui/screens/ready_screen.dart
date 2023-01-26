@@ -21,7 +21,7 @@ class ReadyScreen extends HookConsumerWidget {
     final menuNotifier = ref.watch(menuProvider.notifier);
     final state = ref.watch(readyOrderProvider);
     final notifier = ref.watch(readyOrderProvider.notifier);
-      final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
+    final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
     return Stack(
       children: [
         //****************Order Details */
@@ -43,53 +43,54 @@ class ReadyScreen extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      state.when(loading: 
-                      () {
-                        return  SizedBox(
-                           width: AppSize.width(context),
-                              height: AppSize.hight(context),
-                         child: const Center(
-                           child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: CircularProgressIndicator(),
+                      state.when(
+                        loading: () {
+                          return SizedBox(
+                            width: AppSize.width(context),
+                            height: AppSize.hight(context),
+                            child: const Center(
+                              child: SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CircularProgressIndicator(),
+                              ),
                             ),
-                         ),
-                        );
-                      }, 
-                      data: (data) => ListView.builder(
-                        itemCount: data.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ReadyItem(
-                            order: data[index],
-                            selectedOrder: data[index],
-                            onClick: () {
-                              Scaffold.of(context).openEndDrawer();
-                                orderDetatilsNotifier.selecteItem(
-                                      context: context, order: data[index]);
-                            },
                           );
                         },
-                      ), 
-                      
-                      error:  (err ,st) {
-                        return SizedBox(
-                        width: AppSize.width(context),
+                        data: (data) => ListView.builder(
+                          itemCount: data.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ReadyItem(
+                              order: data[index],
+                              selectedOrder: data[index],
+                              onClick: () {
+                                Scaffold.of(context).openEndDrawer();
+                                orderDetatilsNotifier.selecteItem(
+                                    context: context, order: data[index]);
+                                ref
+                                    .read(readyOrderProvider.notifier)
+                                    .onReady(context, data[index]);
+                              },
+                            );
+                          },
+                        ),
+                        error: (err, st) {
+                          return SizedBox(
+                              width: AppSize.width(context),
                               height: AppSize.hight(context),
-                         child:Center(
-                            child: Text(
-                              "${err}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(color: AppColors.primaryRed),
-                            ),
-                          )
-                        );
-                      }, )
-                      
+                              child: Center(
+                                child: Text(
+                                  "${err}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(color: AppColors.primaryRed),
+                                ),
+                              ));
+                        },
+                      )
                     ],
                   ),
                 ),

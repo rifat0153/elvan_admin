@@ -64,6 +64,7 @@ class AppStrings {
 
 
 
+
   //optional
   static const String pizza = "Pizza";
   static const String kabab = "Kebab Plate";

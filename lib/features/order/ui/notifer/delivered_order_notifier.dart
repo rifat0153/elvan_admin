@@ -48,13 +48,4 @@ class DeliveredOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
     state = UiState.data(orderDto);
   }
 
-  void onEvent(NewItemEvent event) {
-    event.when(onAccept: _onAccept, onReject: _onReject);
-  }
-
-  void _onAccept(OrderDto order) {
-    print("-------a----click");
-  }
-
-  void _onReject(OrderDto order) {}
 }

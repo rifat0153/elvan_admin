@@ -23,14 +23,14 @@ class OrderTimerTab extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(newOrderProvider);
+
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
-    final defaultTimer = ref.watch(defaultTimerProvider);
+
     final defaultNotifier = ref.watch(timerUsecaseProvider);
 
     useEffect(() {
-      if (order.status.name == OrderStatus.pending.name) {
+   if (order.status.name == OrderStatus.pending.name) {
         defaultNotifier.getDefaultTimer().then((value) {
           value.when(
             success: ((data) {
@@ -52,14 +52,14 @@ class OrderTimerTab extends HookConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            btnsSection(ref, notifier, minutes),
+            btnsSection(context,ref, notifier, minutes),
           ],
         ),
       ],
     );
   }
 
-  Row btnsSection(WidgetRef ref, OrderDetatilsNotifier notifier,
+  Row btnsSection(BuildContext context, WidgetRef ref, OrderDetatilsNotifier notifier,
       ValueNotifier<int> minutes) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -73,6 +73,9 @@ class OrderTimerTab extends HookConsumerWidget {
               onClick: () {
                 print("---click");
                 ref.read(timerProvider.notifier).stopTimer();
+                 ref.read(newOrderProvider.notifier).onEvent(
+                      NewItemEvent.onReject(context: context,data: order)
+                    );
               }),
         ),
         Padding(
@@ -84,6 +87,9 @@ class OrderTimerTab extends HookConsumerWidget {
               onClick: () {
                 ref.read(timerProvider.notifier).setTimer(minutes.value);
                 ref.read(timerProvider.notifier).start();
+                 ref.read(newOrderProvider.notifier).onEvent(
+                      NewItemEvent.onAccept(context: context,data: order)
+                    );
               }),
         )
       ],

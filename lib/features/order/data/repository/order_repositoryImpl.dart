@@ -5,7 +5,9 @@ import 'package:elvan_admin/features/auth/data/repository/auth_repository_impl.d
 import 'package:elvan_admin/features/order/domain/repository/order_repository.dart';
 import 'package:elvan_shared/core/failure/failure.dart';
 import 'package:elvan_shared/core/result/result.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/dtos/order/order_status_dto.dart';
 import 'package:elvan_shared/shared/constants/constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,7 +28,7 @@ class OrderRpositoryImpl implements OrderRepository {
     try {
       Stream<List<OrderDto>> data = firebaseFirestore
           .collection(Constants.firebaseCollectionRecentOrders)
-          .where('status', isEqualTo: 'done')
+          .where('status', isEqualTo: OrderStatus.delivered.status)
           .withConverter(
             fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
             toFirestore: (orderDto, _) => orderDto.toJson(),
@@ -74,7 +76,7 @@ class OrderRpositoryImpl implements OrderRepository {
     try {
       Stream<List<OrderDto>> data = firebaseFirestore
           .collection(Constants.firebaseCollectionRecentOrders)
-          .where('status', isEqualTo:'processing')
+          .where('status', isEqualTo: 'accepted')
           .withConverter(
             fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
             toFirestore: (orderDto, _) => orderDto.toJson(),
@@ -136,6 +138,30 @@ class OrderRpositoryImpl implements OrderRepository {
                 .toList(),
           );
       return Result.success(data);
+    } on FirebaseException catch (e) {
+      return Result.failure(Failure(error: "Error", message: e.message));
+    }
+  }
+
+  @override
+  Future<Result<String>> changeOrderStatus(
+      {required String orderId, required OrderStatus status}) async {
+    try {
+      await firebaseFirestore
+          .collection(Constants.firebaseCollectionRecentOrders)
+          .doc(orderId)
+          .update({"status": status.status});
+
+      final data = await firebaseFirestore
+          .collection(Constants.firebaseCollectionRecentOrders)
+          .doc(orderId)
+          .withConverter(
+            fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
+            toFirestore: (orderDto, _) => orderDto.toJson(),
+          )
+          .get();
+
+      return Result.success("Order ${data.data()?.status.status} success.");
     } on FirebaseException catch (e) {
       return Result.failure(Failure(error: "Error", message: e.message));
     }

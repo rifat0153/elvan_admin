@@ -1,12 +1,22 @@
 import 'dart:async';
 
+import 'package:elvan_admin/app/app.dart';
+import 'package:elvan_admin/core/printer/header_printer.dart';
+import 'package:elvan_admin/core/printer/pos_printer.dart';
+import 'package:elvan_admin/core/printer/web_printer.dart';
+import 'package:elvan_admin/core/result/result.dart';
 import 'package:elvan_admin/features/order/domain/usecase/new_order_usecase.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
+import 'package:elvan_admin/shared/constants/app_assets.dart';
+import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
 import 'package:elvan_shared/core/ui_state/ui_state.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final newOrderProvider =
@@ -54,9 +64,49 @@ class NewOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
     event.when(onAccept: _onAccept, onReject: _onReject);
   }
 
-  void _onAccept(OrderDto order) {
-    print("-------a----click");
+  void _onAccept(BuildContext context, OrderDto order) async {
+    newOrderUsecase = ref.read(newOrderUsecaseProvider);
+
+    final result = await newOrderUsecase.orderAccept(
+        orderId: order.id, status: OrderStatus.accepted);
+    result.when(
+      success: (data) {
+        ToastNotifer.success(context, data);
+      },
+      failure: (failure) {
+        ToastNotifer.error(context, "${failure.message}");
+      },
+    );
+    final printer = ref.read(webPrinterNotifierProvider.notifier);
+    printer.printInvoice(
+        headerPrinter: const HeaderPrinter(
+            address: "701 Preston Ave,Pasadena,Texas",
+            imageUrl: AppAssets.applogo,
+            phone: "(713) 473-2503",
+            title: "ELVAN",
+            website: "elvan.com"),
+        order: order);
+
+    getData();
   }
 
-  void _onReject(OrderDto order) {}
+  void _onReject(BuildContext context, OrderDto order) async {
+    newOrderUsecase = ref.read(newOrderUsecaseProvider);
+
+    final result = await newOrderUsecase.orderAccept(
+        orderId: order.id, status: OrderStatus.rejected);
+    result.when(
+      success: (data) {
+        ToastNotifer.common(
+            context: context,
+            message: data,
+            title: OrderStatus.pending.status,
+            iconData: Icons.delete_forever,
+            color: Colors.purple);
+      },
+      failure: (failure) {
+        ToastNotifer.error(context, "${failure.message}");
+      },
+    );
+  }
 }

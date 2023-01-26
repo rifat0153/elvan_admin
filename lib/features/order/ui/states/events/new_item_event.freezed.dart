@@ -16,23 +16,24 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewItemEvent {
+  BuildContext get context => throw _privateConstructorUsedError;
   OrderDto get data => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderDto data) onAccept,
-    required TResult Function(OrderDto data) onReject,
+    required TResult Function(BuildContext context, OrderDto data) onAccept,
+    required TResult Function(BuildContext context, OrderDto data) onReject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderDto data)? onAccept,
-    TResult? Function(OrderDto data)? onReject,
+    TResult? Function(BuildContext context, OrderDto data)? onAccept,
+    TResult? Function(BuildContext context, OrderDto data)? onReject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderDto data)? onAccept,
-    TResult Function(OrderDto data)? onReject,
+    TResult Function(BuildContext context, OrderDto data)? onAccept,
+    TResult Function(BuildContext context, OrderDto data)? onReject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +68,7 @@ abstract class $NewItemEventCopyWith<$Res> {
           NewItemEvent value, $Res Function(NewItemEvent) then) =
       _$NewItemEventCopyWithImpl<$Res, NewItemEvent>;
   @useResult
-  $Res call({OrderDto data});
+  $Res call({BuildContext context, OrderDto data});
 
   $OrderDtoCopyWith<$Res> get data;
 }
@@ -85,9 +86,14 @@ class _$NewItemEventCopyWithImpl<$Res, $Val extends NewItemEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = null,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -112,7 +118,7 @@ abstract class _$$_NewItemEvent_OnAcceptCopyWith<$Res>
       __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OrderDto data});
+  $Res call({BuildContext context, OrderDto data});
 
   @override
   $OrderDtoCopyWith<$Res> get data;
@@ -129,9 +135,14 @@ class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = null,
     Object? data = null,
   }) {
     return _then(_$_NewItemEvent_OnAccept(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -143,14 +154,16 @@ class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
-  const _$_NewItemEvent_OnAccept({required this.data});
+  const _$_NewItemEvent_OnAccept({required this.context, required this.data});
 
+  @override
+  final BuildContext context;
   @override
   final OrderDto data;
 
   @override
   String toString() {
-    return 'NewItemEvent.onAccept(data: $data)';
+    return 'NewItemEvent.onAccept(context: $context, data: $data)';
   }
 
   @override
@@ -158,11 +171,12 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewItemEvent_OnAccept &&
+            (identical(other.context, context) || other.context == context) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, context, data);
 
   @JsonKey(ignore: true)
   @override
@@ -174,30 +188,30 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderDto data) onAccept,
-    required TResult Function(OrderDto data) onReject,
+    required TResult Function(BuildContext context, OrderDto data) onAccept,
+    required TResult Function(BuildContext context, OrderDto data) onReject,
   }) {
-    return onAccept(data);
+    return onAccept(context, data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderDto data)? onAccept,
-    TResult? Function(OrderDto data)? onReject,
+    TResult? Function(BuildContext context, OrderDto data)? onAccept,
+    TResult? Function(BuildContext context, OrderDto data)? onReject,
   }) {
-    return onAccept?.call(data);
+    return onAccept?.call(context, data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderDto data)? onAccept,
-    TResult Function(OrderDto data)? onReject,
+    TResult Function(BuildContext context, OrderDto data)? onAccept,
+    TResult Function(BuildContext context, OrderDto data)? onReject,
     required TResult orElse(),
   }) {
     if (onAccept != null) {
-      return onAccept(data);
+      return onAccept(context, data);
     }
     return orElse();
   }
@@ -235,9 +249,12 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
 }
 
 abstract class _NewItemEvent_OnAccept implements NewItemEvent {
-  const factory _NewItemEvent_OnAccept({required final OrderDto data}) =
-      _$_NewItemEvent_OnAccept;
+  const factory _NewItemEvent_OnAccept(
+      {required final BuildContext context,
+      required final OrderDto data}) = _$_NewItemEvent_OnAccept;
 
+  @override
+  BuildContext get context;
   @override
   OrderDto get data;
   @override
@@ -254,7 +271,7 @@ abstract class _$$_NewItemEvent_OnRejectCopyWith<$Res>
       __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OrderDto data});
+  $Res call({BuildContext context, OrderDto data});
 
   @override
   $OrderDtoCopyWith<$Res> get data;
@@ -271,9 +288,14 @@ class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? context = null,
     Object? data = null,
   }) {
     return _then(_$_NewItemEvent_OnReject(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -285,14 +307,16 @@ class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
-  const _$_NewItemEvent_OnReject({required this.data});
+  const _$_NewItemEvent_OnReject({required this.context, required this.data});
 
+  @override
+  final BuildContext context;
   @override
   final OrderDto data;
 
   @override
   String toString() {
-    return 'NewItemEvent.onReject(data: $data)';
+    return 'NewItemEvent.onReject(context: $context, data: $data)';
   }
 
   @override
@@ -300,11 +324,12 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NewItemEvent_OnReject &&
+            (identical(other.context, context) || other.context == context) &&
             (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode => Object.hash(runtimeType, context, data);
 
   @JsonKey(ignore: true)
   @override
@@ -316,30 +341,30 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderDto data) onAccept,
-    required TResult Function(OrderDto data) onReject,
+    required TResult Function(BuildContext context, OrderDto data) onAccept,
+    required TResult Function(BuildContext context, OrderDto data) onReject,
   }) {
-    return onReject(data);
+    return onReject(context, data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderDto data)? onAccept,
-    TResult? Function(OrderDto data)? onReject,
+    TResult? Function(BuildContext context, OrderDto data)? onAccept,
+    TResult? Function(BuildContext context, OrderDto data)? onReject,
   }) {
-    return onReject?.call(data);
+    return onReject?.call(context, data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderDto data)? onAccept,
-    TResult Function(OrderDto data)? onReject,
+    TResult Function(BuildContext context, OrderDto data)? onAccept,
+    TResult Function(BuildContext context, OrderDto data)? onReject,
     required TResult orElse(),
   }) {
     if (onReject != null) {
-      return onReject(data);
+      return onReject(context, data);
     }
     return orElse();
   }
@@ -377,9 +402,12 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
 }
 
 abstract class _NewItemEvent_OnReject implements NewItemEvent {
-  const factory _NewItemEvent_OnReject({required final OrderDto data}) =
-      _$_NewItemEvent_OnReject;
+  const factory _NewItemEvent_OnReject(
+      {required final BuildContext context,
+      required final OrderDto data}) = _$_NewItemEvent_OnReject;
 
+  @override
+  BuildContext get context;
   @override
   OrderDto get data;
   @override

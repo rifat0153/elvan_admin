@@ -27,24 +27,24 @@ class ProcessItem extends StatelessWidget {
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.processing,
-            onBtnClick: () {}),
+            onBtnClick: onClick),
         tablet: CommonItemTab(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.processing,
-            onBtnClick: () {}),
+            onBtnClick: onClick),
         desktop: CommonItemDesktop(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.processing,
-            onBtnClick: () {}),
+            onBtnClick: onClick),
         smallMobile: CommonItemTab(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.processing,
-            onBtnClick: () {}));
+            onBtnClick: onClick));
   }
 }

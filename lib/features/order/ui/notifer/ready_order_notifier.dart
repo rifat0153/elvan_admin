@@ -5,7 +5,9 @@ import 'package:elvan_admin/features/order/domain/usecase/ready_order_usececase.
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
+import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
 import 'package:elvan_shared/core/ui_state/ui_state.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,6 +24,15 @@ class ReadyOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
 
   @override
   UiState<List<OrderDto>> build() {
+    getData();
+    ref.onDispose(() {
+      orderSubscription.cancel();
+    });
+
+    return const UiState.loading();
+  }
+
+  getData() {
     readyOrderUsecase = ref.read(readyOrderUsecaseProvider);
 
     final result = readyOrderUsecase.getReadyStream();
@@ -33,15 +44,26 @@ class ReadyOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
         state = UiState.error(failure.message);
       },
     );
-
-    ref.onDispose(() {
-      orderSubscription.cancel();
-    });
-
-    return const UiState.loading();
   }
 
   handleOrderStream(List<OrderDto> orderDto) {
     state = UiState.data(orderDto);
+  }
+
+  onReady(BuildContext context, OrderDto order) async {
+    readyOrderUsecase = ref.read(readyOrderUsecaseProvider);
+
+    final result = await readyOrderUsecase.onStautsChange(
+        orderId: order.id, status: OrderStatus.delivered);
+    result.when(
+      success: (data) {
+        ToastNotifer.success(context, data);
+       
+      },
+      failure: (failure) {
+        ToastNotifer.error(context, "${failure.message}");
+      },
+    );
+     getData();
   }
 }

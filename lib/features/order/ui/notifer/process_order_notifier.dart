@@ -1,11 +1,8 @@
 import 'dart:async';
-
-import 'package:elvan_admin/features/order/domain/usecase/new_order_usecase.dart';
 import 'package:elvan_admin/features/order/domain/usecase/process_order_usecase.dart';
-import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
+import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
 import 'package:elvan_shared/core/ui_state/ui_state.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,6 +19,15 @@ class ProcessOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
 
   @override
   UiState<List<OrderDto>> build() {
+    getData();
+    ref.onDispose(() {
+      orderSubscription.cancel();
+    });
+
+    return const UiState.loading();
+  }
+
+  getData() {
     processOrderUsecase = ref.read(processOrderUsecaseProvider);
 
     final result = processOrderUsecase.getProcessStream();
@@ -33,15 +39,25 @@ class ProcessOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
         state = UiState.error(failure.message);
       },
     );
-
-    ref.onDispose(() {
-      orderSubscription.cancel();
-    });
-
-    return const UiState.loading();
   }
 
   handleOrderStream(List<OrderDto> orderDto) {
     state = UiState.data(orderDto);
+  }
+
+  onProcessing(BuildContext context, OrderDto order) async {
+    processOrderUsecase = ref.read(processOrderUsecaseProvider);
+
+    final result = await processOrderUsecase.onStautsChange(
+        orderId: order.id, status: OrderStatus.done);
+    result.when(
+      success: (data) {
+        ToastNotifer.success(context, data);
+        getData();
+      },
+      failure: (failure) {
+        ToastNotifer.error(context, "${failure.message}");
+      },
+    );
   }
 }
