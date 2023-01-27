@@ -16,8 +16,8 @@ class MobileLoginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authNotifier = ref.read(authNotifierProvider.notifier);
-    final authState = ref.read(authNotifierProvider);
+    final authNotifier = ref.watch(authNotifierProvider.notifier);
+    final authState = ref.watch(authNotifierProvider);
 
     return Scaffold(
       backgroundColor: AppColors.white,

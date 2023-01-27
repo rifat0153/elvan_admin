@@ -1,16 +1,13 @@
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_details/order_details.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_desktop.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NewOrderScreen extends HookConsumerWidget {
@@ -45,31 +42,22 @@ class NewOrderScreen extends HookConsumerWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       orderState.when(
-                        loading: () => const Center(
-                          child: SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: CircularProgressIndicator(),
+                        loading: () => SizedBox(
+                          width: AppSize.width(context),
+                          height: AppSize.hight(context),
+                          child: const Center(
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: CircularProgressIndicator(),
+                            ),
                           ),
                         ),
                         data: (data) {
                           if (data.isEmpty) {
-                            return SizedBox(
-                              width: AppSize.width(context),
-                              height: AppSize.hight(context),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  const Icon(Icons.local_dining_outlined,color: AppColors.primaryRed,size: 60,),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(AppStrings.noOrder, style: Theme.of(context).textTheme.displaySmall,),
-                                  )
-                                ],
-                              ),
-                            );
+                            return const EmptyWidget(
+                                title: AppStrings.noOrder,
+                                icon: Icons.local_dining_outlined);
                           }
                           return ListView.builder(
                             itemCount: data.length,

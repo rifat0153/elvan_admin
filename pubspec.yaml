@@ -79,6 +79,7 @@ dependencies:
   motion_toast: ^2.6.4
   printing: ^5.9.3
   barcode: ^2.2.3
+  flutterfire_ui: ^0.4.3+20
 
 dev_dependencies:
   flutter_test:

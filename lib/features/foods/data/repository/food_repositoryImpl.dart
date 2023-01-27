@@ -17,23 +17,31 @@ class FoodRepositoryImpl implements FoodRepository {
   FoodRepositoryImpl({required this.firebaseFirestore});
 
   @override
-  Result<Stream<List<FoodItemDto>>> getFoods() {
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoods() async {
     try {
-      Stream<List<FoodItemDto>> data = firebaseFirestore
+      final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionFoodItems)
-          .withConverter(
-            fromFirestore: (snapshot, _) =>
-                FoodItemDto.fromJson(snapshot.data()!),
-            toFirestore: (foodDto, _) => foodDto.toJson(),
-          )
-          .snapshots()
-          .map(
-            (event) => event.docs
-                .map(
-                  (e) => e.data(),
-                )
-                .toList(),
-          );
+          .orderBy('title', descending: true)
+          .limit(20)
+          .get();
+
+      return Result.success(data);
+    } on FirebaseException catch (e) {
+      print(e);
+      return Result.failure(Failure(error: "Error", message: e.message));
+    }
+  }
+
+  @override
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodPagination(
+      {required DocumentSnapshot lastItem}) async {
+    try {
+      final data = await firebaseFirestore
+          .collection(Constants.firebaseCollectionFoodItems)
+          .orderBy('title', descending: true)
+          .startAfterDocument(lastItem)
+          .limit(10)
+          .get();
       return Result.success(data);
     } on FirebaseException catch (e) {
       return Result.failure(Failure(error: "Error", message: e.message));
@@ -41,8 +49,27 @@ class FoodRepositoryImpl implements FoodRepository {
   }
 
   @override
-  Result<void> setActiveFood(String productId) {
-    // TODO: implement setActiveFood
-    throw UnimplementedError();
+  Future<Result<String>> setActiveFood(String productId, bool isActive) async {
+    try {
+      await firebaseFirestore
+          .collection(Constants.firebaseCollectionFoodItems)
+          .doc(productId)
+          .update({"isAvailable": isActive});
+
+      final data = await firebaseFirestore
+          .collection(Constants.firebaseCollectionFoodItems )
+          .doc(productId)
+          .withConverter(
+            fromFirestore: (snapshot, _) =>
+                FoodItemDto.fromJson(snapshot.data()!),
+            toFirestore: (foodItem, _) => foodItem.toJson(),
+          )
+          .get();
+
+      return Result.success("Item available ${data.data()?.isAvailable}.");
+    } on FirebaseException catch (e) {
+      print(e);
+      return Result.failure(Failure(error: "Error", message: e.message));
+    }
   }
 }

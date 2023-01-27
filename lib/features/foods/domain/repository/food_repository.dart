@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_shared/core/result/result.dart';
-import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 
 abstract class FoodRepository {
-  Result<Stream<List<FoodItemDto>>> getFoods();
-  Result<void> setActiveFood(String productId);
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoods();
+  Future<Result<String>> setActiveFood(String productId, bool isActive);
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodPagination(
+      {required DocumentSnapshot lastItem});
 }

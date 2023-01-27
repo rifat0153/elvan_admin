@@ -15,8 +15,8 @@ class LoginForm extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authNotifier = ref.read(authNotifierProvider.notifier);
-    final authState = ref.read(authNotifierProvider);
+    final authNotifier = ref.watch(authNotifierProvider.notifier);
+    final authState = ref.watch(authNotifierProvider);
 
     final emailTextController = useTextEditingController();
     final passwordTextController = useTextEditingController();
@@ -93,6 +93,8 @@ class LoginForm extends HookConsumerWidget {
                 return null;
               },
             ),
+
+            
             Padding(
               padding: const EdgeInsets.only(top: 30, bottom: 30),
               child: SizedBox(

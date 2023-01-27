@@ -68,10 +68,11 @@ class AuthNotifier extends Notifier<AuthState> {
 
     result.when(
       success: (elvanUser) {
-        state = state.copyWith(elvanUser: elvanUser,loading: state.loading,error: state.error);
+        state = state.copyWith(
+            elvanUser: elvanUser, loading: state.loading, error: state.error);
       },
       failure: (failure) {
-        state = state.copyWith(error: failure.message,loading: state.loading);
+        state = state.copyWith(error: failure.message, loading: state.loading);
       },
     );
   }
@@ -84,19 +85,18 @@ class AuthNotifier extends Notifier<AuthState> {
       email: email,
       password: password,
     );
-
+    print("loading.... ${state.loading}");
     result.when(
       success: (elvanUser) {
         print("-----------${elvanUser.email}");
 
         state = state.copyWith(elvanUser: elvanUser, loading: false);
-        state = state;
+
         ref.read(navigatorProvider.notifier).popAllPushTabRoute();
       },
       failure: (message) {
         print("---error--------${message.message}");
         state = state.copyWith(error: message.message, loading: false);
-        state = state;
       },
     );
   }

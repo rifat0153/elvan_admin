@@ -32,9 +32,8 @@ class SettingsMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
-            index: 0,
-            selectedIndex: router.activeIndex,
-             count: router.activeIndex,
+              index: 0,
+              selectedIndex: router.activeIndex,
               onClick: () {
                 router.setActiveIndex(0);
               },
@@ -44,11 +43,10 @@ class SettingsMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
-            selectedIndex: router.activeIndex,
-            index: 1,
-             count: router.activeIndex,
+              selectedIndex: router.activeIndex,
+              index: 1,
               onClick: () {
-                 router.setActiveIndex(1);
+                router.setActiveIndex(1);
               },
               title: AppStrings.addOnItems),
         ),
@@ -56,15 +54,13 @@ class SettingsMenu extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
-             index: 2,
-            selectedIndex: router.activeIndex,
-             count: router.activeIndex,
+              index: 2,
+              selectedIndex: router.activeIndex,
               onClick: () {
-                 router.setActiveIndex(2);
+                router.setActiveIndex(2);
               },
               title: AppStrings.time),
         ),
-      
       ],
     );
   }

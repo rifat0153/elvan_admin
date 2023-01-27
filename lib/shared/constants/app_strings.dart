@@ -59,7 +59,11 @@ class AppStrings {
   static const String password6Characters = 'at least enter 6 characters';
   static const String login = 'Login';
   static const String logout = 'Logout';
-  static const String noOrder = 'No Order yet';
+  static const String noOrder = 'The new order was not taken yet';
+  static const String noProcessOrder = 'Any processing order was not cooked yet';
+  static const String noReadyOrder = 'No orders were completed';
+  static const String noDeliveredOrder = 'Delivered orders not found';
+  static const String noFoodItem = 'Food Items not found';
 
 
 

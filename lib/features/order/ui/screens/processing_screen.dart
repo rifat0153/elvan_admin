@@ -2,6 +2,7 @@ import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dar
 import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
@@ -21,6 +22,7 @@ class ProcceingScreen extends HookConsumerWidget {
     final state = ref.watch(processOrderProvider);
     final notifier = ref.watch(processOrderProvider.notifier);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
+        final orderDetatilsState = ref.watch(orderDtatilsProvider);
     return Stack(
       children: [
         //****************Order Details */
@@ -56,14 +58,16 @@ class ProcceingScreen extends HookConsumerWidget {
                             ),
                           );
                         },
-                        data: (data) => ListView.builder(
+                        data: (data) => data.isEmpty ? const EmptyWidget(
+                                title: AppStrings.noProcessOrder,
+                                icon: Icons.local_dining_outlined) : ListView.builder(
                           itemCount: data.length,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (BuildContext context, int index) {
                             return ProcessItem(
                               order: data[index],
-                              selectedOrder: data[index],
+                              selectedOrder: orderDetatilsState.order,
                               onClick: () {
                                 Scaffold.of(context).openEndDrawer();
                                 orderDetatilsNotifier.selecteItem(
