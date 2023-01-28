@@ -1,21 +1,14 @@
 import 'dart:async';
 
-import 'package:elvan_admin/app/app.dart';
 import 'package:elvan_admin/core/printer/header_printer.dart';
-import 'package:elvan_admin/core/printer/pos_printer.dart';
 import 'package:elvan_admin/core/printer/web_printer.dart';
-import 'package:elvan_admin/core/result/result.dart';
 import 'package:elvan_admin/features/order/domain/usecase/new_order_usecase.dart';
-import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
 import 'package:elvan_shared/core/ui_state/ui_state.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

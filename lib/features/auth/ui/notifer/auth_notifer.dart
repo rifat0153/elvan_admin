@@ -6,7 +6,7 @@ import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
+
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
   AuthNotifier.new,
@@ -89,7 +89,7 @@ class AuthNotifier extends Notifier<AuthState> {
     result.when(
       success: (elvanUser) {
         print("-----------${elvanUser.email}");
-
+        
         state = state.copyWith(elvanUser: elvanUser, loading: false);
 
         ref.read(navigatorProvider.notifier).popAllPushTabRoute();

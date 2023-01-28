@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:elvan_admin/features/order/ui/states/timer_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final minutesProvider = StateProvider<int>((ref) => 0);
+
 final timerProvider = StateNotifierProvider<TimerNotifier, TimerState>((ref) {
   return TimerNotifier();
 });
@@ -22,17 +24,22 @@ class TimerNotifier extends StateNotifier<TimerState> {
     final seconds = state.duration.inSeconds - reduceSecondsBy;
     if (seconds < 0) {
       state.countdownTimer!.cancel();
+      state = state.copyWith(isRunnig: false, duration: state.duration);
     } else {
-      state = state.copyWith(duration: Duration(seconds: seconds));
+      state =
+          state.copyWith(duration: Duration(seconds: seconds), isRunnig: true);
     }
   }
 
   void stopTimer() {
-    state.countdownTimer!.cancel();
+    if (state.countdownTimer != null) {
+      state.countdownTimer!.cancel();
+    }
   }
 
   void setTimer(int minutes) {
-    state = state.copyWith(duration: Duration(minutes: minutes));
+    print("------------------set timer set $minutes");
+    state = state.copyWith(duration: Duration(seconds: minutes));
   }
 
   void resetTimer({int minutes = 30}) {

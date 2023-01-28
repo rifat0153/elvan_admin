@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TimerState {
   Timer? get countdownTimer => throw _privateConstructorUsedError;
+  dynamic get isRunnig => throw _privateConstructorUsedError;
   Duration get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,7 @@ abstract class $TimerStateCopyWith<$Res> {
           TimerState value, $Res Function(TimerState) then) =
       _$TimerStateCopyWithImpl<$Res, TimerState>;
   @useResult
-  $Res call({Timer? countdownTimer, Duration duration});
+  $Res call({Timer? countdownTimer, dynamic isRunnig, Duration duration});
 }
 
 /// @nodoc
@@ -47,6 +48,7 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
   @override
   $Res call({
     Object? countdownTimer = freezed,
+    Object? isRunnig = freezed,
     Object? duration = null,
   }) {
     return _then(_value.copyWith(
@@ -54,6 +56,10 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
           ? _value.countdownTimer
           : countdownTimer // ignore: cast_nullable_to_non_nullable
               as Timer?,
+      isRunnig: freezed == isRunnig
+          ? _value.isRunnig
+          : isRunnig // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$_TimerStateCopyWith<$Res>
       __$$_TimerStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Timer? countdownTimer, Duration duration});
+  $Res call({Timer? countdownTimer, dynamic isRunnig, Duration duration});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$_TimerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? countdownTimer = freezed,
+    Object? isRunnig = freezed,
     Object? duration = null,
   }) {
     return _then(_$_TimerState(
@@ -92,6 +99,7 @@ class __$$_TimerStateCopyWithImpl<$Res>
           ? _value.countdownTimer
           : countdownTimer // ignore: cast_nullable_to_non_nullable
               as Timer?,
+      isRunnig: freezed == isRunnig ? _value.isRunnig! : isRunnig,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -104,17 +112,22 @@ class __$$_TimerStateCopyWithImpl<$Res>
 
 class _$_TimerState implements _TimerState {
   const _$_TimerState(
-      {this.countdownTimer, this.duration = const Duration(minutes: 30)});
+      {this.countdownTimer,
+      this.isRunnig = false,
+      this.duration = const Duration(minutes: 30)});
 
   @override
   final Timer? countdownTimer;
+  @override
+  @JsonKey()
+  final dynamic isRunnig;
   @override
   @JsonKey()
   final Duration duration;
 
   @override
   String toString() {
-    return 'TimerState(countdownTimer: $countdownTimer, duration: $duration)';
+    return 'TimerState(countdownTimer: $countdownTimer, isRunnig: $isRunnig, duration: $duration)';
   }
 
   @override
@@ -124,12 +137,14 @@ class _$_TimerState implements _TimerState {
             other is _$_TimerState &&
             (identical(other.countdownTimer, countdownTimer) ||
                 other.countdownTimer == countdownTimer) &&
+            const DeepCollectionEquality().equals(other.isRunnig, isRunnig) &&
             (identical(other.duration, duration) ||
                 other.duration == duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, countdownTimer, duration);
+  int get hashCode => Object.hash(runtimeType, countdownTimer,
+      const DeepCollectionEquality().hash(isRunnig), duration);
 
   @JsonKey(ignore: true)
   @override
@@ -140,10 +155,14 @@ class _$_TimerState implements _TimerState {
 
 abstract class _TimerState implements TimerState {
   const factory _TimerState(
-      {final Timer? countdownTimer, final Duration duration}) = _$_TimerState;
+      {final Timer? countdownTimer,
+      final dynamic isRunnig,
+      final Duration duration}) = _$_TimerState;
 
   @override
   Timer? get countdownTimer;
+  @override
+  dynamic get isRunnig;
   @override
   Duration get duration;
   @override

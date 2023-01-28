@@ -9,13 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final orderDtatilsProvider =
-    StateNotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(
-        (ref) => OrderDetatilsNotifier(ref: ref));
+    NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(
+        OrderDetatilsNotifier.new);
 
-class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
-  final StateNotifierProviderRef<OrderDetatilsNotifier, OrderDetatilsState> ref;
-  OrderDetatilsNotifier({required this.ref})
-      : super(const OrderDetatilsState());
+class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
+  @override
+  OrderDetatilsState build() {
+    return const OrderDetatilsState();
+  }
 
   setOrder() {
     state = state.copyWith(isOpenDetatils: !state.isOpenDetatils);
@@ -23,21 +24,31 @@ class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
 
   Future<void> selecteItem(
       {required BuildContext context, required OrderDto order}) async {
+    Duration duration = const Duration(seconds: 0);
     int second = await ref.read(orderTimerUsecaseProvider).getSecondTime(
         orderId: order.id,
-        isAccept: order.status.name == OrderStatus.pending.name);
-    Duration duration = Duration(
-      seconds: second,
-    );
+        isAccept: order.status.status == OrderStatus.pending.status);
+    print("Secend---$second");
     if (second == 0) {
       final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
       defautTime.when(
         success: (data) {
+          print("----------default min ${data.defaultTime}");
+     
+          duration = Duration(minutes: data.defaultTime);
           setMin(orderId: order.id, min: data.defaultTime);
         },
-        failure: (failure) {},
+        failure: (failure) {
+          print("----------default min ${failure.message}");
+        },
       );
+    } else {
+      duration = Duration(
+        seconds: second,
+      );
+   
     }
+
     print(second);
     print(order.id);
     if (state.order != null) {
@@ -46,13 +57,13 @@ class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
             order: order,
             isOpenDetatils: !state.isOpenDetatils,
             time: DateTime.now().add(duration));
-        ref.read(timerProvider.notifier).setTimer(duration.inMinutes);
+        ref.read(timerProvider.notifier).setTimer(duration.inSeconds);
       } else {
         state = state.copyWith(
             order: order,
             isOpenDetatils: true,
             time: DateTime.now().add(duration));
-        ref.read(timerProvider.notifier).setTimer(duration.inMinutes);
+        ref.read(timerProvider.notifier).setTimer(duration.inSeconds);
       }
     } else {
       // defaul time set
@@ -80,7 +91,7 @@ class OrderDetatilsNotifier extends StateNotifier<OrderDetatilsState> {
     ref
         .read(orderTimerUsecaseProvider)
         .setTime(orderId: orderId, time: state.time!);
-    ref.read(timerProvider.notifier).setTimer(min);
+    ref.watch(timerProvider.notifier).setTimer(min * 60);
   }
 
   void close() {

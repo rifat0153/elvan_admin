@@ -9,6 +9,7 @@ class TimerState with _$TimerState{
   const factory TimerState(
    {
      Timer? countdownTimer,
+     @Default(false) isRunnig,
     @Default(Duration(minutes: 30)) Duration duration,
    }
   ) = _TimerState;

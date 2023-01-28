@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:elvan_admin/core/logger/colored_print_log.dart';
 import 'package:elvan_admin/core/result/result.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/timer_state.dart';
 import 'package:elvan_admin/features/timer/data/dto/timer_dto.dart';
 import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
@@ -60,6 +61,7 @@ class TimerNotifier extends Notifier<DefaultTimerState> {
   }
 
   setMin(int min) {
+    ref.read(minutesProvider.notifier).state = min;
     state = state.copyWith(
         takingHour: state.takingHour, minutes: min, notice: state.notice);
     ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_admin/core/failure/failure.dart';
 import 'package:elvan_admin/core/firebase/firebase_providers.dart';
 import 'package:elvan_admin/core/result/result.dart';
+import 'package:elvan_admin/core/shared_preferances/local_data.dart';
 import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
 import 'package:elvan_shared/shared/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,7 +87,8 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<bool> signOut() async {
     await firebaseAuth.signOut();
-    return true;
+    bool removed = await LocalData.getInstatance().removeUserId();
+    return removed;
   }
 
   @override
@@ -139,19 +141,19 @@ class AuthRepositoryImpl implements AuthRepository {
     User? firebaseUser = firebaseAuth.currentUser;
     return firebaseUser;
   }
-  
+
   @override
   Future<ElvanUserDto?> getUser({required String userId}) async {
-     final user = await firebaseFirestore
-          .collection(
-            Constants.firebaseCollectionUsers,
-          )
-          .withConverter(
-            fromFirestore: (snapshot, _) =>
-                ElvanUserDto.fromJson(snapshot.data()!),
-            toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
-          )
-          .doc(userId)
-          .get();
+    final user = await firebaseFirestore
+        .collection(
+          Constants.firebaseCollectionUsers,
+        )
+        .withConverter(
+          fromFirestore: (snapshot, _) =>
+              ElvanUserDto.fromJson(snapshot.data()!),
+          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+        )
+        .doc(userId)
+        .get();
   }
 }

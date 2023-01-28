@@ -123,7 +123,9 @@ class OrderTimerSL extends HookConsumerWidget {
                   color: AppColors.green,
                   textColor: AppColors.black,
                   onClick: () {
-                    ref.read(timerProvider.notifier).setTimer(minutes.value);
+                    ref
+                        .read(timerProvider.notifier)
+                        .setTimer(minutes.value * 60);
                     ref.read(timerProvider.notifier).start();
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onAccept(context: context, data: order));

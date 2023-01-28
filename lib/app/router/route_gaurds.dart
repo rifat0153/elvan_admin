@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
+import 'package:elvan_admin/core/shared_preferances/local_data.dart';
 import 'package:elvan_admin/features/auth/providers/auth_providers.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,8 +23,8 @@ class AuthGuard extends AutoRouteGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
     debugPrint('AuthGuard: -> Root key -> ${router.key}');
     debugPrint('AuthGuard: -> Path -> ${resolver.route.path}');
-
-    if (FirebaseAuth.instance.currentUser != null) {
+    String? userId = await LocalData.getInstatance().getUserId();
+    if (userId != null) {
       resolver.next(true);
     } else {
       router.push(
