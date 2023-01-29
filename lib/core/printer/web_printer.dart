@@ -38,11 +38,12 @@ class Webprinter extends Notifier<void> {
     final today = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd  kk:mm').format(today);
     doc.addPage(pw.Page(
-      pageFormat: const PdfPageFormat(
-        80 * PdfPageFormat.mm,
-        170 * PdfPageFormat.mm,
-        marginAll: 5 * PdfPageFormat.mm,
-      ),
+      pageFormat:  PdfPageFormat.roll80,
+      // pageFormat: const PdfPageFormat(
+      //   80 * PdfPageFormat.mm,
+      //   170 * PdfPageFormat.mm,
+      //   marginAll: 5 * PdfPageFormat.mm,
+      // ),
       build: (context) {
         return _build(context, headerPrinter, image, order, formattedDate);
       },

@@ -125,9 +125,9 @@ class OrderTimer extends HookConsumerWidget {
                         .read(timerProvider.notifier)
                         .setTimer(minutes.value * 60);
                     ref.read(timerProvider.notifier).start();
-                    // ref.read(newOrderProvider.notifier).onEvent(
-                    //   NewItemEvent.onAccept(context: context,data: order)
-                    // );
+                    ref.read(newOrderProvider.notifier).onEvent(
+                      NewItemEvent.onAccept(context: context,data: order)
+                    );
                   }),
             )
           ],
