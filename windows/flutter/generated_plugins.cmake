@@ -4,6 +4,9 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
+  charset_converter
+  desktop_webview_auth
+  printing
   url_launcher_windows
 )
 

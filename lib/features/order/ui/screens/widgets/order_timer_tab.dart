@@ -2,25 +2,43 @@ import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
+import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
-import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnSmallBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderTimerTab extends HookConsumerWidget {
-  const OrderTimerTab({Key? key}) : super(key: key);
+  final OrderDto order;
+  const OrderTimerTab({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(newOrderProvider);
-    final notifier = ref.watch(newOrderProvider.notifier);
+
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
+
+    final defaultNotifier = ref.watch(timerUsecaseProvider);
+
+    useEffect(() {
+   if (order.status.name == OrderStatus.pending.name) {
+        defaultNotifier.getDefaultTimer().then((value) {
+          value.when(
+            success: ((data) {
+              minutes.value = data.defaultTime;
+              notifier.setMin(orderId: order.id, min: data.defaultTime);
+            }),
+            failure: (failure) {},
+          );
+        });
+      }
+    }, const []);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,15 +49,15 @@ class OrderTimerTab extends HookConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            btnsSection(ref, notifier, minutes),
+            btnsSection(context,ref, notifier, minutes),
           ],
         ),
       ],
     );
   }
 
-  Row btnsSection(
-      WidgetRef ref, NewOrderNotifier notifier, ValueNotifier<int> minutes) {
+  Row btnsSection(BuildContext context, WidgetRef ref, OrderDetatilsNotifier notifier,
+      ValueNotifier<int> minutes) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +70,9 @@ class OrderTimerTab extends HookConsumerWidget {
               onClick: () {
                 print("---click");
                 ref.read(timerProvider.notifier).stopTimer();
-                notifier.onEvent(const NewItemEvent.onReject(null));
+                 ref.read(newOrderProvider.notifier).onEvent(
+                      NewItemEvent.onReject(context: context,data: order)
+                    );
               }),
         ),
         Padding(
@@ -62,16 +82,18 @@ class OrderTimerTab extends HookConsumerWidget {
               color: AppColors.green,
               textColor: AppColors.black,
               onClick: () {
-                ref.read(timerProvider.notifier).setTimer(minutes.value);
+                ref.read(timerProvider.notifier).setTimer(minutes.value * 60);
                 ref.read(timerProvider.notifier).start();
-                notifier.onEvent(const NewItemEvent.onAccept(data: ''));
+                 ref.read(newOrderProvider.notifier).onEvent(
+                      NewItemEvent.onAccept(context: context,data: order)
+                    );
               }),
         )
       ],
     );
   }
 
-  Row timerSection(ValueNotifier<int> minutes, NewOrderNotifier notifier,
+  Row timerSection(ValueNotifier<int> minutes, OrderDetatilsNotifier notifier,
       BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +105,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value > 0) {
                 minutes.value--;
-                notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                notifier.setMin(min: minutes.value, orderId: order.id);
               }
             },
             iconData: Icons.do_not_disturb_on,
@@ -113,7 +135,7 @@ class OrderTimerTab extends HookConsumerWidget {
             onClick: () {
               if (minutes.value >= 0) {
                 minutes.value++;
-                notifier.onEvent(NewItemEvent.onMinutes(minutes.value));
+                notifier.setMin(min: minutes.value, orderId: order.id);
               }
             },
             iconData: Icons.add_circle,

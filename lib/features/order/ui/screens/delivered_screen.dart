@@ -1,15 +1,15 @@
+import 'package:elvan_admin/features/order/ui/notifer/delivered_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/delivered_item.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/ready_item.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,8 +19,26 @@ class DeliveredScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuNotifier = ref.watch(menuProvider.notifier);
-    final orderDeatilsState = ref.watch(newOrderProvider);
-    final orderDeatilsNotifier = ref.watch(newOrderProvider.notifier);
+    final state = ref.watch(deliverdOrderProvider);
+    final notifier = ref.watch(deliverdOrderProvider.notifier);
+    final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
+    final orderDetatilsState = ref.watch(orderDtatilsProvider);
+    final scrollController = useScrollController();
+    final page = useState<int>(1);
+
+    useEffect(() {
+      scrollController.addListener(() {
+        if (scrollController.offset >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange) {
+          notifier.nextData();
+        }
+      });
+      return () {
+        scrollController.dispose();
+      };
+    }, const []);
+
     return Stack(
       children: [
         //****************Order Details */
@@ -39,28 +57,56 @@ class DeliveredScreen extends HookConsumerWidget {
                   title: AppStrings.delivered),
               Expanded(
                 child: SingleChildScrollView(
+                  controller: scrollController,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      ListView.builder(
-                        itemCount: 10,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return DeliveredItem(
-                            index: index,
-                            selectedInedx: orderDeatilsState.selectedindex,
-                            onClick: () {
-                              Scaffold.of(context).openEndDrawer();
-                              orderDeatilsNotifier.selecteItem(
-                                  context: context, index: index);
-                              ref
-                                  .read(orderDtatilsProvider.notifier)
-                                  .setOrder();
-                            },
-                          );
-                        },
-                      ),
+                      state.loading
+                          ? SizedBox(
+                              width: AppSize.width(context),
+                              height: AppSize.hight(context),
+                              child: const Center(
+                                child: SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      state.orders.isEmpty
+                          ?   const EmptyWidget(
+                                title: AppStrings.noDeliveredOrder,
+                                icon: Icons.local_dining_outlined) 
+                          : ListView.builder(
+                              itemCount: state.orders.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                final OrderDto order =
+                                    OrderDto.fromJson(state.orders[index].data()!);
+                                return DeliveredItem(
+                                  order: order,
+                                  selectedOrder: orderDetatilsState.order,
+                                  onClick: () {
+                                    Scaffold.of(context).openEndDrawer();
+                                    orderDetatilsNotifier.selecteItem(
+                                        context: context,
+                                        order: order);
+                                  },
+                                );
+                              },
+                            ),
+                      state.haseMore
+                          ? const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CircularProgressIndicator(),
+                              ),
+                            )
+                          : Container()
                     ],
                   ),
                 ),

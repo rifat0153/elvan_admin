@@ -6,6 +6,7 @@ class AppAssets {
 
 // image
   static const String pizza = "assets/images/piza.png";
+  static const String applogo = "assets/images/applogo.png";
 
 
 // svgs 

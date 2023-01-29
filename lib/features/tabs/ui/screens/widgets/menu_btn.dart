@@ -8,8 +8,10 @@ class MenuBtn extends HookConsumerWidget {
   final String title;
   final void Function() onClick;
   final int count;
+  final int? selectedIndex;
+  final int? index;
   const MenuBtn(
-      {Key? key, this.count = 0, required this.onClick, required this.title})
+      {Key? key, this.count = 0, required this.onClick, required this.title, this.selectedIndex, required this.index})
       : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class MenuBtn extends HookConsumerWidget {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
-                  ?.copyWith(color: isClick.value ? AppColors.primaryRed : AppColors.gray),
+                  ?.copyWith(color: selectedIndex == null ?  AppColors.gray : selectedIndex == index  ? AppColors.primaryRed : AppColors.gray),
             ),
 
          count != 0 ?   Container(

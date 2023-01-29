@@ -1,5 +1,6 @@
 import 'package:elvan_admin/app/router/app_router.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
+import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_admin/shared/constants/app_utils.dart';
@@ -10,22 +11,23 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class LoginForm extends HookConsumerWidget {
   LoginForm({Key? key}) : super(key: key);
 
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authNotifier = ref.watch(authNotifierProvider.notifier);
     final authState = ref.watch(authNotifierProvider);
-    final authNotifier = ref.read(authNotifierProvider.notifier);
-    final isAuthenticated = ref.read(
-      authNotifierProvider.notifier.select((v) => v.isAuthenticated),
-    );
 
     final emailTextController = useTextEditingController();
     final passwordTextController = useTextEditingController();
 
-    final currentRoute = ref.read(appRouterProvider).current.path;
-
     final isObscure = useState<bool>(true);
+
+    useEffect(() {
+      return (() {
+        _formKey.currentState?.dispose();
+      });
+    }, const []);
     return Form(
         key: _formKey,
         child: Column(
@@ -85,19 +87,23 @@ class LoginForm extends HookConsumerWidget {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return AppStrings.passwordEmpty;
-                } else if (value.length < 7) {
+                } else if (value.length < 5) {
                   return AppStrings.password6Characters;
                 }
                 return null;
               },
             ),
+
+            
             Padding(
-              padding: const EdgeInsets.only(top: 30,bottom: 30),
+              padding: const EdgeInsets.only(top: 30, bottom: 30),
               child: SizedBox(
                 width: double.infinity,
                 height: 40,
                 child: ElevatedButton(
+                  
                   style: ButtonStyle(
+                    
                     backgroundColor:
                         MaterialStateProperty.all(AppColors.primaryRed),
                     shape: MaterialStateProperty.all(
@@ -106,20 +112,38 @@ class LoginForm extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: authState.loading ?  (){} : () {
                     // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      print("-------------click");
+                      authNotifier.onEvent(AuthEvent.loginWithPasswordAndEmail(
+                          email: emailTextController.text,
+                          password: passwordTextController.text));
+                      // authNotifier.register(emailTextController.text,
+                      //     passwordTextController.text);
+                    }
                   },
-                  child: Text(
-                    AppStrings.login,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: AppColors.white),
-                  ),
+
+                  child: authState.loading
+                      ? const Center(
+                          child: SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                                color: AppColors.white),
+                          ),
+                        )
+                      : Text(
+                          AppStrings.login,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(color: AppColors.white),
+                        ),
                 ),
               ),
             )
+            
           ],
         ));
   }

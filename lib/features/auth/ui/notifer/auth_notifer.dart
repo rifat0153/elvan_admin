@@ -1,12 +1,12 @@
-
 import 'dart:async';
 
+import 'package:elvan_admin/app/router/navigation_provider.dart';
 import 'package:elvan_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
+
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
   AuthNotifier.new,
@@ -17,11 +17,6 @@ class AuthNotifier extends Notifier<AuthState> {
 
   late final AuthUseCases authUseCase;
   late final StreamSubscription<User?> authStateChangesSubscription;
-
-  bool get isAuthenticated => state.maybeWhen(
-        authenticated: (elvanUser) => true,
-        orElse: () => false,
-      );
 
   @override
   build() {
@@ -38,7 +33,7 @@ class AuthNotifier extends Notifier<AuthState> {
     });
 
     // return the initial state of the notifier
-    return const AuthState.unAuthenticated();
+    return const AuthState();
   }
 
   void handleUserStream(User? user) {
@@ -53,17 +48,17 @@ class AuthNotifier extends Notifier<AuthState> {
       // loginWithPasswordAndEmail: login,
       loginWithPasswordAndEmail: loginAndGetUserData,
       logout: () {
-        state = const AuthState.loading();
+        state = state.copyWith(loading: true);
         authUseCase.signOutUseCase();
-        state = const AuthState.unAuthenticated();
       },
       registerWithEmailAndPassword: (email, password) {
-        state = const AuthState.loading();
-        final result = authUseCase.signInWithEmailAndPasswordUseCase(email: email, password: password);
+        state = state.copyWith(loading: true);
+        final result =
+            authUseCase.register(name: "", email: email, password: password);
       },
       resetPassword: (email) {},
       goToRegisterScreen: () {
-        state = const AuthState.loading();
+        state = state.copyWith(loading: true);
       },
     );
   }
@@ -73,28 +68,51 @@ class AuthNotifier extends Notifier<AuthState> {
 
     result.when(
       success: (elvanUser) {
-        state = AuthState.authenticated(elvanUser);
+        state = state.copyWith(
+            elvanUser: elvanUser, loading: state.loading, error: state.error);
       },
       failure: (failure) {
-        state = const AuthState.unAuthenticated();
+        state = state.copyWith(error: failure.message, loading: state.loading);
       },
     );
   }
 
   Future loginAndGetUserData(String email, String password) async {
-    state = const AuthState.loading();
+    state = state.copyWith(loading: true);
 
-    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result =
+        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
+    print("loading.... ${state.loading}");
+    result.when(
+      success: (elvanUser) {
+        print("-----------${elvanUser.email}");
+        
+        state = state.copyWith(elvanUser: elvanUser, loading: false);
+
+        ref.read(navigatorProvider.notifier).popAllPushTabRoute();
+      },
+      failure: (message) {
+        print("---error--------${message.message}");
+        state = state.copyWith(error: message.message, loading: false);
+      },
+    );
+  }
+
+  Future register(String email, String password) async {
+    //state = const AuthState.loading();
+
+    final result = await authUseCase.register(
+        email: email, password: password, name: "Rayhan");
 
     result.when(
       success: (elvanUser) {
-        state = AuthState.authenticated(elvanUser);
+        // state = AuthState.error(elvanUser.displayName.toString());
       },
       failure: (message) {
-        state = AuthState.error(message.toString());
+        //state = AuthState.error(message.toString());
       },
     );
   }

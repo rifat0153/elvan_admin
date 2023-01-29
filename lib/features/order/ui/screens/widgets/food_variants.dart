@@ -1,26 +1,28 @@
 import 'package:elvan_admin/shared/components/cards/eCard.dart';
-import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 
 class FoodVarients extends StatelessWidget {
-  const FoodVarients({
-    Key? key,
-  }) : super(key: key);
+  final OrderDto order;
+  const FoodVarients({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 6.0,
-      direction: Axis.horizontal,
-      children: [
-        1,
-        2,
-        
-      ]
-          .map(
-            (e) => const ECard(title: "Pizza ×2"),
-          )
-          .toList(),
-    );
+    // ignore: unnecessary_null_comparison
+    if (order.instructions != null) {
+      return order.instructions.isNotEmpty
+          ? Wrap(
+              spacing: 6.0,
+              direction: Axis.horizontal,
+              children: order.instructions
+                  .map(
+                    (e) => ECard(title: e),
+                  )
+                  .toList(),
+            )
+          : Container();
+    } else {
+      return Container();
+    }
   }
 }

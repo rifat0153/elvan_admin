@@ -7,15 +7,8 @@ import 'package:elvan_admin/features/tabs/ui/notifier/menu_tab_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/dasktop/desktop_home_screen.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/mobile/mobile_home_screen.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/tabs/tabs_home_screen.dart';
-import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_food.dart';
-import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_icon_btn.dart';
-import 'package:elvan_admin/features/tabs/ui/screens/widgets/home_menu.dart';
-import 'package:elvan_admin/features/tabs/ui/states/menu_state.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
-import 'package:elvan_admin/shared/constants/app_assets.dart';
-import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {

@@ -1,13 +1,14 @@
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'dart:async';
+
+import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_conutdown.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
 class OrderDeatilsTimer extends HookConsumerWidget {
   const OrderDeatilsTimer({Key? key}) : super(key: key);
@@ -15,35 +16,30 @@ class OrderDeatilsTimer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final today = useState<DateTime>(DateTime.now());
-    final minutes = useState<int>(0);
-    final state = ref.watch(newOrderProvider);
-    final notifier = ref.watch(newOrderProvider.notifier);
-    final timerState = ref.watch(timerProvider);
     String strDigits(int n) => n.toString().padLeft(2, '0');
-    final days = strDigits(timerState.duration.inDays);
-    // Step 7
-    final hours = strDigits(timerState.duration.inHours.remainder(24));
-    final min = strDigits(timerState.duration.inMinutes.remainder(60));
-    final seconds = strDigits(timerState.duration.inSeconds.remainder(60));
+    final countdownTimer =
+        useState<Timer>(Timer(const Duration(seconds: 0), (() {})));
+    final duration = useState<Duration>(Duration(seconds: 0));
+    final state = ref.watch(orderDtatilsProvider);
+    final notifier = ref.watch(orderDtatilsProvider.notifier);
+    final days = strDigits(duration.value.inDays);
+    final orderTimerNotifier = ref.watch(orderTimerUsecaseProvider);
+    final timerState = ref.watch(timerProvider);
+    final hours = useState<String>("00");
+    final min = useState<String>("00");
+    final seconds = useState<String>("00");
+
     useEffect(() {
-      if (state.isAccpet) {
-        minutes.value = state.minutes;
-        today.value = DateTime.now().add(
-          Duration(
-            minutes: minutes.value,
-          ),
-        );
-      } else {
-        minutes.value = 0;
-        today.value = DateTime.now().add(
-          Duration(
-            minutes: minutes.value,
-          ),
-        );
+      print("order item id ${state.order?.id}");
+      if (state.time != null) {
+       // today.value = state.time!;
+        // hours.value = strDigits(timerState.duration.inHours.remainder(24));
+        // min.value = strDigits(timerState.duration.inMinutes.remainder(60));
+        // seconds.value = strDigits(timerState.duration.inSeconds.remainder(60));
       }
     }, const []);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
           color: AppColors.grayF7,
           borderRadius: BorderRadius.circular(AppSize.radiusSL)),
@@ -62,7 +58,10 @@ class OrderDeatilsTimer extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              timeItem(context: context, title: AppStrings.hour, value: hours),
+              timeItem(
+                  context: context,
+                  title: AppStrings.hour,
+                  value: strDigits(timerState.duration.inHours.remainder(24))),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
@@ -73,7 +72,11 @@ class OrderDeatilsTimer extends HookConsumerWidget {
                       ?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(context: context, title: AppStrings.min, value: min),
+              timeItem(
+                  context: context,
+                  title: AppStrings.min,
+                  value:
+                      strDigits(timerState.duration.inMinutes.remainder(60))),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
@@ -84,7 +87,11 @@ class OrderDeatilsTimer extends HookConsumerWidget {
                       ?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(context: context, title: AppStrings.sec, value: seconds),
+              timeItem(
+                  context: context,
+                  title: AppStrings.sec,
+                  value:
+                      strDigits(timerState.duration.inSeconds.remainder(60))),
             ],
           )
         ],
