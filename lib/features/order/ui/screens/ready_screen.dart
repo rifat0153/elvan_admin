@@ -20,7 +20,7 @@ class ReadyScreen extends HookConsumerWidget {
     final state = ref.watch(readyOrderProvider);
     final notifier = ref.watch(readyOrderProvider.notifier);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
-        final orderDetatilsState = ref.watch(orderDtatilsProvider);
+    final orderDetatilsState = ref.watch(orderDtatilsProvider);
     return Stack(
       children: [
         //****************Order Details */
@@ -34,6 +34,7 @@ class ReadyScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
+                    Scaffold.of(context).openDrawer();
                     menuNotifier.open();
                   },
                   title: AppStrings.ready),
@@ -56,27 +57,29 @@ class ReadyScreen extends HookConsumerWidget {
                             ),
                           );
                         },
-                        data: (data) =>  data.isEmpty ? const EmptyWidget(
+                        data: (data) => data.isEmpty
+                            ? const EmptyWidget(
                                 title: AppStrings.noReadyOrder,
-                                icon: Icons.local_dining_outlined) : ListView.builder(
-                          itemCount: data.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ReadyItem(
-                              order: data[index],
-                              selectedOrder:orderDetatilsState.order,
-                              onClick: () {
-                                Scaffold.of(context).openEndDrawer();
-                                orderDetatilsNotifier.selecteItem(
-                                    context: context, order: data[index]);
-                                ref
-                                    .read(readyOrderProvider.notifier)
-                                    .onReady(context, data[index]);
-                              },
-                            );
-                          },
-                        ),
+                                icon: Icons.local_dining_outlined)
+                            : ListView.builder(
+                                itemCount: data.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ReadyItem(
+                                    order: data[index],
+                                    selectedOrder: orderDetatilsState.order,
+                                    onClick: () {
+                                      Scaffold.of(context).openEndDrawer();
+                                      orderDetatilsNotifier.selecteItem(
+                                          context: context, order: data[index]);
+                                      ref
+                                          .read(readyOrderProvider.notifier)
+                                          .onReady(context, data[index]);
+                                    },
+                                  );
+                                },
+                              ),
                         error: (err, st) {
                           return SizedBox(
                               width: AppSize.width(context),

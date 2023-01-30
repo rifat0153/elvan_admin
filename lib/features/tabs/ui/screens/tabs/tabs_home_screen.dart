@@ -46,10 +46,7 @@ class TabsHomeScreen extends HookConsumerWidget {
           ),
         orderDetails.isOpenDetatils?  Expanded(
               flex: menuState.isOpenMenu ? 3 : 2,
-              child: Padding(
-                padding: EdgeInsets.only(right: menuState.isOpenMenu ? 79 : 0),
-                child: const OrderDetatilsTab(),
-              )): Container()
+              child: const OrderDetatilsTab()): Container()
         ],
       ),
     );
