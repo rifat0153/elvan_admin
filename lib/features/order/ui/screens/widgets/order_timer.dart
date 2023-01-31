@@ -18,8 +18,6 @@ class OrderTimer extends HookConsumerWidget {
   final OrderDto order;
   const OrderTimer({Key? key, required this.order}) : super(key: key);
 
-  
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(orderDtatilsProvider.notifier);
@@ -109,7 +107,7 @@ class OrderTimer extends HookConsumerWidget {
                   color: AppColors.primaryRed,
                   onClick: () {
                     print("---click");
-                    ref.read(timerProvider.notifier).stopTimer();
+                   
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onReject(context: context, data: order));
                   }),
@@ -124,10 +122,9 @@ class OrderTimer extends HookConsumerWidget {
                     ref
                         .read(timerProvider.notifier)
                         .setTimer(minutes.value * 60);
-                    ref.read(timerProvider.notifier).start();
+
                     ref.read(newOrderProvider.notifier).onEvent(
-                      NewItemEvent.onAccept(context: context,data: order)
-                    );
+                        NewItemEvent.onAccept(context: context, data: order));
                   }),
             )
           ],

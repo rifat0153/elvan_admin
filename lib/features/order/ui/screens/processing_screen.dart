@@ -1,5 +1,6 @@
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
@@ -22,7 +23,7 @@ class ProcceingScreen extends HookConsumerWidget {
     final state = ref.watch(processOrderProvider);
     final notifier = ref.watch(processOrderProvider.notifier);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
-        final orderDetatilsState = ref.watch(orderDtatilsProvider);
+    final orderDetatilsState = ref.watch(orderDtatilsProvider);
     return Stack(
       children: [
         //****************Order Details */
@@ -36,7 +37,7 @@ class ProcceingScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
-                     Scaffold.of(context).openDrawer();
+                    Scaffold.of(context).openDrawer();
                     menuNotifier.open();
                   },
                   title: AppStrings.processing),
@@ -59,27 +60,31 @@ class ProcceingScreen extends HookConsumerWidget {
                             ),
                           );
                         },
-                        data: (data) => data.isEmpty ? const EmptyWidget(
+                        data: (data) => data.isEmpty
+                            ? const EmptyWidget(
                                 title: AppStrings.noProcessOrder,
-                                icon: Icons.local_dining_outlined) : ListView.builder(
-                          itemCount: data.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ProcessItem(
-                              order: data[index],
-                              selectedOrder: orderDetatilsState.order,
-                              onClick: () {
-                                Scaffold.of(context).openEndDrawer();
-                                orderDetatilsNotifier.selecteItem(
-                                    context: context, order: data[index]);
-                                ref
-                                    .read(processOrderProvider.notifier)
-                                    .onProcessing(context, data[index]);
-                              },
-                            );
-                          },
-                        ),
+                                icon: Icons.local_dining_outlined)
+                            : ListView.builder(
+                                itemCount: data.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ProcessItem(
+                                    order: data[index],
+                                    selectedOrder: orderDetatilsState.order,
+                                    onBtnClick: () {
+                                      ref
+                                          .read(processOrderProvider.notifier)
+                                          .onProcessing(context, data[index]);
+                                    },
+                                    onClick: () {
+                                      Scaffold.of(context).openEndDrawer();
+                                      orderDetatilsNotifier.selecteItem(
+                                          context: context, order: data[index]);
+                                    },
+                                  );
+                                },
+                              ),
                         error: (err, st) {
                           return SizedBox(
                               width: AppSize.width(context),

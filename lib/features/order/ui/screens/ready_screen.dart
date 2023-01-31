@@ -69,13 +69,16 @@ class ReadyScreen extends HookConsumerWidget {
                                   return ReadyItem(
                                     order: data[index],
                                     selectedOrder: orderDetatilsState.order,
+                                    onBtnClick: () {
+                                       ref
+                                          .read(readyOrderProvider.notifier)
+                                          .onReady(context, data[index]);
+                                    },
                                     onClick: () {
                                       Scaffold.of(context).openEndDrawer();
                                       orderDetatilsNotifier.selecteItem(
                                           context: context, order: data[index]);
-                                      ref
-                                          .read(readyOrderProvider.notifier)
-                                          .onReady(context, data[index]);
+                                     
                                     },
                                   );
                                 },

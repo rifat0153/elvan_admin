@@ -22,7 +22,7 @@ class SettingsScreen extends HookConsumerWidget {
     final tabNotifier = ref.watch(menuTabProvider.notifier);
     final selectedIndex = ref.watch(menuTabProvider);
     return AutoTabsRouter(
-      routes: const [FoodsRoute(), AddItemRoute(), TimerRoute()],
+      routes: const [AddItemRoute(), TimerRoute()],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
 

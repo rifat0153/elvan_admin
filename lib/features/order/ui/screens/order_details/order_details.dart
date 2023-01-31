@@ -7,6 +7,7 @@ import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderDetatils extends HookConsumerWidget {
@@ -15,6 +16,12 @@ class OrderDetatils extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(orderDtatilsProvider);
+
+    useEffect(() {
+      
+    }, const []);
+
+
     return Container(
       decoration: const BoxDecoration(
           border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),

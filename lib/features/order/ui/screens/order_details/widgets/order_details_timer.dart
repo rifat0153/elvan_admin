@@ -1,11 +1,10 @@
 import 'dart:async';
-
-import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,30 +12,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class OrderDeatilsTimer extends HookConsumerWidget {
   const OrderDeatilsTimer({Key? key}) : super(key: key);
 
+  String strDigits(int n) => n.toString().padLeft(2, '0');
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final today = useState<DateTime>(DateTime.now());
-    String strDigits(int n) => n.toString().padLeft(2, '0');
-    final countdownTimer =
-        useState<Timer>(Timer(const Duration(seconds: 0), (() {})));
-    final duration = useState<Duration>(Duration(seconds: 0));
     final state = ref.watch(orderDtatilsProvider);
-    final notifier = ref.watch(orderDtatilsProvider.notifier);
-    final days = strDigits(duration.value.inDays);
-    final orderTimerNotifier = ref.watch(orderTimerUsecaseProvider);
     final timerState = ref.watch(timerProvider);
-    final hours = useState<String>("00");
-    final min = useState<String>("00");
-    final seconds = useState<String>("00");
+   
 
     useEffect(() {
-      print("order item id ${state.order?.id}");
-      if (state.time != null) {
-       // today.value = state.time!;
-        // hours.value = strDigits(timerState.duration.inHours.remainder(24));
-        // min.value = strDigits(timerState.duration.inMinutes.remainder(60));
-        // seconds.value = strDigits(timerState.duration.inSeconds.remainder(60));
-      }
+     
     }, const []);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),

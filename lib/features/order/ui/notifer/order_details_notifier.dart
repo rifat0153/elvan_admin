@@ -27,14 +27,15 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     Duration duration = const Duration(seconds: 0);
     int second = await ref.read(orderTimerUsecaseProvider).getSecondTime(
         orderId: order.id,
-        isAccept: order.status.status == OrderStatus.pending.status);
+        isAccept: order.status.status == OrderStatus.accepted.status);
+
     print("Secend---$second");
     if (second == 0) {
       final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
       defautTime.when(
         success: (data) {
           print("----------default min ${data.defaultTime}");
-     
+
           duration = Duration(minutes: data.defaultTime);
           setMin(orderId: order.id, min: data.defaultTime);
         },
@@ -46,11 +47,7 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
       duration = Duration(
         seconds: second,
       );
-   
     }
-
-    print(second);
-    print(order.id);
     if (state.order != null) {
       if (state.order!.id == order.id) {
         state = state.copyWith(
@@ -73,6 +70,15 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
           time: DateTime.now().add(Duration(
             seconds: second,
           )));
+      if (state.isOpenDetatils) {
+        if (state.order?.status.status == OrderStatus.accepted.status) {
+          ref.read(timerProvider.notifier).start();
+        } else {
+          ref.read(timerProvider.notifier).stopTimer();
+        }
+      } else {
+        ref.read(timerProvider.notifier).stopTimer();
+      }
     }
     state = state.copyWith(xOffset: state.isOpenDetatils ? 288 : 0);
   }

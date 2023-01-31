@@ -12,10 +12,12 @@ class ReadyItem extends StatelessWidget {
   final OrderDto order;
   final OrderDto? selectedOrder;
   final void Function() onClick;
+  final void Function() onBtnClick;
   const ReadyItem(
       {Key? key,
       required this.order,
       this.selectedOrder,
+      required this.onBtnClick,
       required this.onClick})
       : super(key: key);
 
@@ -27,24 +29,24 @@ class ReadyItem extends StatelessWidget {
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
-            onBtnClick: onClick),
+            onBtnClick: onBtnClick),
         tablet: CommonItemTab(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
-            onBtnClick: onClick),
+            onBtnClick: onBtnClick),
         desktop: CommonItemDesktop(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
-            onBtnClick: onClick),
+            onBtnClick: onBtnClick),
         smallMobile: CommonItemTab(
             order: order,
             selectedOrder: selectedOrder,
             onClick: onClick,
             btnTitle: AppStrings.ready,
-            onBtnClick: onClick));
+            onBtnClick: onBtnClick));
   }
 }
