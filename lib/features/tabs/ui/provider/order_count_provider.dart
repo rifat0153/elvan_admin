@@ -22,6 +22,7 @@ final readyCountProvider = Provider<int>((ref) {
 });
 
 final deliverdCountProvider = Provider<int>((ref) {
+  ref.read(deliverdOrderProvider.notifier).getData();
   final count = ref.watch(deliverdOrderProvider).orders.length;
   return count;
 });

@@ -26,29 +26,28 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   Future<void> selecteItem(
       {required BuildContext context, required OrderDto order}) async {
     if (state.order != null) {
+      if (order.status.status == OrderStatus.pending.status) {
+        setDefaultTimer(order);
+      }
       if (state.order!.id == order.id) {
         state = state.copyWith(
           order: order,
           isOpenDetatils: !state.isOpenDetatils,
           time: state.time,
         );
-        getTimeByOrder(order);
       } else {
         state = state.copyWith(
           order: order,
           isOpenDetatils: true,
         );
-        if (order.status.status == OrderStatus.pending.status) {
-          await setDefaultTimer(order);
-        }
       }
     } else {
-      // defaul time set
-      state = state.copyWith(
-        order: order,
-        isOpenDetatils: !state.isOpenDetatils,
-      );
+  state = state.copyWith(
+      isOpenDetatils: !state.isOpenDetatils,
+      order: order
+    );
     }
+  
     state = state.copyWith(xOffset: state.isOpenDetatils ? 288 : 0);
   }
 
@@ -66,39 +65,14 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     ref
         .read(orderTimerUsecaseProvider)
         .setTime(orderId: orderId, time: state.time!);
-    ref.watch(timerProvider.notifier).setTimer(min * 60);
+    ref.read(timerProvider.notifier).setTimer(min * 60);
   }
 
   void close() {
     state = state.copyWith(isOpenDetatils: false);
   }
 
-  timerHandler(OrderDto order) async {
-    Duration duration = const Duration(seconds: 0);
-    int second = await ref.read(orderTimerUsecaseProvider).getSecondTime(
-        orderId: order.id,
-        isAccept: order.status.status == OrderStatus.accepted.status);
-    print("Secend---$second");
-    if (second == 0) {
-    } else {
-      duration = Duration(
-        seconds: second,
-      );
-    }
-  }
-
-  getTimeByOrder(OrderDto order) async {
-    Duration duration = const Duration(seconds: 0);
-    int second = await ref.read(orderTimerUsecaseProvider).getSecondTime(
-        orderId: order.id,
-        isAccept: order.status.status == OrderStatus.accepted.status);
-    print("Secend---$second");
-    duration = Duration(
-      seconds: second,
-    );
-    setMin(orderId: order.id, min: duration.inMinutes);
-  }
-
+ 
   setDefaultTimer(OrderDto order) async {
     final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
     defautTime.when(

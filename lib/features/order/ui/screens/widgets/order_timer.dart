@@ -107,9 +107,10 @@ class OrderTimer extends HookConsumerWidget {
                   color: AppColors.primaryRed,
                   onClick: () {
                     print("---click");
-                   
+
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onReject(context: context, data: order));
+                    ref.read(orderDtatilsProvider.notifier).close();
                   }),
             ),
             Padding(
@@ -125,6 +126,7 @@ class OrderTimer extends HookConsumerWidget {
 
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onAccept(context: context, data: order));
+                    ref.read(orderDtatilsProvider.notifier).close();
                   }),
             )
           ],

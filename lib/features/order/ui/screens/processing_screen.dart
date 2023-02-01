@@ -76,6 +76,9 @@ class ProcceingScreen extends HookConsumerWidget {
                                       ref
                                           .read(processOrderProvider.notifier)
                                           .onProcessing(context, data[index]);
+                                      ref
+                                          .read(orderDtatilsProvider.notifier)
+                                          .close();
                                     },
                                     onClick: () {
                                       Scaffold.of(context).openEndDrawer();

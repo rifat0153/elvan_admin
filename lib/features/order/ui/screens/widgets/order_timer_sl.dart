@@ -110,9 +110,9 @@ class OrderTimerSL extends HookConsumerWidget {
                   color: AppColors.primaryRed,
                   onClick: () {
                     print("---click");
-                    ref.read(timerProvider.notifier).stopTimer();
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onReject(context: context, data: order));
+                    ref.read(orderDtatilsProvider.notifier).close();
                   }),
             ),
             Padding(
@@ -126,9 +126,10 @@ class OrderTimerSL extends HookConsumerWidget {
                     ref
                         .read(timerProvider.notifier)
                         .setTimer(minutes.value * 60);
-                    ref.read(timerProvider.notifier).start();
+
                     ref.read(newOrderProvider.notifier).onEvent(
                         NewItemEvent.onAccept(context: context, data: order));
+                    ref.read(orderDtatilsProvider.notifier).close();
                   }),
             )
           ],

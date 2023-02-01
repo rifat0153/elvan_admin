@@ -1,11 +1,6 @@
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants_tabs.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';
-import 'package:elvan_admin/features/order/ui/screens/widgets/order_info_tab.dart';
-import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer_tab.dart';
-import 'package:elvan_admin/shared/components/cards/eCard.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';

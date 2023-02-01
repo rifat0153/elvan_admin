@@ -28,13 +28,9 @@ class OrderTimerUsecase {
   }
 
   Future<int> getSecondTime(
-      {required String orderId, bool isAccept = false}) async {
-    if (!timerState.isRunnig) {
-      return 0;
-    }
-    if (!isAccept) {
-      return 0;
-    }
+      {required String orderId}) async {
+  
+
 
     OrderTimerDto? storeDateByString =
         await repository.getTimer(orderId: orderId);
