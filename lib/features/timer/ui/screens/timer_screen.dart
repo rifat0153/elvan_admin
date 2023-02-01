@@ -53,14 +53,14 @@ class TimerScreen extends HookConsumerWidget {
                       ),
                     ),
                     const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: ElvanBtn(
-                        title: AppStrings.save,
-                        onClick: () {},
-                        color: AppColors.primaryRed,
-                      ),
-                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 20),
+                    //   child: ElvanBtn(
+                    //     title: AppStrings.save,
+                    //     onClick: () {},
+                    //     color: AppColors.primaryRed,
+                    //   ),
+                    // )
                   ],
                 ),
                 Container(

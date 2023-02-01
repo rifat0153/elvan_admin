@@ -44,7 +44,7 @@ class AddItemScreen extends HookConsumerWidget {
               onClick: () {
                 menuNotifier.open();
               },
-              title: AppStrings.addOnItems),
+              title: AppStrings.foodItems),
           Expanded(
               child: SingleChildScrollView(
             child: Column(

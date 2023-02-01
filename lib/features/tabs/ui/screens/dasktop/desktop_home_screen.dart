@@ -38,18 +38,15 @@ class DesktopHomeScreen extends HookConsumerWidget {
                 )
               : Container(),
           Expanded(
-            flex: menuState.isOpenMenu ? 6 : 8,
+            flex: menuState.isOpenMenu ? 7 : 8,
             child: Container(
               color: AppColors.white,
               child: child,
             ),
           ),
-        orderDetails.isOpenDetatils ?  Expanded(
-              flex: menuState.isOpenMenu ? 3 : 2,
-              child: Padding(
-                padding: EdgeInsets.only(right: menuState.isOpenMenu ? 79 : 0),
-                child: const OrderDetatils(),
-              )) : Container()
+        orderDetails.isOpenDetatils ?  const Expanded(
+              flex:2,
+              child: OrderDetatils()) : Container()
         ],
       ),
     );

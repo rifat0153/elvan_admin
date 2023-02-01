@@ -13,7 +13,7 @@ class MenuNotifier extends StateNotifier<MenuState> {
       isOpenMenu: !state.isOpenMenu,
     );
     state = state.copyWith(
-      xOffset: state.isOpenMenu ? 312 : 0,
+      xOffset: state.isOpenMenu ? 79 : 0,
       xOffsetSubChild: state.isOpenMenu ? 0 : 0,
       xOffsetTab: state.isOpenMenu ? 79 : 0,
     );

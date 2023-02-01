@@ -37,7 +37,7 @@ class SettingsMenu extends HookConsumerWidget {
               onClick: () {
                 router.setActiveIndex(0);
               },
-              title: AppStrings.foodCategory),
+              title: AppStrings.foodItems),
         ),
         //************ Processing */
         Padding(
@@ -48,19 +48,9 @@ class SettingsMenu extends HookConsumerWidget {
               onClick: () {
                 router.setActiveIndex(1);
               },
-              title: AppStrings.addOnItems),
-        ),
-        //************ Ready */
-        Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
-          child: MenuBtn(
-              index: 2,
-              selectedIndex: router.activeIndex,
-              onClick: () {
-                router.setActiveIndex(2);
-              },
               title: AppStrings.time),
         ),
+     
       ],
     );
   }

@@ -1,10 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/navigation_provider.dart';
-import 'package:elvan_admin/features/order/ui/notifer/delivered_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/ready_order_notifier.dart';
-import 'package:elvan_admin/features/tabs/provider/order_count_provider.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
+import 'package:elvan_admin/features/tabs/ui/provider/order_count_provider.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_btn.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +21,7 @@ class HomeMenu extends HookConsumerWidget {
     final processState = ref.watch(processCountProvider);
     final readyState = ref.watch(readyCountProvider);
     final deliverdState = ref.watch(deliverdCountProvider);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,10 +40,11 @@ class HomeMenu extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
           child: MenuBtn(
               index: 0,
-               count: newOrderState.value ?? 0,
+              count: newOrderState,
               selectedIndex: router.activeIndex,
               onClick: () {
                 router.setActiveIndex(0);
+                ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.newOrders),
         ),
@@ -55,9 +54,10 @@ class HomeMenu extends HookConsumerWidget {
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 1,
-               count: processState.value ?? 0,
+              count: processState,
               onClick: () {
                 router.setActiveIndex(1);
+                  ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.processing),
         ),
@@ -67,9 +67,10 @@ class HomeMenu extends HookConsumerWidget {
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 2,
-              count: readyState.value ?? 0,
+              count: readyState,
               onClick: () {
                 router.setActiveIndex(2);
+                  ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.ready),
         ),
@@ -79,9 +80,10 @@ class HomeMenu extends HookConsumerWidget {
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 3,
-               count: deliverdState.value ?? 0,
+              count: deliverdState,
               onClick: () {
                 router.setActiveIndex(3);
+                  ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.delivered),
         )

@@ -51,20 +51,28 @@ class HomeAppBar extends HookConsumerWidget {
                     ),
                   ),
                   //**********Page title */
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(color: AppColors.black),
+                  Expanded(
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        title,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(color: AppColors.black),
+                      ),
                     ),
                   ),
                   const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Text("${authState.currentUser?.email}"),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: Text(
+                        "${authState.currentUser?.email}",
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
 
                   MyPopupMenu(onclick: (value) {

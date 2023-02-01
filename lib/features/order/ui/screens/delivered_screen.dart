@@ -52,6 +52,7 @@ class DeliveredScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
+                     Scaffold.of(context).openDrawer();
                     menuNotifier.open();
                   },
                   title: AppStrings.delivered),

@@ -21,80 +21,101 @@ class LeftTabScreen extends HookConsumerWidget {
         final tabsRouter = AutoTabsRouter.of(context);
         return Material(
           color: Colors.transparent,
-          child: Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 72,
-                      decoration: const BoxDecoration(color: AppColors.white),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          //**********Logo********** */
-                          Container(
-                            width: 48,
-                            height: 48,
-                            margin: const EdgeInsets.only(top: 24),
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.gray400),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: SizedBox(
-                                width: 25,
-                                height: 28,
-                                child: SvgPicture.asset(AppAssets.logo)),
-                          ),
-
-                          //********* Order List  */
-                          Padding(
-                            padding: const EdgeInsets.only(top: 38),
-                            child: MenuIconBtn(
-                                seleectedIndex: tabsRouter.activeIndex,
-                                index: 0,
-                                onClick: () {
-                                  tabsRouter.setActiveIndex(0);
-                                },
-                                path: AppAssets.order),
-                          ),
-
-                          const Spacer(),
-                          //********* settings  */
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 30),
-                            child: MenuIconBtn(
-                                seleectedIndex: tabsRouter.activeIndex,
-                                index: 1,
-                                onClick: () {
-                                  tabsRouter.setActiveIndex(1);
-                                },
-                                path: AppAssets.settings),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              //*********  Layout Two ****** */
-              AnimatedContainer(
-                curve: Curves.easeOut,
-                duration: const Duration(milliseconds: 500),
-                child: Container(
-                    width: double.infinity,
-                    color: AppColors.grayF7,
-                    transform: Matrix4.translationValues(
-                        menuState.xOffsetTab, menuState.yOffset, 1.0),
-                    child: child),
-              )
-            ],
+          child: SizedBox(
+            width: AppSize.width(context),
+            child: Row(
+              children: [
+                menuState.isOpenMenu
+                    ? LeftBar(tabsRouter: tabsRouter)
+                    : Container(),
+                //*********  Layout Two ****** */
+                Expanded(
+                  child: AnimatedContainer(
+                    curve: Curves.easeOut,
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                        //width: menuState.isOpenMenu ? AppSize.width(context) - 79 : AppSize.width(context),
+                        color: AppColors.grayF7,
+                        // transform: Matrix4.translationValues(
+                        //     menuState.xOffsetTab, menuState.yOffset, 1.0),
+                        child: child),
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },
+    );
+  }
+}
+
+class LeftBar extends StatelessWidget {
+  const LeftBar({
+    Key? key,
+    required this.tabsRouter,
+  }) : super(key: key);
+
+  final TabsRouter tabsRouter;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 79,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 72,
+            decoration: const BoxDecoration(color: AppColors.white),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                //**********Logo********** */
+                Container(
+                  width: 48,
+                  height: 48,
+                  margin: const EdgeInsets.only(top: 24),
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.gray400),
+                      borderRadius: BorderRadius.circular(8)),
+                  child: SizedBox(
+                      width: 25,
+                      height: 28,
+                      child: SvgPicture.asset(AppAssets.logo)),
+                ),
+
+                //********* Order List  */
+                Padding(
+                  padding: const EdgeInsets.only(top: 38),
+                  child: MenuIconBtn(
+                      seleectedIndex: tabsRouter.activeIndex,
+                      index: 0,
+                      onClick: () {
+                        tabsRouter.setActiveIndex(0);
+                      },
+                      path: AppAssets.order),
+                ),
+
+                const Spacer(),
+                //********* settings  */
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: MenuIconBtn(
+                      seleectedIndex: tabsRouter.activeIndex,
+                      index: 1,
+                      onClick: () {
+                        tabsRouter.setActiveIndex(1);
+                      },
+                      path: AppAssets.settings),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

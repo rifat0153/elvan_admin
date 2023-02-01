@@ -1,12 +1,16 @@
+import 'package:elvan_admin/core/printer/header_printer.dart';
+import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
+import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderDetatils extends HookConsumerWidget {
@@ -15,6 +19,9 @@ class OrderDetatils extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(orderDtatilsProvider);
+
+    useEffect(() {}, const []);
+
     return Container(
       decoration: const BoxDecoration(
           border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
@@ -38,6 +45,24 @@ class OrderDetatils extends HookConsumerWidget {
                         ?.copyWith(color: AppColors.grayA7),
                   ),
                 ),
+                const Spacer(),
+                IconButton(
+                    onPressed: () {
+                      final printer =
+                          ref.read(webPrinterNotifierProvider.notifier);
+                      printer.printInvoice(
+                          headerPrinter: const HeaderPrinter(
+                              address: "701 Preston Ave,Pasadena,Texas",
+                              imageUrl: AppAssets.applogo,
+                              phone: "(713) 473-2503",
+                              title: "ELVAN",
+                              website: "elvan.com"),
+                          order: state.order!);
+                    },
+                    icon: const Icon(
+                      Icons.print,
+                      color: AppColors.grayA7,
+                    ))
               ],
             ),
           ),
