@@ -36,8 +36,7 @@ class OrderItemTab extends HookConsumerWidget {
               shape: RoundedRectangleBorder(
                   side: selectedOrder != null
                       ? BorderSide(
-                          color: order.id ==
-                                  selectedOrder?.id
+                          color: order.id == selectedOrder?.id
                               ? AppColors.primaryRed
                               : AppColors.grayA7)
                       : const BorderSide(color: AppColors.grayA7),
@@ -74,7 +73,9 @@ class OrderItemTab extends HookConsumerWidget {
                       order: order,
                     ),
                     //** row by Order set time section */
-                     OrderTimerTab(order: order,)
+                    OrderTimerTab(
+                      order: order,
+                    )
                   ],
                 ),
               ),

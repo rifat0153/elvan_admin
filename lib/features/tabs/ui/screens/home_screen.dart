@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
-import 'package:elvan_admin/app/router/navigation_provider.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_details/order_details.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
-import 'package:elvan_admin/features/tabs/ui/notifier/menu_tab_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/dasktop/desktop_home_screen.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/mobile/mobile_home_screen.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/tabs/tabs_home_screen.dart';
@@ -17,9 +14,7 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuState = ref.watch(menuProvider);
-    final navigation = ref.watch(navigatorProvider.notifier);
-    final tabNotifier = ref.watch(menuTabProvider.notifier);
-    final selectedIndex = ref.watch(menuTabProvider);
+
     return AutoTabsRouter(
       routes: const [
         NewOrderRoute(),

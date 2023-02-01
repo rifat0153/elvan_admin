@@ -18,10 +18,9 @@ class OrderDeatilsTimer extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(orderDtatilsProvider);
     final timerState = ref.watch(timerProvider);
-   
 
     useEffect(() {
-     
+      print("-----------order details-----${state.order?.id}");
     }, const []);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),

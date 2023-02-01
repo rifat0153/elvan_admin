@@ -1,4 +1,5 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer.dart';
@@ -22,6 +23,8 @@ class OrderItemDesktop extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final orderState = ref.watch(orderDtatilsProvider);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -34,8 +37,7 @@ class OrderItemDesktop extends HookConsumerWidget {
                 shape: RoundedRectangleBorder(
                     side: selectedOrder != null
                         ? BorderSide(
-                            color: order.id ==
-                                    selectedOrder?.id
+                            color: order.id == selectedOrder?.id
                                 ? AppColors.primaryRed
                                 : AppColors.grayA7)
                         : const BorderSide(color: AppColors.grayA7),
@@ -50,7 +52,7 @@ class OrderItemDesktop extends HookConsumerWidget {
                     children: [
                       //** row by Order info section */
                       Expanded(
-                        flex: 4,
+                        flex: orderState.isOpenDetatils ? 3 : 4,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +60,7 @@ class OrderItemDesktop extends HookConsumerWidget {
                             OrderInfo(
                               order: order,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
                             FoodVarients(
@@ -69,7 +71,11 @@ class OrderItemDesktop extends HookConsumerWidget {
                       ),
 
                       //** row by Order set time section */
-                       Expanded(flex: 2, child: OrderTimer(order: order,))
+                      Expanded(
+                          flex: 2,
+                          child: OrderTimer(
+                            order: order,
+                          ))
                     ],
                   ),
                 ),
