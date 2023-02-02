@@ -6,7 +6,7 @@ part 'order_timer_dto.g.dart';
 @HiveType(typeId: 0)
 @JsonSerializable(nullable: false)
 class OrderTimerDto {
-   OrderTimerDto({required this.orderId,required this.time});
+   OrderTimerDto({required this.orderId,required this.time, required this.second});
 
   @HiveField(0)
   @JsonKey(name:"order_id")
@@ -15,4 +15,8 @@ class OrderTimerDto {
   @HiveField(1)
   @JsonKey(name:"time")
   String? time;
+ 
+  @HiveField(2)
+  @JsonKey(name:"min")
+  String? second;
 }

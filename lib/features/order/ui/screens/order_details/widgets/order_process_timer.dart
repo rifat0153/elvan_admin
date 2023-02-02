@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OrderDeatilsTimer extends StatefulHookConsumerWidget {
-  const OrderDeatilsTimer({Key? key}) : super(key: key);
+class OrderDeatilsProcessTimer extends StatefulHookConsumerWidget {
+  const OrderDeatilsProcessTimer({Key? key}) : super(key: key);
 
   @override
-  _OrderDetailsTimerState createState() => _OrderDetailsTimerState();
+  _OrderDetailsTimerProcessState createState() => _OrderDetailsTimerProcessState();
 }
 
-class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
+class _OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTimer> {
   @override
   void initState() {
     getTimeByOrder();
@@ -32,22 +32,18 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
     Duration duration = const Duration(seconds: 0);
     ref
         .read(orderTimerUsecaseProvider)
-        .findOrderTime(orderId: order!.id)
+        .getSecondTime(orderId: order!.id)
         .then((second) {
       print("Secend order deatils---$second");
       duration = Duration(
         seconds: second,
       );
-      print("order details minutes ${duration.inMinutes}");
-      setMin(orderId: order.id, secend: duration.inSeconds);
+      print("order details process minutes ${duration.inMinutes}");
+      setMin(orderId: order.id, secend: second);
 
-      if (second == 0) {
-        if (order.status.status == OrderStatus.pending.status) {
-          setDefaultTimer(order);
-        }
+      if (order.status.status == OrderStatus.accepted.status) {
+        ref.watch(timerProvider.notifier).start();
       }
-
-      
     });
   }
 
@@ -74,7 +70,7 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
     final time = DateTime.now().add(Duration(
       seconds: secend,
     ));
-    ref.read(orderTimerUsecaseProvider).setTime(orderId: orderId, time: time,second: secend);
+    ref.read(orderTimerUsecaseProvider).setTime(orderId: orderId, time: time,second:secend);
     ref.read(timerProvider.notifier).setTimer(secend);
   }
 

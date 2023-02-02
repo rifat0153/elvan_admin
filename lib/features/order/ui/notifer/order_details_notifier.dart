@@ -27,7 +27,14 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
       {required BuildContext context, required OrderDto order}) async {
     if (state.order != null) {
       if (order.status.status == OrderStatus.pending.status) {
-        setDefaultTimer(order);
+        ref
+            .read(orderTimerUsecaseProvider)
+            .findOrderTime(orderId: order.id)
+            .then((second) {
+          if (second == 0) {
+            setDefaultTimer(order);
+          }
+        });
       }
       if (state.order!.id == order.id) {
         state = state.copyWith(
@@ -42,15 +49,14 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
         );
       }
     } else {
-  state = state.copyWith(
-      isOpenDetatils: !state.isOpenDetatils,
-      order: order
-    );
+      state =
+          state.copyWith(isOpenDetatils: !state.isOpenDetatils, order: order);
     }
-  
+
     state = state.copyWith(xOffset: state.isOpenDetatils ? 288 : 0);
   }
 
+ 
   void setMin({
     required String orderId,
     required int min,
@@ -64,15 +70,14 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     ));
     ref
         .read(orderTimerUsecaseProvider)
-        .setTime(orderId: orderId, time: state.time!);
-    ref.read(timerProvider.notifier).setTimer(min * 60);
+        .setTime(orderId: orderId, time: state.time!, second: min * 60);
+    ref.watch(timerProvider.notifier).setTimer(min * 60);
   }
 
   void close() {
     state = state.copyWith(isOpenDetatils: false);
   }
 
- 
   setDefaultTimer(OrderDto order) async {
     final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
     defautTime.when(

@@ -66,6 +66,7 @@ class NewOrderScreen extends HookConsumerWidget {
                             shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return OrderItem(
+                             key: Key(data[index].id),
                                 order: data[index],
                                 selectedOrder: orderDeatilsState.order,
                                 onClick: () {

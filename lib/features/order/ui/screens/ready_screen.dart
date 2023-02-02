@@ -67,6 +67,7 @@ class ReadyScreen extends HookConsumerWidget {
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
                                   return ReadyItem(
+                                      key: Key(data[index].id),
                                     order: data[index],
                                     selectedOrder: orderDetatilsState.order,
                                     onBtnClick: () {
