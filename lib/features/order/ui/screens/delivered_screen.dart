@@ -27,6 +27,7 @@ class DeliveredScreen extends HookConsumerWidget {
     final page = useState<int>(1);
 
     useEffect(() {
+      notifier.getData();
       scrollController.addListener(() {
         if (scrollController.offset >=
                 scrollController.position.maxScrollExtent &&

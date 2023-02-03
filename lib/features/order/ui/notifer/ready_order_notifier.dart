@@ -1,10 +1,7 @@
 import 'dart:async';
 
-import 'package:elvan_admin/features/order/domain/usecase/new_order_usecase.dart';
+
 import 'package:elvan_admin/features/order/domain/usecase/ready_order_usececase.dart';
-import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/order/ui/states/order_new_state.dart';
 import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
 import 'package:elvan_shared/core/ui_state/ui_state.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';

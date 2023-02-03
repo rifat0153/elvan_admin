@@ -57,7 +57,7 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
       success: (data) {
         print("----------default min ${data.defaultTime}");
 
-        Duration duration = Duration(minutes: data.defaultTime);
+        Duration duration = Duration(minutes: data.defaultTime ?? 0);
         setMin(orderId: order.id, secend: duration.inSeconds);
       },
       failure: (failure) {

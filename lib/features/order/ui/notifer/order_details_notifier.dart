@@ -84,8 +84,8 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
       success: (data) {
         print("----------default min ${data.defaultTime}");
 
-        Duration duration = Duration(minutes: data.defaultTime);
-        setMin(orderId: order.id, min: data.defaultTime);
+        Duration duration = Duration(minutes: data.defaultTime ?? 0);
+        setMin(orderId: order.id, min: data.defaultTime ?? 0);
       },
       failure: (failure) {
         print("----------default min ${failure.message}");

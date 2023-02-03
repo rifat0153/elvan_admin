@@ -8,6 +8,7 @@ import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,6 +22,9 @@ class ReadyScreen extends HookConsumerWidget {
     final notifier = ref.watch(readyOrderProvider.notifier);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
     final orderDetatilsState = ref.watch(orderDtatilsProvider);
+
+
+
     return Stack(
       children: [
         //****************Order Details */
@@ -67,7 +71,7 @@ class ReadyScreen extends HookConsumerWidget {
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
                                   return ReadyItem(
-                                      key: Key(data[index].id),
+                                    key: Key(data[index].id),
                                     order: data[index],
                                     selectedOrder: orderDetatilsState.order,
                                     onBtnClick: () {

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:elvan_admin/features/order/domain/usecase/delivered_order_usecase.dart';
 import 'package:elvan_admin/features/order/ui/states/delivered_state.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final deliverdOrderProvider =
@@ -13,14 +12,11 @@ class DeliveredOrderNotifier extends Notifier<DeliveredState> {
   DeliveredOrderNotifier() : super();
 
   late DeliveredOrderUsecase deliveredOrderUsecase;
-  late final StreamSubscription<List<OrderDto>> orderSubscription;
 
   @override
   DeliveredState build() {
     getData();
-    ref.onDispose(() {
-      orderSubscription.cancel();
-    });
+   
 
     return const DeliveredState(orders: [], loading: true);
   }
