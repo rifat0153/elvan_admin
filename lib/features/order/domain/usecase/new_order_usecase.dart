@@ -5,41 +5,34 @@ import 'package:elvan_admin/features/order/domain/repository/order_repository.da
 import 'package:elvan_shared/core/result/result.dart';
 import 'package:elvan_shared/domain_models/elvan_user/elvan_user.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'new_order_usecase.g.dart';
-
-@riverpod
-NewOrderUsecase newOrderUsecase(NewOrderUsecaseRef ref) {
-  return NewOrderUsecase(
-      orderRepository: ref.read(orderRepositoryProvider),
-      authRepository: ref.read(authRepositoryProvider));
-}
+final newOrderUsecaseProvider = Provider.autoDispose<NewOrderUsecase>(
+  (ref) => NewOrderUsecase(
+    orderRepository: ref.watch(orderRepositoryProvider),
+    authRepository: ref.watch(authRepositoryProvider),
+  ),
+);
 
 class NewOrderUsecase {
   final OrderRepository orderRepository;
   final AuthRepository authRepository;
-  const NewOrderUsecase(
-      {required this.orderRepository, required this.authRepository});
+  const NewOrderUsecase({required this.orderRepository, required this.authRepository});
 
-  Result<Stream<List<OrderDto>>> getNewStream() {
-    final resultOrderdro = orderRepository.getNewStream();
-    return resultOrderdro.when(
-      success: (data) {
-        return Result.success(data);
-      },
-      failure: (failure) {
-        return Result.failure(failure);
-      },
-    );
+  Stream<List<Order>> getNewStream() {
+    return orderRepository.getNewStream().map(
+          (event) => event
+              .map(
+                (dto) => Order.fromDto(dto),
+              )
+              .toList(),
+        );
   }
 
-  Future<Result<String>> orderAccept(
-      {required String orderId, required OrderStatus status}) {
-
+  Future<Result<String>> orderAccept({required String orderId, required OrderStatus status}) {
     return orderRepository.changeOrderStatus(orderId: orderId, status: status);
   }
-
-  
 }

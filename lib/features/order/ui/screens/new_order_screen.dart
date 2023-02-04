@@ -21,7 +21,19 @@ class NewOrderScreen extends HookConsumerWidget {
     final orderDeatilsState = ref.watch(orderDtatilsProvider);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
 
-  
+    final newOrderStream = ref.watch(newOrderStreamProvider);
+
+    newOrderStream.when(
+      loading: () => Text(''),
+      data: (v) => Text(''),
+      error: (e, s) => ElevatedButton(
+        onPressed: () {
+          ref.invalidate(newOrderStreamProvider);
+        },
+        child: Text(e.toString()),
+      ),
+    );
+
     return Stack(
       children: [
         //****************Order Details */
@@ -58,9 +70,7 @@ class NewOrderScreen extends HookConsumerWidget {
                         ),
                         data: (data) {
                           if (data.isEmpty) {
-                            return const EmptyWidget(
-                                title: AppStrings.noOrder,
-                                icon: Icons.local_dining_outlined);
+                            return const EmptyWidget(title: AppStrings.noOrder, icon: Icons.local_dining_outlined);
                           }
                           return ListView.builder(
                             itemCount: data.length,
@@ -73,8 +83,7 @@ class NewOrderScreen extends HookConsumerWidget {
                                 selectedOrder: orderDeatilsState.order,
                                 onClick: () {
                                   Scaffold.of(context).openEndDrawer();
-                                  orderDetatilsNotifier.selecteItem(
-                                      context: context, order: data[index]);
+                                  orderDetatilsNotifier.selecteItem(context: context, order: data[index]);
                                 },
                               );
                             },
@@ -84,10 +93,7 @@ class NewOrderScreen extends HookConsumerWidget {
                           return Center(
                             child: Text(
                               "${error}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(color: AppColors.primaryRed),
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primaryRed),
                             ),
                           );
                         },

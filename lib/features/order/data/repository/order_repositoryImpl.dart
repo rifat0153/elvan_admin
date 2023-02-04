@@ -22,15 +22,11 @@ class OrderRpositoryImpl implements OrderRepository {
   });
 
   @override
-  Future<Result<QuerySnapshot<Map<String, dynamic>>>>
-      getDeilveredStream() async {
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getDeilveredStream() async {
     try {
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionOrders)
-          .where('status', whereIn: [
-            OrderStatus.delivered.status,
-            OrderStatus.rejected.status
-          ])
+          .where('status', whereIn: [OrderStatus.delivered.status, OrderStatus.rejected.status])
           .orderBy('createdAt', descending: true)
           .limit(10)
           .get();
@@ -43,28 +39,23 @@ class OrderRpositoryImpl implements OrderRepository {
   }
 
   @override
-  Result<Stream<List<OrderDto>>> getNewStream() {
-    try {
-      Stream<List<OrderDto>> data = firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .where('status', isEqualTo: 'pending')
-          .withConverter(
-            fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
-            toFirestore: (orderDto, _) => orderDto.toJson(),
-          )
-          .orderBy('createdAt', descending: true)
-          .snapshots()
-          .map(
-            (event) => event.docs
-                .map(
-                  (e) => e.data(),
-                )
-                .toList(),
-          );
-      return Result.success(data);
-    } on FirebaseException catch (e) {
-      return Result.failure(Failure(error: "Error", message: e.message));
-    }
+  Stream<List<OrderDto>> getNewStream() {
+    return firebaseFirestore
+        .collection(Constants.firebaseCollectionOrders)
+        .where('status', isEqualTo: 'pending')
+        .withConverter(
+          fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
+          toFirestore: (orderDto, _) => orderDto.toJson(),
+        )
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (event) => event.docs
+              .map(
+                (e) => e.data(),
+              )
+              .toList(),
+        );
   }
 
   @override
@@ -143,13 +134,9 @@ class OrderRpositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Result<String>> changeOrderStatus(
-      {required String orderId, required OrderStatus status}) async {
+  Future<Result<String>> changeOrderStatus({required String orderId, required OrderStatus status}) async {
     try {
-      await firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .doc(orderId)
-          .update({"status": status.status});
+      await firebaseFirestore.collection(Constants.firebaseCollectionOrders).doc(orderId).update({"status": status.status});
 
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionOrders)
@@ -167,16 +154,11 @@ class OrderRpositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Result<QuerySnapshot<Map<String, dynamic>>>>
-      getDeilveredStreamPagination(
-          {required DocumentSnapshot lastOrder}) async {
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getDeilveredStreamPagination({required DocumentSnapshot lastOrder}) async {
     try {
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionOrders)
-          .where('status', whereIn: [
-            OrderStatus.delivered.status,
-            OrderStatus.rejected.status
-          ])
+          .where('status', whereIn: [OrderStatus.delivered.status, OrderStatus.rejected.status])
           .orderBy('createdAt', descending: true)
           .startAfterDocument(lastOrder)
           .limit(10)
@@ -190,11 +172,7 @@ class OrderRpositoryImpl implements OrderRepository {
   @override
   Future<int> countByStatus({required OrderStatus status}) async {
     try {
-      final data = await firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .where('status', isEqualTo: status.status)
-          .orderBy('createdAt', descending: true)
-          .get();
+      final data = await firebaseFirestore.collection(Constants.firebaseCollectionOrders).where('status', isEqualTo: status.status).orderBy('createdAt', descending: true).get();
 
       return data.size;
     } on FirebaseException catch (e) {
@@ -204,13 +182,13 @@ class OrderRpositoryImpl implements OrderRepository {
       return 0;
     }
   }
-  
+
   @override
   Future<int> countByDeliverdStatus() async {
     try {
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionOrders)
-          .where('status', whereIn: [OrderStatus.delivered.status,OrderStatus.rejected.status])
+          .where('status', whereIn: [OrderStatus.delivered.status, OrderStatus.rejected.status])
           .orderBy('createdAt', descending: true)
           .get();
 

@@ -9,19 +9,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DesktopHomeScreen extends HookConsumerWidget {
   final Widget child;
-  const DesktopHomeScreen(
-      {Key? key,
-      required this.menuState,
-      required this.tabsRouter,
-      required this.child})
-      : super(key: key);
+  const DesktopHomeScreen({Key? key, required this.menuState, required this.tabsRouter, required this.child}) : super(key: key);
 
   final MenuState menuState;
   final TabsRouter tabsRouter;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final orderDetails = ref.watch(orderDtatilsProvider);
+    final orderDetails = ref.watch(orderDtatilsProvider);
 
     return Scaffold(
       body: Row(
@@ -44,9 +39,12 @@ class DesktopHomeScreen extends HookConsumerWidget {
               child: child,
             ),
           ),
-        orderDetails.isOpenDetatils ?  const Expanded(
-              flex:2,
-              child: OrderDetatils()) : Container()
+          orderDetails.isOpenDetatils
+              ? const Expanded(
+                  flex: 2,
+                  child: OrderDetatils(),
+                )
+              : Container()
         ],
       ),
     );

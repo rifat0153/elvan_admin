@@ -7,9 +7,14 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final newOrderCountProvider = Provider<int>((ref) {
-  final count = ref.watch(newOrderProvider).data?.length ?? 0;
+  final count = ref.watch(newOrderStreamProvider).value?.length ?? 0;
   return count;
 });
+
+// final newOrderCountProvider = Provider<int>((ref) {
+//   final count = ref.watch(newOrderProvider).data?.length ?? 0;
+//   return count;
+// });
 
 final processCountProvider = Provider<int>((ref) {
   final count = ref.watch(processOrderProvider).data?.length ?? 0;
