@@ -30,8 +30,8 @@ class OrderTimerTab extends HookConsumerWidget {
         defaultNotifier.getDefaultTimer().then((value) {
           value.when(
             success: ((data) {
-              minutes.value = data.defaultTime;
-              notifier.setMin(orderId: order.id, min: data.defaultTime);
+              minutes.value = data.defaultTime ?? 0;
+              notifier.setMin(orderId: order.id, min: data.defaultTime ?? 0);
             }),
             failure: (failure) {},
           );

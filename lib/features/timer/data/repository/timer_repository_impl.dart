@@ -4,6 +4,8 @@ import 'package:elvan_admin/core/firebase/firebase_providers.dart';
 import 'package:elvan_admin/features/timer/data/dto/timer_dto.dart';
 import 'package:elvan_admin/core/result/result.dart';
 import 'package:elvan_admin/features/timer/domain/repository/timer_repository.dart';
+import 'package:elvan_admin/shared/constants/app_utils.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final timerRepsitoryProvider = Provider<TimerRepository>(((ref) {
@@ -19,6 +21,13 @@ class TimerRepositoryImpl implements TimerRepository {
   @override
   Future<Result<TimerDto>> getDefaultTimer() async {
     try {
+      var box = Hive.box(AppUtils.defaultBox);
+      final defaultData = box.get("default-001");
+
+      if (defaultData != null) {
+        print("--------default data by local $defaultData");
+        return Result.success(defaultData);
+      }
       DocumentSnapshot<TimerDto> data = await firebaseFirestore
           .collection("settings")
           .doc("default-001")
@@ -37,6 +46,8 @@ class TimerRepositoryImpl implements TimerRepository {
   @override
   Future<Result<bool>> setDefaultTimer(TimerDto timerDto) async {
     try {
+      var box = Hive.box(AppUtils.defaultBox);
+      box.put("default-001", timerDto);
       await firebaseFirestore
           .collection("settings")
           .doc("default-001")

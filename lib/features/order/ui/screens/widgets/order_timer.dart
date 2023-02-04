@@ -26,13 +26,12 @@ class OrderTimer extends HookConsumerWidget {
     final defaultNotifier = ref.watch(timerUsecaseProvider);
 
     useEffect(() {
-      print("-----------onload");
       if (order.status.name == OrderStatus.pending.name) {
         defaultNotifier.getDefaultTimer().then((value) {
           value.when(
             success: ((data) {
-              minutes.value = data.defaultTime;
-              notifier.setMin(orderId: order.id, min: data.defaultTime);
+              minutes.value = data.defaultTime ?? 0;
+              notifier.setMin(orderId: order.id, min: data.defaultTime ?? 0);
             }),
             failure: (failure) {},
           );

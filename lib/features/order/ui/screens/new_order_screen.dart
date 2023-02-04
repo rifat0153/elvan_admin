@@ -20,6 +20,8 @@ class NewOrderScreen extends HookConsumerWidget {
     final orderNotifier = ref.watch(newOrderProvider.notifier);
     final orderDeatilsState = ref.watch(orderDtatilsProvider);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
+
+  
     return Stack(
       children: [
         //****************Order Details */
@@ -33,7 +35,7 @@ class NewOrderScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
-                      Scaffold.of(context).openDrawer();
+                    Scaffold.of(context).openDrawer();
                     menuNotifier.open();
                   },
                   title: AppStrings.newOrders),
@@ -66,6 +68,7 @@ class NewOrderScreen extends HookConsumerWidget {
                             shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return OrderItem(
+                                key: Key(data[index].id),
                                 order: data[index],
                                 selectedOrder: orderDeatilsState.order,
                                 onClick: () {

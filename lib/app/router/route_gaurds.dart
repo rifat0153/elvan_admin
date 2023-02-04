@@ -24,7 +24,7 @@ class AuthGuard extends AutoRouteGuard {
     debugPrint('AuthGuard: -> Root key -> ${router.key}');
     debugPrint('AuthGuard: -> Path -> ${resolver.route.path}');
     String? userId = await LocalData.getInstatance().getUserId();
-    if (userId != null) {
+    if (FirebaseAuth.instance.currentUser != null && userId != null) {
       resolver.next(true);
     } else {
       router.push(

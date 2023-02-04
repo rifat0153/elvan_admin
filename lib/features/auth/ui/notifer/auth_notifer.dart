@@ -7,7 +7,6 @@ import 'package:elvan_admin/features/auth/ui/states/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
   AuthNotifier.new,
 );
@@ -16,27 +15,23 @@ class AuthNotifier extends Notifier<AuthState> {
   AuthNotifier() : super();
 
   late final AuthUseCases authUseCase;
-  late final StreamSubscription<User?> authStateChangesSubscription;
-
+ 
   @override
   build() {
     // setup (just like widget initState)
     authUseCase = ref.read(authUseCaseProvider);
-    authStateChangesSubscription = authUseCase.getUserStreamUseCase().listen(
-          handleUserStream,
-        );
+    handleUserStream();
 
     // dispose (just like widget dispose)
     // cancel all subscriptions and close all streams
-    ref.onDispose(() {
-      authStateChangesSubscription.cancel();
-    });
+   
 
     // return the initial state of the notifier
     return const AuthState();
   }
 
-  void handleUserStream(User? user) {
+  void handleUserStream() async {
+    final user = await authUseCase.getUserStreamUseCase().last;
     if (user != null) {
       getElvanUserData(user.uid);
     }
@@ -89,7 +84,7 @@ class AuthNotifier extends Notifier<AuthState> {
     result.when(
       success: (elvanUser) {
         print("-----------${elvanUser.email}");
-        
+
         state = state.copyWith(elvanUser: elvanUser, loading: false);
 
         ref.read(navigatorProvider.notifier).popAllPushTabRoute();

@@ -30,15 +30,15 @@ class AddOnItemTab extends HookConsumerWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: ElvanBtn(
-                title: AppStrings.addNew,
-                onClick: () {},
-                color: AppColors.primaryRed,
-              ),
-            )
+            const Spacer(),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 20),
+            //   child: ElvanBtn(
+            //     title: AppStrings.addNew,
+            //     onClick: () {},
+            //     color: AppColors.primaryRed,
+            //   ),
+            // )
           ],
         ),
         Padding(

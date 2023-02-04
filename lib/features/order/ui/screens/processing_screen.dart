@@ -1,16 +1,16 @@
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
+
 import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,6 +24,8 @@ class ProcceingScreen extends HookConsumerWidget {
     final notifier = ref.watch(processOrderProvider.notifier);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
     final orderDetatilsState = ref.watch(orderDtatilsProvider);
+   
+
     return Stack(
       children: [
         //****************Order Details */
@@ -70,6 +72,7 @@ class ProcceingScreen extends HookConsumerWidget {
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
                                   return ProcessItem(
+                                       key: Key(data[index].id),
                                     order: data[index],
                                     selectedOrder: orderDetatilsState.order,
                                     onBtnClick: () {

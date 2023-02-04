@@ -63,24 +63,26 @@ class NewOrderNotifier extends Notifier<UiState<List<OrderDto>>> {
     final result = await newOrderUsecase.orderAccept(
         orderId: order.id, status: OrderStatus.accepted);
     result.when(
-      success: (data) {
-        ToastNotifer.success(context, data);
+      success: (data) async {
+        final printer = ref.read(webPrinterNotifierProvider.notifier);
+
+        await printer.printInvoice(
+            headerPrinter: const HeaderPrinter(
+                address: "701 Preston Ave,Pasadena,Texas",
+                imageUrl: AppAssets.applogo,
+                phone: "(713) 473-2503",
+                title: "ELVAN",
+                website: "elvan.com"),
+            order: order);
+
+        Future.delayed(const Duration(seconds: 5), () {
+          getData();
+        });
       },
       failure: (failure) {
         ToastNotifer.error(context, "${failure.message}");
       },
     );
-    final printer = ref.read(webPrinterNotifierProvider.notifier);
-    printer.printInvoice(
-        headerPrinter: const HeaderPrinter(
-            address: "701 Preston Ave,Pasadena,Texas",
-            imageUrl: AppAssets.applogo,
-            phone: "(713) 473-2503",
-            title: "ELVAN",
-            website: "elvan.com"),
-        order: order);
-
-    getData();
   }
 
   void _onReject(BuildContext context, OrderDto order) async {

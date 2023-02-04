@@ -27,6 +27,7 @@ class DeliveredScreen extends HookConsumerWidget {
     final page = useState<int>(1);
 
     useEffect(() {
+      notifier.getData();
       scrollController.addListener(() {
         if (scrollController.offset >=
                 scrollController.position.maxScrollExtent &&
@@ -52,7 +53,7 @@ class DeliveredScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
-                     Scaffold.of(context).openDrawer();
+                    Scaffold.of(context).openDrawer();
                     menuNotifier.open();
                   },
                   title: AppStrings.delivered),
@@ -76,24 +77,24 @@ class DeliveredScreen extends HookConsumerWidget {
                             )
                           : Container(),
                       state.orders.isEmpty
-                          ?   const EmptyWidget(
-                                title: AppStrings.noDeliveredOrder,
-                                icon: Icons.local_dining_outlined) 
+                          ? const EmptyWidget(
+                              title: AppStrings.noDeliveredOrder,
+                              icon: Icons.local_dining_outlined)
                           : ListView.builder(
                               itemCount: state.orders.length,
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
-                                final OrderDto order =
-                                    OrderDto.fromJson(state.orders[index].data()!);
+                                final OrderDto order = OrderDto.fromJson(
+                                    state.orders[index].data()!);
                                 return DeliveredItem(
                                   order: order,
+                                  key: Key(order.id),
                                   selectedOrder: orderDetatilsState.order,
                                   onClick: () {
                                     Scaffold.of(context).openEndDrawer();
                                     orderDetatilsNotifier.selecteItem(
-                                        context: context,
-                                        order: order);
+                                        context: context, order: order);
                                   },
                                 );
                               },

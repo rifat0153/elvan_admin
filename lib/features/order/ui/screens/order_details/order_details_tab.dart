@@ -3,10 +3,13 @@ import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_process_timer.dart';
+import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -64,7 +67,7 @@ class OrderDetatilsTab extends HookConsumerWidget {
           SizedBox(
             height: AppSize.hight(context) - 100,
             child: SingleChildScrollView(
-              child: body(context),
+              child: body(context,state),
             ),
           ),
         ],
@@ -72,7 +75,7 @@ class OrderDetatilsTab extends HookConsumerWidget {
     );
   }
 
-  Widget body(BuildContext context) {
+  Widget body(BuildContext context, OrderDetatilsState state) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,8 +187,10 @@ class OrderDetatilsTab extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              OrderDeatilsTimer(),
+            children:  [
+               state.order?.status.status == OrderStatus.pending.status
+                  ? const OrderDeatilsTimer()
+                  : const OrderDeatilsProcessTimer(),
             ],
           ),
         )

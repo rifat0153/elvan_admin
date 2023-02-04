@@ -33,6 +33,7 @@ class TimerScreen extends HookConsumerWidget {
         children: [
           HomeAppBar(
               onClick: () {
+                Scaffold.of(context).openDrawer();
                 menuNotifier.open();
               },
               title: AppStrings.time),
@@ -134,7 +135,7 @@ class TimerScreen extends HookConsumerWidget {
                               onClick: () {
                                 if (minutes.value > 0) {
                                   minutes.value--;
-                                  
+
                                   defaulNotifier.setMin(minutes.value);
                                 }
                               },
