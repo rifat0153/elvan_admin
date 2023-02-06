@@ -1,4 +1,4 @@
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';

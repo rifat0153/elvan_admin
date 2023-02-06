@@ -1,7 +1,5 @@
 import 'package:elvan_admin/features/order/ui/screens/common_item/common_item_desktop.dart';
 import 'package:elvan_admin/features/order/ui/screens/common_item/common_item_tab.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_tab.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_desktop.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';

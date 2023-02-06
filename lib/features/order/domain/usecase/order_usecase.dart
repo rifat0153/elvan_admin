@@ -5,7 +5,6 @@ import 'package:elvan_admin/features/order/domain/repository/order_repository.da
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/domain_models/order/order.dart' as shared;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 final orderUsecaseProvider = Provider.autoDispose<OrderUsecase>(
   (ref) => OrderUsecase(
@@ -20,13 +19,8 @@ class OrderUsecase {
   const OrderUsecase(
       {required this.orderRepository, required this.authRepository});
 
-  Stream<List<shared.Order>> getNewStream({required OrderStatus status}) {
-    final timestamp = Timestamp.fromMillisecondsSinceEpoch(
-        DateTime.now().millisecondsSinceEpoch);
-
-    return orderRepository
-        .getOrderStream(status: status, timestamp: timestamp)
-        .map(
+  Stream<List<shared.Order>> getOrderStream({required OrderStatus status}) {
+    return orderRepository.getOrderStream(status: status).map(
           (event) => event
               .map(
                 (dto) => shared.Order.fromDto(dto),
@@ -35,13 +29,24 @@ class OrderUsecase {
         );
   }
 
-  Future<void> orderAccept(
-      {required String orderId, required OrderStatus status}) async {
-    await orderRepository.changeOrderStatus(orderId: orderId, status: status);
+  Future<void> orderAccept({
+    required String orderId,
+    required OrderStatus status,
+    required int second,
+  }) async {
+    await orderRepository.changeOrderStatus(
+      orderId: orderId,
+      status: status,
+    );
   }
 
-  Future<void> onStautsChange(
-      {required String orderId, required OrderStatus status}) async {
-    await orderRepository.changeOrderStatus(orderId: orderId, status: status);
+  Future<void> onStautsChange({
+    required String orderId,
+    required OrderStatus status,
+  }) async {
+    await orderRepository.changeOrderStatus(
+      orderId: orderId,
+      status: status,
+    );
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';

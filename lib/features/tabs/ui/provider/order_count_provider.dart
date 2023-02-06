@@ -1,6 +1,6 @@
 import 'package:elvan_admin/features/order/data/repository/order_repositoryImpl.dart';
 import 'package:elvan_admin/features/order/ui/notifer/delivered_order_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/ready_order_notifier.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';

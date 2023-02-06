@@ -23,6 +23,10 @@ class DeliveredOrderUsecase {
     required this.authRepository,
   });
 
+  Future<QuerySnapshot<Map<String, dynamic>>> getDeliveredStream() async {
+    final resultOrderdro = await orderRepository.getDeilveredStream();
+    return resultOrderdro;
+  }
   Future<QuerySnapshot<Map<String, dynamic>>> getDeliveredStreamPaginagition(
       {required DocumentSnapshot lastOrder}) async {
     final resultOrderdro = await orderRepository.getDeilveredStreamPagination(

@@ -1,5 +1,5 @@
 import 'package:elvan_admin/core/printer/header_printer.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
@@ -32,7 +32,7 @@ class Webprinter extends Notifier<void> {
   void build() {}
 
   printInvoice(
-      {required HeaderPrinter headerPrinter, required OrderDto order}) async {
+      {required HeaderPrinter headerPrinter, required Order order}) async {
     final doc = pw.Document();
     var image = await imageFromAssetBundle(headerPrinter.imageUrl!);
     final today = DateTime.now();
@@ -53,7 +53,7 @@ class Webprinter extends Notifier<void> {
         onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  _build(pw.Context context, HeaderPrinter printer, var image, OrderDto order,
+  _build(pw.Context context, HeaderPrinter printer, var image, Order order,
       String date) {
     return pw.Column(
       children: [
@@ -130,7 +130,7 @@ class Webprinter extends Notifier<void> {
     );
   }
 
-  pw.Widget _contentTable(pw.Context context, OrderDto order) {
+  pw.Widget _contentTable(pw.Context context, Order order) {
     const tableHeaders = ['Items', 'Price', 'Qty', 'Total'];
 
     return pw.Table.fromTextArray(

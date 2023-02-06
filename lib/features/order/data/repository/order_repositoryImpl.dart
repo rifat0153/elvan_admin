@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_admin/core/firebase/firebase_providers.dart';
 import 'package:elvan_admin/features/order/domain/repository/order_repository.dart';
-import 'package:elvan_shared/core/failure/failure.dart';
-import 'package:elvan_shared/core/result/result.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:elvan_shared/shared/constants/constants.dart';
@@ -23,14 +21,28 @@ class OrderRpositoryImpl implements OrderRepository {
   @override
   Future<void> changeOrderStatus(
       {required String orderId, required OrderStatus status}) async {
-    try {
-      await firebaseFirestore
+     await firebaseFirestore
           .collection(Constants.firebaseCollectionOrders)
           .doc(orderId)
           .update({"status": status.status});
-    } on FirebaseException catch (e) {
-      print(e);
-    }
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>>
+      getDeilveredStream() async {
+    
+      final data = await firebaseFirestore
+          .collection(Constants.firebaseCollectionOrders)
+          .where('status', whereIn: [
+            OrderStatus.delivered.status,
+            OrderStatus.rejected.status
+          ])
+          .orderBy('createdAt', descending: true)
+          .limit(20)
+          .get();
+
+      return data;
+    
   }
 
   @override
@@ -51,7 +63,7 @@ class OrderRpositoryImpl implements OrderRepository {
 
   @override
   Stream<List<OrderDto>> getOrderStream(
-      {required OrderStatus status, required Timestamp timestamp}) {
+      {required OrderStatus status}) {
     return firebaseFirestore
         .collection(Constants.firebaseCollectionOrders)
         .where('status', isEqualTo: status.status)
@@ -60,7 +72,6 @@ class OrderRpositoryImpl implements OrderRepository {
           toFirestore: (orderDto, _) => orderDto.toJson(),
         )
         .orderBy('createdAt', descending: true)
-        .startAt([timestamp])
         .snapshots()
         .map(
           (event) => event.docs
@@ -69,5 +80,13 @@ class OrderRpositoryImpl implements OrderRepository {
               )
               .toList(),
         );
+  }
+  
+  @override
+  Future<void> acceptOrder({required String orderId, required int minutes}) async{
+     await firebaseFirestore
+          .collection(Constants.firebaseCollectionOrders)
+          .doc(orderId)
+          .update({"status": OrderStatus.accepted.status,"timeToPrepareInMinutes":minutes});
   }
 }

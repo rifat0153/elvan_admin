@@ -16,7 +16,6 @@ class DeliveredOrderNotifier extends Notifier<DeliveredState> {
   @override
   DeliveredState build() {
     getData();
-   
 
     return const DeliveredState(orders: [], loading: true);
   }
@@ -24,34 +23,18 @@ class DeliveredOrderNotifier extends Notifier<DeliveredState> {
   getData() async {
     deliveredOrderUsecase = ref.read(deliveredOrderUsecaseProvider);
 
-    final result = await deliveredOrderUsecase.getDeliveredStream();
-    result.when(
-      success: (data) {
-       state = state.copyWith(loading: false, orders: data.docs);
-      },
-      failure: (failure) {
-        state = state.copyWith(loading: false);
-      },
-    );
+    final data = await deliveredOrderUsecase.getDeliveredStream();
+    state = state.copyWith(loading: false, orders: data.docs);
   }
 
-  nextData()  async{
+  nextData() async {
     state = state.copyWith(haseMore: true, orders: state.orders);
     final lastOrder = state.orders[state.orders.length - 1];
-    final result = await deliveredOrderUsecase.getDeliveredStreamPaginagition(
+    final data = await deliveredOrderUsecase.getDeliveredStreamPaginagition(
         lastOrder: lastOrder);
-    result.when(
-      success: (data) {
-         state = state.copyWith(
+    state = state.copyWith(
         loading: false,
         haseMore: false,
         orders: [...state.orders, ...data.docs]);
-      },
-      failure: (failure) {
-        state = state.copyWith(haseMore: false, orders: state.orders);
-      },
-    );
   }
-
-  
 }
