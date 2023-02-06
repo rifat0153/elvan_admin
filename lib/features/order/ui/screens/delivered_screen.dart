@@ -7,6 +7,7 @@ import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -88,13 +89,13 @@ class DeliveredScreen extends HookConsumerWidget {
                                 final OrderDto order = OrderDto.fromJson(
                                     state.orders[index].data()!);
                                 return DeliveredItem(
-                                  order: order,
+                                  order: Order.fromDto(order),
                                   key: Key(order.id),
                                   selectedOrder: orderDetatilsState.order,
                                   onClick: () {
                                     Scaffold.of(context).openEndDrawer();
                                     orderDetatilsNotifier.selecteItem(
-                                        context: context, order: order);
+                                        context: context, order: Order.fromDto(order));
                                   },
                                 );
                               },

@@ -9,6 +9,7 @@ import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/cart/cart_item.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,6 @@ class OrderDetatils extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(orderDtatilsProvider);
-
-    useEffect(() {}, const []);
 
     return Container(
       decoration: const BoxDecoration(
@@ -103,7 +102,7 @@ class OrderDetatils extends HookConsumerWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              CartItemDto item = state.order!.items[index];
+              CartItem item = state.order!.items[index];
               return ListTile(
                 title: Text(
                   item.foodItem.title,

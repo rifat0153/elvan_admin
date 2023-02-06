@@ -1,4 +1,4 @@
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'order_details_state.freezed.dart';
@@ -10,5 +10,5 @@ class OrderDetatilsState with _$OrderDetatilsState {
       DateTime? time,
       @Default(0) int xOffset,
       
-      OrderDto? order}) = _OrderDetatilsState;
+      Order? order}) = _OrderDetatilsState;
 }

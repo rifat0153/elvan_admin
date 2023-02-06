@@ -1,18 +1,16 @@
-import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/food_variants.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_info.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_timer.dart';
-import 'package:elvan_admin/shared/components/cards/eCard.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderItemDesktop extends HookConsumerWidget {
-  final OrderDto order;
-  final OrderDto? selectedOrder;
+  final Order order;
+  final Order? selectedOrder;
   final void Function() onClick;
   const OrderItemDesktop(
       {Key? key,

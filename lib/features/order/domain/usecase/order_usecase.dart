@@ -8,8 +8,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final orderUsecaseProvider = Provider.autoDispose<OrderUsecase>(
   (ref) => OrderUsecase(
-    orderRepository: ref.watch(orderRepositoryProvider),
-    authRepository: ref.watch(authRepositoryProvider),
+    orderRepository: ref.read(orderRepositoryProvider),
+    authRepository: ref.read(authRepositoryProvider),
   ),
 );
 
@@ -31,12 +31,11 @@ class OrderUsecase {
 
   Future<void> orderAccept({
     required String orderId,
-    required OrderStatus status,
     required int second,
   }) async {
-    await orderRepository.changeOrderStatus(
+    await orderRepository.acceptOrder(
       orderId: orderId,
-      status: status,
+      second: second,
     );
   }
 

@@ -21,40 +21,47 @@ class OrderRpositoryImpl implements OrderRepository {
   @override
   Future<void> changeOrderStatus(
       {required String orderId, required OrderStatus status}) async {
-     await firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .doc(orderId)
-          .update({"status": status.status});
+    await firebaseFirestore
+        .collection(
+          Constants.firebaseCollectionOrders,
+        )
+        .doc(orderId)
+        .update({"status": status.status});
   }
 
   @override
-  Future<QuerySnapshot<Map<String, dynamic>>>
-      getDeilveredStream() async {
-    
-      final data = await firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .where('status', whereIn: [
-            OrderStatus.delivered.status,
-            OrderStatus.rejected.status
-          ])
-          .orderBy('createdAt', descending: true)
-          .limit(20)
-          .get();
-
-      return data;
-    
-  }
-
-  @override
-  Future<QuerySnapshot<Map<String, dynamic>>> getDeilveredStreamPagination(
-      {required DocumentSnapshot lastOrder}) async {
+  Future<QuerySnapshot<Map<String, dynamic>>> getDeilveredStream() async {
     final data = await firebaseFirestore
-        .collection(Constants.firebaseCollectionOrders)
+        .collection(
+          Constants.firebaseCollectionOrders,
+        )
         .where('status', whereIn: [
           OrderStatus.delivered.status,
           OrderStatus.rejected.status
         ])
         .orderBy('createdAt', descending: true)
+        .limit(20)
+        .get();
+
+    return data;
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getDeilveredStreamPagination({
+    required DocumentSnapshot lastOrder,
+  }) async {
+    final data = await firebaseFirestore
+        .collection(
+          Constants.firebaseCollectionOrders,
+        )
+        .where('status', whereIn: [
+          OrderStatus.delivered.status,
+          OrderStatus.rejected.status,
+        ])
+        .orderBy(
+          'createdAt',
+          descending: true,
+        )
         .startAfterDocument(lastOrder)
         .limit(20)
         .get();
@@ -62,11 +69,17 @@ class OrderRpositoryImpl implements OrderRepository {
   }
 
   @override
-  Stream<List<OrderDto>> getOrderStream(
-      {required OrderStatus status}) {
+  Stream<List<OrderDto>> getOrderStream({
+    required OrderStatus status,
+  }) {
     return firebaseFirestore
-        .collection(Constants.firebaseCollectionOrders)
-        .where('status', isEqualTo: status.status)
+        .collection(
+          Constants.firebaseCollectionOrders,
+        )
+        .where(
+          'status',
+          isEqualTo: status.status,
+        )
         .withConverter(
           fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
           toFirestore: (orderDto, _) => orderDto.toJson(),
@@ -81,12 +94,20 @@ class OrderRpositoryImpl implements OrderRepository {
               .toList(),
         );
   }
-  
+
   @override
-  Future<void> acceptOrder({required String orderId, required int minutes}) async{
-     await firebaseFirestore
-          .collection(Constants.firebaseCollectionOrders)
-          .doc(orderId)
-          .update({"status": OrderStatus.accepted.status,"timeToPrepareInMinutes":minutes});
+  Future<void> acceptOrder({
+    required String orderId,
+    required int second,
+  }) async {
+    final Timestamp timestamp = Timestamp.now();
+    await firebaseFirestore
+        .collection(Constants.firebaseCollectionOrders)
+        .doc(orderId)
+        .update({
+      "status": OrderStatus.accepted.status,
+      "orderPreparationTime": second,
+      "orderAcceptedAt": timestamp.toString()
+    });
   }
 }

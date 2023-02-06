@@ -2,13 +2,14 @@ import 'package:elvan_admin/features/order/ui/screens/common_item/common_item_de
 import 'package:elvan_admin/features/order/ui/screens/common_item/common_item_tab.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
+
 
 import 'package:flutter/material.dart';
 
 class ProcessItem extends StatelessWidget {
-  final OrderDto order;
-  final OrderDto? selectedOrder;
+  final Order order;
+  final Order? selectedOrder;
   final void Function() onClick;
   final void Function() onBtnClick;
   const ProcessItem(

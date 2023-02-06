@@ -19,7 +19,7 @@ mixin _$OrderDetatilsState {
   bool get isOpenDetatils => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
   int get xOffset => throw _privateConstructorUsedError;
-  OrderDto? get order => throw _privateConstructorUsedError;
+  Order? get order => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderDetatilsStateCopyWith<OrderDetatilsState> get copyWith =>
@@ -32,10 +32,9 @@ abstract class $OrderDetatilsStateCopyWith<$Res> {
           OrderDetatilsState value, $Res Function(OrderDetatilsState) then) =
       _$OrderDetatilsStateCopyWithImpl<$Res, OrderDetatilsState>;
   @useResult
-  $Res call(
-      {bool isOpenDetatils, DateTime? time, int xOffset, OrderDto? order});
+  $Res call({bool isOpenDetatils, DateTime? time, int xOffset, Order? order});
 
-  $OrderDtoCopyWith<$Res>? get order;
+  $OrderCopyWith<$Res>? get order;
 }
 
 /// @nodoc
@@ -72,18 +71,18 @@ class _$OrderDetatilsStateCopyWithImpl<$Res, $Val extends OrderDetatilsState>
       order: freezed == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
-              as OrderDto?,
+              as Order?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OrderDtoCopyWith<$Res>? get order {
+  $OrderCopyWith<$Res>? get order {
     if (_value.order == null) {
       return null;
     }
 
-    return $OrderDtoCopyWith<$Res>(_value.order!, (value) {
+    return $OrderCopyWith<$Res>(_value.order!, (value) {
       return _then(_value.copyWith(order: value) as $Val);
     });
   }
@@ -97,11 +96,10 @@ abstract class _$$_OrderDetatilsStateCopyWith<$Res>
       __$$_OrderDetatilsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isOpenDetatils, DateTime? time, int xOffset, OrderDto? order});
+  $Res call({bool isOpenDetatils, DateTime? time, int xOffset, Order? order});
 
   @override
-  $OrderDtoCopyWith<$Res>? get order;
+  $OrderCopyWith<$Res>? get order;
 }
 
 /// @nodoc
@@ -136,7 +134,7 @@ class __$$_OrderDetatilsStateCopyWithImpl<$Res>
       order: freezed == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
-              as OrderDto?,
+              as Order?,
     ));
   }
 }
@@ -156,7 +154,7 @@ class _$_OrderDetatilsState implements _OrderDetatilsState {
   @JsonKey()
   final int xOffset;
   @override
-  final OrderDto? order;
+  final Order? order;
 
   @override
   String toString() {
@@ -192,7 +190,7 @@ abstract class _OrderDetatilsState implements OrderDetatilsState {
       {final bool isOpenDetatils,
       final DateTime? time,
       final int xOffset,
-      final OrderDto? order}) = _$_OrderDetatilsState;
+      final Order? order}) = _$_OrderDetatilsState;
 
   @override
   bool get isOpenDetatils;
@@ -201,7 +199,7 @@ abstract class _OrderDetatilsState implements OrderDetatilsState {
   @override
   int get xOffset;
   @override
-  OrderDto? get order;
+  Order? get order;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDetatilsStateCopyWith<_$_OrderDetatilsState> get copyWith =>

@@ -4,6 +4,8 @@ import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart'
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
+import 'package:elvan_admin/shared/components/error/error_widget.dart';
+import 'package:elvan_admin/shared/components/loader/loader_widget.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -16,16 +18,13 @@ class NewOrderScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuNotifier = ref.watch(menuProvider.notifier);
-    final orderState = ref.watch(newOrderProvider);
-    final orderNotifier = ref.watch(newOrderProvider.notifier);
     final orderDeatilsState = ref.watch(orderDtatilsProvider);
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
-
     final newOrderStream = ref.watch(newOrderStreamProvider);
 
     newOrderStream.when(
-      loading: () => Text(''),
-      data: (v) => Text(''),
+      loading: () => const Text(''),
+      data: (v) => const Text(''),
       error: (e, s) => ElevatedButton(
         onPressed: () {
           ref.invalidate(newOrderStreamProvider);
@@ -56,21 +55,12 @@ class NewOrderScreen extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      orderState.when(
-                        loading: () => SizedBox(
-                          width: AppSize.width(context),
-                          height: AppSize.hight(context),
-                          child: const Center(
-                            child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: CircularProgressIndicator(),
-                            ),
-                          ),
-                        ),
+                      newOrderStream.when(
                         data: (data) {
                           if (data.isEmpty) {
-                            return const EmptyWidget(title: AppStrings.noOrder, icon: Icons.local_dining_outlined);
+                            return const EmptyWidget(
+                                title: AppStrings.noOrder,
+                                icon: Icons.local_dining_outlined);
                           }
                           return ListView.builder(
                             itemCount: data.length,
@@ -83,20 +73,19 @@ class NewOrderScreen extends HookConsumerWidget {
                                 selectedOrder: orderDeatilsState.order,
                                 onClick: () {
                                   Scaffold.of(context).openEndDrawer();
-                                  orderDetatilsNotifier.selecteItem(context: context, order: data[index]);
+                                  orderDetatilsNotifier.selecteItem(
+                                      context: context, order: data[index]);
                                 },
                               );
                             },
                           );
                         },
-                        error: (error, st) {
-                          return Center(
-                            child: Text(
-                              "${error}",
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.primaryRed),
-                            ),
-                          );
-                        },
+                        error: (error, stackTrace) => MErrorWidget(
+                          onTab: () {
+                            ref.invalidate(newOrderStreamProvider);
+                          },
+                        ),
+                        loading: () => const LoaderWidget(),
                       )
                     ],
                   ),

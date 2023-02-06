@@ -4,7 +4,6 @@ import 'package:elvan_admin/features/order/domain/usecase/order_usecase.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -38,7 +37,6 @@ void newOrderAccept(
 
   await orderUsecase.orderAccept(
     orderId: order.id,
-    status: OrderStatus.accepted,
     second: second,
   );
 
@@ -61,7 +59,7 @@ void newOrderReject(
   Order order,
 ) async {
   final orderUsecase = ref.read(orderUsecaseProvider);
-  await orderUsecase.orderAccept(
+  await orderUsecase.onStautsChange(
     orderId: order.id,
     status: OrderStatus.rejected,
   );

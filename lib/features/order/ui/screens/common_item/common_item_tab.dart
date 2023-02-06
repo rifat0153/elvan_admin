@@ -4,14 +4,14 @@ import 'package:elvan_admin/shared/components/buttons/elanvnSmallBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommonItemTab extends HookConsumerWidget {
-  final OrderDto order;
-  final OrderDto? selectedOrder;
+  final Order order;
+  final Order? selectedOrder;
   final void Function() onClick;
   final void Function() onBtnClick;
   final String btnTitle;

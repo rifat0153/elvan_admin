@@ -1,13 +1,12 @@
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item_desktop.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
-
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 
 class OrderItem extends StatelessWidget {
-  final OrderDto order;
-  final OrderDto? selectedOrder;
+  final Order order;
+  final Order? selectedOrder;
   final void Function() onClick;
   const OrderItem(
       {Key? key,
