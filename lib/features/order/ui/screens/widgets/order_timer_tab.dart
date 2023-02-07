@@ -1,6 +1,6 @@
+import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
@@ -67,9 +67,9 @@ class OrderTimerTab extends HookConsumerWidget {
               title: AppStrings.reject,
               color: AppColors.primaryRed,
               onClick: () {
-                ref.read(newOrderRejectProvider(order));
-
-                ref.read(orderDtatilsProvider.notifier).close();
+                ref
+                    .read(newOrderScreenProvider.notifier)
+                    .onEvent(NewItemEvent.onReject(data: order));
               }),
         ),
         Padding(
@@ -80,8 +80,8 @@ class OrderTimerTab extends HookConsumerWidget {
               textColor: AppColors.black,
               onClick: () {
                 int second = minutes.value * 60;
-                ref.read(newOrderAcceptProvider(order, second));
-                ref.read(orderDtatilsProvider.notifier).close();
+                ref.read(newOrderScreenProvider.notifier).onEvent(
+                    NewItemEvent.onAccept(second: second, data: order));
               }),
         )
       ],

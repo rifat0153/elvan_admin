@@ -1,6 +1,6 @@
+import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
@@ -24,7 +24,7 @@ class OrderTimerSL extends HookConsumerWidget {
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(30);
 
-    final defaultNotifier = ref.watch(timerUsecaseProvider);
+    final defaultNotifier = ref.read(timerUsecaseProvider);
 
     useEffect(() {
       if (order.status.name == OrderStatus.pending.name) {
@@ -107,8 +107,9 @@ class OrderTimerSL extends HookConsumerWidget {
                   title: AppStrings.reject,
                   color: AppColors.primaryRed,
                   onClick: () {
-                    ref.read(newOrderRejectProvider(order));
-                    ref.read(orderDtatilsProvider.notifier).close();
+                    ref
+                        .read(newOrderScreenProvider.notifier)
+                        .onEvent(NewItemEvent.onReject(data: order));
                   }),
             ),
             Padding(
@@ -120,8 +121,8 @@ class OrderTimerSL extends HookConsumerWidget {
                   textColor: AppColors.black,
                   onClick: () {
                     int second = minutes.value * 60;
-                    ref.read(newOrderAcceptProvider(order, second));
-                    ref.read(orderDtatilsProvider.notifier).close();
+                    ref.read(newOrderScreenProvider.notifier).onEvent(
+                        NewItemEvent.onAccept(second: second, data: order));
                   }),
             )
           ],

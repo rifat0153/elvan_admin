@@ -32,7 +32,7 @@ class _OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTi
     Duration duration = const Duration(seconds: 0);
     ref
         .read(orderTimerUsecaseProvider)
-        .getSecondTime(orderId: order!.id)
+        .getSecondTime(order: order!)
         .then((second) {
       print("Secend order deatils---$second");
       duration = Duration(

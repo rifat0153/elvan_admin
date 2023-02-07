@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_details/order_details.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/widgets/Settings_menu.dart';
-import 'package:elvan_admin/features/tabs/ui/screens/widgets/home_menu.dart';
 import 'package:elvan_admin/features/tabs/ui/states/menu_state.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +19,6 @@ class TabSettingsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final orderDetails = ref.watch(orderDtatilsProvider);
-
     return Scaffold(
       body: Row(
         children: [

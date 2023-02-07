@@ -1,3 +1,4 @@
+import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
@@ -22,7 +23,7 @@ class OrderTimer extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(0);
-    final defaultNotifier = ref.watch(timerUsecaseProvider);
+    final defaultNotifier = ref.read(timerUsecaseProvider);
 
     useEffect(() {
       if (order.status.name == OrderStatus.pending.name) {
@@ -104,8 +105,9 @@ class OrderTimer extends HookConsumerWidget {
                   title: AppStrings.reject,
                   color: AppColors.primaryRed,
                   onClick: () {
-                    ref.read(newOrderRejectProvider(order));
-                    ref.read(orderDtatilsProvider.notifier).close();
+                    ref
+                        .read(newOrderScreenProvider.notifier)
+                        .onEvent(NewItemEvent.onReject(data: order));
                   }),
             ),
             Padding(
@@ -116,8 +118,8 @@ class OrderTimer extends HookConsumerWidget {
                   textColor: AppColors.black,
                   onClick: () {
                     int second = minutes.value * 60;
-                    ref.read(newOrderAcceptProvider(order, second));
-                    ref.read(orderDtatilsProvider.notifier).close();
+                    ref.read(newOrderScreenProvider.notifier).onEvent(
+                        NewItemEvent.onAccept(second: second, data: order));
                   }),
             )
           ],

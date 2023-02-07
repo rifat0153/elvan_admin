@@ -1,6 +1,8 @@
+import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
+import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
@@ -17,21 +19,7 @@ class NewOrderScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final menuNotifier = ref.watch(menuProvider.notifier);
-    final orderDeatilsState = ref.watch(orderDtatilsProvider);
-    final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
-    final newOrderStream = ref.watch(newOrderStreamProvider);
-
-    newOrderStream.when(
-      loading: () => const Text(''),
-      data: (v) => const Text(''),
-      error: (e, s) => ElevatedButton(
-        onPressed: () {
-          ref.invalidate(newOrderStreamProvider);
-        },
-        child: Text(e.toString()),
-      ),
-    );
+    final notifier = ref.watch(newOrderScreenProvider.notifier);
 
     return Stack(
       children: [
@@ -46,8 +34,7 @@ class NewOrderScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
-                    Scaffold.of(context).openDrawer();
-                    menuNotifier.open();
+                    notifier.onEvent(NewItemEvent.onDrawer(context: context));
                   },
                   title: AppStrings.newOrders),
               Expanded(
@@ -55,37 +42,45 @@ class NewOrderScreen extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      newOrderStream.when(
-                        data: (data) {
-                          if (data.isEmpty) {
-                            return const EmptyWidget(
-                                title: AppStrings.noOrder,
-                                icon: Icons.local_dining_outlined);
-                          }
-                          return ListView.builder(
-                            itemCount: data.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return OrderItem(
-                                key: Key(data[index].id),
-                                order: data[index],
-                                selectedOrder: orderDeatilsState.order,
-                                onClick: () {
-                                  Scaffold.of(context).openEndDrawer();
-                                  orderDetatilsNotifier.selecteItem(
-                                      context: context, order: data[index]);
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final newOrderStream =
+                              ref.watch(newOrderStreamProvider);
+                          final orderDeatils = ref.watch(orderDtatilsProvider);
+
+                          return newOrderStream.when(
+                            data: (data) {
+                              if (data.isEmpty) {
+                                return const EmptyWidget(
+                                    title: AppStrings.noOrder,
+                                    icon: Icons.local_dining_outlined);
+                              }
+                              return ListView.builder(
+                                itemCount: data.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return OrderItem(
+                                    key: Key(data[index].id),
+                                    order: data[index],
+                                    selectedOrder: orderDeatils.order,
+                                    onClick: () {
+                                      notifier.onEvent(NewItemEvent.selecteItem(
+                                          context: context,
+                                          order: data[index]));
+                                    },
+                                  );
                                 },
                               );
                             },
+                            error: (error, stackTrace) => MErrorWidget(
+                              onTab: () {
+                                notifier.onEvent(const NewItemEvent.refresh());
+                              },
+                            ),
+                            loading: () => const LoaderWidget(),
                           );
                         },
-                        error: (error, stackTrace) => MErrorWidget(
-                          onTab: () {
-                            ref.invalidate(newOrderStreamProvider);
-                          },
-                        ),
-                        loading: () => const LoaderWidget(),
                       )
                     ],
                   ),

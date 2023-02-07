@@ -107,7 +107,7 @@ class OrderRpositoryImpl implements OrderRepository {
         .update({
       "status": OrderStatus.accepted.status,
       "orderPreparationTime": second,
-      "orderAcceptedAt": timestamp.toString()
+      "orderAcceptedAt": timestamp
     });
   }
 }
