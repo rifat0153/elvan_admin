@@ -3,12 +3,14 @@ import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_item_build_step.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_process_timer.dart';
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/cart/cart_item.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -91,29 +93,25 @@ class OrderDetatilsTab extends HookConsumerWidget {
                 ?.copyWith(color: AppColors.gray),
           ),
         ),
-        Padding(
+       Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: state.order?.items.length ?? 0,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
+              CartItem item = state.order!.items[index];
               return ListTile(
                 title: Text(
-                  "Margerita Pizza",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  item.foodItem.title,
+                  style: Theme.of(context).textTheme.titleLarge,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                subtitle: Text(
-                  "with Prawn, Extra Sauce and Cheese",
-                  style: Theme.of(context).textTheme.caption,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                subtitle: OrderItemBuildStep(cartItem: item,),
                 trailing: Text(
-                  "${AppStrings.multi} 2",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  "${AppStrings.multi} ${item.quantity}",
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               );
             },
@@ -137,20 +135,20 @@ class OrderDetatilsTab extends HookConsumerWidget {
         ),
 
         //******************* Order SubTotal */
-        const OrderDetailsRowTab(
-          title: AppStrings.subTotal,
-          value: 4563,
+         OrderDetailsRowTab(
+         title: AppStrings.subTotal,
+          value: state.order?.subTotal ?? 0.0,
         ),
         //******************* Order Charge */
-        const OrderDetailsRowTab(
+         OrderDetailsRowTab(
           title: AppStrings.charge,
-          value: 63,
+           value: state.order?.discount ?? 0.0,
         ),
 
         //******************* Order Tax */
         const OrderDetailsRowTab(
           title: AppStrings.tax,
-          value: 3,
+          value: 0,
         ),
 
         //******************* Order Total */
@@ -171,7 +169,7 @@ class OrderDetatilsTab extends HookConsumerWidget {
                 ),
               ),
               Text(
-                "${AppStrings.dollar} 46394",
+                  "${AppStrings.dollar} ${state.order?.total}",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],

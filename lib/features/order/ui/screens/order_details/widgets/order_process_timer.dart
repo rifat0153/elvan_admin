@@ -85,7 +85,7 @@ class _OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTi
       print("-----------order details-----${state.order?.id}");
     }, const []);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
       decoration: BoxDecoration(
           color: AppColors.grayF7,
           borderRadius: BorderRadius.circular(AppSize.radiusSL)),

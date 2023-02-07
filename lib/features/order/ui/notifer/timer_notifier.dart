@@ -12,6 +12,8 @@ final timerProvider = StateNotifierProvider<TimerNotifier, TimerState>((ref) {
 class TimerNotifier extends StateNotifier<TimerState> {
   TimerNotifier() : super(const TimerState());
 
+  
+
   void start() {
     state = state.copyWith(
         countdownTimer: Timer.periodic(const Duration(seconds: 1), (timer) {

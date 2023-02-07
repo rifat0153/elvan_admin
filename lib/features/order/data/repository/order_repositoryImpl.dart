@@ -100,7 +100,10 @@ class OrderRpositoryImpl implements OrderRepository {
     required String orderId,
     required int second,
   }) async {
-    final Timestamp timestamp = Timestamp.now();
+     final time = DateTime.now().add(Duration(
+      seconds: second,
+    ));
+    final Timestamp timestamp = Timestamp.fromDate(time);
     await firebaseFirestore
         .collection(Constants.firebaseCollectionOrders)
         .doc(orderId)

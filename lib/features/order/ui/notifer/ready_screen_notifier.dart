@@ -1,3 +1,4 @@
+import 'package:elvan_admin/features/order/ui/notifer/delivered_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/states/events/ui_event.dart';
@@ -7,7 +8,8 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final readyScreenProvider = NotifierProvider<ReadyScreenNotifier,void>(ReadyScreenNotifier.new);
+final readyScreenProvider =
+    NotifierProvider<ReadyScreenNotifier, void>(ReadyScreenNotifier.new);
 
 class ReadyScreenNotifier extends Notifier<void> {
   @override
@@ -47,6 +49,7 @@ class ReadyScreenNotifier extends Notifier<void> {
   ) {
     ref.read(orderStatusUpdateProvider(order, OrderStatus.delivered));
     ref.read(orderDtatilsProvider.notifier).close();
+    ref.read(deliverdOrderProvider.notifier).getData();
   }
 
   _onRefresh() {

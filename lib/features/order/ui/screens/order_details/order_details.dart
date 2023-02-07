@@ -3,6 +3,7 @@ import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_item_build_step.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_process_timer.dart';
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
@@ -11,9 +12,7 @@ import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/domain_models/cart/cart_item.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
-import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderDetatils extends HookConsumerWidget {
@@ -36,14 +35,17 @@ class OrderDetatils extends HookConsumerWidget {
             height: 49,
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    AppStrings.orderDetails,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall
-                        ?.copyWith(color: AppColors.grayA7),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      AppStrings.orderDetails,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(color: AppColors.grayA7),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
                 const Spacer(),
@@ -110,12 +112,7 @@ class OrderDetatils extends HookConsumerWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                subtitle: Text(
-                  "",
-                  style: Theme.of(context).textTheme.titleMedium,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                subtitle: OrderItemBuildStep(cartItem: item,),
                 trailing: Text(
                   "${AppStrings.multi} ${item.quantity}",
                   style: Theme.of(context).textTheme.titleLarge,

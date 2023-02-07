@@ -7,7 +7,6 @@ import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -89,7 +88,7 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
       print("-----------order details-----${state.order?.id}");
     }, const []);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
       decoration: BoxDecoration(
           color: AppColors.grayF7,
           borderRadius: BorderRadius.circular(AppSize.radiusSL)),
