@@ -2,6 +2,7 @@ import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/new_order_bottom.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
@@ -38,53 +39,67 @@ class NewOrderScreen extends HookConsumerWidget {
                   },
                   title: AppStrings.newOrders),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Consumer(
-                        builder: (context, ref, child) {
-                          final newOrderStream =
-                              ref.watch(newOrderStreamProvider);
-                          final orderDeatils = ref.watch(orderDtatilsProvider);
-
-                          return newOrderStream.when(
-                            data: (data) {
-                              if (data.isEmpty) {
-                                return const EmptyWidget(
-                                    title: AppStrings.noOrder,
-                                    icon: Icons.local_dining_outlined);
-                              }
-                              return ListView.builder(
-                                itemCount: data.length,
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return OrderItem(
-                                    key: Key(data[index].id),
-                                    order: data[index],
-                                    selectedOrder: orderDeatils.order,
-                                    onClick: () {
-                                      notifier.onEvent(NewItemEvent.selecteItem(
-                                          context: context,
-                                          order: data[index]));
-                                    },
-                                  );
-                                },
-                              );
-                            },
-                            error: (error, stackTrace) => MErrorWidget(
-                              onTab: () {
-                                notifier.onEvent(const NewItemEvent.refresh());
-                              },
+                child: Consumer(builder: (context, ref, child) {
+                  final newOrderStream = ref.watch(newOrderStreamProvider);
+                  final orderDeatils = ref.watch(orderDtatilsProvider);
+                  return newOrderStream.when(
+                    data: (data) {
+                      if (data.isEmpty) {
+                        return const EmptyWidget(
+                            title: AppStrings.noOrder,
+                            icon: Icons.local_dining_outlined);
+                      }
+                      return Stack(
+                        children: [
+                          SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ListView.builder(
+                                  itemCount: data.length,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return OrderItem(
+                                      key: Key(data[index].id),
+                                      order: data[index],
+                                      selectedOrder: orderDeatils.order,
+                                      onClick: () {
+                                        notifier.onEvent(
+                                            NewItemEvent.selecteItem(
+                                                context: context,
+                                                order: data[index]));
+                                      },
+                                    );
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 100,
+                                ),
+                              ],
                             ),
-                            loading: () => const LoaderWidget(),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: NewOrderBottom(
+                              orders: data,
+                            ),
+                          )
+                        
+                        ],
+                      );
+                    },
+                    error: (error, stackTrace) => MErrorWidget(
+                      onTab: () {
+                        notifier.onEvent(const NewItemEvent.refresh());
+                      },
+                    ),
+                    loading: () => const LoaderWidget(),
+                  );
+                }),
               )
             ],
           ),
