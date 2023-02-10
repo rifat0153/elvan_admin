@@ -1,5 +1,9 @@
 import 'package:elvan_admin/core/printer/header_printer.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_admin/shared/constants/app_colors.dart';
+import 'package:elvan_shared/domain_models/cart/cart_item.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
+import 'package:elvan_shared/dtos/category/build_step/build_step.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
@@ -32,13 +36,13 @@ class Webprinter extends Notifier<void> {
   void build() {}
 
   printInvoice(
-      {required HeaderPrinter headerPrinter, required OrderDto order}) async {
+      {required HeaderPrinter headerPrinter, required Order order}) async {
     final doc = pw.Document();
     var image = await imageFromAssetBundle(headerPrinter.imageUrl!);
     final today = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd  kk:mm').format(today);
     doc.addPage(pw.Page(
-      pageFormat:  PdfPageFormat.roll80,
+      pageFormat: PdfPageFormat.roll80,
       // pageFormat: const PdfPageFormat(
       //   80 * PdfPageFormat.mm,
       //   170 * PdfPageFormat.mm,
@@ -53,7 +57,7 @@ class Webprinter extends Notifier<void> {
         onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  _build(pw.Context context, HeaderPrinter printer, var image, OrderDto order,
+  _build(pw.Context context, HeaderPrinter printer, var image, Order order,
       String date) {
     return pw.Column(
       children: [
@@ -90,17 +94,18 @@ class Webprinter extends Notifier<void> {
                       ),
                     ),
                   ),
-                  _contentTable(context, order),
-                  pw.Container(
-                    decoration: pw.BoxDecoration(
-                      border: pw.Border(
-                        bottom: pw.BorderSide(
-                          color: baseColor,
-                          width: .5,
-                        ),
-                      ),
-                    ),
-                  ),
+                  //  _contentTable(context, order),
+                  _itemList(context, order),
+                  // pw.Container(
+                  //   decoration: pw.BoxDecoration(
+                  //     border: pw.Border(
+                  //       bottom: pw.BorderSide(
+                  //         color: baseColor,
+                  //         width: .5,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   pw.SizedBox(height: 10),
                   pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.end,
@@ -130,7 +135,156 @@ class Webprinter extends Notifier<void> {
     );
   }
 
-  pw.Widget _contentTable(pw.Context context, OrderDto order) {
+  pw.Widget _itemList(pw.Context context, Order order) {
+    return pw.Column(children: [
+      pw.Row(mainAxisAlignment: pw.MainAxisAlignment.spaceBetween, children: [
+        pw.SizedBox(
+          width: 100,
+          child: pw.Text(
+            "Items",
+            style: pw.TextStyle(
+                fontSize: 14,
+                fontWeight: pw.FontWeight.bold,
+                color: PdfColors.black),
+          ),
+        ),
+        pw.Text(
+          "Price",
+          style: pw.TextStyle(
+              fontSize: 14,
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.black),
+        ),
+        pw.Text(
+          "Qty",
+          style: pw.TextStyle(
+              fontSize: 14,
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.black),
+        ),
+        pw.Text(
+          "Total",
+          style: pw.TextStyle(
+              fontSize: 14,
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.black),
+        ),
+      ]),
+      pw.Divider(height: 2, color: PdfColors.black),
+      pw.SizedBox(height: 10),
+      pw.Column(
+          children: order.items.map((e) {
+        return _foodItem(item: e);
+      }).toList())
+    ]);
+  }
+
+  pw.Widget _foodItem({required CartItem item}) {
+    return pw.Column(children: [
+      pw.Row(
+        
+        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.SizedBox(
+            width: 100,
+            child: pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  pw.Text(
+                    item.foodItem.title,
+                    style: const pw.TextStyle(
+                      fontSize: 12,
+                      color: PdfColors.black,
+                    ),
+                  ),
+               pw.Padding(
+                padding: const pw.EdgeInsets.only(top: 10,bottom: 10),
+                child:    pw.Text(
+                    "# Build Step:",
+                    style: const pw.TextStyle(
+                      fontSize: 11,
+                      color: PdfColors.black,
+                    ),
+                  ),),
+                  item.buildSteps.isNotEmpty
+                      ? pw.Column(
+                          children: item.buildSteps
+                              .map((e) => _buildSteps(buildStep: e))
+                              .toList(),
+                        )
+                      : pw.Container()
+                ]),
+          ),
+          pw.Text(
+            "${item.foodItem.price}",
+            style: pw.TextStyle(
+              fontSize: 12,
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Text(
+            "${item.quantity}",
+            style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Text(
+            "${item.price}",
+            style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black,
+            ),
+          )
+        ]),
+        pw.Divider()
+    ],);
+  }
+
+  pw.Widget _buildSteps({required BuildStep buildStep}) {
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+        pw.Text(
+          buildStep.title,
+          style: const pw.TextStyle(
+            fontSize: 11,
+            color: PdfColors.black,
+          ),
+        ),
+        pw.Padding(
+          padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
+          child: pw.Text(
+            "# Add Ons:",
+            style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black,
+            ),
+          ),
+        ),
+        buildStep.addOns.isNotEmpty
+            ? pw.Column(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: buildStep.addOns
+                    .map(
+                      (e) => pw.Text(
+                        "* ${e.title}",
+                        style: const pw.TextStyle(
+                          fontSize: 10,
+                          color: PdfColors.black,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              )
+            : pw.Container(),
+      ],
+    );
+  }
+
+  pw.Widget _contentTable(pw.Context context, Order order) {
     const tableHeaders = ['Items', 'Price', 'Qty', 'Total'];
 
     return pw.Table.fromTextArray(

@@ -1,15 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_admin/core/extensions/timestamp/timestamp_json_converter.dart';
 import 'package:elvan_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/order_info_widget.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_shared/domain_models/elvan_user/elvan_user.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderInfo extends HookConsumerWidget {
-  final OrderDto order;
+  final Order order;
   const OrderInfo({Key? key, required this.order}) : super(key: key);
 
   @override

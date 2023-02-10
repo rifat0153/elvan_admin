@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.dart';
-import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/core/firebase/firebase_providers.dart';
-import 'package:elvan_admin/features/auth/providers/auth_providers.dart';
+import 'package:elvan_admin/core/scroll/custom_scroll_behaver.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -31,6 +29,7 @@ class App extends HookConsumerWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp.router(
+          scrollBehavior: MyCustomScrollBehavior(),
           debugShowCheckedModeBanner: false,
           scaffoldMessengerKey: scaffoldMessengerKey,
           title: AppStrings.appName,

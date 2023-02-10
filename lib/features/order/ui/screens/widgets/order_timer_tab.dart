@@ -1,6 +1,6 @@
-import 'package:elvan_admin/features/order/ui/notifer/new_order_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
 import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
@@ -8,14 +8,14 @@ import 'package:elvan_admin/shared/components/buttons/elanvnSmallBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderTimerTab extends HookConsumerWidget {
-  final OrderDto order;
+  final Order order;
   const OrderTimerTab({Key? key, required this.order}) : super(key: key);
 
   @override
@@ -67,10 +67,9 @@ class OrderTimerTab extends HookConsumerWidget {
               title: AppStrings.reject,
               color: AppColors.primaryRed,
               onClick: () {
-                print("---click");
-                  ref.read(newOrderProvider.notifier).onEvent(
-                        NewItemEvent.onReject(context: context, data: order));
-                    ref.read(orderDtatilsProvider.notifier).close();
+                ref
+                    .read(newOrderScreenProvider.notifier)
+                    .onEvent(NewItemEvent.onReject(data: order));
               }),
         ),
         Padding(
@@ -80,11 +79,9 @@ class OrderTimerTab extends HookConsumerWidget {
               color: AppColors.green,
               textColor: AppColors.black,
               onClick: () {
-                ref.read(timerProvider.notifier).setTimer(minutes.value * 60);
-
-                ref.read(newOrderProvider.notifier).onEvent(
-                    NewItemEvent.onAccept(context: context, data: order));
-                ref.read(orderDtatilsProvider.notifier).close();
+                int second = minutes.value * 60;
+                ref.read(newOrderScreenProvider.notifier).onEvent(
+                    NewItemEvent.onAccept(second: second, data: order));
               }),
         )
       ],

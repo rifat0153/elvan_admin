@@ -1,9 +1,9 @@
 import 'package:elvan_admin/shared/components/cards/eCard.dart';
-import 'package:elvan_shared/dtos/order/order_dto.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 
 class FoodVarients extends StatelessWidget {
-  final OrderDto order;
+  final Order order;
   const FoodVarients({Key? key, required this.order}) : super(key: key);
 
   @override

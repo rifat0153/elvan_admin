@@ -64,6 +64,7 @@ class AppStrings {
   static const String noReadyOrder = 'No orders were completed';
   static const String noDeliveredOrder = 'Delivered orders not found';
   static const String noFoodItem = 'Food Items not found';
+  static const String refresh = 'Refresh';
 
 
 

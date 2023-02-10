@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
@@ -6,6 +5,7 @@ import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
+import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +28,11 @@ class _OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTi
 
   getTimeByOrder() async {
     ref.read(timerProvider.notifier).stopTimer();
-    OrderDto? order = ref.read(orderDtatilsProvider).order;
+    Order? order = ref.read(orderDtatilsProvider).order;
     Duration duration = const Duration(seconds: 0);
     ref
         .read(orderTimerUsecaseProvider)
-        .getSecondTime(orderId: order!.id)
+        .getSecondTime(order: order!)
         .then((second) {
       print("Secend order deatils---$second");
       duration = Duration(
@@ -85,7 +85,7 @@ class _OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTi
       print("-----------order details-----${state.order?.id}");
     }, const []);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
       decoration: BoxDecoration(
           color: AppColors.grayF7,
           borderRadius: BorderRadius.circular(AppSize.radiusSL)),

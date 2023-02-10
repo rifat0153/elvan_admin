@@ -1,17 +1,16 @@
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/process_order_notifier.dart';
-
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
+import 'package:elvan_admin/features/order/ui/notifer/process_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/processing_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
-import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
-
+import 'package:elvan_admin/features/order/ui/states/events/ui_event.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
+import 'package:elvan_admin/shared/components/error/error_widget.dart';
+import 'package:elvan_admin/shared/components/loader/loader_widget.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProcceingScreen extends HookConsumerWidget {
@@ -19,12 +18,7 @@ class ProcceingScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final menuNotifier = ref.watch(menuProvider.notifier);
-    final state = ref.watch(processOrderProvider);
-    final notifier = ref.watch(processOrderProvider.notifier);
-    final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
-    final orderDetatilsState = ref.watch(orderDtatilsProvider);
-   
+    final notifier = ref.watch(processScreenProvider.notifier);
 
     return Stack(
       children: [
@@ -39,8 +33,7 @@ class ProcceingScreen extends HookConsumerWidget {
             children: [
               HomeAppBar(
                   onClick: () {
-                    Scaffold.of(context).openDrawer();
-                    menuNotifier.open();
+                    notifier.onEvent(UIEvent.onDrawer(context: context));
                   },
                   title: AppStrings.processing),
               Expanded(
@@ -48,62 +41,50 @@ class ProcceingScreen extends HookConsumerWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      state.when(
-                        loading: () {
-                          return SizedBox(
-                            width: AppSize.width(context),
-                            height: AppSize.hight(context),
-                            child: const Center(
-                              child: SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: CircularProgressIndicator(),
-                              ),
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final state = ref.watch(processStreamProvider);
+                          final orderDtatils = ref.watch(orderDtatilsProvider);
+                          return state.when(
+                            data: (data) => data.isEmpty
+                                ? const EmptyWidget(
+                                    title: AppStrings.noProcessOrder,
+                                    icon: Icons.local_dining_outlined)
+                                : ListView.builder(
+                                    itemCount: data.length,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return ProcessItem(
+                                        key: Key(data[index].id),
+                                        order: data[index],
+                                        selectedOrder: orderDtatils.order,
+                                        onBtnClick: () {
+                                          notifier.onEvent(
+                                              UIEvent.onChangeStatus(
+                                                  context: context,
+                                                  order: data[index]));
+                                        },
+                                        onClick: () {
+                                          notifier.onEvent(
+                                              UIEvent.selecteItem(
+                                                  context: context,
+                                                  order: data[index]));
+                                        },
+                                      );
+                                    },
+                                  ),
+                            error: (error, stackTrace) => MErrorWidget(
+                              errorMessage: error.toString(),
+                              onTab: () {
+                                notifier
+                                    .onEvent(const UIEvent.refresh());
+                              },
                             ),
+                            loading: () => const LoaderWidget(),
                           );
-                        },
-                        data: (data) => data.isEmpty
-                            ? const EmptyWidget(
-                                title: AppStrings.noProcessOrder,
-                                icon: Icons.local_dining_outlined)
-                            : ListView.builder(
-                                itemCount: data.length,
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return ProcessItem(
-                                       key: Key(data[index].id),
-                                    order: data[index],
-                                    selectedOrder: orderDetatilsState.order,
-                                    onBtnClick: () {
-                                      ref
-                                          .read(processOrderProvider.notifier)
-                                          .onProcessing(context, data[index]);
-                                      ref
-                                          .read(orderDtatilsProvider.notifier)
-                                          .close();
-                                    },
-                                    onClick: () {
-                                      Scaffold.of(context).openEndDrawer();
-                                      orderDetatilsNotifier.selecteItem(
-                                          context: context, order: data[index]);
-                                    },
-                                  );
-                                },
-                              ),
-                        error: (err, st) {
-                          return SizedBox(
-                              width: AppSize.width(context),
-                              height: AppSize.hight(context),
-                              child: Center(
-                                child: Text(
-                                  "${err}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(color: AppColors.primaryRed),
-                                ),
-                              ));
                         },
                       )
                     ],
