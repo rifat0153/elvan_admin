@@ -99,12 +99,14 @@ class OrderDetatils extends HookConsumerWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
             itemCount: state.order?.items.length ?? 0,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               CartItem item = state.order!.items[index];
+              
               return ListTile(
                 title: Text(
                   item.foodItem.title,

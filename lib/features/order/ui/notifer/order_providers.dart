@@ -1,7 +1,9 @@
 import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_admin/core/printer/web_printer.dart';
+import 'package:elvan_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan_admin/features/order/domain/usecase/order_usecase.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
+import 'package:elvan_shared/domain_models/elvan_user/elvan_user.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -74,4 +76,11 @@ orderStatusUpdate(
   final orderUseCase = ref.read(orderUsecaseProvider);
 
   await orderUseCase.onStautsChange(orderId: order.id, status: status);
+}
+
+
+@riverpod
+Future<ElvanUser?> getCustomer(Ref ref, String userId) {
+    final authUseCase = ref.read(authUseCaseProvider);
+  return authUseCase.getOrderedUser(userId: userId) ;
 }

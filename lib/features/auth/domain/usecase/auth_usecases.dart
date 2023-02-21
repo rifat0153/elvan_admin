@@ -106,10 +106,13 @@ class AuthUseCases {
     return authRepository.getCurrentUser();
   }
 
-  Future<ElvanUser?> getOrderedUser({required String userId}) async {
+  Future<ElvanUser?> getOrderedUser({
+    required String userId,
+  }) async {
     final user = await authRepository.getUser(userId: userId);
     if (user != null) {
       return ElvanUser.fromDto(user);
     }
+    return null;
   }
 }

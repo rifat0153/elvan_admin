@@ -12,7 +12,7 @@ class BuildStepItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10, bottom: 10,top: 10),
+          padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
           child: Text(
             buildsteps.title,
             style: Theme.of(context).textTheme.labelMedium,
@@ -27,11 +27,15 @@ class BuildStepItem extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Text(
-                      "${index + 1}. ${buildsteps.addOns[index].title}",
-                      style: Theme.of(context).textTheme.labelSmall,
-                      overflow: TextOverflow.ellipsis,
-                    );
+                    if (buildsteps.addOns[index].isSelected) {
+                      return Text(
+                        "* ${buildsteps.addOns[index].title}",
+                        style: Theme.of(context).textTheme.labelSmall,
+                        overflow: TextOverflow.ellipsis,
+                      );
+                    } else {
+                      return Container();
+                    }
                   },
                 ),
               )

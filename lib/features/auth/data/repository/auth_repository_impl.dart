@@ -155,5 +155,6 @@ class AuthRepositoryImpl implements AuthRepository {
         )
         .doc(userId)
         .get();
+    return user.data();
   }
 }
