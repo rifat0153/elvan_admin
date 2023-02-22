@@ -18,17 +18,17 @@ class OrderInfo extends HookConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Flexible(
-          flex: 2,
-          child: FutureBuilder<ElvanUser?>(
-              future: userCase.getOrderedUser(userId: order.userId),
-              builder: (context, AsyncSnapshot<ElvanUser?> snapshot) {
-                return OrderInfoWidget(
-                  title:  AppStrings.nameAndPhone,
-                  value: snapshot.hasData ? "${snapshot.data?.name} ${snapshot.data?.address}" : "",
-                );
-              }),
-        ),
+        // Flexible(
+        //   flex: 2,
+        //   child: FutureBuilder<ElvanUser?>(
+        //       future: userCase.getOrderedUser(userId: order.userId),
+        //       builder: (context, AsyncSnapshot<ElvanUser?> snapshot) {
+        //         return OrderInfoWidget(
+        //           title:  AppStrings.nameAndPhone,
+        //           value: snapshot.hasData ? "${snapshot.data?.name} ${snapshot.data?.address}" : "",
+        //         );
+        //       }),
+        // ),
         Flexible(
           flex: 2,
           child: OrderInfoWidget(

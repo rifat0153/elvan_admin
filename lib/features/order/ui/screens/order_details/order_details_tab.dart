@@ -1,6 +1,7 @@
 import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/customer_info.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_item_build_step.dart';
@@ -33,18 +34,21 @@ class OrderDetatilsTab extends HookConsumerWidget {
           SizedBox(
             height: 49,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    AppStrings.orderDetails,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall
-                        ?.copyWith(color: AppColors.grayA7),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      AppStrings.orderDetails,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(color: AppColors.grayA7),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
-                const Spacer(),
                 IconButton(
                     onPressed: () {
                       final printer =
@@ -69,7 +73,7 @@ class OrderDetatilsTab extends HookConsumerWidget {
           SizedBox(
             height: AppSize.hight(context) - 100,
             child: SingleChildScrollView(
-              child: body(context,state),
+              child: body(context, state),
             ),
           ),
         ],
@@ -82,6 +86,10 @@ class OrderDetatilsTab extends HookConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
+          child: CustomerInfo(userId: state.order!.userId),
+        ),
         //********************* Order Items */
         Padding(
           padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
@@ -93,9 +101,10 @@ class OrderDetatilsTab extends HookConsumerWidget {
                 ?.copyWith(color: AppColors.gray),
           ),
         ),
-       Padding(
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
             itemCount: state.order?.items.length ?? 0,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -108,7 +117,9 @@ class OrderDetatilsTab extends HookConsumerWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                subtitle: OrderItemBuildStep(cartItem: item,),
+                subtitle: OrderItemBuildStep(
+                  cartItem: item,
+                ),
                 trailing: Text(
                   "${AppStrings.multi} ${item.quantity}",
                   style: Theme.of(context).textTheme.titleLarge,
@@ -135,14 +146,14 @@ class OrderDetatilsTab extends HookConsumerWidget {
         ),
 
         //******************* Order SubTotal */
-         OrderDetailsRowTab(
-         title: AppStrings.subTotal,
+        OrderDetailsRowTab(
+          title: AppStrings.subTotal,
           value: state.order?.subTotal ?? 0.0,
         ),
         //******************* Order Charge */
-         OrderDetailsRowTab(
+        OrderDetailsRowTab(
           title: AppStrings.charge,
-           value: state.order?.discount ?? 0.0,
+          value: state.order?.discount ?? 0.0,
         ),
 
         //******************* Order Tax */
@@ -169,7 +180,7 @@ class OrderDetatilsTab extends HookConsumerWidget {
                 ),
               ),
               Text(
-                  "${AppStrings.dollar} ${state.order?.total}",
+                "${AppStrings.dollar} ${state.order?.total}",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
@@ -185,8 +196,8 @@ class OrderDetatilsTab extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:  [
-               state.order?.status.status == OrderStatus.pending.status
+            children: [
+              state.order?.status.status == OrderStatus.pending.status
                   ? const OrderDeatilsTimer()
                   : const OrderDeatilsProcessTimer(),
             ],

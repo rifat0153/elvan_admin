@@ -1,6 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_shared/domain_models/cart/cart_item.dart';
+import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/category/build_step/build_step.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +38,9 @@ class Webprinter extends Notifier<void> {
   void build() {}
 
   printInvoice(
-      {required HeaderPrinter headerPrinter, required Order order}) async {
+      {required HeaderPrinter headerPrinter,
+      required Order order,
+      ElvanUser? user}) async {
     final doc = pw.Document();
     var image = await imageFromAssetBundle(headerPrinter.imageUrl!);
     final today = DateTime.now();
@@ -49,7 +53,14 @@ class Webprinter extends Notifier<void> {
       //   marginAll: 5 * PdfPageFormat.mm,
       // ),
       build: (context) {
-        return _build(context, headerPrinter, image, order, formattedDate);
+        return _build(
+          context,
+          headerPrinter,
+          image,
+          order,
+          formattedDate,
+          user,
+        );
       },
     ));
 
@@ -57,8 +68,14 @@ class Webprinter extends Notifier<void> {
         onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  _build(pw.Context context, HeaderPrinter printer, var image, Order order,
-      String date) {
+  _build(
+    pw.Context context,
+    HeaderPrinter printer,
+    var image,
+    Order order,
+    String date,
+    ElvanUser? user,
+  ) {
     return pw.Column(
       children: [
         pw.Row(
@@ -76,6 +93,10 @@ class Webprinter extends Notifier<void> {
                   pw.Text("Web: ${printer.website}",
                       textAlign: pw.TextAlign.center, style: bodyStyle),
                   pw.SizedBox(height: 10),
+                  user != null ? customerInfo(user) : pw.Container(),
+
+                  pw.SizedBox(height: 10),
+
                   pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.start,
                       children: [
@@ -135,6 +156,56 @@ class Webprinter extends Notifier<void> {
     );
   }
 
+  pw.Widget customerInfo(ElvanUser user) {
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+      pw.Text(
+        "# Customer:",
+        style: pw.TextStyle(
+            fontSize: 14,
+            fontWeight: pw.FontWeight.bold,
+            color: PdfColors.black),
+      ),
+      pw.Row(children: [
+        pw.Text(
+          "Name : ",
+          style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black),
+        ),
+        pw.Text(
+          "${user.name} ",
+          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+        ),
+      ]),
+      pw.Row(children: [
+        pw.Text(
+          "Email : ",
+          style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black),
+        ),
+        pw.Text(
+          "${user.email} ",
+          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+        ),
+      ]),
+      pw.Row(children: [
+        pw.Text(
+          "Mobile Number : ",
+          style: const pw.TextStyle(
+              fontSize: 11,
+              color: PdfColors.black),
+        ),
+        pw.Text(
+          "${user.phone} ",
+          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+        ),
+      ])
+    ]);
+  }
+
   pw.Widget _itemList(pw.Context context, Order order) {
     return pw.Column(children: [
       pw.Row(mainAxisAlignment: pw.MainAxisAlignment.spaceBetween, children: [
@@ -180,106 +251,166 @@ class Webprinter extends Notifier<void> {
   }
 
   pw.Widget _foodItem({required CartItem item}) {
-    return pw.Column(children: [
-      pw.Row(
-        
-        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: pw.CrossAxisAlignment.start,
-        children: [
-          pw.SizedBox(
-            width: 100,
-            child: pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text(
-                    item.foodItem.title,
-                    style: const pw.TextStyle(
-                      fontSize: 12,
-                      color: PdfColors.black,
-                    ),
-                  ),
-               pw.Padding(
-                padding: const pw.EdgeInsets.only(top: 10,bottom: 10),
-                child:    pw.Text(
-                    "# Build Step:",
-                    style: const pw.TextStyle(
-                      fontSize: 11,
-                      color: PdfColors.black,
-                    ),
-                  ),),
-                  item.buildSteps.isNotEmpty
-                      ? pw.Column(
-                          children: item.buildSteps
-                              .map((e) => _buildSteps(buildStep: e))
-                              .toList(),
-                        )
-                      : pw.Container()
-                ]),
-          ),
-          pw.Text(
-            "${item.foodItem.price}",
-            style: pw.TextStyle(
-              fontSize: 12,
-              fontWeight: pw.FontWeight.bold,
-              color: PdfColors.black,
-            ),
-          ),
-          pw.Text(
-            "${item.quantity}",
-            style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black,
-            ),
-          ),
-          pw.Text(
-            "${item.price}",
-            style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black,
-            ),
-          )
-        ]),
+    return pw.Column(
+      children: [
+        pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.SizedBox(
+                width: 100,
+                child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        item.foodItem.title,
+                        style: const pw.TextStyle(
+                          fontSize: 12,
+                          color: PdfColors.black,
+                        ),
+                      ),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
+                        child: pw.Text(
+                          "# Instructions:",
+                          style: pw.TextStyle(
+                              fontSize: 11,
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold),
+                        ),
+                      ),
+                      pw.Padding(
+                          padding: const pw.EdgeInsets.only(left: 10),
+                          child: item.instructions.isNotEmpty
+                              ? pw.Column(
+                                  children: item.instructions
+                                      .map(
+                                        (e) => pw.Text(
+                                          "- $e",
+                                          style: const pw.TextStyle(
+                                            fontSize: 10,
+                                            color: PdfColors.black,
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                )
+                              : pw.Container()),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
+                        child: pw.Text(
+                          "# Build Step:",
+                          style: pw.TextStyle(
+                              fontSize: 11,
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold),
+                        ),
+                      ),
+                      pw.Padding(
+                          padding: const pw.EdgeInsets.only(left: 10),
+                          child: item.buildSteps.isNotEmpty
+                              ? pw.Column(
+                                  children: item.buildSteps
+                                      .map((e) => _buildSteps(
+                                          buildStep: e,
+                                          buildsteps: item.buildSteps))
+                                      .toList(),
+                                )
+                              : pw.Container())
+                    ]),
+              ),
+              pw.Text(
+                "${item.foodItem.price}",
+                style: pw.TextStyle(
+                  fontSize: 12,
+                  fontWeight: pw.FontWeight.bold,
+                  color: PdfColors.black,
+                ),
+              ),
+              pw.Text(
+                "${item.quantity}",
+                style: const pw.TextStyle(
+                  fontSize: 11,
+                  color: PdfColors.black,
+                ),
+              ),
+              pw.Text(
+                "${item.price}",
+                style: const pw.TextStyle(
+                  fontSize: 11,
+                  color: PdfColors.black,
+                ),
+              )
+            ]),
         pw.Divider()
-    ],);
+      ],
+    );
   }
 
-  pw.Widget _buildSteps({required BuildStep buildStep}) {
+  bool checkAddons({
+    required BuildStep buildStep,
+  }) {
+    final addons = buildStep.addOns
+        .whereIndexed((index, element) => element.isSelected == true);
+    return addons.isNotEmpty;
+  }
+
+  int buildIndex(
+    BuildStep step,
+    List<BuildStep> buildsteps,
+  ) {
+    int index = buildsteps.indexWhere(
+      (element) => element.id == step.id,
+    );
+    return index + 1;
+  }
+
+  pw.Widget _buildSteps(
+      {required BuildStep buildStep, required List<BuildStep> buildsteps}) {
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(
-          buildStep.title,
+          "${buildIndex(buildStep, buildsteps)}. ${buildStep.title}",
           style: const pw.TextStyle(
             fontSize: 11,
             color: PdfColors.black,
           ),
         ),
         pw.Padding(
-          padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
-          child: pw.Text(
-            "# Add Ons:",
-            style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black,
-            ),
+          padding: const pw.EdgeInsets.only(
+            top: 10,
           ),
+          child: checkAddons(buildStep: buildStep)
+              ? pw.Text(
+                  "Add Ons:",
+                  style: pw.TextStyle(
+                    fontSize: 10,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.black,
+                  ),
+                )
+              : pw.Container(),
         ),
         buildStep.addOns.isNotEmpty
             ? pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: buildStep.addOns
                     .map(
-                      (e) => pw.Text(
-                        "* ${e.title}",
-                        style: const pw.TextStyle(
-                          fontSize: 10,
-                          color: PdfColors.black,
-                        ),
-                      ),
+                      (e) => e.isSelected
+                          ? pw.Text(
+                              "- ${e.title}",
+                              style: const pw.TextStyle(
+                                fontSize: 10,
+                                color: PdfColors.black,
+                              ),
+                            )
+                          : pw.Container(),
                     )
                     .toList(),
               )
             : pw.Container(),
+        pw.SizedBox(height: 10)
       ],
     );
   }

@@ -72,6 +72,14 @@ class OrderRpositoryImpl implements OrderRepository {
   Stream<List<OrderDto>> getOrderStream({
     required OrderStatus status,
   }) {
+    final today = DateTime.now();
+    int openHour = 1;
+    int closeHour = 23;
+    final openTime = DateTime(today.year, today.month, today.day, openHour,00);
+    final closeTime = DateTime(today.year, today.month, today.day, closeHour,59);
+    final openTimestamp = Timestamp.fromDate(openTime);
+    print("---------${today.hour}}--$openTimestamp");
+    final closeTimestamp = Timestamp.fromDate(closeTime);
     return firebaseFirestore
         .collection(
           Constants.firebaseCollectionOrders,
@@ -80,11 +88,21 @@ class OrderRpositoryImpl implements OrderRepository {
           'status',
           isEqualTo: status.status,
         )
+         .where(
+          "createdAt",
+          isLessThanOrEqualTo: closeTimestamp,
+        )
+         .where(
+          "createdAt",
+          isGreaterThanOrEqualTo: openTimestamp,
+        )
+        
+       
+        .orderBy('createdAt', descending: true)
         .withConverter(
           fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
           toFirestore: (orderDto, _) => orderDto.toJson(),
         )
-        .orderBy('createdAt', descending: true)
         .snapshots()
         .map(
           (event) => event.docs
@@ -100,7 +118,7 @@ class OrderRpositoryImpl implements OrderRepository {
     required String orderId,
     required int second,
   }) async {
-     final time = DateTime.now().add(Duration(
+    final time = DateTime.now().add(Duration(
       seconds: second,
     ));
     final Timestamp timestamp = Timestamp.fromDate(time);
