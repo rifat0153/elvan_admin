@@ -67,6 +67,10 @@ class AppStrings {
   static const String refresh = 'Refresh';
   static const String instructions = 'Instructions';
   static const String buildSteps = 'Build Steps';
+  static const String customerInfo = 'Customer Info';
+  static const String email = 'Email';
+  static const String mobile = 'Mobile';
+  static const String addons = 'AddOns';
 
 
 

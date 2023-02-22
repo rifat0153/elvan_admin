@@ -17,7 +17,7 @@ class OrderItemBuildStep extends StatelessWidget {
       children: [
         cartItem.instructions.isNotEmpty
             ? Padding(
-                padding: const EdgeInsets.only(bottom: 10,top: 20),
+                padding: const EdgeInsets.only(bottom: 10, top: 20),
                 child: Text(
                   "${AppStrings.instructions} :",
                   style: Theme.of(context)
@@ -47,9 +47,9 @@ class OrderItemBuildStep extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-         cartItem.buildSteps.isNotEmpty
+        cartItem.buildSteps.isNotEmpty
             ? Padding(
-                padding: const EdgeInsets.only(bottom: 10,top: 20),
+                padding: const EdgeInsets.only(bottom: 10, top: 20),
                 child: Text(
                   "${AppStrings.buildSteps} :",
                   style: Theme.of(context)
@@ -68,6 +68,7 @@ class OrderItemBuildStep extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return BuildStepItem(
                     buildsteps: cartItem.buildSteps[index],
+                    index: index + 1,
                   );
                 },
               )

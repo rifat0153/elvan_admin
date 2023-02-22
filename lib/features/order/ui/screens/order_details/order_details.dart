@@ -1,6 +1,8 @@
 import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
+import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
+import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/customer_info.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_item_build_step.dart';
@@ -34,6 +36,7 @@ class OrderDetatils extends HookConsumerWidget {
           SizedBox(
             height: 49,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   child: Padding(
@@ -48,19 +51,22 @@ class OrderDetatils extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
                 IconButton(
                     onPressed: () {
                       final printer =
                           ref.read(webPrinterNotifierProvider.notifier);
+                      final user =
+                          ref.read(getCustomerProvider(state.order!.userId));
                       printer.printInvoice(
-                          headerPrinter: const HeaderPrinter(
-                              address: "701 Preston Ave,Pasadena,Texas",
-                              imageUrl: AppAssets.applogo,
-                              phone: "(713) 473-2503",
-                              title: "ELVAN",
-                              website: "elvan.com"),
-                          order: state.order!);
+                        headerPrinter: const HeaderPrinter(
+                            address: "701 Preston Ave,Pasadena,Texas",
+                            imageUrl: AppAssets.applogo,
+                            phone: "(713) 473-2503",
+                            title: "ELVAN",
+                            website: "elvan.com"),
+                        order: state.order!,
+                        user: user.value,
+                      );
                     },
                     icon: const Icon(
                       Icons.print,
@@ -86,6 +92,10 @@ class OrderDetatils extends HookConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
+          child: CustomerInfo(userId: state.order!.userId),
+        ),
         //********************* Order Items */
         Padding(
           padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
@@ -106,7 +116,7 @@ class OrderDetatils extends HookConsumerWidget {
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               CartItem item = state.order!.items[index];
-              
+
               return ListTile(
                 title: Text(
                   item.foodItem.title,
@@ -114,7 +124,9 @@ class OrderDetatils extends HookConsumerWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                subtitle: OrderItemBuildStep(cartItem: item,),
+                subtitle: OrderItemBuildStep(
+                  cartItem: item,
+                ),
                 trailing: Text(
                   "${AppStrings.multi} ${item.quantity}",
                   style: Theme.of(context).textTheme.titleLarge,

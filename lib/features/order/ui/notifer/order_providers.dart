@@ -75,12 +75,21 @@ orderStatusUpdate(
 ) async {
   final orderUseCase = ref.read(orderUsecaseProvider);
 
-  await orderUseCase.onStautsChange(orderId: order.id, status: status);
+  await orderUseCase.onStautsChange(
+    orderId: order.id,
+    status: status,
+  );
 }
 
-
-@riverpod
-Future<ElvanUser?> getCustomer(Ref ref, String userId) {
-    final authUseCase = ref.read(authUseCaseProvider);
-  return authUseCase.getOrderedUser(userId: userId) ;
-}
+final getCustomerProvider = FutureProvider.family<ElvanUser?, String>((
+  ref,
+  String userId,
+) async {
+  print("---------get cutomer----$userId ");
+  final authUseCase = ref.read(authUseCaseProvider);
+  final user = await authUseCase.getOrderedUser(
+    userId: userId,
+  );
+  print("-----get customer method----$user");
+  return user;
+});

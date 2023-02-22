@@ -144,17 +144,17 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ElvanUserDto?> getUser({required String userId}) async {
-    final user = await firebaseFirestore
-        .collection(
-          Constants.firebaseCollectionUsers,
-        )
-        .withConverter(
-          fromFirestore: (snapshot, _) =>
-              ElvanUserDto.fromJson(snapshot.data()!),
-          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
-        )
-        .doc(userId)
-        .get();
+      final user = await firebaseFirestore
+          .collection(
+            Constants.firebaseCollectionUsers,
+          )
+          .withConverter(
+            fromFirestore: (snapshot, _) =>
+                ElvanUserDto.fromJson(snapshot.data()!),
+            toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+          )
+          .doc(userId)
+          .get();
     return user.data();
   }
 }
