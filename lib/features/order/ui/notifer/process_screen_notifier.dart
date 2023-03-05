@@ -7,7 +7,7 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final processScreenProvider = NotifierProvider<ProcessScreenNotifier,void>(ProcessScreenNotifier.new);
+final processScreenProvider = NotifierProvider<ProcessScreenNotifier, void>(ProcessScreenNotifier.new);
 
 class ProcessScreenNotifier extends Notifier<void> {
   @override
@@ -16,11 +16,7 @@ class ProcessScreenNotifier extends Notifier<void> {
   }
 
   onEvent(UIEvent event) {
-    event.when(
-        onDrawer: _onDrawer,
-        selecteItem: _selecteItem,
-        onChangeStatus: _onChangeStatus,
-        refresh: _onRefresh);
+    event.when(onDrawer: _onDrawer, selecteItem: _selecteItem, onChangeStatus: _onChangeStatus, refresh: _onRefresh);
   }
 
   _onDrawer(BuildContext context) {
@@ -34,7 +30,9 @@ class ProcessScreenNotifier extends Notifier<void> {
     Order order,
   ) {
     final orderDetatilsNotifier = ref.read(orderDtatilsProvider.notifier);
+
     Scaffold.of(context).openEndDrawer();
+
     orderDetatilsNotifier.selecteItem(
       context: context,
       order: order,

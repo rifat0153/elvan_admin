@@ -7,8 +7,7 @@ import 'package:elvan_admin/features/timer/ui/states/timer_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final defaultTimerProvider =
-    NotifierProvider<TimerNotifier, DefaultTimerState>(TimerNotifier.new);
+final defaultTimerProvider = NotifierProvider<TimerNotifier, DefaultTimerState>(TimerNotifier.new);
 
 class TimerNotifier extends Notifier<DefaultTimerState> {
   @override
@@ -18,17 +17,13 @@ class TimerNotifier extends Notifier<DefaultTimerState> {
   }
 
   Future<void> getData() async {
-    Result<TimerDto> timerDto =
-        await ref.read(timerUsecaseProvider).getDefaultTimer();
+    Result<TimerDto> timerDto = await ref.read(timerUsecaseProvider).getDefaultTimer();
     timerDto.when(
       success: (data) {
         if (kDebugMode) {
           print(data.toJson().toString());
         }
-        state = state.copyWith(
-            minutes: data.defaultTime ?? 0,
-            takingHour: data.takingOrder,
-            notice: data.notice);
+        state = state.copyWith(minutes: data.defaultTime ?? 0, takingHour: data.takingOrder, notice: data.notice);
       },
       failure: (failure) {
         if (kDebugMode) {
@@ -40,30 +35,17 @@ class TimerNotifier extends Notifier<DefaultTimerState> {
   }
 
   setTakingHour(bool isTaking) {
-    state = state.copyWith(
-        takingHour: isTaking, minutes: state.minutes, notice: state.notice);
-    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(
-        defaultTime: state.minutes,
-        notice: state.notice,
-        takingOrder: state.takingHour));
+    state = state.copyWith(takingHour: isTaking, minutes: state.minutes, notice: state.notice);
+    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(defaultTime: state.minutes, notice: state.notice, takingOrder: state.takingHour));
   }
 
   setNotice(String notice) {
-    state = state.copyWith(
-        takingHour: state.takingHour, minutes: state.minutes, notice: notice);
-    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(
-        defaultTime: state.minutes,
-        notice: state.notice,
-        takingOrder: state.takingHour));
+    state = state.copyWith(takingHour: state.takingHour, minutes: state.minutes, notice: notice);
+    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(defaultTime: state.minutes, notice: state.notice, takingOrder: state.takingHour));
   }
 
   setMin(int min) {
-    ref.read(minutesProvider.notifier).state = min;
-    state = state.copyWith(
-        takingHour: state.takingHour, minutes: min, notice: state.notice);
-    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(
-        defaultTime: state.minutes,
-        notice: state.notice,
-        takingOrder: state.takingHour));
+    state = state.copyWith(takingHour: state.takingHour, minutes: min, notice: state.notice);
+    ref.read(timerUsecaseProvider).setDefaultTimer(TimerDto(defaultTime: state.minutes, notice: state.notice, takingOrder: state.takingHour));
   }
 }

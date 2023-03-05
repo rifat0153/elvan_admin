@@ -20,78 +20,15 @@ class OrderDeatilsTimer extends StatefulHookConsumerWidget {
 
 class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
   @override
-  void initState() {
-    getTimeByOrder();
-    super.initState();
-  }
-
-  getTimeByOrder() async {
-    ref.read(timerProvider.notifier).stopTimer();
-    Order? order = ref.read(orderDtatilsProvider).order;
-    Duration duration = const Duration(seconds: 0);
-    ref
-        .read(orderTimerUsecaseProvider)
-        .findOrderTime(orderId: order!.id)
-        .then((second) {
-      print("Secend order deatils---$second");
-      duration = Duration(
-        seconds: second,
-      );
-      print("order details minutes ${duration.inMinutes}");
-      setMin(orderId: order.id, secend: duration.inSeconds);
-
-      if (second == 0) {
-        if (order.status.status == OrderStatus.pending.status) {
-          setDefaultTimer(order);
-        }
-      }
-
-      
-    });
-  }
-
-  setDefaultTimer(Order order) async {
-    final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
-    defautTime.when(
-      success: (data) {
-        print("----------default min ${data.defaultTime}");
-
-        Duration duration = Duration(minutes: data.defaultTime ?? 0);
-        setMin(orderId: order.id, secend: duration.inSeconds);
-      },
-      failure: (failure) {
-        print("----------default min ${failure.message}");
-      },
-    );
-  }
-
-  void setMin({
-    required String orderId,
-    required int secend,
-  }) {
-    print("----orderDtatils----$orderId--set min $secend");
-    final time = DateTime.now().add(Duration(
-      seconds: secend,
-    ));
-    ref.read(orderTimerUsecaseProvider).setTime(orderId: orderId, time: time,second: secend);
-    ref.read(timerProvider.notifier).setTimer(secend);
-  }
-
-  String strDigits(int n) => n.toString().padLeft(2, '0');
-
-  @override
   Widget build(BuildContext context) {
     final state = ref.watch(orderDtatilsProvider);
-    final timerState = ref.watch(timerProvider);
 
     useEffect(() {
       print("-----------order details-----${state.order?.id}");
     }, const []);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-      decoration: BoxDecoration(
-          color: AppColors.grayF7,
-          borderRadius: BorderRadius.circular(AppSize.radiusSL)),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(color: AppColors.grayF7, borderRadius: BorderRadius.circular(AppSize.radiusSL)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,40 +44,20 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              timeItem(
-                  context: context,
-                  title: AppStrings.hour,
-                  value: strDigits(timerState.duration.inHours.remainder(24))),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   ":",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(color: AppColors.primaryRed),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(
-                  context: context,
-                  title: AppStrings.min,
-                  value:
-                      strDigits(timerState.duration.inMinutes.remainder(60))),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Text(
                   ":",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(color: AppColors.primaryRed),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed),
                 ),
               ),
-              timeItem(
-                  context: context,
-                  title: AppStrings.sec,
-                  value:
-                      strDigits(timerState.duration.inSeconds.remainder(60))),
             ],
           )
         ],
@@ -148,22 +65,13 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
     );
   }
 
-  Column timeItem(
-      {required BuildContext context, required String title, required value}) {
+  Column timeItem({required BuildContext context, required String title, required value}) {
     return Column(
       children: [
-        Text('$value',
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(color: AppColors.primaryRed)),
+        Text('$value', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed)),
         Padding(
           padding: const EdgeInsets.only(top: 4),
-          child: Text('$title',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelSmall
-                  ?.copyWith(color: AppColors.gray)),
+          child: Text('$title', style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray)),
         ),
       ],
     );

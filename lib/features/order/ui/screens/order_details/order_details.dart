@@ -25,8 +25,7 @@ class OrderDetatils extends HookConsumerWidget {
     final state = ref.watch(orderDtatilsProvider);
 
     return Container(
-      decoration: const BoxDecoration(
-          border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
+      decoration: const BoxDecoration(border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,27 +42,17 @@ class OrderDetatils extends HookConsumerWidget {
                     padding: const EdgeInsets.only(left: 20),
                     child: Text(
                       AppStrings.orderDetails,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(color: AppColors.grayA7),
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.grayA7),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
                 IconButton(
                     onPressed: () {
-                      final printer =
-                          ref.read(webPrinterNotifierProvider.notifier);
-                      final user =
-                          ref.read(getCustomerProvider(state.order!.userId));
+                      final printer = ref.read(webPrinterNotifierProvider.notifier);
+                      final user = ref.read(getCustomerProvider(state.order!.userId));
                       printer.printInvoice(
-                        headerPrinter: const HeaderPrinter(
-                            address: "701 Preston Ave,Pasadena,Texas",
-                            imageUrl: AppAssets.applogo,
-                            phone: "(713) 473-2503",
-                            title: "ELVAN",
-                            website: "elvan.com"),
+                        headerPrinter: const HeaderPrinter(address: "701 Preston Ave,Pasadena,Texas", imageUrl: AppAssets.applogo, phone: "(713) 473-2503", title: "ELVAN", website: "elvan.com"),
                         order: state.order!,
                         user: user.value,
                       );
@@ -75,7 +64,9 @@ class OrderDetatils extends HookConsumerWidget {
               ],
             ),
           ),
+
           const Divider(),
+
           SizedBox(
             height: AppSize.hight(context) - 100,
             child: SingleChildScrollView(
@@ -101,10 +92,7 @@ class OrderDetatils extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
           child: Text(
             AppStrings.orderedItems,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
         ),
         Padding(
@@ -145,10 +133,7 @@ class OrderDetatils extends HookConsumerWidget {
           padding: const EdgeInsets.only(left: 10),
           child: Text(
             AppStrings.transectionDetails,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
         ),
 
@@ -204,9 +189,7 @@ class OrderDetatils extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              state.order?.status.status == OrderStatus.pending.status
-                  ? const OrderDeatilsTimer()
-                  : const OrderDeatilsProcessTimer(),
+              state.order?.status.status == OrderStatus.pending.status ? const OrderDeatilsTimer() : const OrderDeatilsProcessTimer(),
             ],
           ),
         )

@@ -7,9 +7,7 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final orderDtatilsProvider =
-    NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(
-        OrderDetatilsNotifier.new);
+final orderDtatilsProvider = NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(OrderDetatilsNotifier.new);
 
 class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   @override
@@ -78,7 +76,6 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
           time: state.time!,
           second: min * 60,
         );
-    ref.read(timerProvider.notifier).setTimer(min * 60);
   }
 
   void close() {
