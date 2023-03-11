@@ -1,6 +1,5 @@
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
-import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class EmptyWidget extends StatelessWidget {

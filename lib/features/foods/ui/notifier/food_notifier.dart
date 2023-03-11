@@ -6,8 +6,9 @@ import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final foodProvider =
-    NotifierProvider<FoodNotifier, FoodState>(FoodNotifier.new);
+final foodProvider = NotifierProvider<FoodNotifier, FoodState>(
+  FoodNotifier.new,
+);
 
 class FoodNotifier extends Notifier<FoodState> {
   FoodNotifier() : super();
@@ -19,7 +20,10 @@ class FoodNotifier extends Notifier<FoodState> {
     getData();
     ref.onDispose(() {});
 
-    return const FoodState(loading: true, items: []);
+    return const FoodState(
+      loading: true,
+      items: [],
+    );
   }
 
   getData() async {

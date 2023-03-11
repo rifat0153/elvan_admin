@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/core/shared_preferances/local_data.dart';
 import 'package:elvan_admin/features/auth/providers/auth_providers.dart';
-import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

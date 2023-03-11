@@ -28,13 +28,17 @@ class FoodRepositoryImpl implements FoodRepository {
       return Result.success(data);
     } on FirebaseException catch (e) {
       print(e);
-      return Result.failure(Failure(error: "Error", message: e.message));
+      return Result.failure(Failure(
+        error: "Error",
+        message: e.message,
+      ));
     }
   }
 
   @override
-  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodPagination(
-      {required DocumentSnapshot lastItem}) async {
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodPagination({
+    required DocumentSnapshot lastItem,
+  }) async {
     try {
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionFoodItems)
@@ -44,12 +48,18 @@ class FoodRepositoryImpl implements FoodRepository {
           .get();
       return Result.success(data);
     } on FirebaseException catch (e) {
-      return Result.failure(Failure(error: "Error", message: e.message));
+      return Result.failure(Failure(
+        error: "Error",
+        message: e.message,
+      ));
     }
   }
 
   @override
-  Future<Result<String>> setActiveFood(String productId, bool isActive) async {
+  Future<Result<String>> setActiveFood(
+    String productId,
+    bool isActive,
+  ) async {
     try {
       await firebaseFirestore
           .collection(Constants.firebaseCollectionFoodItems)
@@ -57,7 +67,7 @@ class FoodRepositoryImpl implements FoodRepository {
           .update({"isAvailable": isActive});
 
       final data = await firebaseFirestore
-          .collection(Constants.firebaseCollectionFoodItems )
+          .collection(Constants.firebaseCollectionFoodItems)
           .doc(productId)
           .withConverter(
             fromFirestore: (snapshot, _) =>

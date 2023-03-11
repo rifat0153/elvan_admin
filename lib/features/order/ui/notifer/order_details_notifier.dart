@@ -1,9 +1,6 @@
-import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
 import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
-import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,18 +21,7 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     required Order order,
   }) async {
     if (state.order != null) {
-      if (order.status.status == OrderStatus.pending.status) {
-        ref
-            .read(orderTimerUsecaseProvider)
-            .findOrderTime(
-              orderId: order.id,
-            )
-            .then((second) {
-          if (second == 0) {
-            setDefaultTimer(order);
-          }
-        });
-      }
+     
       if (state.order!.id == order.id) {
         state = state.copyWith(
           order: order,
@@ -71,11 +57,7 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
         minutes: min,
       ),
     ));
-    ref.read(orderTimerUsecaseProvider).setTime(
-          orderId: orderId,
-          time: state.time!,
-          second: min * 60,
-        );
+   
   }
 
   void close() {

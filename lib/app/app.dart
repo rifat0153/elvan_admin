@@ -1,7 +1,5 @@
 import 'package:elvan_admin/app/router/app_router.dart';
-import 'package:elvan_admin/core/firebase/firebase_providers.dart';
 import 'package:elvan_admin/core/scroll/custom_scroll_behaver.dart';
-import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:elvan_admin/shared/constants/app_text_theme.dart';
@@ -17,8 +15,7 @@ class App extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
         final appRouter = ref.watch(appRouterProvider);
-    final authState = ref.watch(authNotifierProvider);
-    final firebaseAuth = ref.watch(firebaseAuthProvider);
+
     
 
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);

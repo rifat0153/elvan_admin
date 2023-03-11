@@ -8,13 +8,13 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CommonItemDesktop extends HookConsumerWidget {
+class CommonItem extends HookConsumerWidget {
   final Order order;
   final Order? selectedOrder;
   final void Function() onClick;
   final void Function() onBtnClick;
   final String btnTitle;
-  const CommonItemDesktop(
+  const CommonItem(
       {Key? key,
       required this.order,
       this.selectedOrder,

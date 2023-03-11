@@ -1,10 +1,7 @@
 import 'package:elvan_admin/features/foods/ui/notifier/food_notifier.dart';
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
-import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item_tab.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
-import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
-import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
@@ -42,7 +39,7 @@ class AddItemScreen extends HookConsumerWidget {
         children: [
           HomeAppBar(
               onClick: () {
-                 Scaffold.of(context).openDrawer();
+                Scaffold.of(context).openDrawer();
                 menuNotifier.open();
               },
               title: AppStrings.foodItems),
@@ -69,17 +66,11 @@ class AddItemScreen extends HookConsumerWidget {
                     ? const EmptyWidget(
                         title: AppStrings.noFoodItem,
                         icon: Icons.coffee_maker_outlined)
-                    : ResponsiveLayout.isDesktop(context)
-                        ? AddOnItem(
-                            foodItems: state.items
-                                .map((e) => FoodItemDto.fromJson(e.data()!))
-                                .toList(),
-                          )
-                        : AddOnItemTab(
-                            foodItems: state.items
-                                .map((e) => FoodItemDto.fromJson(e.data()!))
-                                .toList(),
-                          ),
+                    : AddOnItem(
+                        foodItems: state.items
+                            .map((e) => FoodItemDto.fromJson(e.data()!))
+                            .toList(),
+                      ),
                 state.haseMore
                     ? const Padding(
                         padding: EdgeInsets.all(8.0),
