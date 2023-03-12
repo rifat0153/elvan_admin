@@ -4,7 +4,9 @@ import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final orderDtatilsProvider = NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(OrderDetatilsNotifier.new);
+final orderDtatilsProvider =
+    NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(
+        OrderDetatilsNotifier.new);
 
 class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   @override
@@ -21,12 +23,10 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     required Order order,
   }) async {
     if (state.order != null) {
-     
       if (state.order!.id == order.id) {
         state = state.copyWith(
           order: order,
           isOpenDetatils: !state.isOpenDetatils,
-          time: state.time,
         );
       } else {
         state = state.copyWith(
@@ -46,36 +46,13 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
     );
   }
 
-  void setMin({
-    required String orderId,
-    required int min,
-  }) {
-    print("--------$orderId--set min $min");
-    state = state.copyWith(
-        time: DateTime.now().add(
-      Duration(
-        minutes: min,
-      ),
-    ));
-   
-  }
+ 
 
   void close() {
     state = state.copyWith(isOpenDetatils: false);
   }
 
   setDefaultTimer(Order order) async {
-    final defautTime = await ref.read(timerUsecaseProvider).getDefaultTimer();
-    defautTime.when(
-      success: (data) {
-        print("----------default min ${data.defaultTime}");
-
-        Duration duration = Duration(minutes: data.defaultTime ?? 0);
-        setMin(orderId: order.id, min: data.defaultTime ?? 0);
-      },
-      failure: (failure) {
-        print("----------default min ${failure.message}");
-      },
-    );
+    return await ref.read(timerUsecaseProvider).getDefaultTimer();
   }
 }

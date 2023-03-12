@@ -16,7 +16,7 @@ class TimerUsecase {
   final TimerRepository timerRepository;
   const TimerUsecase({required this.timerRepository});
 
-  Future<Result<TimerDto>> getDefaultTimer() async {
+  Future<TimerDto?> getDefaultTimer() async {
     return timerRepository.getDefaultTimer();
   }
 
