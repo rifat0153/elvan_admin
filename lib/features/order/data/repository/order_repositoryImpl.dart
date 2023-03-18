@@ -19,7 +19,8 @@ class OrderRpositoryImpl implements OrderRepository {
   });
 
   @override
-  Future<void> changeOrderStatus({required String orderId, required OrderStatus status}) async {
+  Future<void> changeOrderStatus(
+      {required String orderId, required OrderStatus status}) async {
     await firebaseFirestore
         .collection(
           Constants.firebaseCollectionOrders,
@@ -34,7 +35,10 @@ class OrderRpositoryImpl implements OrderRepository {
         .collection(
           Constants.firebaseCollectionOrders,
         )
-        .where('status', whereIn: [OrderStatus.delivered.status, OrderStatus.rejected.status])
+        .where('status', whereIn: [
+          OrderStatus.delivered.status,
+          OrderStatus.rejected.status
+        ])
         .orderBy('createdAt', descending: true)
         .limit(20)
         .get();
@@ -72,7 +76,8 @@ class OrderRpositoryImpl implements OrderRepository {
     int openHour = 1;
     int closeHour = 23;
     final openTime = DateTime(today.year, today.month, today.day, openHour, 00);
-    final closeTime = DateTime(today.year, today.month, today.day, closeHour, 59);
+    final closeTime =
+        DateTime(today.year, today.month, today.day, closeHour, 59);
     final openTimestamp = Timestamp.fromDate(openTime);
     print("---------${today.hour}}--$openTimestamp");
     final closeTimestamp = Timestamp.fromDate(closeTime);
@@ -97,13 +102,15 @@ class OrderRpositoryImpl implements OrderRepository {
           fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
           toFirestore: (orderDto, _) => orderDto.toJson(),
         )
-        .snapshots()
+        .snapshots(includeMetadataChanges: true)
         .map(
-          (event) => event.docs
-              .map(
-                (e) => e.data(),
-              )
-              .toList(),
+          (event) => event.docs.map(
+            (e) {
+              print(
+                  "---------------------------event chante ${e.metadata.hasPendingWrites}");
+              return e.data();
+            },
+          ).toList(),
         );
   }
 
@@ -116,6 +123,13 @@ class OrderRpositoryImpl implements OrderRepository {
       seconds: second,
     ));
     final Timestamp timestamp = Timestamp.fromDate(time);
-    await firebaseFirestore.collection(Constants.firebaseCollectionOrders).doc(orderId).update({"status": OrderStatus.accepted.status, "orderPreparationTime": second, "orderAcceptedAt": timestamp});
+    await firebaseFirestore
+        .collection(Constants.firebaseCollectionOrders)
+        .doc(orderId)
+        .update({
+      "status": OrderStatus.accepted.status,
+      "orderPreparationTime": second,
+      "orderAcceptedAt": timestamp
+    });
   }
 }
