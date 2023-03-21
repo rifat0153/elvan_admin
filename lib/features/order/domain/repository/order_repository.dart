@@ -4,6 +4,7 @@ import 'package:elvan_shared/dtos/order/order_dto.dart';
 
 abstract class OrderRepository {
   Stream<List<OrderDto>> getOrderStream({required OrderStatus status});
+  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream({required OrderStatus status});
 
   Future<QuerySnapshot<Map<String, dynamic>>> getDeilveredStreamPagination({
     required DocumentSnapshot lastOrder,

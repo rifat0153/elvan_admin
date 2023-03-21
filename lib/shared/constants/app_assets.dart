@@ -22,4 +22,7 @@ class AppAssets {
   static const String menu2 = "assets/svgs/menu-2.svg";
   static const String menu3 = "assets/svgs/menu-3.svg";
   static const String person = "assets/svgs/person.svg";
+
+  //audio
+  static const String notification = "assets/audio/notification.wav";
 }

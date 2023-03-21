@@ -1,5 +1,5 @@
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
-import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
+import 'package:elvan_admin/features/timer/domain/usecases/setting_usecase.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -53,6 +53,6 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   }
 
   setDefaultTimer(Order order) async {
-    return await ref.read(timerUsecaseProvider).getDefaultTimer();
+    return await ref.read(settingUsecaseProvider).getDefaultTimer();
   }
 }

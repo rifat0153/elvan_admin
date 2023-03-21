@@ -3,12 +3,12 @@ import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart'
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
-import 'package:elvan_shared/dtos/food/food_item_dto.dart';
+import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddOnItem extends HookConsumerWidget {
-  final List<FoodItemDto> foodItems;
+  final List<FoodItem> foodItems;
   const AddOnItem({Key? key, required this.foodItems}) : super(key: key);
 
   @override

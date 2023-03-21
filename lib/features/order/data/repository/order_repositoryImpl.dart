@@ -102,12 +102,10 @@ class OrderRpositoryImpl implements OrderRepository {
           fromFirestore: (snapshot, _) => OrderDto.fromJson(snapshot.data()!),
           toFirestore: (orderDto, _) => orderDto.toJson(),
         )
-        .snapshots(includeMetadataChanges: true)
+        .snapshots()
         .map(
           (event) => event.docs.map(
             (e) {
-              print(
-                  "---------------------------event chante ${e.metadata.hasPendingWrites}");
               return e.data();
             },
           ).toList(),
@@ -131,5 +129,37 @@ class OrderRpositoryImpl implements OrderRepository {
       "orderPreparationTime": second,
       "orderAcceptedAt": timestamp
     });
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream(
+      {required OrderStatus status}) {
+    final today = DateTime.now();
+    int openHour = 1;
+    int closeHour = 23;
+    final openTime = DateTime(today.year, today.month, today.day, openHour, 00);
+    final closeTime =
+        DateTime(today.year, today.month, today.day, closeHour, 59);
+    final openTimestamp = Timestamp.fromDate(openTime);
+    print("---------${today.hour}}--$openTimestamp");
+    final closeTimestamp = Timestamp.fromDate(closeTime);
+    return firebaseFirestore
+        .collection(
+          Constants.firebaseCollectionOrders,
+        )
+        .where(
+          'status',
+          isEqualTo: status.status,
+        )
+        // .where(
+        //   "createdAt",
+        //   isLessThanOrEqualTo: closeTimestamp,
+        // )
+        // .where(
+        //   "createdAt",
+        //   isGreaterThanOrEqualTo: openTimestamp,
+        // )
+        .orderBy('createdAt', descending: true)
+        .snapshots();
   }
 }

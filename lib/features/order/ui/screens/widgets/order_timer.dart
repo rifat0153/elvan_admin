@@ -1,7 +1,7 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
+import 'package:elvan_admin/features/timer/domain/usecases/setting_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';

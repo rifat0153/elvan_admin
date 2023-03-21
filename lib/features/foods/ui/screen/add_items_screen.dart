@@ -2,6 +2,7 @@ import 'package:elvan_admin/features/foods/ui/notifier/food_notifier.dart';
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
@@ -68,7 +69,7 @@ class AddItemScreen extends HookConsumerWidget {
                         icon: Icons.coffee_maker_outlined)
                     : AddOnItem(
                         foodItems: state.items
-                            .map((e) => FoodItemDto.fromJson(e.data()!))
+                            .map((e) => FoodItem.fromJson(e.data()!))
                             .toList(),
                       ),
                 state.haseMore
