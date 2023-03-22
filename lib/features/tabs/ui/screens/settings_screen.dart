@@ -15,7 +15,7 @@ class SettingsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final menuState = ref.watch(menuProvider);
     return AutoTabsRouter(
-      routes: const [AddItemRoute(), TimerRoute()],
+      routes: const [FoodsRoute(), TimerRoute()],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
         return ChildSettingsScreen(
