@@ -1,6 +1,5 @@
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderInfoWidget extends StatelessWidget {
   final String title;

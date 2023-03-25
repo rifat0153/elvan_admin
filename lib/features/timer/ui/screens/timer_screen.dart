@@ -1,11 +1,10 @@
-import 'package:elvan_admin/features/timer/ui/notifier/timer_notifier.dart';
+import 'package:elvan_admin/features/timer/ui/notifier/setting_notifier.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
-import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

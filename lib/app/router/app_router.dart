@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/app/router/route_gaurds.dart';
 import 'package:elvan_admin/features/auth/ui/screens/login_screen.dart';
-import 'package:elvan_admin/features/foods/ui/screen/add_items_screen.dart';
 import 'package:elvan_admin/features/foods/ui/screen/foods_screen.dart';
 import 'package:elvan_admin/features/order/ui/screens/delivered_screen.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/home_screen.dart';
@@ -48,7 +47,6 @@ final appRouterProvider = Provider.autoDispose<AppRouter>((ref) {
             
               children: [
                 AutoRoute(path: 'foods', page: FoodsScreen),
-                AutoRoute(path: 'add', page: AddItemScreen),
                 AutoRoute(path: 'timer', page: TimerScreen),
               ]),
         ]),

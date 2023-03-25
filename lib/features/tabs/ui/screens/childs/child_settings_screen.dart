@@ -5,9 +5,9 @@ import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TabSettingsScreen extends HookConsumerWidget {
+class ChildSettingsScreen extends HookConsumerWidget {
   final Widget child;
-  const TabSettingsScreen(
+  const ChildSettingsScreen(
       {Key? key,
       required this.menuState,
       required this.tabsRouter,
@@ -34,13 +34,12 @@ class TabSettingsScreen extends HookConsumerWidget {
                 )
               : Container(),
           Expanded(
-            flex: menuState.isOpenMenu ? 4 : 6,
+            flex: menuState.isOpenMenu ? 6 : 8,
             child: Container(
               color: AppColors.white,
               child: child,
             ),
           ),
-     
         ],
       ),
     );

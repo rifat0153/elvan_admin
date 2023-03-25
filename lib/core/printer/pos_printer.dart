@@ -2,13 +2,11 @@ import 'dart:typed_data';
 import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_shared/dtos/cart/cart_item_dto.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
-import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image/image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
 import 'package:intl/intl.dart';
-import 'package:printing/printing.dart';
 
 final printerNotifierProvider = NotifierProvider<POSprinter, void>(
   POSprinter.new,

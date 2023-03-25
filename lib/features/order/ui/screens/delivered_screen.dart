@@ -25,7 +25,7 @@ class DeliveredScreen extends HookConsumerWidget {
     final orderDetatilsNotifier = ref.watch(orderDtatilsProvider.notifier);
     final orderDetatilsState = ref.watch(orderDtatilsProvider);
     final scrollController = useScrollController();
-    final page = useState<int>(1);
+
 
     useEffect(() {
       notifier.getData();

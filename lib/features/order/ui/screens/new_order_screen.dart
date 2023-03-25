@@ -4,7 +4,6 @@ import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/new_order_bottom.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/components/error/error_widget.dart';
@@ -40,9 +39,11 @@ class NewOrderScreen extends HookConsumerWidget {
                   title: AppStrings.newOrders),
               Expanded(
                 child: Consumer(builder: (context, ref, child) {
-                  final newOrderStream = ref.watch(newOrderStreamProvider);
+                 // final newOrderStream = ref.watch(newOrderStreamProvider);
+                     final state = ref.watch(newOrderScreenProvider);
+
                   final orderDeatils = ref.watch(orderDtatilsProvider);
-                  return newOrderStream.when(
+                  return state.when(
                     data: (data) {
                       if (data.isEmpty) {
                         return const EmptyWidget(
