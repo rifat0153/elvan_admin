@@ -46,6 +46,7 @@ class FoodsScreen extends HookConsumerWidget {
               title: AppStrings.foodItems),
           Expanded(
               child: SingleChildScrollView(
+                controller: scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,

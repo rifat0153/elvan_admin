@@ -30,14 +30,15 @@ class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
         .getOrderSnapshotStream(status: OrderStatus.pending);
 
     result.listen((event) {
-      event.docChanges.forEach((item) {
+      event.docChanges.forEach((item)  async{
         if (item.type == firestore.DocumentChangeType.added) {
           print("-----------------${item.type}");
-          _createSound();
+         await _createSound();
         }
       });
       final List<OrderDto> oreder =
           event.docs.map((e) => OrderDto.fromJson(e.data())).toList();
+          
       state = UiState.data(oreder.map((e) => Order.fromDto(e)).toList());
     });
   }
@@ -90,10 +91,10 @@ class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
     if (player.playing) {
       return;
     }
-    player.setAudioSource(AudioSource.uri(Uri.parse(AppAssets.notification)),
+    player.setAudioSource(AudioSource.uri(Uri.parse(AppAssets.notificationFBS)),
         initialPosition: Duration.zero, preload: true);
 
    // await player.setLoopMode(LoopMode.one);
-    player.play();
+   await player.play();
   }
 }

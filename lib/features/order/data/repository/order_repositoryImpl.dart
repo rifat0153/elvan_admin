@@ -132,8 +132,9 @@ class OrderRpositoryImpl implements OrderRepository {
   }
 
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream(
-      {required OrderStatus status}) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream({
+    required OrderStatus status,
+  }) {
     final today = DateTime.now();
     int openHour = 1;
     int closeHour = 23;
@@ -143,6 +144,7 @@ class OrderRpositoryImpl implements OrderRepository {
     final openTimestamp = Timestamp.fromDate(openTime);
     print("---------${today.hour}}--$openTimestamp");
     final closeTimestamp = Timestamp.fromDate(closeTime);
+    
     return firebaseFirestore
         .collection(
           Constants.firebaseCollectionOrders,

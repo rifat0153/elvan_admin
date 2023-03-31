@@ -24,5 +24,6 @@ class AppAssets {
   static const String person = "assets/svgs/person.svg";
 
   //audio
-  static const String notification = "assets/audio/notification.wav";
+  static const String notification = "/assets/audio/notification.wav";
+  static const String notificationFBS = "https://firebasestorage.googleapis.com/v0/b/elvan-71cfb.appspot.com/o/admin%2Fsound%2Fnotification.wav?alt=media&token=9fa13dcf-68bb-4337-bdf9-ef72a8091cfe";
 }
