@@ -38,6 +38,7 @@ class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
       });
       final List<OrderDto> oreder =
           event.docs.map((e) => OrderDto.fromJson(e.data())).toList();
+          
       state = UiState.data(oreder.map((e) => Order.fromDto(e)).toList());
     });
   }
