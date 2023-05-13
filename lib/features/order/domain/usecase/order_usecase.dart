@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_admin/features/auth/data/repository/auth_repository.dart';
 import 'package:elvan_admin/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:elvan_admin/features/order/data/repository/order_repositoryImpl.dart';
@@ -29,6 +30,11 @@ class OrderUsecase {
         );
   }
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream(
+      {required OrderStatus status}) {
+    return orderRepository.getOrderSnapshotStream(status: status);
+  }
+
   Future<void> orderAccept({
     required String orderId,
     required int second,
@@ -48,6 +54,4 @@ class OrderUsecase {
       status: status,
     );
   }
-
-  
 }

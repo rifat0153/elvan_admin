@@ -1,12 +1,7 @@
-import 'package:elvan_admin/features/order/domain/usecase/order_timer_usecase.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
-import 'package:elvan_admin/features/order/ui/notifer/timer_notifier.dart';
-import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
-import 'package:elvan_shared/domain_models/order/order.dart';
-import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,9 +18,6 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
   Widget build(BuildContext context) {
     final state = ref.watch(orderDtatilsProvider);
 
-    useEffect(() {
-      print("-----------order details-----${state.order?.id}");
-    }, const []);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(color: AppColors.grayF7, borderRadius: BorderRadius.circular(AppSize.radiusSL)),

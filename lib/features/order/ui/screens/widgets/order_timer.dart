@@ -1,7 +1,7 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/timer/domain/usecases/timer_usecase.dart';
+import 'package:elvan_admin/features/timer/domain/usecases/setting_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
@@ -21,21 +21,18 @@ class OrderTimer extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(0);
-    final defaultNotifier = ref.read(timerUsecaseProvider);
+ 
 
     useEffect(() {
       if (order.status.name == OrderStatus.pending.name) {
-        defaultNotifier.getDefaultTimer().then((value) {
-          value.when(
-            success: ((data) {
-              minutes.value = data.defaultTime ?? 0;
-              notifier.setMin(orderId: order.id, min: data.defaultTime ?? 0);
-            }),
-            failure: (failure) {},
-          );
+        notifier.setDefaultTimer(order).then((value) {
+          if (value != null) {
+            minutes.value = value.defaultTime ?? 0;
+          }
         });
       }
     }, const []);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +49,7 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value > 0) {
                     minutes.value--;
-                    notifier.setMin(min: minutes.value, orderId: order.id);
+                 
                   }
                 },
                 iconData: Icons.do_not_disturb_on,
@@ -82,7 +79,7 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value >= 0) {
                     minutes.value++;
-                    notifier.setMin(min: minutes.value, orderId: order.id);
+                  
                   }
                 },
                 iconData: Icons.add_circle,

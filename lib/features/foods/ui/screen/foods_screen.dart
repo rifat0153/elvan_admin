@@ -1,11 +1,16 @@
+import 'package:elvan_admin/features/foods/ui/notifier/food_notifier.dart';
+import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
+import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
+import 'package:elvan_admin/shared/constants/app_size.dart';
+import 'package:elvan_shared/domain_models/food/food_item.dart';
+import 'package:elvan_shared/dtos/food/food_item_dto.dart';
+import 'package:flutter/material.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
-import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
-import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
-import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FoodsScreen extends HookConsumerWidget {
@@ -14,7 +19,19 @@ class FoodsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final menuNotifier = ref.watch(menuProvider.notifier);
+    final state = ref.watch(foodProvider);
+    final notifier = ref.watch(foodProvider.notifier);
+    final scrollController = useScrollController();
 
+    useEffect(() {
+      scrollController.addListener(() {
+        if (scrollController.offset >=
+                scrollController.position.maxScrollExtent &&
+            !scrollController.position.outOfRange) {
+          notifier.nextData();
+        }
+      });
+    }, const []);
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -23,228 +40,52 @@ class FoodsScreen extends HookConsumerWidget {
         children: [
           HomeAppBar(
               onClick: () {
+                Scaffold.of(context).openDrawer();
                 menuNotifier.open();
               },
-              title: AppStrings.foodCategory),
+              title: AppStrings.foodItems),
           Expanded(
               child: SingleChildScrollView(
+                controller: scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: ElvanBtn(
-                        title: AppStrings.addNew,
-                        onClick: () {},
-                        color: AppColors.primaryRed,
+                state.loading
+                    ? SizedBox(
+                        width: AppSize.width(context),
+                        height: AppSize.hight(context),
+                        child: const Center(
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                state.items.isEmpty
+                    ? const EmptyWidget(
+                        title: AppStrings.noFoodItem,
+                        icon: Icons.coffee_maker_outlined)
+                    : AddOnItem(
+                        foodItems: state.items
+                            .map((e) => FoodItem.fromDto(FoodItemDto.fromJson(e.data()!)))
+                            .toList(),
                       ),
-                    )
-                  ],
-                ),
-               ResponsiveLayout.isDesktop(context) ? desktopDataTable(context) :tabDataTable(context)
+                state.haseMore
+                    ? const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Container()
               ],
             ),
           ))
-        ],
-      ),
-    );
-  }
-
-  Padding desktopDataTable(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: DataTable(
-        columns: [
-          DataColumn(
-            label: Text(
-              AppStrings.categoryName,
-              style:  Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          DataColumn(
-            label: Text(
-              AppStrings.totalItem,
-              style:  Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          DataColumn(
-            label: Text(
-              "",
-              style:  Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          DataColumn(
-            label: Text(
-              "",
-              style:  Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-        ],
-        rows: List.generate(
-            100,
-            (index) => DataRow(cells: [
-                  DataCell(
-                    Row(
-                      children: [
-                        Image.asset(
-                          AppAssets.pizza,
-                          width: 30,
-                          height: 30,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Pizza dsfkajsklfjas'dlsjfkjsdkljfsladjfkl",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(color: AppColors.gray),
-                              maxLines: 3,
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  DataCell(
-                    Text(
-                      "7",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(color: AppColors.gray),
-                    ),
-                  ),
-                  DataCell(
-                    TextButton(
-                      onPressed: (() {}),
-                      child: Text(
-                        AppStrings.edit,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(color: AppColors.primaryRed),
-                      ),
-                    ),
-                  ),
-                  DataCell(Switch(
-                    activeColor: AppColors.primaryRed,
-                    value: false,
-                    onChanged: (value) {},
-                  )),
-                ])).toList(),
-      ),
-    );
-  }
-
-  Padding tabDataTable(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Row(
-        children: [
-          Expanded(
-            child: FittedBox(
-              child: DataTable(
-                columns: [
-                  DataColumn(
-                    label: Text(
-                      AppStrings.categoryName,
-                      style: ResponsiveLayout.isMobile(context)
-                          ? Theme.of(context).textTheme.bodySmall
-                          : Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                  DataColumn(
-                    label: Text(
-                      AppStrings.totalItem,
-                      style: ResponsiveLayout.isMobile(context)
-                          ? Theme.of(context).textTheme.bodySmall
-                          : Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                  DataColumn(
-                    label: Text(
-                      "",
-                      style: ResponsiveLayout.isMobile(context)
-                          ? Theme.of(context).textTheme.bodySmall
-                          : Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                  DataColumn(
-                    label: Text(
-                      "",
-                      style: ResponsiveLayout.isMobile(context)
-                          ? Theme.of(context).textTheme.bodySmall
-                          : Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                ],
-                rows: List.generate(
-                    100,
-                    (index) => DataRow(cells: [
-                          DataCell(
-                            Row(
-                              children: [
-                                Image.asset(
-                                  AppAssets.pizza,
-                                  width: 30,
-                                  height: 30,
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      "Pizza dsfkajsklfjas'dlsjfkjsdkljfsladjfkl",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(color: AppColors.gray),
-                                      maxLines: 3,
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              "7",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(color: AppColors.gray),
-                            ),
-                          ),
-                          DataCell(
-                            TextButton(
-                              onPressed: (() {}),
-                              child: Text(
-                                AppStrings.edit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(color: AppColors.primaryRed),
-                              ),
-                            ),
-                          ),
-                          DataCell(Switch(
-                            activeColor: AppColors.primaryRed,
-                            value: false,
-                            onChanged: (value) {},
-                          )),
-                        ])).toList(),
-              ),
-            ),
-          ),
         ],
       ),
     );

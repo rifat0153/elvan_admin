@@ -12,10 +12,12 @@ class OrderDeatilsProcessTimer extends StatefulHookConsumerWidget {
   const OrderDeatilsProcessTimer({Key? key}) : super(key: key);
 
   @override
-  OrderDetailsTimerProcessState createState() => OrderDetailsTimerProcessState();
+  OrderDetailsTimerProcessState createState() =>
+      OrderDetailsTimerProcessState();
 }
 
-class OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTimer> {
+class OrderDetailsTimerProcessState
+    extends ConsumerState<OrderDeatilsProcessTimer> {
   String strDigits(int n) => n.toString().padLeft(2, '0');
 
   final timeToSubtract = DateTime.now().subtract(const Duration(minutes: 5));
@@ -38,7 +40,9 @@ class OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTim
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(color: AppColors.grayF7, borderRadius: BorderRadius.circular(AppSize.radiusSL)),
+      decoration: BoxDecoration(
+          color: AppColors.grayF7,
+          borderRadius: BorderRadius.circular(AppSize.radiusSL)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,15 +98,23 @@ class OrderDetailsTimerProcessState extends ConsumerState<OrderDeatilsProcessTim
     );
   }
 
-  Column timeItem({required BuildContext context, required String title, required value}) {
+  Column timeItem(
+      {required BuildContext context, required String title, required value}) {
     return Column(
       children: [
-        Text('$value', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed)),
+        Text('$value',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(color: AppColors.primaryRed)),
         Padding(
           padding: const EdgeInsets.only(top: 4),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray),
+            style: Theme.of(context)
+                .textTheme
+                .labelSmall
+                ?.copyWith(color: AppColors.gray),
           ),
         ),
       ],

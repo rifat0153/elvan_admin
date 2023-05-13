@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elvan_admin/features/foods/domain/usecase/food_usecase.dart';
 import 'package:elvan_admin/features/foods/ui/states/food_state.dart';
 import 'package:elvan_admin/shared/providers/scaffold_messenger/toast_provider.dart';
+import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:elvan_shared/dtos/food/food_item_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final foodProvider =
-    NotifierProvider<FoodNotifier, FoodState>(FoodNotifier.new);
+final foodProvider = NotifierProvider<FoodNotifier, FoodState>(
+  FoodNotifier.new,
+);
 
 class FoodNotifier extends Notifier<FoodState> {
   FoodNotifier() : super();
@@ -19,7 +21,10 @@ class FoodNotifier extends Notifier<FoodState> {
     getData();
     ref.onDispose(() {});
 
-    return const FoodState(loading: true, items: []);
+    return const FoodState(
+      loading: true,
+      items: [],
+    );
   }
 
   getData() async {
@@ -54,7 +59,7 @@ class FoodNotifier extends Notifier<FoodState> {
     );
   }
 
-  onActice(BuildContext context, FoodItemDto item, bool isActive) async {
+  onActice(BuildContext context, FoodItem item, bool isActive) async {
     foodUsecase = ref.read(foodUsecaseProvider);
     final result =
         await foodUsecase.setActiveFood(itemId: item.id!, isActive: isActive);

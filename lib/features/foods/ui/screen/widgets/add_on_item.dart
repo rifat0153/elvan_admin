@@ -1,15 +1,14 @@
 import 'package:elvan_admin/features/foods/ui/notifier/food_notifier.dart';
-import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
-import 'package:elvan_shared/dtos/food/food_item_dto.dart';
+import 'package:elvan_shared/domain_models/food/food_item.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddOnItem extends HookConsumerWidget {
-  final List<FoodItemDto> foodItems;
+  final List<FoodItem> foodItems;
   const AddOnItem({Key? key, required this.foodItems}) : super(key: key);
 
   @override
@@ -29,15 +28,7 @@ class AddOnItem extends HookConsumerWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-            Spacer(),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 20),
-            //   child: ElvanBtn(
-            //     title: AppStrings.addNew,
-            //     onClick: () {},
-            //     color: AppColors.primaryRed,
-            //   ),
-            // )
+            const Spacer(),
           ],
         ),
         Padding(
@@ -60,14 +51,6 @@ class AddOnItem extends HookConsumerWidget {
                         : Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                // DataColumn(
-                //   label: Text(
-                //     "",
-                //     style: ResponsiveLayout.isMobile(context)
-                //         ? Theme.of(context).textTheme.bodySmall
-                //         : Theme.of(context).textTheme.titleSmall,
-                //   ),
-                // ),
                 DataColumn(
                   label: Text(
                     "",
@@ -90,7 +73,7 @@ class AddOnItem extends HookConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
-                                  "${e.title}",
+                                  e.title,
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
@@ -109,18 +92,6 @@ class AddOnItem extends HookConsumerWidget {
                                 ?.copyWith(color: AppColors.gray),
                           ),
                         ),
-                        // DataCell(
-                        //   TextButton(
-                        //     onPressed: (() {}),
-                        //     child: Text(
-                        //       AppStrings.edit,
-                        //       style: Theme.of(context)
-                        //           .textTheme
-                        //           .titleMedium
-                        //           ?.copyWith(color: AppColors.primaryRed),
-                        //     ),
-                        //   ),
-                        // ),
                         DataCell(Switch(
                           activeColor: AppColors.primaryRed,
                           value: e.isAvailable,

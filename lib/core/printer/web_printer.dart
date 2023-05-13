@@ -5,7 +5,6 @@ import 'package:elvan_shared/domain_models/cart/cart_item.dart';
 import 'package:elvan_shared/domain_models/index.dart';
 import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:elvan_shared/dtos/category/build_step/build_step.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
@@ -38,11 +37,11 @@ class Webprinter extends Notifier<void> {
   void build() {}
 
   printInvoice(
-      {required HeaderPrinter headerPrinter,
+      { required HeaderPrinter headerPrinter,
       required Order order,
       ElvanUser? user}) async {
     final doc = pw.Document();
-    var image = await imageFromAssetBundle(headerPrinter.imageUrl!);
+    var image = await imageFromAssetBundle(headerPrinter?.imageUrl ?? "" );
     final today = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd  kk:mm').format(today);
     doc.addPage(pw.Page(
@@ -84,16 +83,19 @@ class Webprinter extends Notifier<void> {
             pw.Expanded(
               child: pw.Column(
                 children: [
-                  pw.Image(image, width: 80, height: 30),
+                  
+                  // pw.Image(image, width: 80, height: 30),
+                  // pw.SizedBox(height: 10),
+                  // pw.Text("${printer.address}",
+                  //     textAlign: pw.TextAlign.center, style: bodyStyle),
+                  // pw.Text("Tel: ${printer.phone}",
+                  //     textAlign: pw.TextAlign.center, style: bodyStyle),
+                  // pw.Text("Web: ${printer.website}",
+                  //     textAlign: pw.TextAlign.center, style: bodyStyle),
+                  pw.Text("${printer.website}",
+                      textAlign: pw.TextAlign.center, style: bodyStyle),
                   pw.SizedBox(height: 10),
-                  pw.Text("${printer.address}",
-                      textAlign: pw.TextAlign.center, style: bodyStyle),
-                  pw.Text("Tel: ${printer.phone}",
-                      textAlign: pw.TextAlign.center, style: bodyStyle),
-                  pw.Text("Web: ${printer.website}",
-                      textAlign: pw.TextAlign.center, style: bodyStyle),
-                  pw.SizedBox(height: 10),
-                  user != null ? customerInfo(user) : pw.Container(),
+                //  user != null ? customerInfo(user) : pw.Container(),
 
                   pw.SizedBox(height: 10),
 
@@ -135,18 +137,18 @@ class Webprinter extends Notifier<void> {
                             textAlign: pw.TextAlign.center,
                             style: bodyBoldStyle),
                       ]),
-                  pw.SizedBox(height: 30),
-                  pw.Text('Thank You!',
-                      textAlign: pw.TextAlign.center, style: bodyBoldStyle),
-                  pw.Text("$date",
-                      textAlign: pw.TextAlign.center, style: smallStyle),
-                  pw.SizedBox(height: 30),
-                  pw.BarcodeWidget(
-                    barcode: pw.Barcode.code128(),
-                    data: order.id,
-                    width: 120,
-                    height: 70,
-                  )
+                  // pw.SizedBox(height: 30),
+                  // pw.Text('Thank You!',
+                  //     textAlign: pw.TextAlign.center, style: bodyBoldStyle),
+                  // pw.Text("$date",
+                  //     textAlign: pw.TextAlign.center, style: smallStyle),
+                  // pw.SizedBox(height: 30),
+                  // pw.BarcodeWidget(
+                  //   barcode: pw.Barcode.code128(),
+                  //   data: order.id,
+                  //   width: 120,
+                  //   height: 70,
+                  // )
                 ],
               ),
             ),

@@ -14,7 +14,6 @@ class SettingsMenu extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigation = ref.watch(navigatorProvider.notifier);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

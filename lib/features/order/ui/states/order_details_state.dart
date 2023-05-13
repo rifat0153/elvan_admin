@@ -7,7 +7,6 @@ part 'order_details_state.freezed.dart';
 class OrderDetatilsState with _$OrderDetatilsState {
   const factory OrderDetatilsState({
     @Default(false) bool isOpenDetatils,
-    DateTime? time,
     @Default(0) int xOffset,
     Order? order,
   }) = _OrderDetatilsState;

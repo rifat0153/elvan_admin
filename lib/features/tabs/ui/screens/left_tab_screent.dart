@@ -34,10 +34,7 @@ class LeftTabScreen extends HookConsumerWidget {
                     curve: Curves.easeOut,
                     duration: const Duration(milliseconds: 500),
                     child: Container(
-                        //width: menuState.isOpenMenu ? AppSize.width(context) - 79 : AppSize.width(context),
                         color: AppColors.grayF7,
-                        // transform: Matrix4.translationValues(
-                        //     menuState.xOffsetTab, menuState.yOffset, 1.0),
                         child: child),
                   ),
                 )
