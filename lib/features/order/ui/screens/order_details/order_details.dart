@@ -63,7 +63,7 @@ class OrderDetatils extends HookConsumerWidget {
                             imageUrl: AppAssets.applogo,
                             phone: "(713) 473-2503",
                             title: "ELVAN",
-                            website: "elvan.com"),
+                            website: "elvan.nu"),
                         order: state.order!,
                         user: user.value,
                       );
