@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_icon_btn.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
@@ -8,15 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+@RoutePage()
 class LeftTabScreen extends HookConsumerWidget {
   const LeftTabScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
     final menuState = ref.watch(menuProvider);
-    return AutoTabsRouter(
-      routes: const [Home(), Settings()],
+    return AutoTabsRouter.tabBar(
+      routes: const [HomeRoute(), SettingsRoute()],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Material(

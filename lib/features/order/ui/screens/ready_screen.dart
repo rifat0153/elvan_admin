@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/notifer/ready_screen_notifier.dart';
@@ -14,6 +15,8 @@ import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+@RoutePage()
 
 class ReadyScreen extends HookConsumerWidget {
   const ReadyScreen({Key? key}) : super(key: key);

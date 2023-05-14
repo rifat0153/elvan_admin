@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/foods/ui/notifier/food_notifier.dart';
 import 'package:elvan_admin/features/foods/ui/screen/widgets/add_on_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
@@ -12,6 +13,8 @@ import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+@RoutePage()
 
 class FoodsScreen extends HookConsumerWidget {
   const FoodsScreen({Key? key}) : super(key: key);

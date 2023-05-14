@@ -1,288 +1,234 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:flutter/material.dart' as _i12;
+import 'package:elvan_admin/features/auth/ui/screens/login_screen.dart' as _i8;
+import 'package:elvan_admin/features/foods/ui/screen/foods_screen.dart' as _i10;
+import 'package:elvan_admin/features/order/ui/screens/delivered_screen.dart'
+    as _i6;
+import 'package:elvan_admin/features/order/ui/screens/new_order_screen.dart'
+    as _i7;
+import 'package:elvan_admin/features/order/ui/screens/processing_screen.dart'
+    as _i5;
+import 'package:elvan_admin/features/order/ui/screens/ready_screen.dart' as _i4;
+import 'package:elvan_admin/features/tabs/ui/screens/home_screen.dart' as _i3;
+import 'package:elvan_admin/features/tabs/ui/screens/left_tab_screent.dart'
+    as _i2;
+import 'package:elvan_admin/features/tabs/ui/screens/settings_screen.dart'
+    as _i1;
+import 'package:elvan_admin/features/timer/ui/screens/timer_screen.dart' as _i9;
 
-import '../../features/auth/ui/screens/login_screen.dart' as _i1;
-import '../../features/foods/ui/screen/foods_screen.dart' as _i9;
-import '../../features/order/ui/screens/delivered_screen.dart' as _i8;
-import '../../features/order/ui/screens/new_order_screen.dart' as _i5;
-import '../../features/order/ui/screens/processing_screen.dart' as _i6;
-import '../../features/order/ui/screens/ready_screen.dart' as _i7;
-import '../../features/tabs/ui/screens/home_screen.dart' as _i3;
-import '../../features/tabs/ui/screens/left_tab_screent.dart' as _i2;
-import '../../features/tabs/ui/screens/settings_screen.dart' as _i4;
-import '../../features/timer/ui/screens/timer_screen.dart' as _i10;
-import 'route_gaurds.dart' as _i13;
-
-class AppRouter extends _i11.RootStackRouter {
-  AppRouter({
-    _i12.GlobalKey<_i12.NavigatorState>? navigatorKey,
-    required this.authGuard,
-  }) : super(navigatorKey);
-
-  final _i13.AuthGuard authGuard;
+abstract class $AppRouter extends _i11.RootStackRouter {
+  $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i11.PageFactory> pagesMap = {
-    Login.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    SettingsRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.LoginScreen(),
+        child: const _i1.SettingsScreen(),
       );
     },
-    Dashboard.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    LeftTabRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.LeftTabScreen(),
       );
     },
-    Home.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    HomeRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.HomeScreen(),
       );
     },
-    Settings.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    ReadyRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.SettingsScreen(),
-      );
-    },
-    NewOrderRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i5.NewOrderScreen(),
+        child: const _i4.ReadyScreen(),
       );
     },
     ProcceingRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.ProcceingScreen(),
-      );
-    },
-    ReadyRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i7.ReadyScreen(),
+        child: const _i5.ProcceingScreen(),
       );
     },
     DeliveredRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.DeliveredScreen(),
+        child: const _i6.DeliveredScreen(),
       );
     },
-    FoodsRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    NewOrderRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.FoodsScreen(),
+        child: const _i7.NewOrderScreen(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.LoginScreen(),
       );
     },
     TimerRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.TimerScreen(),
+        child: const _i9.TimerScreen(),
+      );
+    },
+    FoodsRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i10.FoodsScreen(),
       );
     },
   };
-
-  @override
-  List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/dashboard',
-          fullMatch: true,
-        ),
-        _i11.RouteConfig(
-          Login.name,
-          path: '/login',
-        ),
-        _i11.RouteConfig(
-          Dashboard.name,
-          path: '/dashboard',
-          guards: [authGuard],
-          children: [
-            _i11.RouteConfig(
-              Home.name,
-              path: 'home',
-              parent: Dashboard.name,
-              children: [
-                _i11.RouteConfig(
-                  NewOrderRoute.name,
-                  path: '',
-                  parent: Home.name,
-                ),
-                _i11.RouteConfig(
-                  ProcceingRoute.name,
-                  path: 'processing',
-                  parent: Home.name,
-                ),
-                _i11.RouteConfig(
-                  ReadyRoute.name,
-                  path: 'ready',
-                  parent: Home.name,
-                ),
-                _i11.RouteConfig(
-                  DeliveredRoute.name,
-                  path: 'delivered',
-                  parent: Home.name,
-                ),
-              ],
-            ),
-            _i11.RouteConfig(
-              Settings.name,
-              path: 'settings',
-              parent: Dashboard.name,
-              children: [
-                _i11.RouteConfig(
-                  FoodsRoute.name,
-                  path: 'foods',
-                  parent: Settings.name,
-                ),
-                _i11.RouteConfig(
-                  TimerRoute.name,
-                  path: 'timer',
-                  parent: Settings.name,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ];
 }
 
 /// generated route for
-/// [_i1.LoginScreen]
-class Login extends _i11.PageRouteInfo<void> {
-  const Login()
+/// [_i1.SettingsScreen]
+class SettingsRoute extends _i11.PageRouteInfo<void> {
+  const SettingsRoute({List<_i11.PageRouteInfo>? children})
       : super(
-          Login.name,
-          path: '/login',
+          SettingsRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'Login';
+  static const String name = 'SettingsRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.LeftTabScreen]
-class Dashboard extends _i11.PageRouteInfo<void> {
-  const Dashboard({List<_i11.PageRouteInfo>? children})
+class LeftTabRoute extends _i11.PageRouteInfo<void> {
+  const LeftTabRoute({List<_i11.PageRouteInfo>? children})
       : super(
-          Dashboard.name,
-          path: '/dashboard',
+          LeftTabRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'Dashboard';
+  static const String name = 'LeftTabRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.HomeScreen]
-class Home extends _i11.PageRouteInfo<void> {
-  const Home({List<_i11.PageRouteInfo>? children})
+class HomeRoute extends _i11.PageRouteInfo<void> {
+  const HomeRoute({List<_i11.PageRouteInfo>? children})
       : super(
-          Home.name,
-          path: 'home',
+          HomeRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'Home';
+  static const String name = 'HomeRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.SettingsScreen]
-class Settings extends _i11.PageRouteInfo<void> {
-  const Settings({List<_i11.PageRouteInfo>? children})
-      : super(
-          Settings.name,
-          path: 'settings',
-          initialChildren: children,
-        );
-
-  static const String name = 'Settings';
-}
-
-/// generated route for
-/// [_i5.NewOrderScreen]
-class NewOrderRoute extends _i11.PageRouteInfo<void> {
-  const NewOrderRoute()
-      : super(
-          NewOrderRoute.name,
-          path: '',
-        );
-
-  static const String name = 'NewOrderRoute';
-}
-
-/// generated route for
-/// [_i6.ProcceingScreen]
-class ProcceingRoute extends _i11.PageRouteInfo<void> {
-  const ProcceingRoute()
-      : super(
-          ProcceingRoute.name,
-          path: 'processing',
-        );
-
-  static const String name = 'ProcceingRoute';
-}
-
-/// generated route for
-/// [_i7.ReadyScreen]
+/// [_i4.ReadyScreen]
 class ReadyRoute extends _i11.PageRouteInfo<void> {
-  const ReadyRoute()
+  const ReadyRoute({List<_i11.PageRouteInfo>? children})
       : super(
           ReadyRoute.name,
-          path: 'ready',
+          initialChildren: children,
         );
 
   static const String name = 'ReadyRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.DeliveredScreen]
+/// [_i5.ProcceingScreen]
+class ProcceingRoute extends _i11.PageRouteInfo<void> {
+  const ProcceingRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          ProcceingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProcceingRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.DeliveredScreen]
 class DeliveredRoute extends _i11.PageRouteInfo<void> {
-  const DeliveredRoute()
+  const DeliveredRoute({List<_i11.PageRouteInfo>? children})
       : super(
           DeliveredRoute.name,
-          path: 'delivered',
+          initialChildren: children,
         );
 
   static const String name = 'DeliveredRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.FoodsScreen]
-class FoodsRoute extends _i11.PageRouteInfo<void> {
-  const FoodsRoute()
+/// [_i7.NewOrderScreen]
+class NewOrderRoute extends _i11.PageRouteInfo<void> {
+  const NewOrderRoute({List<_i11.PageRouteInfo>? children})
       : super(
-          FoodsRoute.name,
-          path: 'foods',
+          NewOrderRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'FoodsRoute';
+  static const String name = 'NewOrderRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.TimerScreen]
+/// [_i8.LoginScreen]
+class LoginRoute extends _i11.PageRouteInfo<void> {
+  const LoginRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.TimerScreen]
 class TimerRoute extends _i11.PageRouteInfo<void> {
-  const TimerRoute()
+  const TimerRoute({List<_i11.PageRouteInfo>? children})
       : super(
           TimerRoute.name,
-          path: 'timer',
+          initialChildren: children,
         );
 
   static const String name = 'TimerRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.FoodsScreen]
+class FoodsRoute extends _i11.PageRouteInfo<void> {
+  const FoodsRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          FoodsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FoodsRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
