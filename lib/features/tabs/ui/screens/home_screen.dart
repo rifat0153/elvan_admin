@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/childs/child_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+@RoutePage()
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -12,7 +14,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final menuState = ref.watch(menuProvider);
 
-    return AutoTabsRouter(
+    return AutoTabsRouter.tabBar(
       routes: const [
         NewOrderRoute(),
         ProcceingRoute(),

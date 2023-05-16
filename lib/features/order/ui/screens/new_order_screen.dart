@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/order_item.dart';
@@ -13,6 +14,8 @@ import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+@RoutePage()
 
 class NewOrderScreen extends HookConsumerWidget {
   const NewOrderScreen({Key? key}) : super(key: key);

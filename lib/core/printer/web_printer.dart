@@ -37,11 +37,11 @@ class Webprinter extends Notifier<void> {
   void build() {}
 
   printInvoice(
-      { required HeaderPrinter headerPrinter,
+      {required HeaderPrinter headerPrinter,
       required Order order,
       ElvanUser? user}) async {
     final doc = pw.Document();
-    var image = await imageFromAssetBundle(headerPrinter?.imageUrl ?? "" );
+    var image = await imageFromAssetBundle(headerPrinter?.imageUrl ?? "");
     final today = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd  kk:mm').format(today);
     doc.addPage(pw.Page(
@@ -56,6 +56,32 @@ class Webprinter extends Notifier<void> {
           context,
           headerPrinter,
           image,
+          order,
+          formattedDate,
+          user,
+        );
+      },
+    ));
+
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => doc.save(),
+    );
+  }
+
+  printKitchen({
+    required Order order,
+    ElvanUser? user,
+  }) async {
+    final doc = pw.Document();
+    final today = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd  kk:mm').format(
+      order.createdAt?.toDate() ?? today,
+    );
+    doc.addPage(pw.Page(
+      pageFormat: PdfPageFormat.roll80,
+      build: (context) {
+        return _buildKitchen(
+          context,
           order,
           formattedDate,
           user,
@@ -83,7 +109,6 @@ class Webprinter extends Notifier<void> {
             pw.Expanded(
               child: pw.Column(
                 children: [
-                  
                   // pw.Image(image, width: 80, height: 30),
                   // pw.SizedBox(height: 10),
                   // pw.Text("${printer.address}",
@@ -95,7 +120,7 @@ class Webprinter extends Notifier<void> {
                   pw.Text("${printer.website}",
                       textAlign: pw.TextAlign.center, style: bodyStyle),
                   pw.SizedBox(height: 10),
-                //  user != null ? customerInfo(user) : pw.Container(),
+                  //  user != null ? customerInfo(user) : pw.Container(),
 
                   pw.SizedBox(height: 10),
 
@@ -158,54 +183,103 @@ class Webprinter extends Notifier<void> {
     );
   }
 
+  _buildKitchen(
+    pw.Context context,
+    Order order,
+    String date,
+    ElvanUser? user,
+  ) {
+    return pw.Column(
+      children: [
+        pw.Row(
+          crossAxisAlignment: pw.CrossAxisAlignment.center,
+          children: [
+            pw.Expanded(
+              child: pw.Column(
+                children: [
+                  pw.Text("www.elvan.nu",
+                      textAlign: pw.TextAlign.center, style: bodyStyle),
+                  pw.Text(date,
+                      textAlign: pw.TextAlign.center, style: bodyStyle),
+                  pw.SizedBox(height: 10),
+                  pw.SizedBox(height: 10),
+
+                  pw.Row(
+                      mainAxisAlignment: pw.MainAxisAlignment.start,
+                      children: [
+                        pw.Text("#${order.id}",
+                            textAlign: pw.TextAlign.center,
+                            style: headlineStyle),
+                      ]),
+                  pw.SizedBox(height: 10),
+                  // pw.Container(
+                  //   decoration: pw.BoxDecoration(
+                  //     border: pw.Border(
+                  //       bottom: pw.BorderSide(
+                  //         color: baseColor,
+                  //         width: .5,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  pw.Divider(height: 2, color: PdfColors.black),
+                  pw.SizedBox(height: 10),
+                  pw.Column(
+                      children: order.items.map((e) {
+                    return _foodItemKichen(item: e);
+                  }).toList()),
+                  pw.SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   pw.Widget customerInfo(ElvanUser user) {
     return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      children: [
-      pw.Text(
-        "# Customer:",
-        style: pw.TextStyle(
-            fontSize: 14,
-            fontWeight: pw.FontWeight.bold,
-            color: PdfColors.black),
-      ),
-      pw.Row(children: [
-        pw.Text(
-          "Name : ",
-          style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black),
-        ),
-        pw.Text(
-          "${user.name} ",
-          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
-        ),
-      ]),
-      pw.Row(children: [
-        pw.Text(
-          "Email : ",
-          style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black),
-        ),
-        pw.Text(
-          "${user.email} ",
-          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
-        ),
-      ]),
-      pw.Row(children: [
-        pw.Text(
-          "Mobile Number : ",
-          style: const pw.TextStyle(
-              fontSize: 11,
-              color: PdfColors.black),
-        ),
-        pw.Text(
-          "${user.phone} ",
-          style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
-        ),
-      ])
-    ]);
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Text(
+            "# Customer:",
+            style: pw.TextStyle(
+                fontSize: 14,
+                fontWeight: pw.FontWeight.bold,
+                color: PdfColors.black),
+          ),
+          pw.Row(children: [
+            pw.Text(
+              "Name : ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+            pw.Text(
+              "${user.name} ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+          ]),
+          pw.Row(children: [
+            pw.Text(
+              "Email : ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+            pw.Text(
+              "${user.email} ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+          ]),
+          pw.Row(children: [
+            pw.Text(
+              "Mobile Number : ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+            pw.Text(
+              "${user.phone} ",
+              style: const pw.TextStyle(fontSize: 11, color: PdfColors.black),
+            ),
+          ])
+        ]);
   }
 
   pw.Widget _itemList(pw.Context context, Order order) {
@@ -252,7 +326,9 @@ class Webprinter extends Notifier<void> {
     ]);
   }
 
-  pw.Widget _foodItem({required CartItem item}) {
+  pw.Widget _foodItem({
+    required CartItem item,
+  }) {
     return pw.Column(
       children: [
         pw.Row(
@@ -343,6 +419,101 @@ class Webprinter extends Notifier<void> {
                   color: PdfColors.black,
                 ),
               )
+            ]),
+        pw.Divider()
+      ],
+    );
+  }
+
+  pw.Widget _foodItemKichen({
+    required CartItem item,
+  }) {
+    return pw.Column(
+      children: [
+        pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.SizedBox(
+                width: 100,
+                child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        item.foodItem.title,
+                        style: const pw.TextStyle(
+                          fontSize: 12,
+                          color: PdfColors.black,
+                        ),
+                      ),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
+                        child: pw.Text(
+                          "# Instructions:",
+                          style: pw.TextStyle(
+                              fontSize: 11,
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold),
+                        ),
+                      ),
+                      item.instructions.isNotEmpty
+                          ? pw.Padding(
+                              padding: const pw.EdgeInsets.only(left: 10),
+                              child: item.instructions.isNotEmpty
+                                  ? pw.Column(
+                                      children: item.instructions
+                                          .map(
+                                            (e) => pw.Text(
+                                              "- $e",
+                                              style: const pw.TextStyle(
+                                                fontSize: 10,
+                                                color: PdfColors.black,
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    )
+                                  : pw.Container())
+                          : pw.Padding(
+                              padding: const pw.EdgeInsets.only(left: 20),
+                              child: pw.Text(
+                                " - N/A",
+                                style: const pw.TextStyle(
+                                  fontSize: 10,
+                                  color: PdfColors.black,
+                                ),
+                              ),
+                            ),
+                      pw.Padding(
+                        padding: const pw.EdgeInsets.only(top: 10, bottom: 10),
+                        child: pw.Text(
+                          "# Build Step:",
+                          style: pw.TextStyle(
+                              fontSize: 11,
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold),
+                        ),
+                      ),
+                      pw.Padding(
+                          padding: const pw.EdgeInsets.only(left: 10),
+                          child: item.buildSteps.isNotEmpty
+                              ? pw.Column(
+                                  children: item.buildSteps
+                                      .map((e) => _buildSteps(
+                                          buildStep: e,
+                                          buildsteps: item.buildSteps))
+                                      .toList(),
+                                )
+                              : pw.Container())
+                    ]),
+              ),
+              pw.Text(
+                "X ${item.quantity}",
+                style: const pw.TextStyle(
+                  fontSize: 11,
+                  color: PdfColors.black,
+                ),
+              ),
             ]),
         pw.Divider()
       ],

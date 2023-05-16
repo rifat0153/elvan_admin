@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/timer/ui/notifier/setting_notifier.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+@RoutePage()
 class TimerScreen extends HookConsumerWidget {
   const TimerScreen({Key? key}) : super(key: key);
 

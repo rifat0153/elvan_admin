@@ -44,13 +44,7 @@ void newOrderAccept(
 
   final printer = ref.read(webPrinterNotifierProvider.notifier);
 
-  await printer.printInvoice(
-    headerPrinter: const HeaderPrinter(
-        address: "701 Preston Ave,Pasadena,Texas",
-        imageUrl: AppAssets.applogo,
-        phone: "(713) 473-2503",
-        title: "ELVAN",
-        website: "elvan.com"),
+  await printer.printKitchen(
     order: order,
   );
 }

@@ -57,13 +57,7 @@ class OrderDetatils extends HookConsumerWidget {
                           ref.read(webPrinterNotifierProvider.notifier);
                       final user =
                           ref.read(getCustomerProvider(state.order!.userId));
-                      printer.printInvoice(
-                        headerPrinter: const HeaderPrinter(
-                            address: "701 Preston Ave,Pasadena,Texas",
-                            imageUrl: AppAssets.applogo,
-                            phone: "(713) 473-2503",
-                            title: "ELVAN",
-                            website: "elvan.nu"),
+                      printer.printKitchen(
                         order: state.order!,
                         user: user.value,
                       );
@@ -206,7 +200,12 @@ class OrderDetatils extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              state.order?.status.status == OrderStatus.pending.status
+              state.order?.status.status == OrderStatus.pending.status ||
+                      state.order?.status.status ==
+                          OrderStatus.delivered.status ||
+                      state.order?.status.status ==
+                          OrderStatus.rejected.status ||
+                      state.order?.status.status == OrderStatus.cancelled.status
                   ? Container()
                   : const OrderDeatilsProcessTimer(),
             ],

@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/order/ui/notifer/delivered_order_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_item/delivered_item.dart';
@@ -13,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+@RoutePage()
 
 class DeliveredScreen extends HookConsumerWidget {
   const DeliveredScreen({Key? key}) : super(key: key);
