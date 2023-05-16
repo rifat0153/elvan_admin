@@ -57,13 +57,7 @@ class OrderDetatils extends HookConsumerWidget {
                           ref.read(webPrinterNotifierProvider.notifier);
                       final user =
                           ref.read(getCustomerProvider(state.order!.userId));
-                      printer.printInvoice(
-                        headerPrinter: const HeaderPrinter(
-                            address: "701 Preston Ave,Pasadena,Texas",
-                            imageUrl: AppAssets.applogo,
-                            phone: "(713) 473-2503",
-                            title: "ELVAN",
-                            website: "elvan.nu"),
+                      printer.printKitchen(
                         order: state.order!,
                         user: user.value,
                       );
