@@ -9,7 +9,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChildHomeScreen extends HookConsumerWidget {
   final Widget child;
-  const ChildHomeScreen({Key? key, required this.menuState, required this.tabsRouter, required this.child}) : super(key: key);
+  const ChildHomeScreen({
+    Key? key,
+    required this.menuState,
+    required this.tabsRouter,
+    required this.child,
+  }) : super(key: key);
 
   final MenuState menuState;
   final TabsRouter tabsRouter;
@@ -21,17 +26,16 @@ class ChildHomeScreen extends HookConsumerWidget {
     return Scaffold(
       body: Row(
         children: [
-          menuState.isOpenMenu
-              ? Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: AppColors.grayF7,
-                    child: HomeMenu(
-                      router: tabsRouter,
-                    ),
-                  ),
-                )
-              : Container(),
+          if (menuState.isOpenMenu)
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: AppColors.grayF7,
+                child: HomeMenu(
+                  router: tabsRouter,
+                ),
+              ),
+            ),
           Expanded(
             flex: menuState.isOpenMenu ? 7 : 8,
             child: Container(
@@ -39,12 +43,11 @@ class ChildHomeScreen extends HookConsumerWidget {
               child: child,
             ),
           ),
-          orderDetails.isOpenDetatils
-              ? const Expanded(
-                  flex: 2,
-                  child: OrderDetatils(),
-                )
-              : Container()
+          if (orderDetails.isDetailsPanelOpen)
+            const Expanded(
+              flex: 2,
+              child: OrderDetatils(),
+            )
         ],
       ),
     );

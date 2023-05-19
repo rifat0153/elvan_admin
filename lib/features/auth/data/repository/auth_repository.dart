@@ -9,6 +9,7 @@ abstract class AuthRepository {
   });
 
   Future<Result<ElvanUserDto>> getElvanUser({required String userId});
+
   Future<ElvanUserDto?> getUser({required String userId});
 
   Future<User?> signInAnyonymously();

@@ -17,8 +17,9 @@ class FoodUsecase {
   const FoodUsecase({required this.foodRepository});
 
   Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodStream() async {
-    final resultOrderdro = await foodRepository.getFoods();
-    return resultOrderdro.when(
+    final resultOrderdto = await foodRepository.getFoods();
+
+    return resultOrderdto.when(
       success: (data) {
         return Result.success(data);
       },
@@ -28,8 +29,11 @@ class FoodUsecase {
     );
   }
 
-  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodStreamPagination({required DocumentSnapshot lastItem}) async {
+  Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoodStreamPagination({
+    required DocumentSnapshot lastItem,
+  }) async {
     final resultOrderdro = await foodRepository.getFoodPagination(lastItem: lastItem);
+
     return resultOrderdro.when(
       success: (data) {
         return Result.success(data);
@@ -40,7 +44,10 @@ class FoodUsecase {
     );
   }
 
-  Future<Result<String>> setActiveFood({required String itemId, required bool isActive}) {
+  Future<Result<String>> setActiveFood({
+    required String itemId,
+    required bool isActive,
+  }) {
     return foodRepository.setActiveFood(itemId, isActive);
   }
 }

@@ -46,7 +46,7 @@ class AuthNotifier extends Notifier<AuthState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = state.copyWith(loading: true);
-        final result = authUseCase.register(name: "", email: email, password: password);
+        final _ = authUseCase.register(name: "", email: email, password: password);
       },
       resetPassword: (email) {},
       goToRegisterScreen: () {

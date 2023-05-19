@@ -4,6 +4,7 @@ import 'package:elvan_admin/features/order/domain/repository/order_repository.da
 import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:elvan_shared/dtos/order/order_dto.dart';
 import 'package:elvan_shared/shared/constants/constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 final orderRepositoryProvider = Provider<OrderRepository>((ref) {
@@ -70,12 +71,13 @@ class OrderRpositoryImpl implements OrderRepository {
   }) {
     final today = DateTime.now();
     int openHour = 1;
-    int closeHour = 23;
+    // int closeHour = 23;
     final openTime = DateTime(today.year, today.month, today.day, openHour, 00);
-    final closeTime = DateTime(today.year, today.month, today.day, closeHour, 59);
+    // final closeTime = DateTime(today.year, today.month, today.day, closeHour, 59);
     final openTimestamp = Timestamp.fromDate(openTime);
     print("---------${today.hour}}--$openTimestamp");
-    final closeTimestamp = Timestamp.fromDate(closeTime);
+    // final closeTimestamp = Timestamp.fromDate(closeTime);
+
     return firebaseFirestore
         .collection(
           Constants.firebaseCollectionOrders,
@@ -125,12 +127,12 @@ class OrderRpositoryImpl implements OrderRepository {
   }) {
     final today = DateTime.now();
     int openHour = 1;
-    int closeHour = 23;
+    // int closeHour = 23;
     final openTime = DateTime(today.year, today.month, today.day, openHour, 00);
-    final closeTime = DateTime(today.year, today.month, today.day, closeHour, 59);
+    // final closeTime = DateTime(today.year, today.month, today.day, closeHour, 59);
     final openTimestamp = Timestamp.fromDate(openTime);
-    print("---------${today.hour}}--$openTimestamp");
-    final closeTimestamp = Timestamp.fromDate(closeTime);
+    debugPrint("---------${today.hour}}--$openTimestamp");
+    // final closeTimestamp = Timestamp.fromDate(closeTime);
 
     return firebaseFirestore
         .collection(

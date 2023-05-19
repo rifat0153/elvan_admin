@@ -18,22 +18,31 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DeliveredState {
   bool get loading => throw _privateConstructorUsedError;
   bool get haseMore => throw _privateConstructorUsedError;
-  List<DocumentSnapshot<Map<String, dynamic>>> get orders => throw _privateConstructorUsedError;
+  List<DocumentSnapshot<Map<String, dynamic>>> get orders =>
+      throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DeliveredStateCopyWith<DeliveredState> get copyWith => throw _privateConstructorUsedError;
+  $DeliveredStateCopyWith<DeliveredState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DeliveredStateCopyWith<$Res> {
-  factory $DeliveredStateCopyWith(DeliveredState value, $Res Function(DeliveredState) then) = _$DeliveredStateCopyWithImpl<$Res, DeliveredState>;
+  factory $DeliveredStateCopyWith(
+          DeliveredState value, $Res Function(DeliveredState) then) =
+      _$DeliveredStateCopyWithImpl<$Res, DeliveredState>;
   @useResult
-  $Res call({bool loading, bool haseMore, List<DocumentSnapshot<Map<String, dynamic>>> orders, int page});
+  $Res call(
+      {bool loading,
+      bool haseMore,
+      List<DocumentSnapshot<Map<String, dynamic>>> orders,
+      int page});
 }
 
 /// @nodoc
-class _$DeliveredStateCopyWithImpl<$Res, $Val extends DeliveredState> implements $DeliveredStateCopyWith<$Res> {
+class _$DeliveredStateCopyWithImpl<$Res, $Val extends DeliveredState>
+    implements $DeliveredStateCopyWith<$Res> {
   _$DeliveredStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -71,16 +80,27 @@ class _$DeliveredStateCopyWithImpl<$Res, $Val extends DeliveredState> implements
 }
 
 /// @nodoc
-abstract class _$$_DeliveredStateCopyWith<$Res> implements $DeliveredStateCopyWith<$Res> {
-  factory _$$_DeliveredStateCopyWith(_$_DeliveredState value, $Res Function(_$_DeliveredState) then) = __$$_DeliveredStateCopyWithImpl<$Res>;
+abstract class _$$_DeliveredStateCopyWith<$Res>
+    implements $DeliveredStateCopyWith<$Res> {
+  factory _$$_DeliveredStateCopyWith(
+          _$_DeliveredState value, $Res Function(_$_DeliveredState) then) =
+      __$$_DeliveredStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool haseMore, List<DocumentSnapshot<Map<String, dynamic>>> orders, int page});
+  $Res call(
+      {bool loading,
+      bool haseMore,
+      List<DocumentSnapshot<Map<String, dynamic>>> orders,
+      int page});
 }
 
 /// @nodoc
-class __$$_DeliveredStateCopyWithImpl<$Res> extends _$DeliveredStateCopyWithImpl<$Res, _$_DeliveredState> implements _$$_DeliveredStateCopyWith<$Res> {
-  __$$_DeliveredStateCopyWithImpl(_$_DeliveredState _value, $Res Function(_$_DeliveredState) _then) : super(_value, _then);
+class __$$_DeliveredStateCopyWithImpl<$Res>
+    extends _$DeliveredStateCopyWithImpl<$Res, _$_DeliveredState>
+    implements _$$_DeliveredStateCopyWith<$Res> {
+  __$$_DeliveredStateCopyWithImpl(
+      _$_DeliveredState _value, $Res Function(_$_DeliveredState) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -114,7 +134,12 @@ class __$$_DeliveredStateCopyWithImpl<$Res> extends _$DeliveredStateCopyWithImpl
 /// @nodoc
 
 class _$_DeliveredState implements _DeliveredState {
-  const _$_DeliveredState({this.loading = false, this.haseMore = false, final List<DocumentSnapshot<Map<String, dynamic>>> orders = const [], this.page = 1}) : _orders = orders;
+  const _$_DeliveredState(
+      {this.loading = false,
+      this.haseMore = false,
+      final List<DocumentSnapshot<Map<String, dynamic>>> orders = const [],
+      this.page = 1})
+      : _orders = orders;
 
   @override
   @JsonKey()
@@ -146,22 +171,29 @@ class _$_DeliveredState implements _DeliveredState {
         (other.runtimeType == runtimeType &&
             other is _$_DeliveredState &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.haseMore, haseMore) || other.haseMore == haseMore) &&
+            (identical(other.haseMore, haseMore) ||
+                other.haseMore == haseMore) &&
             const DeepCollectionEquality().equals(other._orders, _orders) &&
             (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, haseMore, const DeepCollectionEquality().hash(_orders), page);
+  int get hashCode => Object.hash(runtimeType, loading, haseMore,
+      const DeepCollectionEquality().hash(_orders), page);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeliveredStateCopyWith<_$_DeliveredState> get copyWith => __$$_DeliveredStateCopyWithImpl<_$_DeliveredState>(this, _$identity);
+  _$$_DeliveredStateCopyWith<_$_DeliveredState> get copyWith =>
+      __$$_DeliveredStateCopyWithImpl<_$_DeliveredState>(this, _$identity);
 }
 
 abstract class _DeliveredState implements DeliveredState {
-  const factory _DeliveredState({final bool loading, final bool haseMore, final List<DocumentSnapshot<Map<String, dynamic>>> orders, final int page}) = _$_DeliveredState;
+  const factory _DeliveredState(
+      {final bool loading,
+      final bool haseMore,
+      final List<DocumentSnapshot<Map<String, dynamic>>> orders,
+      final int page}) = _$_DeliveredState;
 
   @override
   bool get loading;
@@ -173,5 +205,6 @@ abstract class _DeliveredState implements DeliveredState {
   int get page;
   @override
   @JsonKey(ignore: true)
-  _$$_DeliveredStateCopyWith<_$_DeliveredState> get copyWith => throw _privateConstructorUsedError;
+  _$$_DeliveredStateCopyWith<_$_DeliveredState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

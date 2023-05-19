@@ -13,39 +13,31 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   }
 
   setOrder() {
-    state = state.copyWith(isOpenDetatils: !state.isOpenDetatils);
+    // state = state.copyWith(isDetailsPanelOpen: !state.isDetailsPanelOpen);
+    state = state.togglePanel();
   }
 
-  Future<void> selecteItem({
+  void selecteItem({
     required BuildContext context,
     required Order order,
-  }) async {
-    if (state.order != null) {
-      if (state.order!.id == order.id) {
-        state = state.copyWith(
-          order: order,
-          isOpenDetatils: !state.isOpenDetatils,
-        );
-      } else {
-        state = state.copyWith(
-          order: order,
-          isOpenDetatils: true,
-        );
-      }
+  }) {
+    OrderDetatilsState nextState = state;
+
+    nextState = state.setOrder(order);
+
+    if (state.order?.id == order.id) {
+      nextState = state.togglePanel();
     } else {
-      state = state.copyWith(
-        isOpenDetatils: !state.isOpenDetatils,
-        order: order,
-      );
+      nextState = state.openPanel();
     }
 
-    state = state.copyWith(
-      xOffset: state.isOpenDetatils ? 288 : 0,
-    );
+    nextState = nextState.updateXOffset();
+
+    state = nextState;
   }
 
   void close() {
-    state = state.copyWith(isOpenDetatils: false);
+    state = state.closePanel();
   }
 
   setDefaultTimer(Order order) async {

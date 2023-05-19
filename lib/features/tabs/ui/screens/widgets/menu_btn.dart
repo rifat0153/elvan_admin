@@ -6,15 +6,24 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MenuBtn extends HookConsumerWidget {
   final String title;
-  final void Function() onClick;
   final int count;
   final int? selectedIndex;
   final int? index;
-  const MenuBtn({Key? key, this.count = 0, required this.onClick, required this.title, this.selectedIndex, required this.index}) : super(key: key);
+  final void Function() onClick;
+
+  const MenuBtn({
+    Key? key,
+    this.count = 0,
+    required this.onClick,
+    required this.title,
+    this.selectedIndex,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isClick = useState<bool>(false);
+
     return InkWell(
       onTap: (() {
         isClick.value = !isClick.value;
@@ -35,16 +44,23 @@ class MenuBtn extends HookConsumerWidget {
                           ? AppColors.primaryRed
                           : AppColors.gray),
             ),
-            count != 0
-                ? Container(
-                    height: 16,
-                    constraints: const BoxConstraints(minWidth: 27),
-                    decoration: BoxDecoration(color: AppColors.primaryRed, borderRadius: BorderRadius.circular(AppSize.radiusMD)),
-                    child: Center(
-                      child: Text("$count", style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.white)),
-                    ),
-                  )
-                : Container()
+            if (count > 0)
+              Container(
+                height: 16,
+                constraints: const BoxConstraints(minWidth: 27),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryRed,
+                  borderRadius: BorderRadius.circular(AppSize.radiusMD),
+                ),
+                child: Center(
+                  child: Text(
+                    "$count",
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: AppColors.white,
+                        ),
+                  ),
+                ),
+              )
           ],
         ),
       ),

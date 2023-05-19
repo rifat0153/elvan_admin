@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:elvan_admin/app/router/navigation_provider.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/provider/order_count_provider.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_btn.dart';
@@ -14,9 +13,12 @@ class HomeMenu extends HookConsumerWidget {
     Key? key,
   }) : super(key: key);
 
+  static const double topPadding = 5;
+  static const double leftPadding = 24;
+  static const double rightPadding = 10;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigation = ref.watch(navigatorProvider.notifier);
     final newOrderState = ref.watch(newOrderCountProvider);
     final processState = ref.watch(processCountProvider);
     final readyState = ref.watch(readyCountProvider);
@@ -37,7 +39,7 @@ class HomeMenu extends HookConsumerWidget {
 
         //************ NewOrder */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
+          padding: const EdgeInsets.only(top: topPadding, left: 24, right: 10),
           child: MenuBtn(
               index: 0,
               count: newOrderState,
@@ -50,7 +52,7 @@ class HomeMenu extends HookConsumerWidget {
         ),
         //************ Processing */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
+          padding: const EdgeInsets.only(top: topPadding, left: leftPadding, right: rightPadding),
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 1,
@@ -63,7 +65,7 @@ class HomeMenu extends HookConsumerWidget {
         ),
         //************ Ready */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
+          padding: const EdgeInsets.only(top: topPadding, left: leftPadding, right: rightPadding),
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 2,
@@ -76,7 +78,7 @@ class HomeMenu extends HookConsumerWidget {
         ),
         //************ Delivered */
         Padding(
-          padding: const EdgeInsets.only(top: 5, left: 24, right: 10),
+          padding: const EdgeInsets.only(top: topPadding, left: leftPadding, right: rightPadding),
           child: MenuBtn(
               selectedIndex: router.activeIndex,
               index: 3,

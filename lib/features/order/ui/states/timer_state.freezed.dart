@@ -21,18 +21,22 @@ mixin _$TimerState {
   Duration get duration => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TimerStateCopyWith<TimerState> get copyWith => throw _privateConstructorUsedError;
+  $TimerStateCopyWith<TimerState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TimerStateCopyWith<$Res> {
-  factory $TimerStateCopyWith(TimerState value, $Res Function(TimerState) then) = _$TimerStateCopyWithImpl<$Res, TimerState>;
+  factory $TimerStateCopyWith(
+          TimerState value, $Res Function(TimerState) then) =
+      _$TimerStateCopyWithImpl<$Res, TimerState>;
   @useResult
   $Res call({Timer? countdownTimer, dynamic isRunnig, Duration duration});
 }
 
 /// @nodoc
-class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState> implements $TimerStateCopyWith<$Res> {
+class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
+    implements $TimerStateCopyWith<$Res> {
   _$TimerStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -65,16 +69,23 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState> implements $TimerS
 }
 
 /// @nodoc
-abstract class _$$_TimerStateCopyWith<$Res> implements $TimerStateCopyWith<$Res> {
-  factory _$$_TimerStateCopyWith(_$_TimerState value, $Res Function(_$_TimerState) then) = __$$_TimerStateCopyWithImpl<$Res>;
+abstract class _$$_TimerStateCopyWith<$Res>
+    implements $TimerStateCopyWith<$Res> {
+  factory _$$_TimerStateCopyWith(
+          _$_TimerState value, $Res Function(_$_TimerState) then) =
+      __$$_TimerStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Timer? countdownTimer, dynamic isRunnig, Duration duration});
 }
 
 /// @nodoc
-class __$$_TimerStateCopyWithImpl<$Res> extends _$TimerStateCopyWithImpl<$Res, _$_TimerState> implements _$$_TimerStateCopyWith<$Res> {
-  __$$_TimerStateCopyWithImpl(_$_TimerState _value, $Res Function(_$_TimerState) _then) : super(_value, _then);
+class __$$_TimerStateCopyWithImpl<$Res>
+    extends _$TimerStateCopyWithImpl<$Res, _$_TimerState>
+    implements _$$_TimerStateCopyWith<$Res> {
+  __$$_TimerStateCopyWithImpl(
+      _$_TimerState _value, $Res Function(_$_TimerState) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -100,7 +111,10 @@ class __$$_TimerStateCopyWithImpl<$Res> extends _$TimerStateCopyWithImpl<$Res, _
 /// @nodoc
 
 class _$_TimerState implements _TimerState {
-  const _$_TimerState({this.countdownTimer, this.isRunnig = false, this.duration = const Duration(minutes: 30)});
+  const _$_TimerState(
+      {this.countdownTimer,
+      this.isRunnig = false,
+      this.duration = const Duration(minutes: 30)});
 
   @override
   final Timer? countdownTimer;
@@ -121,22 +135,29 @@ class _$_TimerState implements _TimerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TimerState &&
-            (identical(other.countdownTimer, countdownTimer) || other.countdownTimer == countdownTimer) &&
+            (identical(other.countdownTimer, countdownTimer) ||
+                other.countdownTimer == countdownTimer) &&
             const DeepCollectionEquality().equals(other.isRunnig, isRunnig) &&
-            (identical(other.duration, duration) || other.duration == duration));
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, countdownTimer, const DeepCollectionEquality().hash(isRunnig), duration);
+  int get hashCode => Object.hash(runtimeType, countdownTimer,
+      const DeepCollectionEquality().hash(isRunnig), duration);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TimerStateCopyWith<_$_TimerState> get copyWith => __$$_TimerStateCopyWithImpl<_$_TimerState>(this, _$identity);
+  _$$_TimerStateCopyWith<_$_TimerState> get copyWith =>
+      __$$_TimerStateCopyWithImpl<_$_TimerState>(this, _$identity);
 }
 
 abstract class _TimerState implements TimerState {
-  const factory _TimerState({final Timer? countdownTimer, final dynamic isRunnig, final Duration duration}) = _$_TimerState;
+  const factory _TimerState(
+      {final Timer? countdownTimer,
+      final dynamic isRunnig,
+      final Duration duration}) = _$_TimerState;
 
   @override
   Timer? get countdownTimer;
@@ -146,5 +167,6 @@ abstract class _TimerState implements TimerState {
   Duration get duration;
   @override
   @JsonKey(ignore: true)
-  _$$_TimerStateCopyWith<_$_TimerState> get copyWith => throw _privateConstructorUsedError;
+  _$$_TimerStateCopyWith<_$_TimerState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -6,6 +6,7 @@ import 'package:elvan_admin/core/shared_preferances/local_data.dart';
 import 'package:elvan_shared/dtos/elvan_user/elvan_user_dto.dart';
 import 'package:elvan_shared/shared/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'auth_repository.dart';
@@ -69,10 +70,12 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       return Result.success(userCredential.user);
     } on FirebaseAuthException catch (e) {
-      print(e);
+      debugPrint(e.toString());
+
       return Result.failure(Failure(error: "Error", message: e.message));
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+
       return Result.failure(Failure(error: "Error", message: e.toString()));
     }
   }
@@ -80,6 +83,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<User?> signInAnyonymously() async {
     final userCredential = await firebaseAuth.signInAnonymously();
+
     return userCredential.user;
   }
 
@@ -87,6 +91,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> signOut() async {
     await firebaseAuth.signOut();
     bool removed = await LocalData.getInstatance().removeUserId();
+
     return removed;
   }
 
@@ -115,13 +120,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return Result.success(user!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        debugPrint('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        debugPrint('The account already exists for that email.');
       }
+
       return Result.failure(Failure(error: "Error", message: e.message));
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       return Result.failure(Failure(error: "Error", message: e.toString()));
     }
   }
@@ -144,6 +150,7 @@ class AuthRepositoryImpl implements AuthRepository {
         )
         .doc(userId)
         .get();
+
     return user.data();
   }
 }

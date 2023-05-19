@@ -40,7 +40,7 @@ class OrderItem extends HookConsumerWidget {
                     children: [
                       //** row by Order info section */
                       Expanded(
-                        flex: orderState.isOpenDetatils ? 3 : 4,
+                        flex: orderState.isDetailsPanelOpen ? 3 : 4,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
