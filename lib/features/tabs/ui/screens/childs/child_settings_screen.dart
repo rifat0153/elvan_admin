@@ -7,12 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChildSettingsScreen extends HookConsumerWidget {
   final Widget child;
-  const ChildSettingsScreen(
-      {Key? key,
-      required this.menuState,
-      required this.tabsRouter,
-      required this.child})
-      : super(key: key);
+  const ChildSettingsScreen({Key? key, required this.menuState, required this.tabsRouter, required this.child}) : super(key: key);
 
   final MenuState menuState;
   final TabsRouter tabsRouter;

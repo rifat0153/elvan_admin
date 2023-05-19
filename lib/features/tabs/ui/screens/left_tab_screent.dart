@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/widgets/menu_icon_btn.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
@@ -9,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 @RoutePage()
 class LeftTabScreen extends HookConsumerWidget {
   const LeftTabScreen({Key? key}) : super(key: key);
@@ -26,17 +26,13 @@ class LeftTabScreen extends HookConsumerWidget {
             width: AppSize.width(context),
             child: Row(
               children: [
-                menuState.isOpenMenu
-                    ? LeftBar(tabsRouter: tabsRouter)
-                    : Container(),
+                menuState.isOpenMenu ? LeftBar(tabsRouter: tabsRouter) : Container(),
                 //*********  Layout Two ****** */
                 Expanded(
                   child: AnimatedContainer(
                     curve: Curves.easeOut,
                     duration: const Duration(milliseconds: 500),
-                    child: Container(
-                        color: AppColors.grayF7,
-                        child: child),
+                    child: Container(color: AppColors.grayF7, child: child),
                   ),
                 )
               ],
@@ -76,13 +72,8 @@ class LeftBar extends StatelessWidget {
                   height: 48,
                   margin: const EdgeInsets.only(top: 24),
                   padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.gray400),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: SizedBox(
-                      width: 25,
-                      height: 28,
-                      child: SvgPicture.asset(AppAssets.logo)),
+                  decoration: BoxDecoration(border: Border.all(color: AppColors.gray400), borderRadius: BorderRadius.circular(8)),
+                  child: SizedBox(width: 25, height: 28, child: SvgPicture.asset(AppAssets.logo)),
                 ),
 
                 //********* Order List  */

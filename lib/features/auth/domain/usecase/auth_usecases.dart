@@ -43,8 +43,7 @@ class AuthUseCases {
     required String password,
   }) async {
     if (email.isEmpty || password.isEmpty) {
-      return const Result.failure(
-          Failure(message: 'Email or password is empty'));
+      return const Result.failure(Failure(message: 'Email or password is empty'));
     }
 
     final user = await authRepository.singInWithEmailAndPassword(
@@ -60,8 +59,7 @@ class AuthUseCases {
             LocalData.getInstatance().storeUserId(elvanUser.uid!);
             return Result.success(elvanUser);
           } else {
-            return const Result.failure(
-                Failure(error: "Error", message: "Login Failed."));
+            return const Result.failure(Failure(error: "Error", message: "Login Failed."));
           }
         },
         failure: (failure) {
@@ -98,8 +96,7 @@ class AuthUseCases {
     required String email,
     required String password,
   }) {
-    return authRepository.registerUsingEmailPassword(
-        name: name, email: email, password: password);
+    return authRepository.registerUsingEmailPassword(name: name, email: email, password: password);
   }
 
   Future<User?> getCurrentUser() {
@@ -112,7 +109,7 @@ class AuthUseCases {
     final user = await authRepository.getUser(userId: userId);
     print(user);
     if (user != null) {
-      final data= ElvanUser.fromDto(user);
+      final data = ElvanUser.fromDto(user);
       return data;
     }
     return null;

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class EmptyWidget extends StatelessWidget {
   final String title;
   final IconData icon;
-  const EmptyWidget({Key? key,required this.title, required this.icon}) : super(key: key);
+  const EmptyWidget({Key? key, required this.title, required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class EmptyWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-           Icon(
+          Icon(
             icon,
             color: AppColors.primaryRed,
             size: 60,

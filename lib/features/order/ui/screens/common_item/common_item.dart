@@ -14,14 +14,7 @@ class CommonItem extends HookConsumerWidget {
   final void Function() onClick;
   final void Function() onBtnClick;
   final String btnTitle;
-  const CommonItem(
-      {Key? key,
-      required this.order,
-      this.selectedOrder,
-      required this.btnTitle,
-      required this.onBtnClick,
-      required this.onClick})
-      : super(key: key);
+  const CommonItem({Key? key, required this.order, this.selectedOrder, required this.btnTitle, required this.onBtnClick, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,12 +28,7 @@ class CommonItem extends HookConsumerWidget {
               onTap: onClick,
               child: Card(
                 shape: RoundedRectangleBorder(
-                    side: selectedOrder != null
-                        ? BorderSide(
-                            color: order.id == selectedOrder?.id
-                                ? AppColors.primaryRed
-                                : AppColors.grayA7)
-                        : const BorderSide(color: AppColors.grayA7),
+                    side: selectedOrder != null ? BorderSide(color: order.id == selectedOrder?.id ? AppColors.primaryRed : AppColors.grayA7) : const BorderSide(color: AppColors.grayA7),
                     borderRadius: BorderRadius.circular(AppSize.radiusSL)),
                 child: Container(
                   // constraOrderDtos:
@@ -82,34 +70,24 @@ class CommonItem extends HookConsumerWidget {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Builder(builder: (context) {
-                                  if (order.status.status == OrderStatus.delivered.status ||
-                                      order.status.status == OrderStatus.rejected.status) {
-                                    return  Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Card(
-                                        color:  order.status.status ==
-                                                  OrderStatus.delivered.status
-                                              ? AppColors.gray
-                                              : AppColors.primaryRed,
-                                        shape: RoundedRectangleBorder(
-                                          
-                                          borderRadius: BorderRadius.circular(13)
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-                                          child: Text(order.status.status,style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.white),),
-                                        ),
-                                      )
-                                    );
+                                  if (order.status.status == OrderStatus.delivered.status || order.status.status == OrderStatus.rejected.status) {
+                                    return Padding(
+                                        padding: const EdgeInsets.only(right: 10),
+                                        child: Card(
+                                          color: order.status.status == OrderStatus.delivered.status ? AppColors.gray : AppColors.primaryRed,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                                            child: Text(
+                                              order.status.status,
+                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.white),
+                                            ),
+                                          ),
+                                        ));
                                   }
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 10),
-                                    child: ElvanBtn(
-                                        width: 120,
-                                        title: btnTitle,
-                                        color: AppColors.green,
-                                        textColor: AppColors.black,
-                                        onClick: onBtnClick),
+                                    child: ElvanBtn(width: 120, title: btnTitle, color: AppColors.green, textColor: AppColors.black, onClick: onBtnClick),
                                   );
                                 }),
                               ],

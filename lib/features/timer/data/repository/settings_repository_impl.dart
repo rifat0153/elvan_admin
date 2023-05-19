@@ -4,7 +4,6 @@ import 'package:elvan_admin/core/firebase/firebase_providers.dart';
 import 'package:elvan_admin/core/logger/colored_print_log.dart';
 import 'package:elvan_admin/core/result/result.dart';
 import 'package:elvan_admin/features/timer/domain/repository/settings_repository.dart';
-import 'package:elvan_shared/domain_models/settgins/setting.dart';
 import 'package:elvan_shared/dtos/settings/setting_dto.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,25 +23,20 @@ class SettingsRepositoryImpl implements SettingsRepository {
       DocumentSnapshot<SettingDto> data = await firebaseFirestore
           .collection("settings")
           .doc("default-001")
-          .withConverter(
-              fromFirestore: (snapshot, options) =>
-                  SettingDto.fromJson(snapshot.data()!),
-              toFirestore: (settingDto, options) => settingDto.toJson())
+          .withConverter(fromFirestore: (snapshot, options) => SettingDto.fromJson(snapshot.data()!), toFirestore: (settingDto, options) => settingDto.toJson())
           .get();
 
       return data.data()!;
     } on FirebaseException catch (e) {
       logError(e.message ?? '');
     }
+    return null;
   }
 
   @override
   Future<Result<bool>> setDefaultTimer(SettingDto setting) async {
     try {
-      await firebaseFirestore
-          .collection("settings")
-          .doc("default-001")
-          .set(setting.toJson());
+      await firebaseFirestore.collection("settings").doc("default-001").set(setting.toJson());
       return const Result.success(true);
     } on FirebaseException catch (e) {
       return Result.failure(Failure(error: "Error", message: e.message));

@@ -8,21 +8,10 @@ class ProcessItem extends StatelessWidget {
   final Order? selectedOrder;
   final void Function() onClick;
   final void Function() onBtnClick;
-  const ProcessItem(
-      {Key? key,
-      required this.order,
-      this.selectedOrder,
-      required this.onBtnClick,
-      required this.onClick})
-      : super(key: key);
+  const ProcessItem({Key? key, required this.order, this.selectedOrder, required this.onBtnClick, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CommonItem(
-        order: order,
-        selectedOrder: selectedOrder,
-        onClick: onClick,
-        btnTitle: AppStrings.processing,
-        onBtnClick: onBtnClick);
+    return CommonItem(order: order, selectedOrder: selectedOrder, onClick: onClick, btnTitle: AppStrings.processing, onBtnClick: onBtnClick);
   }
 }

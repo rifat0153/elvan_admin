@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart' show immutable;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @immutable
 class AppSize {
@@ -44,9 +42,7 @@ class AppSize {
   static double fontSize12 = 12; // ScreenUtil().setSp(12);
   static double fontSize11 = 11; //ScreenUtil().setSp(11);
 
-  static double width(BuildContext context) =>
-      MediaQuery.of(context).size.width;
+  static double width(BuildContext context) => MediaQuery.of(context).size.width;
 
-  static double hight(BuildContext context) =>
-      MediaQuery.of(context).size.height;
+  static double hight(BuildContext context) => MediaQuery.of(context).size.height;
 }

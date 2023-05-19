@@ -27,7 +27,6 @@ class SettingUsecase {
   }
 
   Future<Result<bool>> setDefaultTimer(Setting setting) async {
-    return settingRepository
-        .setDefaultTimer(SettingDto.fromJson(setting.toJson()));
+    return settingRepository.setDefaultTimer(SettingDto.fromJson(setting.toJson()));
   }
 }

@@ -4,9 +4,7 @@ import 'package:elvan_shared/domain_models/order/order.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final orderDtatilsProvider =
-    NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(
-        OrderDetatilsNotifier.new);
+final orderDtatilsProvider = NotifierProvider<OrderDetatilsNotifier, OrderDetatilsState>(OrderDetatilsNotifier.new);
 
 class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
   @override
@@ -45,8 +43,6 @@ class OrderDetatilsNotifier extends Notifier<OrderDetatilsState> {
       xOffset: state.isOpenDetatils ? 288 : 0,
     );
   }
-
- 
 
   void close() {
     state = state.copyWith(isOpenDetatils: false);

@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/childs/child_settings_screen.dart';
-
 
 import 'package:flutter/material.dart';
 
@@ -21,10 +19,10 @@ class SettingsScreen extends HookConsumerWidget {
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
         return ChildSettingsScreen(
-              menuState: menuState,
-              tabsRouter: tabsRouter,
-              child: child,
-            );
+          menuState: menuState,
+          tabsRouter: tabsRouter,
+          child: child,
+        );
       },
     );
   }

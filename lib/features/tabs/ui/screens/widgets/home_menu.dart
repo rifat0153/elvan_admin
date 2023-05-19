@@ -57,7 +57,7 @@ class HomeMenu extends HookConsumerWidget {
               count: processState,
               onClick: () {
                 router.setActiveIndex(1);
-                  ref.read(orderDtatilsProvider.notifier).close();
+                ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.processing),
         ),
@@ -70,7 +70,7 @@ class HomeMenu extends HookConsumerWidget {
               count: readyState,
               onClick: () {
                 router.setActiveIndex(2);
-                  ref.read(orderDtatilsProvider.notifier).close();
+                ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.ready),
         ),
@@ -83,7 +83,7 @@ class HomeMenu extends HookConsumerWidget {
               count: deliverdState,
               onClick: () {
                 router.setActiveIndex(3);
-                  ref.read(orderDtatilsProvider.notifier).close();
+                ref.read(orderDtatilsProvider.notifier).close();
               },
               title: AppStrings.delivered),
         )

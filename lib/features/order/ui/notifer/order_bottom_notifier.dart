@@ -20,8 +20,7 @@ List<FoodItemCount> orderBottom(OrderBottomRef ref, List<Order> orders) {
     return [];
   }
 
-  Map<String, List<CartItem>> newMap =
-      groupBy(cartItems, (CartItem obj) => obj.foodItem.title);
+  Map<String, List<CartItem>> newMap = groupBy(cartItems, (CartItem obj) => obj.foodItem.title);
   newMap.forEach((key, value) {
     final int qty = value.fold(0, (sum, element) => sum + element.quantity);
 

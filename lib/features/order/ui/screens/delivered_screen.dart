@@ -16,7 +16,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
-
 class DeliveredScreen extends HookConsumerWidget {
   const DeliveredScreen({Key? key}) : super(key: key);
 
@@ -29,13 +28,10 @@ class DeliveredScreen extends HookConsumerWidget {
     final orderDetatilsState = ref.watch(orderDtatilsProvider);
     final scrollController = useScrollController();
 
-
     useEffect(() {
       notifier.getData();
       scrollController.addListener(() {
-        if (scrollController.offset >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange) {
+        if (scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
           notifier.nextData();
         }
       });
@@ -81,24 +77,20 @@ class DeliveredScreen extends HookConsumerWidget {
                             )
                           : Container(),
                       state.orders.isEmpty
-                          ? const EmptyWidget(
-                              title: AppStrings.noDeliveredOrder,
-                              icon: Icons.local_dining_outlined)
+                          ? const EmptyWidget(title: AppStrings.noDeliveredOrder, icon: Icons.local_dining_outlined)
                           : ListView.builder(
                               itemCount: state.orders.length,
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
-                                final OrderDto order = OrderDto.fromJson(
-                                    state.orders[index].data()!);
+                                final OrderDto order = OrderDto.fromJson(state.orders[index].data()!);
                                 return DeliveredItem(
                                   order: Order.fromDto(order),
                                   key: Key(order.id),
                                   selectedOrder: orderDetatilsState.order,
                                   onClick: () {
                                     Scaffold.of(context).openEndDrawer();
-                                    orderDetatilsNotifier.selecteItem(
-                                        context: context, order: Order.fromDto(order));
+                                    orderDetatilsNotifier.selecteItem(context: context, order: Order.fromDto(order));
                                   },
                                 );
                               },

@@ -13,9 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
-final newOrderScreenProvider =
-    NotifierProvider<NewOrderScreenNotifier, UiState<List<Order>>>(
-        NewOrderScreenNotifier.new);
+final newOrderScreenProvider = NotifierProvider<NewOrderScreenNotifier, UiState<List<Order>>>(NewOrderScreenNotifier.new);
 
 class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
   @override
@@ -25,31 +23,23 @@ class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
   }
 
   getList() {
-    final result = ref
-        .read(orderUsecaseProvider)
-        .getOrderSnapshotStream(status: OrderStatus.pending);
+    final result = ref.read(orderUsecaseProvider).getOrderSnapshotStream(status: OrderStatus.pending);
 
     result.listen((event) {
-      event.docChanges.forEach((item)  async{
+      event.docChanges.forEach((item) async {
         if (item.type == firestore.DocumentChangeType.added) {
           print("-----------------${item.type}");
-         await _createSound();
+          await _createSound();
         }
       });
-      final List<OrderDto> oreder =
-          event.docs.map((e) => OrderDto.fromJson(e.data())).toList();
-          
+      final List<OrderDto> oreder = event.docs.map((e) => OrderDto.fromJson(e.data())).toList();
+
       state = UiState.data(oreder.map((e) => Order.fromDto(e)).toList());
     });
   }
 
   onEvent(NewItemEvent event) {
-    event.when(
-        onDrawer: _onDrawer,
-        selecteItem: _selecteItem,
-        onAccept: _onAccept,
-        onReject: _onReject,
-        refresh: _onRefresh);
+    event.when(onDrawer: _onDrawer, selecteItem: _selecteItem, onAccept: _onAccept, onReject: _onReject, refresh: _onRefresh);
   }
 
   _onDrawer(BuildContext context) {
@@ -91,10 +81,9 @@ class NewOrderScreenNotifier extends Notifier<UiState<List<Order>>> {
     if (player.playing) {
       return;
     }
-    player.setAudioSource(AudioSource.uri(Uri.parse(AppAssets.notificationFBS)),
-        initialPosition: Duration.zero, preload: true);
+    player.setAudioSource(AudioSource.uri(Uri.parse(AppAssets.notificationFBS)), initialPosition: Duration.zero, preload: true);
 
-   // await player.setLoopMode(LoopMode.one);
-   await player.play();
+    // await player.setLoopMode(LoopMode.one);
+    await player.play();
   }
 }

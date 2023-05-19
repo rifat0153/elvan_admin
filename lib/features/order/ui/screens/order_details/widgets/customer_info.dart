@@ -22,10 +22,7 @@ class CustomerInfo extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
           child: Text(
             AppStrings.customerInfo,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
         ),
         userState.when(
@@ -35,15 +32,26 @@ class CustomerInfo extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InfoItem(title: AppStrings.name,value: data?.name,),
-                  InfoItem(title: AppStrings.email,value: data?.email,),
-                  InfoItem(title: AppStrings.mobile,value: data?.phone,),
+                  InfoItem(
+                    title: AppStrings.name,
+                    value: data?.name,
+                  ),
+                  InfoItem(
+                    title: AppStrings.email,
+                    value: data?.email,
+                  ),
+                  InfoItem(
+                    title: AppStrings.mobile,
+                    value: data?.phone,
+                  ),
                 ],
               ),
             );
           },
           error: (error, stackTrace) => Text("$error"),
-          loading: () => Container(child: Text("loading..."),),
+          loading: () => Container(
+            child: const Text("loading..."),
+          ),
         )
       ],
     );
@@ -67,20 +75,14 @@ class InfoItem extends StatelessWidget {
         children: [
           Text(
             "$title :",
-            style: Theme.of(context)
-                .textTheme
-                .labelSmall
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray),
           ),
           Flexible(
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 "$value",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelSmall
-                    ?.copyWith(color: AppColors.gray),
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),

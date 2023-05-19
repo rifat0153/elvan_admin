@@ -19,11 +19,7 @@ class FoodRepositoryImpl implements FoodRepository {
   @override
   Future<Result<QuerySnapshot<Map<String, dynamic>>>> getFoods() async {
     try {
-      final data = await firebaseFirestore
-          .collection(Constants.firebaseCollectionFoodItems)
-          .orderBy('title', descending: true)
-          .limit(20)
-          .get();
+      final data = await firebaseFirestore.collection(Constants.firebaseCollectionFoodItems).orderBy('title', descending: true).limit(20).get();
 
       return Result.success(data);
     } on FirebaseException catch (e) {
@@ -40,12 +36,7 @@ class FoodRepositoryImpl implements FoodRepository {
     required DocumentSnapshot lastItem,
   }) async {
     try {
-      final data = await firebaseFirestore
-          .collection(Constants.firebaseCollectionFoodItems)
-          .orderBy('title', descending: true)
-          .startAfterDocument(lastItem)
-          .limit(10)
-          .get();
+      final data = await firebaseFirestore.collection(Constants.firebaseCollectionFoodItems).orderBy('title', descending: true).startAfterDocument(lastItem).limit(10).get();
       return Result.success(data);
     } on FirebaseException catch (e) {
       return Result.failure(Failure(
@@ -61,17 +52,13 @@ class FoodRepositoryImpl implements FoodRepository {
     bool isActive,
   ) async {
     try {
-      await firebaseFirestore
-          .collection(Constants.firebaseCollectionFoodItems)
-          .doc(productId)
-          .update({"isAvailable": isActive});
+      await firebaseFirestore.collection(Constants.firebaseCollectionFoodItems).doc(productId).update({"isAvailable": isActive});
 
       final data = await firebaseFirestore
           .collection(Constants.firebaseCollectionFoodItems)
           .doc(productId)
           .withConverter(
-            fromFirestore: (snapshot, _) =>
-                FoodItemDto.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) => FoodItemDto.fromJson(snapshot.data()!),
             toFirestore: (foodItem, _) => foodItem.toJson(),
           )
           .get();

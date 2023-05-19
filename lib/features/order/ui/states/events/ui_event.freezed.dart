@@ -70,13 +70,11 @@ mixin _$UIEvent {
 
 /// @nodoc
 abstract class $UIEventCopyWith<$Res> {
-  factory $UIEventCopyWith(UIEvent value, $Res Function(UIEvent) then) =
-      _$UIEventCopyWithImpl<$Res, UIEvent>;
+  factory $UIEventCopyWith(UIEvent value, $Res Function(UIEvent) then) = _$UIEventCopyWithImpl<$Res, UIEvent>;
 }
 
 /// @nodoc
-class _$UIEventCopyWithImpl<$Res, $Val extends UIEvent>
-    implements $UIEventCopyWith<$Res> {
+class _$UIEventCopyWithImpl<$Res, $Val extends UIEvent> implements $UIEventCopyWith<$Res> {
   _$UIEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -87,20 +85,14 @@ class _$UIEventCopyWithImpl<$Res, $Val extends UIEvent>
 
 /// @nodoc
 abstract class _$$_UIEvent_OnDrawerCopyWith<$Res> {
-  factory _$$_UIEvent_OnDrawerCopyWith(
-          _$_UIEvent_OnDrawer value, $Res Function(_$_UIEvent_OnDrawer) then) =
-      __$$_UIEvent_OnDrawerCopyWithImpl<$Res>;
+  factory _$$_UIEvent_OnDrawerCopyWith(_$_UIEvent_OnDrawer value, $Res Function(_$_UIEvent_OnDrawer) then) = __$$_UIEvent_OnDrawerCopyWithImpl<$Res>;
   @useResult
   $Res call({BuildContext context});
 }
 
 /// @nodoc
-class __$$_UIEvent_OnDrawerCopyWithImpl<$Res>
-    extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_OnDrawer>
-    implements _$$_UIEvent_OnDrawerCopyWith<$Res> {
-  __$$_UIEvent_OnDrawerCopyWithImpl(
-      _$_UIEvent_OnDrawer _value, $Res Function(_$_UIEvent_OnDrawer) _then)
-      : super(_value, _then);
+class __$$_UIEvent_OnDrawerCopyWithImpl<$Res> extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_OnDrawer> implements _$$_UIEvent_OnDrawerCopyWith<$Res> {
+  __$$_UIEvent_OnDrawerCopyWithImpl(_$_UIEvent_OnDrawer _value, $Res Function(_$_UIEvent_OnDrawer) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -118,9 +110,7 @@ class __$$_UIEvent_OnDrawerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UIEvent_OnDrawer
-    with DiagnosticableTreeMixin
-    implements _UIEvent_OnDrawer {
+class _$_UIEvent_OnDrawer with DiagnosticableTreeMixin implements _UIEvent_OnDrawer {
   const _$_UIEvent_OnDrawer({required this.context});
 
   @override
@@ -141,10 +131,7 @@ class _$_UIEvent_OnDrawer
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UIEvent_OnDrawer &&
-            (identical(other.context, context) || other.context == context));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_UIEvent_OnDrawer && (identical(other.context, context) || other.context == context));
   }
 
   @override
@@ -153,8 +140,7 @@ class _$_UIEvent_OnDrawer
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UIEvent_OnDrawerCopyWith<_$_UIEvent_OnDrawer> get copyWith =>
-      __$$_UIEvent_OnDrawerCopyWithImpl<_$_UIEvent_OnDrawer>(this, _$identity);
+  _$$_UIEvent_OnDrawerCopyWith<_$_UIEvent_OnDrawer> get copyWith => __$$_UIEvent_OnDrawerCopyWithImpl<_$_UIEvent_OnDrawer>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -232,20 +218,16 @@ class _$_UIEvent_OnDrawer
 }
 
 abstract class _UIEvent_OnDrawer implements UIEvent {
-  const factory _UIEvent_OnDrawer({required final BuildContext context}) =
-      _$_UIEvent_OnDrawer;
+  const factory _UIEvent_OnDrawer({required final BuildContext context}) = _$_UIEvent_OnDrawer;
 
   BuildContext get context;
   @JsonKey(ignore: true)
-  _$$_UIEvent_OnDrawerCopyWith<_$_UIEvent_OnDrawer> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UIEvent_OnDrawerCopyWith<_$_UIEvent_OnDrawer> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_UIEvent_SelecteItemCopyWith<$Res> {
-  factory _$$_UIEvent_SelecteItemCopyWith(_$_UIEvent_SelecteItem value,
-          $Res Function(_$_UIEvent_SelecteItem) then) =
-      __$$_UIEvent_SelecteItemCopyWithImpl<$Res>;
+  factory _$$_UIEvent_SelecteItemCopyWith(_$_UIEvent_SelecteItem value, $Res Function(_$_UIEvent_SelecteItem) then) = __$$_UIEvent_SelecteItemCopyWithImpl<$Res>;
   @useResult
   $Res call({BuildContext context, Order order});
 
@@ -253,12 +235,8 @@ abstract class _$$_UIEvent_SelecteItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UIEvent_SelecteItemCopyWithImpl<$Res>
-    extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_SelecteItem>
-    implements _$$_UIEvent_SelecteItemCopyWith<$Res> {
-  __$$_UIEvent_SelecteItemCopyWithImpl(_$_UIEvent_SelecteItem _value,
-      $Res Function(_$_UIEvent_SelecteItem) _then)
-      : super(_value, _then);
+class __$$_UIEvent_SelecteItemCopyWithImpl<$Res> extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_SelecteItem> implements _$$_UIEvent_SelecteItemCopyWith<$Res> {
+  __$$_UIEvent_SelecteItemCopyWithImpl(_$_UIEvent_SelecteItem _value, $Res Function(_$_UIEvent_SelecteItem) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -289,9 +267,7 @@ class __$$_UIEvent_SelecteItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UIEvent_SelecteItem
-    with DiagnosticableTreeMixin
-    implements _UIEvent_SelecteItem {
+class _$_UIEvent_SelecteItem with DiagnosticableTreeMixin implements _UIEvent_SelecteItem {
   const _$_UIEvent_SelecteItem({required this.context, required this.order});
 
   @override
@@ -328,9 +304,7 @@ class _$_UIEvent_SelecteItem
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UIEvent_SelecteItemCopyWith<_$_UIEvent_SelecteItem> get copyWith =>
-      __$$_UIEvent_SelecteItemCopyWithImpl<_$_UIEvent_SelecteItem>(
-          this, _$identity);
+  _$$_UIEvent_SelecteItemCopyWith<_$_UIEvent_SelecteItem> get copyWith => __$$_UIEvent_SelecteItemCopyWithImpl<_$_UIEvent_SelecteItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -408,22 +382,17 @@ class _$_UIEvent_SelecteItem
 }
 
 abstract class _UIEvent_SelecteItem implements UIEvent {
-  const factory _UIEvent_SelecteItem(
-      {required final BuildContext context,
-      required final Order order}) = _$_UIEvent_SelecteItem;
+  const factory _UIEvent_SelecteItem({required final BuildContext context, required final Order order}) = _$_UIEvent_SelecteItem;
 
   BuildContext get context;
   Order get order;
   @JsonKey(ignore: true)
-  _$$_UIEvent_SelecteItemCopyWith<_$_UIEvent_SelecteItem> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UIEvent_SelecteItemCopyWith<_$_UIEvent_SelecteItem> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_UIEvent_OnChangeStatusCopyWith<$Res> {
-  factory _$$_UIEvent_OnChangeStatusCopyWith(_$_UIEvent_OnChangeStatus value,
-          $Res Function(_$_UIEvent_OnChangeStatus) then) =
-      __$$_UIEvent_OnChangeStatusCopyWithImpl<$Res>;
+  factory _$$_UIEvent_OnChangeStatusCopyWith(_$_UIEvent_OnChangeStatus value, $Res Function(_$_UIEvent_OnChangeStatus) then) = __$$_UIEvent_OnChangeStatusCopyWithImpl<$Res>;
   @useResult
   $Res call({BuildContext context, Order order});
 
@@ -431,12 +400,8 @@ abstract class _$$_UIEvent_OnChangeStatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UIEvent_OnChangeStatusCopyWithImpl<$Res>
-    extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_OnChangeStatus>
-    implements _$$_UIEvent_OnChangeStatusCopyWith<$Res> {
-  __$$_UIEvent_OnChangeStatusCopyWithImpl(_$_UIEvent_OnChangeStatus _value,
-      $Res Function(_$_UIEvent_OnChangeStatus) _then)
-      : super(_value, _then);
+class __$$_UIEvent_OnChangeStatusCopyWithImpl<$Res> extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_OnChangeStatus> implements _$$_UIEvent_OnChangeStatusCopyWith<$Res> {
+  __$$_UIEvent_OnChangeStatusCopyWithImpl(_$_UIEvent_OnChangeStatus _value, $Res Function(_$_UIEvent_OnChangeStatus) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -467,9 +432,7 @@ class __$$_UIEvent_OnChangeStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UIEvent_OnChangeStatus
-    with DiagnosticableTreeMixin
-    implements _UIEvent_OnChangeStatus {
+class _$_UIEvent_OnChangeStatus with DiagnosticableTreeMixin implements _UIEvent_OnChangeStatus {
   const _$_UIEvent_OnChangeStatus({required this.context, required this.order});
 
   @override
@@ -506,9 +469,7 @@ class _$_UIEvent_OnChangeStatus
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UIEvent_OnChangeStatusCopyWith<_$_UIEvent_OnChangeStatus> get copyWith =>
-      __$$_UIEvent_OnChangeStatusCopyWithImpl<_$_UIEvent_OnChangeStatus>(
-          this, _$identity);
+  _$$_UIEvent_OnChangeStatusCopyWith<_$_UIEvent_OnChangeStatus> get copyWith => __$$_UIEvent_OnChangeStatusCopyWithImpl<_$_UIEvent_OnChangeStatus>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -586,38 +547,27 @@ class _$_UIEvent_OnChangeStatus
 }
 
 abstract class _UIEvent_OnChangeStatus implements UIEvent {
-  const factory _UIEvent_OnChangeStatus(
-      {required final BuildContext context,
-      required final Order order}) = _$_UIEvent_OnChangeStatus;
+  const factory _UIEvent_OnChangeStatus({required final BuildContext context, required final Order order}) = _$_UIEvent_OnChangeStatus;
 
   BuildContext get context;
   Order get order;
   @JsonKey(ignore: true)
-  _$$_UIEvent_OnChangeStatusCopyWith<_$_UIEvent_OnChangeStatus> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_UIEvent_OnChangeStatusCopyWith<_$_UIEvent_OnChangeStatus> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_UIEvent_RefreshCopyWith<$Res> {
-  factory _$$_UIEvent_RefreshCopyWith(
-          _$_UIEvent_Refresh value, $Res Function(_$_UIEvent_Refresh) then) =
-      __$$_UIEvent_RefreshCopyWithImpl<$Res>;
+  factory _$$_UIEvent_RefreshCopyWith(_$_UIEvent_Refresh value, $Res Function(_$_UIEvent_Refresh) then) = __$$_UIEvent_RefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UIEvent_RefreshCopyWithImpl<$Res>
-    extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_Refresh>
-    implements _$$_UIEvent_RefreshCopyWith<$Res> {
-  __$$_UIEvent_RefreshCopyWithImpl(
-      _$_UIEvent_Refresh _value, $Res Function(_$_UIEvent_Refresh) _then)
-      : super(_value, _then);
+class __$$_UIEvent_RefreshCopyWithImpl<$Res> extends _$UIEventCopyWithImpl<$Res, _$_UIEvent_Refresh> implements _$$_UIEvent_RefreshCopyWith<$Res> {
+  __$$_UIEvent_RefreshCopyWithImpl(_$_UIEvent_Refresh _value, $Res Function(_$_UIEvent_Refresh) _then) : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UIEvent_Refresh
-    with DiagnosticableTreeMixin
-    implements _UIEvent_Refresh {
+class _$_UIEvent_Refresh with DiagnosticableTreeMixin implements _UIEvent_Refresh {
   const _$_UIEvent_Refresh();
 
   @override
@@ -633,8 +583,7 @@ class _$_UIEvent_Refresh
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UIEvent_Refresh);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_UIEvent_Refresh);
   }
 
   @override

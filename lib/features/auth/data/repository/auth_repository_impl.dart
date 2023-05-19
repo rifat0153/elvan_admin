@@ -34,8 +34,7 @@ class AuthRepositoryImpl implements AuthRepository {
             Constants.firebaseCollectionUsers,
           )
           .withConverter(
-            fromFirestore: (snapshot, _) =>
-                ElvanUserDto.fromJson(snapshot.data()!),
+            fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
             toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
           )
           .doc(userId)
@@ -103,8 +102,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     try {
-      UserCredential userCredential =
-          await firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -112,16 +110,8 @@ class AuthRepositoryImpl implements AuthRepository {
       User? user = userCredential.user;
       await user?.updateDisplayName(name);
       await user?.reload();
-      ElvanUserDto dto = ElvanUserDto(
-          id: "2",
-          uid: userCredential.user?.uid,
-          email: user?.email,
-          name: name,
-          role: "user");
-      await firebaseFirestore
-          .collection('elvan_users')
-          .doc(user?.uid)
-          .set(dto.toJson());
+      ElvanUserDto dto = ElvanUserDto(id: "2", uid: userCredential.user?.uid, email: user?.email, name: name, role: "user");
+      await firebaseFirestore.collection('elvan_users').doc(user?.uid).set(dto.toJson());
       return Result.success(user!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -144,17 +134,16 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ElvanUserDto?> getUser({required String userId}) async {
-      final user = await firebaseFirestore
-          .collection(
-            Constants.firebaseCollectionUsers,
-          )
-          .withConverter(
-            fromFirestore: (snapshot, _) =>
-                ElvanUserDto.fromJson(snapshot.data()!),
-            toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
-          )
-          .doc(userId)
-          .get();
+    final user = await firebaseFirestore
+        .collection(
+          Constants.firebaseCollectionUsers,
+        )
+        .withConverter(
+          fromFirestore: (snapshot, _) => ElvanUserDto.fromJson(snapshot.data()!),
+          toFirestore: (elvanUserDto, _) => elvanUserDto.toJson(),
+        )
+        .doc(userId)
+        .get();
     return user.data();
   }
 }

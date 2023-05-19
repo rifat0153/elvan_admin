@@ -1,7 +1,6 @@
 import 'package:elvan_admin/features/order/ui/notifer/new_order_screen_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/states/events/new_item_event.dart';
-import 'package:elvan_admin/features/timer/domain/usecases/setting_usecase.dart';
 import 'package:elvan_admin/shared/components/buttons/eIconBtn.dart';
 import 'package:elvan_admin/shared/components/buttons/elanvnBtn.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
@@ -21,7 +20,6 @@ class OrderTimer extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(orderDtatilsProvider.notifier);
     final minutes = useState<int>(0);
- 
 
     useEffect(() {
       if (order.status.name == OrderStatus.pending.name) {
@@ -31,6 +29,7 @@ class OrderTimer extends HookConsumerWidget {
           }
         });
       }
+      return null;
     }, const []);
 
     return Column(
@@ -49,7 +48,6 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value > 0) {
                     minutes.value--;
-                 
                   }
                 },
                 iconData: Icons.do_not_disturb_on,
@@ -79,7 +77,6 @@ class OrderTimer extends HookConsumerWidget {
                 onClick: () {
                   if (minutes.value >= 0) {
                     minutes.value++;
-                  
                   }
                 },
                 iconData: Icons.add_circle,
@@ -100,9 +97,7 @@ class OrderTimer extends HookConsumerWidget {
                   title: AppStrings.reject,
                   color: AppColors.primaryRed,
                   onClick: () {
-                    ref
-                        .read(newOrderScreenProvider.notifier)
-                        .onEvent(NewItemEvent.onReject(data: order));
+                    ref.read(newOrderScreenProvider.notifier).onEvent(NewItemEvent.onReject(data: order));
                   }),
             ),
             Padding(
@@ -113,8 +108,7 @@ class OrderTimer extends HookConsumerWidget {
                   textColor: AppColors.black,
                   onClick: () {
                     int second = minutes.value * 60;
-                    ref.read(newOrderScreenProvider.notifier).onEvent(
-                        NewItemEvent.onAccept(second: second, data: order));
+                    ref.read(newOrderScreenProvider.notifier).onEvent(NewItemEvent.onAccept(second: second, data: order));
                   }),
             )
           ],

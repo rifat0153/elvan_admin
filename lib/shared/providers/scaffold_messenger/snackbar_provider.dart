@@ -11,7 +11,6 @@ class SnackbarNotifier extends Notifier<void> {
   @override
   build() {
     scaffoldMessengerKey = ref.read(scaffoldMessengerKeyProvider);
-    
   }
 
   bool showSnackbar(SnackBar snackBar) {

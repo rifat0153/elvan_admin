@@ -30,9 +30,7 @@ class DesktopLoginScreen extends HookConsumerWidget {
             Card(
               child: Container(
                 constraints: BoxConstraints(
-                  maxWidth: ResponsiveLayout.isTablet(context)
-                      ? AppSize.width(context) / 2
-                      : AppSize.width(context) / 4,
+                  maxWidth: ResponsiveLayout.isTablet(context) ? AppSize.width(context) / 2 : AppSize.width(context) / 4,
                 ),
                 child: Column(
                   children: [
@@ -44,10 +42,7 @@ class DesktopLoginScreen extends HookConsumerWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
-                          child: SizedBox(
-                              width: 120,
-                              height: 90,
-                              child: SvgPicture.asset(AppAssets.logo)),
+                          child: SizedBox(width: 120, height: 90, child: SvgPicture.asset(AppAssets.logo)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -60,10 +55,7 @@ class DesktopLoginScreen extends HookConsumerWidget {
                         const SizedBox(height: 8),
                         Text(
                           AppStrings.loginSubTitle,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: AppColors.gray),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -80,10 +72,7 @@ class DesktopLoginScreen extends HookConsumerWidget {
                             padding: const EdgeInsets.all(20.0),
                             child: Text(
                               authState.error!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(color: AppColors.primaryRed),
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppColors.primaryRed),
                             ),
                           )
                         : Container()

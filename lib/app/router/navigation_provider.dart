@@ -1,8 +1,5 @@
 import 'package:elvan_admin/app/router/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'app_router.gr.dart';
-
-
 
 final navigatorProvider = NotifierProvider<NavigatorNotifier, void>(() {
   return NavigatorNotifier();
@@ -30,9 +27,8 @@ class NavigatorNotifier extends Notifier<void> {
     _router.pushNamed('/');
   }
 
- void popAllLogout() {
+  void popAllLogout() {
     _router.popUntilRoot();
     _router.pushNamed('/login');
   }
-
 }

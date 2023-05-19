@@ -3,7 +3,6 @@ import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderDeatilsTimer extends StatefulHookConsumerWidget {
@@ -63,7 +62,7 @@ class _OrderDetailsTimerState extends ConsumerState<OrderDeatilsTimer> {
         Text('$value', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.primaryRed)),
         Padding(
           padding: const EdgeInsets.only(top: 4),
-          child: Text('$title', style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray)),
+          child: Text(title, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray)),
         ),
       ],
     );

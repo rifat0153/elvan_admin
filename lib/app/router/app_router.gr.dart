@@ -11,18 +11,13 @@
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:elvan_admin/features/auth/ui/screens/login_screen.dart' as _i8;
 import 'package:elvan_admin/features/foods/ui/screen/foods_screen.dart' as _i10;
-import 'package:elvan_admin/features/order/ui/screens/delivered_screen.dart'
-    as _i6;
-import 'package:elvan_admin/features/order/ui/screens/new_order_screen.dart'
-    as _i7;
-import 'package:elvan_admin/features/order/ui/screens/processing_screen.dart'
-    as _i5;
+import 'package:elvan_admin/features/order/ui/screens/delivered_screen.dart' as _i6;
+import 'package:elvan_admin/features/order/ui/screens/new_order_screen.dart' as _i7;
+import 'package:elvan_admin/features/order/ui/screens/processing_screen.dart' as _i5;
 import 'package:elvan_admin/features/order/ui/screens/ready_screen.dart' as _i4;
 import 'package:elvan_admin/features/tabs/ui/screens/home_screen.dart' as _i3;
-import 'package:elvan_admin/features/tabs/ui/screens/left_tab_screent.dart'
-    as _i2;
-import 'package:elvan_admin/features/tabs/ui/screens/settings_screen.dart'
-    as _i1;
+import 'package:elvan_admin/features/tabs/ui/screens/left_tab_screent.dart' as _i2;
+import 'package:elvan_admin/features/tabs/ui/screens/settings_screen.dart' as _i1;
 import 'package:elvan_admin/features/timer/ui/screens/timer_screen.dart' as _i9;
 
 abstract class $AppRouter extends _i11.RootStackRouter {

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class OrderInfoWidget extends StatelessWidget {
   final String title;
   final String? value;
-  const OrderInfoWidget({Key? key, required this.title, this.value})
-      : super(key: key);
+  const OrderInfoWidget({Key? key, required this.title, this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +15,7 @@ class OrderInfoWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
           const SizedBox(
             height: 10,

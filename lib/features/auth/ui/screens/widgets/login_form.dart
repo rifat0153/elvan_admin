@@ -1,4 +1,3 @@
-import 'package:elvan_admin/app/router/app_router.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
@@ -11,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class LoginForm extends HookConsumerWidget {
   LoginForm({Key? key}) : super(key: key);
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -93,57 +92,46 @@ class LoginForm extends HookConsumerWidget {
                 return null;
               },
             ),
-
-            
             Padding(
               padding: const EdgeInsets.only(top: 30, bottom: 30),
               child: SizedBox(
                 width: double.infinity,
                 height: 40,
                 child: ElevatedButton(
-                  
                   style: ButtonStyle(
-                    
-                    backgroundColor:
-                        MaterialStateProperty.all(AppColors.primaryRed),
+                    backgroundColor: MaterialStateProperty.all(AppColors.primaryRed),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                   ),
-                  onPressed: authState.loading ?  (){} : () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      print("-------------click");
-                      authNotifier.onEvent(AuthEvent.loginWithPasswordAndEmail(
-                          email: emailTextController.text,
-                          password: passwordTextController.text));
-                      // authNotifier.register(emailTextController.text,
-                      //     passwordTextController.text);
-                    }
-                  },
-
+                  onPressed: authState.loading
+                      ? () {}
+                      : () {
+                          // Validate returns true if the form is valid, or false otherwise.
+                          if (_formKey.currentState!.validate()) {
+                            print("-------------click");
+                            authNotifier.onEvent(AuthEvent.loginWithPasswordAndEmail(email: emailTextController.text, password: passwordTextController.text));
+                            // authNotifier.register(emailTextController.text,
+                            //     passwordTextController.text);
+                          }
+                        },
                   child: authState.loading
                       ? const Center(
                           child: SizedBox(
                             width: 20,
                             height: 20,
-                            child: CircularProgressIndicator(
-                                color: AppColors.white),
+                            child: CircularProgressIndicator(color: AppColors.white),
                           ),
                         )
                       : Text(
                           AppStrings.login,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(color: AppColors.white),
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.white),
                         ),
                 ),
               ),
             )
-            
           ],
         ));
   }

@@ -38,25 +38,19 @@ class AddOnItem extends HookConsumerWidget {
                 DataColumn(
                   label: Text(
                     AppStrings.name,
-                    style: ResponsiveLayout.isMobile(context)
-                        ? Theme.of(context).textTheme.bodySmall
-                        : Theme.of(context).textTheme.titleSmall,
+                    style: ResponsiveLayout.isMobile(context) ? Theme.of(context).textTheme.bodySmall : Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
                 DataColumn(
                   label: Text(
                     AppStrings.price,
-                    style: ResponsiveLayout.isMobile(context)
-                        ? Theme.of(context).textTheme.bodySmall
-                        : Theme.of(context).textTheme.titleSmall,
+                    style: ResponsiveLayout.isMobile(context) ? Theme.of(context).textTheme.bodySmall : Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
                 DataColumn(
                   label: Text(
                     "",
-                    style: ResponsiveLayout.isMobile(context)
-                        ? Theme.of(context).textTheme.bodySmall
-                        : Theme.of(context).textTheme.titleSmall,
+                    style: ResponsiveLayout.isMobile(context) ? Theme.of(context).textTheme.bodySmall : Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
               ],
@@ -74,10 +68,7 @@ class AddOnItem extends HookConsumerWidget {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
                                   e.title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(color: AppColors.gray),
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.gray),
                                 ),
                               ),
                             ],
@@ -86,10 +77,7 @@ class AddOnItem extends HookConsumerWidget {
                         DataCell(
                           Text(
                             "${AppStrings.dollar} ${e.price}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(color: AppColors.gray),
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppColors.gray),
                           ),
                         ),
                         DataCell(Switch(

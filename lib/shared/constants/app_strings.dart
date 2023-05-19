@@ -72,13 +72,8 @@ class AppStrings {
   static const String mobile = 'Mobile';
   static const String addons = 'AddOns';
 
-
-
-
-
   //optional
   static const String pizza = "Pizza";
   static const String kabab = "Kebab Plate";
   static const String saladBar = "Salad Bar";
-
 }

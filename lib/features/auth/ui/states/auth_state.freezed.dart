@@ -21,14 +21,12 @@ mixin _$AuthState {
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthStateCopyWith<AuthState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthStateCopyWith<AuthState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) = _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call({bool loading, ElvanUser? elvanUser, String? error});
 
@@ -36,8 +34,7 @@ abstract class $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState> implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -83,9 +80,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 
 /// @nodoc
 abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$$_AuthStateCopyWith(
-          _$_AuthState value, $Res Function(_$_AuthState) then) =
-      __$$_AuthStateCopyWithImpl<$Res>;
+  factory _$$_AuthStateCopyWith(_$_AuthState value, $Res Function(_$_AuthState) then) = __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool loading, ElvanUser? elvanUser, String? error});
@@ -95,12 +90,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthStateCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState>
-    implements _$$_AuthStateCopyWith<$Res> {
-  __$$_AuthStateCopyWithImpl(
-      _$_AuthState _value, $Res Function(_$_AuthState) _then)
-      : super(_value, _then);
+class __$$_AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$_AuthState> implements _$$_AuthStateCopyWith<$Res> {
+  __$$_AuthStateCopyWithImpl(_$_AuthState _value, $Res Function(_$_AuthState) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -150,8 +141,7 @@ class _$_AuthState implements _AuthState {
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.elvanUser, elvanUser) ||
-                other.elvanUser == elvanUser) &&
+            (identical(other.elvanUser, elvanUser) || other.elvanUser == elvanUser) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -161,15 +151,11 @@ class _$_AuthState implements _AuthState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
-      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith => __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
 }
 
 abstract class _AuthState implements AuthState {
-  const factory _AuthState(
-      {final bool loading,
-      final ElvanUser? elvanUser,
-      final String? error}) = _$_AuthState;
+  const factory _AuthState({final bool loading, final ElvanUser? elvanUser, final String? error}) = _$_AuthState;
 
   @override
   bool get loading;
@@ -179,6 +165,5 @@ abstract class _AuthState implements AuthState {
   String? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith => throw _privateConstructorUsedError;
 }

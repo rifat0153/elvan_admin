@@ -14,9 +14,7 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final appRouter = ref.watch(appRouterProvider);
-
-    
+    final appRouter = ref.watch(appRouterProvider);
 
     final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
 
@@ -31,12 +29,7 @@ class App extends HookConsumerWidget {
           scaffoldMessengerKey: scaffoldMessengerKey,
           title: AppStrings.appName,
           theme: ThemeData(
-              primaryColor: AppColors.white,
-              colorScheme: ThemeData().colorScheme.copyWith(
-                    secondary: AppColors.primaryRed,
-                    primary: AppColors.primaryRed
-                  ),
-              textTheme: AppTextTheme.textThemeData),
+              primaryColor: AppColors.white, colorScheme: ThemeData().colorScheme.copyWith(secondary: AppColors.primaryRed, primary: AppColors.primaryRed), textTheme: AppTextTheme.textThemeData),
           routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),
         );

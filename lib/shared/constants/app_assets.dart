@@ -8,8 +8,7 @@ class AppAssets {
   static const String pizza = "assets/images/piza.png";
   static const String applogo = "assets/images/applogo.png";
 
-
-// svgs 
+// svgs
   static const String logo = "assets/svgs/logo.svg";
   static const String dashboard = "assets/svgs/dashboard.svg";
   static const String home = "assets/svgs/home.svg";

@@ -49,31 +49,21 @@ class ProcceingScreen extends HookConsumerWidget {
                           final orderDtatils = ref.watch(orderDtatilsProvider);
                           return state.when(
                             data: (data) => data.isEmpty
-                                ? const EmptyWidget(
-                                    title: AppStrings.noProcessOrder,
-                                    icon: Icons.local_dining_outlined)
+                                ? const EmptyWidget(title: AppStrings.noProcessOrder, icon: Icons.local_dining_outlined)
                                 : ListView.builder(
                                     itemCount: data.length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
+                                    itemBuilder: (BuildContext context, int index) {
                                       return ProcessItem(
                                         key: Key(data[index].id),
                                         order: data[index],
                                         selectedOrder: orderDtatils.order,
                                         onBtnClick: () {
-                                          notifier.onEvent(
-                                              UIEvent.onChangeStatus(
-                                                  context: context,
-                                                  order: data[index]));
+                                          notifier.onEvent(UIEvent.onChangeStatus(context: context, order: data[index]));
                                         },
                                         onClick: () {
-                                          notifier.onEvent(
-                                              UIEvent.selecteItem(
-                                                  context: context,
-                                                  order: data[index]));
+                                          notifier.onEvent(UIEvent.selecteItem(context: context, order: data[index]));
                                         },
                                       );
                                     },
@@ -81,8 +71,7 @@ class ProcceingScreen extends HookConsumerWidget {
                             error: (error, stackTrace) => MErrorWidget(
                               errorMessage: error.toString(),
                               onTab: () {
-                                notifier
-                                    .onEvent(const UIEvent.refresh());
+                                notifier.onEvent(const UIEvent.refresh());
                               },
                             ),
                             loading: () => const LoaderWidget(),

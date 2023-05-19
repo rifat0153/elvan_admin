@@ -6,15 +6,10 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
-
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  const ResponsiveLayout(
-        mobile: MobileLoginScreen(),
-        tablet: DesktopLoginScreen(),
-        desktop: DesktopLoginScreen(),
-        smallMobile: MobileLoginScreen());
+    return const ResponsiveLayout(mobile: MobileLoginScreen(), tablet: DesktopLoginScreen(), desktop: DesktopLoginScreen(), smallMobile: MobileLoginScreen());
   }
 }

@@ -1,7 +1,6 @@
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ElvanBtn extends StatelessWidget {
   final String title;
@@ -22,22 +21,17 @@ class ElvanBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: onClick,
-        
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(color),
-          fixedSize:  MaterialStateProperty.all(Size(width,40)),
-         // padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 20,vertical: 15)),
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSize.radiusXL),
-          ))
-        ),
+            backgroundColor: MaterialStateProperty.all(color),
+            fixedSize: MaterialStateProperty.all(Size(width, 40)),
+            // padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 20,vertical: 15)),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSize.radiusXL),
+            ))),
         child: Center(
           child: Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: textColor),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: textColor),
           ),
         ));
   }

@@ -23,27 +23,18 @@ mixin _$HeaderPrinter {
   String? get website => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HeaderPrinterCopyWith<HeaderPrinter> get copyWith =>
-      throw _privateConstructorUsedError;
+  $HeaderPrinterCopyWith<HeaderPrinter> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HeaderPrinterCopyWith<$Res> {
-  factory $HeaderPrinterCopyWith(
-          HeaderPrinter value, $Res Function(HeaderPrinter) then) =
-      _$HeaderPrinterCopyWithImpl<$Res, HeaderPrinter>;
+  factory $HeaderPrinterCopyWith(HeaderPrinter value, $Res Function(HeaderPrinter) then) = _$HeaderPrinterCopyWithImpl<$Res, HeaderPrinter>;
   @useResult
-  $Res call(
-      {String? title,
-      String? address,
-      String? imageUrl,
-      String? phone,
-      String? website});
+  $Res call({String? title, String? address, String? imageUrl, String? phone, String? website});
 }
 
 /// @nodoc
-class _$HeaderPrinterCopyWithImpl<$Res, $Val extends HeaderPrinter>
-    implements $HeaderPrinterCopyWith<$Res> {
+class _$HeaderPrinterCopyWithImpl<$Res, $Val extends HeaderPrinter> implements $HeaderPrinterCopyWith<$Res> {
   _$HeaderPrinterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -86,28 +77,16 @@ class _$HeaderPrinterCopyWithImpl<$Res, $Val extends HeaderPrinter>
 }
 
 /// @nodoc
-abstract class _$$_HeaderPrinterCopyWith<$Res>
-    implements $HeaderPrinterCopyWith<$Res> {
-  factory _$$_HeaderPrinterCopyWith(
-          _$_HeaderPrinter value, $Res Function(_$_HeaderPrinter) then) =
-      __$$_HeaderPrinterCopyWithImpl<$Res>;
+abstract class _$$_HeaderPrinterCopyWith<$Res> implements $HeaderPrinterCopyWith<$Res> {
+  factory _$$_HeaderPrinterCopyWith(_$_HeaderPrinter value, $Res Function(_$_HeaderPrinter) then) = __$$_HeaderPrinterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? title,
-      String? address,
-      String? imageUrl,
-      String? phone,
-      String? website});
+  $Res call({String? title, String? address, String? imageUrl, String? phone, String? website});
 }
 
 /// @nodoc
-class __$$_HeaderPrinterCopyWithImpl<$Res>
-    extends _$HeaderPrinterCopyWithImpl<$Res, _$_HeaderPrinter>
-    implements _$$_HeaderPrinterCopyWith<$Res> {
-  __$$_HeaderPrinterCopyWithImpl(
-      _$_HeaderPrinter _value, $Res Function(_$_HeaderPrinter) _then)
-      : super(_value, _then);
+class __$$_HeaderPrinterCopyWithImpl<$Res> extends _$HeaderPrinterCopyWithImpl<$Res, _$_HeaderPrinter> implements _$$_HeaderPrinterCopyWith<$Res> {
+  __$$_HeaderPrinterCopyWithImpl(_$_HeaderPrinter _value, $Res Function(_$_HeaderPrinter) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -146,8 +125,7 @@ class __$$_HeaderPrinterCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HeaderPrinter implements _HeaderPrinter {
-  const _$_HeaderPrinter(
-      {this.title, this.address, this.imageUrl, this.phone, this.website});
+  const _$_HeaderPrinter({this.title, this.address, this.imageUrl, this.phone, this.website});
 
   @override
   final String? title;
@@ -172,30 +150,22 @@ class _$_HeaderPrinter implements _HeaderPrinter {
             other is _$_HeaderPrinter &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.website, website) || other.website == website));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, address, imageUrl, phone, website);
+  int get hashCode => Object.hash(runtimeType, title, address, imageUrl, phone, website);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HeaderPrinterCopyWith<_$_HeaderPrinter> get copyWith =>
-      __$$_HeaderPrinterCopyWithImpl<_$_HeaderPrinter>(this, _$identity);
+  _$$_HeaderPrinterCopyWith<_$_HeaderPrinter> get copyWith => __$$_HeaderPrinterCopyWithImpl<_$_HeaderPrinter>(this, _$identity);
 }
 
 abstract class _HeaderPrinter implements HeaderPrinter {
-  const factory _HeaderPrinter(
-      {final String? title,
-      final String? address,
-      final String? imageUrl,
-      final String? phone,
-      final String? website}) = _$_HeaderPrinter;
+  const factory _HeaderPrinter({final String? title, final String? address, final String? imageUrl, final String? phone, final String? website}) = _$_HeaderPrinter;
 
   @override
   String? get title;
@@ -209,6 +179,5 @@ abstract class _HeaderPrinter implements HeaderPrinter {
   String? get website;
   @override
   @JsonKey(ignore: true)
-  _$$_HeaderPrinterCopyWith<_$_HeaderPrinter> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_HeaderPrinterCopyWith<_$_HeaderPrinter> get copyWith => throw _privateConstructorUsedError;
 }

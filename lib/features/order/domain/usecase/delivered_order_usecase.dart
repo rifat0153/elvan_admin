@@ -9,9 +9,7 @@ part 'delivered_order_usecase.g.dart';
 
 @riverpod
 DeliveredOrderUsecase deliveredOrderUsecase(DeliveredOrderUsecaseRef ref) {
-  return DeliveredOrderUsecase(
-      orderRepository: ref.read(orderRepositoryProvider),
-      authRepository: ref.read(authRepositoryProvider));
+  return DeliveredOrderUsecase(orderRepository: ref.read(orderRepositoryProvider), authRepository: ref.read(authRepositoryProvider));
 }
 
 class DeliveredOrderUsecase {
@@ -27,10 +25,9 @@ class DeliveredOrderUsecase {
     final resultOrderdro = await orderRepository.getDeilveredStream();
     return resultOrderdro;
   }
-  Future<QuerySnapshot<Map<String, dynamic>>> getDeliveredStreamPaginagition(
-      {required DocumentSnapshot lastOrder}) async {
-    final resultOrderdro = await orderRepository.getDeilveredStreamPagination(
-        lastOrder: lastOrder);
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getDeliveredStreamPaginagition({required DocumentSnapshot lastOrder}) async {
+    final resultOrderdro = await orderRepository.getDeilveredStreamPagination(lastOrder: lastOrder);
     return resultOrderdro;
   }
 }

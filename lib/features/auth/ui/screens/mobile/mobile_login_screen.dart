@@ -1,13 +1,9 @@
-import 'package:elvan_admin/app/router/app_router.dart';
 import 'package:elvan_admin/features/auth/ui/notifer/auth_notifer.dart';
 import 'package:elvan_admin/features/auth/ui/screens/widgets/login_form.dart';
-import 'package:elvan_admin/shared/components/responsive/responsive_layout.dart';
 import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
-import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,10 +33,7 @@ class MobileLoginScreen extends HookConsumerWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
-                      child: SizedBox(
-                          width: 120,
-                          height: 90,
-                          child: SvgPicture.asset(AppAssets.logo)),
+                      child: SizedBox(width: 120, height: 90, child: SvgPicture.asset(AppAssets.logo)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -53,10 +46,7 @@ class MobileLoginScreen extends HookConsumerWidget {
                     const SizedBox(height: 8),
                     Text(
                       AppStrings.loginSubTitle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: AppColors.gray),
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -73,10 +63,7 @@ class MobileLoginScreen extends HookConsumerWidget {
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
                           "${authState.error}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(color: AppColors.primaryRed),
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppColors.primaryRed),
                         ),
                       )
                     : Container()

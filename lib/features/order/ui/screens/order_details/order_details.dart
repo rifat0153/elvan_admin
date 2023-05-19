@@ -1,14 +1,11 @@
-import 'package:elvan_admin/core/printer/header_printer.dart';
 import 'package:elvan_admin/core/printer/web_printer.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_details_notifier.dart';
 import 'package:elvan_admin/features/order/ui/notifer/order_providers.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/customer_info.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_row.dart';
-import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_details_timer.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_item_build_step.dart';
 import 'package:elvan_admin/features/order/ui/screens/order_details/widgets/order_process_timer.dart';
 import 'package:elvan_admin/features/order/ui/states/order_details_state.dart';
-import 'package:elvan_admin/shared/constants/app_assets.dart';
 import 'package:elvan_admin/shared/constants/app_colors.dart';
 import 'package:elvan_admin/shared/constants/app_size.dart';
 import 'package:elvan_admin/shared/constants/app_strings.dart';
@@ -25,8 +22,7 @@ class OrderDetatils extends HookConsumerWidget {
     final state = ref.watch(orderDtatilsProvider);
 
     return Container(
-      decoration: const BoxDecoration(
-          border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
+      decoration: const BoxDecoration(border: Border(left: BorderSide(color: AppColors.gray400, width: 1))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,20 +39,15 @@ class OrderDetatils extends HookConsumerWidget {
                     padding: const EdgeInsets.only(left: 20),
                     child: Text(
                       AppStrings.orderDetails,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(color: AppColors.grayA7),
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.grayA7),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
                 IconButton(
                     onPressed: () {
-                      final printer =
-                          ref.read(webPrinterNotifierProvider.notifier);
-                      final user =
-                          ref.read(getCustomerProvider(state.order!.userId));
+                      final printer = ref.read(webPrinterNotifierProvider.notifier);
+                      final user = ref.read(getCustomerProvider(state.order!.userId));
                       printer.printKitchen(
                         order: state.order!,
                         user: user.value,
@@ -97,10 +88,7 @@ class OrderDetatils extends HookConsumerWidget {
           padding: const EdgeInsets.only(top: 25, left: 10, bottom: 10),
           child: Text(
             AppStrings.orderedItems,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
         ),
         Padding(
@@ -141,10 +129,7 @@ class OrderDetatils extends HookConsumerWidget {
           padding: const EdgeInsets.only(left: 10),
           child: Text(
             AppStrings.transectionDetails,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge
-                ?.copyWith(color: AppColors.gray),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
           ),
         ),
 
@@ -201,10 +186,8 @@ class OrderDetatils extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               state.order?.status.status == OrderStatus.pending.status ||
-                      state.order?.status.status ==
-                          OrderStatus.delivered.status ||
-                      state.order?.status.status ==
-                          OrderStatus.rejected.status ||
+                      state.order?.status.status == OrderStatus.delivered.status ||
+                      state.order?.status.status == OrderStatus.rejected.status ||
                       state.order?.status.status == OrderStatus.cancelled.status
                   ? Container()
                   : const OrderDeatilsProcessTimer(),

@@ -3,8 +3,8 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 
 class ToastNotifer {
-    const ToastNotifer._();
-static  success(BuildContext context, String message) {
+  const ToastNotifer._();
+  static success(BuildContext context, String message) {
     MotionToast(
       icon: Icons.done,
       animationType: AnimationType.fromBottom,
@@ -16,7 +16,7 @@ static  success(BuildContext context, String message) {
     ).show(context);
   }
 
-static  error(BuildContext context, String message) {
+  static error(BuildContext context, String message) {
     MotionToast(
       icon: Icons.error_outline,
       animationType: AnimationType.fromBottom,
@@ -31,12 +31,7 @@ static  error(BuildContext context, String message) {
     ).show(context);
   }
 
- static common(
-      {required BuildContext context,
-      required String message,
-      required String title,
-      required IconData iconData,
-      required Color color}) {
+  static common({required BuildContext context, required String message, required String title, required IconData iconData, required Color color}) {
     MotionToast(
       icon: iconData,
       animationType: AnimationType.fromBottom,

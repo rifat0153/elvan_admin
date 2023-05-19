@@ -17,8 +17,7 @@ final orderUsecaseProvider = Provider.autoDispose<OrderUsecase>(
 class OrderUsecase {
   final OrderRepository orderRepository;
   final AuthRepository authRepository;
-  const OrderUsecase(
-      {required this.orderRepository, required this.authRepository});
+  const OrderUsecase({required this.orderRepository, required this.authRepository});
 
   Stream<List<shared.Order>> getOrderStream({required OrderStatus status}) {
     return orderRepository.getOrderStream(status: status).map(
@@ -30,8 +29,7 @@ class OrderUsecase {
         );
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream(
-      {required OrderStatus status}) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getOrderSnapshotStream({required OrderStatus status}) {
     return orderRepository.getOrderSnapshotStream(status: status);
   }
 

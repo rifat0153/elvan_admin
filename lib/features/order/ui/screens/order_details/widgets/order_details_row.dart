@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 class OrderDetailsRow extends StatelessWidget {
   final String title;
   final double value;
-  const OrderDetailsRow({
-    Key? key,
-    required this.title,
-    this.value = 0.0
-  }) : super(key: key);
+  const OrderDetailsRow({Key? key, required this.title, this.value = 0.0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +23,7 @@ class OrderDetailsRow extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Text(
-              "${AppStrings.dollar} ${value}",
+              "${AppStrings.dollar} $value",
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),

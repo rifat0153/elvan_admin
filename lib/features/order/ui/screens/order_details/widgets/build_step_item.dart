@@ -15,20 +15,21 @@ class BuildStepItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10,top: 10),
+          padding: const EdgeInsets.only(left: 10, top: 10),
           child: Text(
             "$index. ${buildsteps.title}",
             style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
         ),
-        checkAddons(buildStep: buildsteps) ? Padding(
-          padding: const EdgeInsets.only(left: 10,top: 10),
-          child: Text(
-            "${AppStrings.addons} :",
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-        ) : Container(),
-
+        checkAddons(buildStep: buildsteps)
+            ? Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10),
+                child: Text(
+                  "${AppStrings.addons} :",
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              )
+            : Container(),
         buildsteps.addOns.isNotEmpty
             ? Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -55,11 +56,10 @@ class BuildStepItem extends StatelessWidget {
     );
   }
 
-    bool checkAddons({
+  bool checkAddons({
     required BuildStep buildStep,
   }) {
-    final addons = buildStep.addOns
-        .whereIndexed((index, element) => element.isSelected == true);
+    final addons = buildStep.addOns.whereIndexed((index, element) => element.isSelected == true);
     return addons.isNotEmpty;
   }
 }

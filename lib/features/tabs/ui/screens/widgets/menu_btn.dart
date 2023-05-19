@@ -10,9 +10,7 @@ class MenuBtn extends HookConsumerWidget {
   final int count;
   final int? selectedIndex;
   final int? index;
-  const MenuBtn(
-      {Key? key, this.count = 0, required this.onClick, required this.title, this.selectedIndex, required this.index})
-      : super(key: key);
+  const MenuBtn({Key? key, this.count = 0, required this.onClick, required this.title, this.selectedIndex, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,26 +28,23 @@ class MenuBtn extends HookConsumerWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(color: selectedIndex == null ?  AppColors.gray : selectedIndex == index  ? AppColors.primaryRed : AppColors.gray),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: selectedIndex == null
+                      ? AppColors.gray
+                      : selectedIndex == index
+                          ? AppColors.primaryRed
+                          : AppColors.gray),
             ),
-
-         count != 0 ?   Container(
-              height: 16,
-              constraints: const BoxConstraints(minWidth: 27),
-              decoration: BoxDecoration(
-                  color: AppColors.primaryRed,
-                  borderRadius: BorderRadius.circular(AppSize.radiusMD)),
-              child: Center(
-                child: Text("$count",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall
-                        ?.copyWith(color: AppColors.white)),
-              ),
-            ): Container()
+            count != 0
+                ? Container(
+                    height: 16,
+                    constraints: const BoxConstraints(minWidth: 27),
+                    decoration: BoxDecoration(color: AppColors.primaryRed, borderRadius: BorderRadius.circular(AppSize.radiusMD)),
+                    child: Center(
+                      child: Text("$count", style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.white)),
+                    ),
+                  )
+                : Container()
           ],
         ),
       ),

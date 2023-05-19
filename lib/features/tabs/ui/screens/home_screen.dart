@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:elvan_admin/app/router/app_router.gr.dart';
 import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/features/tabs/ui/screens/childs/child_home_screen.dart';
@@ -15,12 +14,7 @@ class HomeScreen extends HookConsumerWidget {
     final menuState = ref.watch(menuProvider);
 
     return AutoTabsRouter.tabBar(
-      routes: const [
-        NewOrderRoute(),
-        ProcceingRoute(),
-        ReadyRoute(),
-        DeliveredRoute()
-      ],
+      routes: const [NewOrderRoute(), ProcceingRoute(), ReadyRoute(), DeliveredRoute()],
       builder: (context, child, pageController) {
         final tabsRouter = AutoTabsRouter.of(context);
 

@@ -64,13 +64,11 @@ mixin _$UiState<T> {
 
 /// @nodoc
 abstract class $UiStateCopyWith<T, $Res> {
-  factory $UiStateCopyWith(UiState<T> value, $Res Function(UiState<T>) then) =
-      _$UiStateCopyWithImpl<T, $Res, UiState<T>>;
+  factory $UiStateCopyWith(UiState<T> value, $Res Function(UiState<T>) then) = _$UiStateCopyWithImpl<T, $Res, UiState<T>>;
 }
 
 /// @nodoc
-class _$UiStateCopyWithImpl<T, $Res, $Val extends UiState<T>>
-    implements $UiStateCopyWith<T, $Res> {
+class _$UiStateCopyWithImpl<T, $Res, $Val extends UiState<T>> implements $UiStateCopyWith<T, $Res> {
   _$UiStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -81,18 +79,12 @@ class _$UiStateCopyWithImpl<T, $Res, $Val extends UiState<T>>
 
 /// @nodoc
 abstract class _$$_State_LoadingCopyWith<T, $Res> {
-  factory _$$_State_LoadingCopyWith(
-          _$_State_Loading<T> value, $Res Function(_$_State_Loading<T>) then) =
-      __$$_State_LoadingCopyWithImpl<T, $Res>;
+  factory _$$_State_LoadingCopyWith(_$_State_Loading<T> value, $Res Function(_$_State_Loading<T>) then) = __$$_State_LoadingCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$_State_LoadingCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$_State_Loading<T>>
-    implements _$$_State_LoadingCopyWith<T, $Res> {
-  __$$_State_LoadingCopyWithImpl(
-      _$_State_Loading<T> _value, $Res Function(_$_State_Loading<T>) _then)
-      : super(_value, _then);
+class __$$_State_LoadingCopyWithImpl<T, $Res> extends _$UiStateCopyWithImpl<T, $Res, _$_State_Loading<T>> implements _$$_State_LoadingCopyWith<T, $Res> {
+  __$$_State_LoadingCopyWithImpl(_$_State_Loading<T> _value, $Res Function(_$_State_Loading<T>) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -107,8 +99,7 @@ class _$_State_Loading<T> extends _State_Loading<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_State_Loading<T>);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_State_Loading<T>);
   }
 
   @override
@@ -190,20 +181,14 @@ abstract class _State_Loading<T> extends UiState<T> {
 
 /// @nodoc
 abstract class _$$_State_DataCopyWith<T, $Res> {
-  factory _$$_State_DataCopyWith(
-          _$_State_Data<T> value, $Res Function(_$_State_Data<T>) then) =
-      __$$_State_DataCopyWithImpl<T, $Res>;
+  factory _$$_State_DataCopyWith(_$_State_Data<T> value, $Res Function(_$_State_Data<T>) then) = __$$_State_DataCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$_State_DataCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$_State_Data<T>>
-    implements _$$_State_DataCopyWith<T, $Res> {
-  __$$_State_DataCopyWithImpl(
-      _$_State_Data<T> _value, $Res Function(_$_State_Data<T>) _then)
-      : super(_value, _then);
+class __$$_State_DataCopyWithImpl<T, $Res> extends _$UiStateCopyWithImpl<T, $Res, _$_State_Data<T>> implements _$$_State_DataCopyWith<T, $Res> {
+  __$$_State_DataCopyWithImpl(_$_State_Data<T> _value, $Res Function(_$_State_Data<T>) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -234,21 +219,16 @@ class _$_State_Data<T> extends _State_Data<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_State_Data<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_State_Data<T> && const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_State_DataCopyWith<T, _$_State_Data<T>> get copyWith =>
-      __$$_State_DataCopyWithImpl<T, _$_State_Data<T>>(this, _$identity);
+  _$$_State_DataCopyWith<T, _$_State_Data<T>> get copyWith => __$$_State_DataCopyWithImpl<T, _$_State_Data<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -325,26 +305,19 @@ abstract class _State_Data<T> extends UiState<T> {
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_State_DataCopyWith<T, _$_State_Data<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_State_DataCopyWith<T, _$_State_Data<T>> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_State_ErrorCopyWith<T, $Res> {
-  factory _$$_State_ErrorCopyWith(
-          _$_State_Error<T> value, $Res Function(_$_State_Error<T>) then) =
-      __$$_State_ErrorCopyWithImpl<T, $Res>;
+  factory _$$_State_ErrorCopyWith(_$_State_Error<T> value, $Res Function(_$_State_Error<T>) then) = __$$_State_ErrorCopyWithImpl<T, $Res>;
   @useResult
   $Res call({String? error, StackTrace? st});
 }
 
 /// @nodoc
-class __$$_State_ErrorCopyWithImpl<T, $Res>
-    extends _$UiStateCopyWithImpl<T, $Res, _$_State_Error<T>>
-    implements _$$_State_ErrorCopyWith<T, $Res> {
-  __$$_State_ErrorCopyWithImpl(
-      _$_State_Error<T> _value, $Res Function(_$_State_Error<T>) _then)
-      : super(_value, _then);
+class __$$_State_ErrorCopyWithImpl<T, $Res> extends _$UiStateCopyWithImpl<T, $Res, _$_State_Error<T>> implements _$$_State_ErrorCopyWith<T, $Res> {
+  __$$_State_ErrorCopyWithImpl(_$_State_Error<T> _value, $Res Function(_$_State_Error<T>) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -383,10 +356,7 @@ class _$_State_Error<T> extends _State_Error<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_State_Error<T> &&
-            (identical(other.error, error) || other.error == error) &&
-            (identical(other.st, st) || other.st == st));
+        (other.runtimeType == runtimeType && other is _$_State_Error<T> && (identical(other.error, error) || other.error == error) && (identical(other.st, st) || other.st == st));
   }
 
   @override
@@ -395,8 +365,7 @@ class _$_State_Error<T> extends _State_Error<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_State_ErrorCopyWith<T, _$_State_Error<T>> get copyWith =>
-      __$$_State_ErrorCopyWithImpl<T, _$_State_Error<T>>(this, _$identity);
+  _$$_State_ErrorCopyWith<T, _$_State_Error<T>> get copyWith => __$$_State_ErrorCopyWithImpl<T, _$_State_Error<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -468,13 +437,11 @@ class _$_State_Error<T> extends _State_Error<T> {
 }
 
 abstract class _State_Error<T> extends UiState<T> {
-  const factory _State_Error(final String? error, [final StackTrace? st]) =
-      _$_State_Error<T>;
+  const factory _State_Error(final String? error, [final StackTrace? st]) = _$_State_Error<T>;
   const _State_Error._() : super._();
 
   String? get error;
   StackTrace? get st;
   @JsonKey(ignore: true)
-  _$$_State_ErrorCopyWith<T, _$_State_Error<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_State_ErrorCopyWith<T, _$_State_Error<T>> get copyWith => throw _privateConstructorUsedError;
 }

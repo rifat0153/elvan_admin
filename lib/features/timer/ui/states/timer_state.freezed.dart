@@ -22,22 +22,18 @@ mixin _$DefaultTimerState {
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DefaultTimerStateCopyWith<DefaultTimerState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DefaultTimerStateCopyWith<DefaultTimerState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DefaultTimerStateCopyWith<$Res> {
-  factory $DefaultTimerStateCopyWith(
-          DefaultTimerState value, $Res Function(DefaultTimerState) then) =
-      _$DefaultTimerStateCopyWithImpl<$Res, DefaultTimerState>;
+  factory $DefaultTimerStateCopyWith(DefaultTimerState value, $Res Function(DefaultTimerState) then) = _$DefaultTimerStateCopyWithImpl<$Res, DefaultTimerState>;
   @useResult
   $Res call({int minutes, dynamic takingHour, String? notice, String? error});
 }
 
 /// @nodoc
-class _$DefaultTimerStateCopyWithImpl<$Res, $Val extends DefaultTimerState>
-    implements $DefaultTimerStateCopyWith<$Res> {
+class _$DefaultTimerStateCopyWithImpl<$Res, $Val extends DefaultTimerState> implements $DefaultTimerStateCopyWith<$Res> {
   _$DefaultTimerStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -75,23 +71,16 @@ class _$DefaultTimerStateCopyWithImpl<$Res, $Val extends DefaultTimerState>
 }
 
 /// @nodoc
-abstract class _$$_DefaultTimerStateCopyWith<$Res>
-    implements $DefaultTimerStateCopyWith<$Res> {
-  factory _$$_DefaultTimerStateCopyWith(_$_DefaultTimerState value,
-          $Res Function(_$_DefaultTimerState) then) =
-      __$$_DefaultTimerStateCopyWithImpl<$Res>;
+abstract class _$$_DefaultTimerStateCopyWith<$Res> implements $DefaultTimerStateCopyWith<$Res> {
+  factory _$$_DefaultTimerStateCopyWith(_$_DefaultTimerState value, $Res Function(_$_DefaultTimerState) then) = __$$_DefaultTimerStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int minutes, dynamic takingHour, String? notice, String? error});
 }
 
 /// @nodoc
-class __$$_DefaultTimerStateCopyWithImpl<$Res>
-    extends _$DefaultTimerStateCopyWithImpl<$Res, _$_DefaultTimerState>
-    implements _$$_DefaultTimerStateCopyWith<$Res> {
-  __$$_DefaultTimerStateCopyWithImpl(
-      _$_DefaultTimerState _value, $Res Function(_$_DefaultTimerState) _then)
-      : super(_value, _then);
+class __$$_DefaultTimerStateCopyWithImpl<$Res> extends _$DefaultTimerStateCopyWithImpl<$Res, _$_DefaultTimerState> implements _$$_DefaultTimerStateCopyWith<$Res> {
+  __$$_DefaultTimerStateCopyWithImpl(_$_DefaultTimerState _value, $Res Function(_$_DefaultTimerState) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -122,8 +111,7 @@ class __$$_DefaultTimerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DefaultTimerState implements _DefaultTimerState {
-  const _$_DefaultTimerState(
-      {this.minutes = 0, this.takingHour = false, this.notice, this.error});
+  const _$_DefaultTimerState({this.minutes = 0, this.takingHour = false, this.notice, this.error});
 
   @override
   @JsonKey()
@@ -147,30 +135,22 @@ class _$_DefaultTimerState implements _DefaultTimerState {
         (other.runtimeType == runtimeType &&
             other is _$_DefaultTimerState &&
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
-            const DeepCollectionEquality()
-                .equals(other.takingHour, takingHour) &&
+            const DeepCollectionEquality().equals(other.takingHour, takingHour) &&
             (identical(other.notice, notice) || other.notice == notice) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, minutes,
-      const DeepCollectionEquality().hash(takingHour), notice, error);
+  int get hashCode => Object.hash(runtimeType, minutes, const DeepCollectionEquality().hash(takingHour), notice, error);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DefaultTimerStateCopyWith<_$_DefaultTimerState> get copyWith =>
-      __$$_DefaultTimerStateCopyWithImpl<_$_DefaultTimerState>(
-          this, _$identity);
+  _$$_DefaultTimerStateCopyWith<_$_DefaultTimerState> get copyWith => __$$_DefaultTimerStateCopyWithImpl<_$_DefaultTimerState>(this, _$identity);
 }
 
 abstract class _DefaultTimerState implements DefaultTimerState {
-  const factory _DefaultTimerState(
-      {final int minutes,
-      final dynamic takingHour,
-      final String? notice,
-      final String? error}) = _$_DefaultTimerState;
+  const factory _DefaultTimerState({final int minutes, final dynamic takingHour, final String? notice, final String? error}) = _$_DefaultTimerState;
 
   @override
   int get minutes;
@@ -182,6 +162,5 @@ abstract class _DefaultTimerState implements DefaultTimerState {
   String? get error;
   @override
   @JsonKey(ignore: true)
-  _$$_DefaultTimerStateCopyWith<_$_DefaultTimerState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_DefaultTimerStateCopyWith<_$_DefaultTimerState> get copyWith => throw _privateConstructorUsedError;
 }

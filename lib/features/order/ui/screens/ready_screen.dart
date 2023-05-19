@@ -5,7 +5,6 @@ import 'package:elvan_admin/features/order/ui/notifer/ready_screen_notifier.dart
 import 'package:elvan_admin/features/order/ui/screens/order_item/ready_item.dart';
 import 'package:elvan_admin/features/order/ui/screens/widgets/empty_widget.dart';
 import 'package:elvan_admin/features/order/ui/states/events/ui_event.dart';
-import 'package:elvan_admin/features/tabs/ui/notifier/menu_notifier.dart';
 import 'package:elvan_admin/shared/components/appbars/home_app_bar.dart';
 import 'package:elvan_admin/shared/components/error/error_widget.dart';
 import 'package:elvan_admin/shared/components/loader/loader_widget.dart';
@@ -17,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
-
 class ReadyScreen extends HookConsumerWidget {
   const ReadyScreen({Key? key}) : super(key: key);
 
@@ -53,30 +51,21 @@ class ReadyScreen extends HookConsumerWidget {
 
                           return state.when(
                             data: (data) => data.isEmpty
-                                ? const EmptyWidget(
-                                    title: AppStrings.noReadyOrder,
-                                    icon: Icons.local_dining_outlined)
+                                ? const EmptyWidget(title: AppStrings.noReadyOrder, icon: Icons.local_dining_outlined)
                                 : ListView.builder(
                                     itemCount: data.length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
+                                    itemBuilder: (BuildContext context, int index) {
                                       return ReadyItem(
                                         key: Key(data[index].id),
                                         order: data[index],
                                         selectedOrder: orderDtatils.order,
                                         onBtnClick: () {
-                                          notifier.onEvent(
-                                              UIEvent.onChangeStatus(
-                                                  context: context,
-                                                  order: data[index]));
+                                          notifier.onEvent(UIEvent.onChangeStatus(context: context, order: data[index]));
                                         },
                                         onClick: () {
-                                          notifier.onEvent(UIEvent.selecteItem(
-                                              context: context,
-                                              order: data[index]));
+                                          notifier.onEvent(UIEvent.selecteItem(context: context, order: data[index]));
                                         },
                                       );
                                     },

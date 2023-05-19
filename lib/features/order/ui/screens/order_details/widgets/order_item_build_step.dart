@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 
 class OrderItemBuildStep extends StatelessWidget {
   final CartItem cartItem;
-  const OrderItemBuildStep({Key? key, required this.cartItem})
-      : super(key: key);
+  const OrderItemBuildStep({Key? key, required this.cartItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,7 @@ class OrderItemBuildStep extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 10, top: 20),
                 child: Text(
                   "${AppStrings.instructions} :",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge
-                      ?.copyWith(color: AppColors.gray),
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                 ),
               )
             : Container(),
@@ -36,10 +32,7 @@ class OrderItemBuildStep extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Text(
                     " # ${cartItem.instructions[index]}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall
-                        ?.copyWith(color: AppColors.gray),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppColors.gray),
                   );
                 },
               )
@@ -52,10 +45,7 @@ class OrderItemBuildStep extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 10, top: 20),
                 child: Text(
                   "${AppStrings.buildSteps} :",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge
-                      ?.copyWith(color: AppColors.gray),
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                 ),
               )
             : Container(),

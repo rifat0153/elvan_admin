@@ -18,30 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FoodState {
   bool get loading => throw _privateConstructorUsedError;
   bool get haseMore => throw _privateConstructorUsedError;
-  List<DocumentSnapshot<Map<String, dynamic>>> get items =>
-      throw _privateConstructorUsedError;
+  List<DocumentSnapshot<Map<String, dynamic>>> get items => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $FoodStateCopyWith<FoodState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FoodStateCopyWith<FoodState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FoodStateCopyWith<$Res> {
-  factory $FoodStateCopyWith(FoodState value, $Res Function(FoodState) then) =
-      _$FoodStateCopyWithImpl<$Res, FoodState>;
+  factory $FoodStateCopyWith(FoodState value, $Res Function(FoodState) then) = _$FoodStateCopyWithImpl<$Res, FoodState>;
   @useResult
-  $Res call(
-      {bool loading,
-      bool haseMore,
-      List<DocumentSnapshot<Map<String, dynamic>>> items,
-      int page});
+  $Res call({bool loading, bool haseMore, List<DocumentSnapshot<Map<String, dynamic>>> items, int page});
 }
 
 /// @nodoc
-class _$FoodStateCopyWithImpl<$Res, $Val extends FoodState>
-    implements $FoodStateCopyWith<$Res> {
+class _$FoodStateCopyWithImpl<$Res, $Val extends FoodState> implements $FoodStateCopyWith<$Res> {
   _$FoodStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -80,25 +72,15 @@ class _$FoodStateCopyWithImpl<$Res, $Val extends FoodState>
 
 /// @nodoc
 abstract class _$$_FoodStateCopyWith<$Res> implements $FoodStateCopyWith<$Res> {
-  factory _$$_FoodStateCopyWith(
-          _$_FoodState value, $Res Function(_$_FoodState) then) =
-      __$$_FoodStateCopyWithImpl<$Res>;
+  factory _$$_FoodStateCopyWith(_$_FoodState value, $Res Function(_$_FoodState) then) = __$$_FoodStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool loading,
-      bool haseMore,
-      List<DocumentSnapshot<Map<String, dynamic>>> items,
-      int page});
+  $Res call({bool loading, bool haseMore, List<DocumentSnapshot<Map<String, dynamic>>> items, int page});
 }
 
 /// @nodoc
-class __$$_FoodStateCopyWithImpl<$Res>
-    extends _$FoodStateCopyWithImpl<$Res, _$_FoodState>
-    implements _$$_FoodStateCopyWith<$Res> {
-  __$$_FoodStateCopyWithImpl(
-      _$_FoodState _value, $Res Function(_$_FoodState) _then)
-      : super(_value, _then);
+class __$$_FoodStateCopyWithImpl<$Res> extends _$FoodStateCopyWithImpl<$Res, _$_FoodState> implements _$$_FoodStateCopyWith<$Res> {
+  __$$_FoodStateCopyWithImpl(_$_FoodState _value, $Res Function(_$_FoodState) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -132,12 +114,7 @@ class __$$_FoodStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FoodState implements _FoodState {
-  const _$_FoodState(
-      {this.loading = false,
-      this.haseMore = false,
-      final List<DocumentSnapshot<Map<String, dynamic>>> items = const [],
-      this.page = 1})
-      : _items = items;
+  const _$_FoodState({this.loading = false, this.haseMore = false, final List<DocumentSnapshot<Map<String, dynamic>>> items = const [], this.page = 1}) : _items = items;
 
   @override
   @JsonKey()
@@ -169,29 +146,22 @@ class _$_FoodState implements _FoodState {
         (other.runtimeType == runtimeType &&
             other is _$_FoodState &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.haseMore, haseMore) ||
-                other.haseMore == haseMore) &&
+            (identical(other.haseMore, haseMore) || other.haseMore == haseMore) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, haseMore,
-      const DeepCollectionEquality().hash(_items), page);
+  int get hashCode => Object.hash(runtimeType, loading, haseMore, const DeepCollectionEquality().hash(_items), page);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FoodStateCopyWith<_$_FoodState> get copyWith =>
-      __$$_FoodStateCopyWithImpl<_$_FoodState>(this, _$identity);
+  _$$_FoodStateCopyWith<_$_FoodState> get copyWith => __$$_FoodStateCopyWithImpl<_$_FoodState>(this, _$identity);
 }
 
 abstract class _FoodState implements FoodState {
-  const factory _FoodState(
-      {final bool loading,
-      final bool haseMore,
-      final List<DocumentSnapshot<Map<String, dynamic>>> items,
-      final int page}) = _$_FoodState;
+  const factory _FoodState({final bool loading, final bool haseMore, final List<DocumentSnapshot<Map<String, dynamic>>> items, final int page}) = _$_FoodState;
 
   @override
   bool get loading;
@@ -203,6 +173,5 @@ abstract class _FoodState implements FoodState {
   int get page;
   @override
   @JsonKey(ignore: true)
-  _$$_FoodStateCopyWith<_$_FoodState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FoodStateCopyWith<_$_FoodState> get copyWith => throw _privateConstructorUsedError;
 }

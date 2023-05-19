@@ -4,7 +4,6 @@ import 'package:elvan_admin/app/router/navigation_provider.dart';
 import 'package:elvan_admin/features/auth/domain/usecase/auth_usecases.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_event.dart';
 import 'package:elvan_admin/features/auth/ui/states/auth_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
@@ -15,7 +14,7 @@ class AuthNotifier extends Notifier<AuthState> {
   AuthNotifier() : super();
 
   late final AuthUseCases authUseCase;
- 
+
   @override
   build() {
     // setup (just like widget initState)
@@ -24,7 +23,6 @@ class AuthNotifier extends Notifier<AuthState> {
 
     // dispose (just like widget dispose)
     // cancel all subscriptions and close all streams
-   
 
     // return the initial state of the notifier
     return const AuthState();
@@ -48,8 +46,7 @@ class AuthNotifier extends Notifier<AuthState> {
       },
       registerWithEmailAndPassword: (email, password) {
         state = state.copyWith(loading: true);
-        final result =
-            authUseCase.register(name: "", email: email, password: password);
+        final result = authUseCase.register(name: "", email: email, password: password);
       },
       resetPassword: (email) {},
       goToRegisterScreen: () {
@@ -63,8 +60,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
     result.when(
       success: (elvanUser) {
-        state = state.copyWith(
-            elvanUser: elvanUser, loading: state.loading, error: state.error);
+        state = state.copyWith(elvanUser: elvanUser, loading: state.loading, error: state.error);
       },
       failure: (failure) {
         state = state.copyWith(error: failure.message, loading: state.loading);
@@ -75,8 +71,7 @@ class AuthNotifier extends Notifier<AuthState> {
   Future loginAndGetUserData(String email, String password) async {
     state = state.copyWith(loading: true);
 
-    final result =
-        await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
+    final result = await authUseCase.signInWithEmailAndPasswordAndGetElvanUserUseCase(
       email: email,
       password: password,
     );
@@ -99,8 +94,7 @@ class AuthNotifier extends Notifier<AuthState> {
   Future register(String email, String password) async {
     //state = const AuthState.loading();
 
-    final result = await authUseCase.register(
-        email: email, password: password, name: "Rayhan");
+    final result = await authUseCase.register(email: email, password: password, name: "Rayhan");
 
     result.when(
       success: (elvanUser) {

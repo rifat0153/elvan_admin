@@ -23,26 +23,18 @@ mixin _$MenuState {
   double get yOffset => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MenuStateCopyWith<MenuState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $MenuStateCopyWith<MenuState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $MenuStateCopyWith<$Res> {
-  factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) =
-      _$MenuStateCopyWithImpl<$Res, MenuState>;
+  factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) = _$MenuStateCopyWithImpl<$Res, MenuState>;
   @useResult
-  $Res call(
-      {bool isOpenMenu,
-      double xOffset,
-      double xOffsetSubChild,
-      double xOffsetTab,
-      double yOffset});
+  $Res call({bool isOpenMenu, double xOffset, double xOffsetSubChild, double xOffsetTab, double yOffset});
 }
 
 /// @nodoc
-class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
-    implements $MenuStateCopyWith<$Res> {
+class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState> implements $MenuStateCopyWith<$Res> {
   _$MenuStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -86,26 +78,15 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
 
 /// @nodoc
 abstract class _$$_MenuStateCopyWith<$Res> implements $MenuStateCopyWith<$Res> {
-  factory _$$_MenuStateCopyWith(
-          _$_MenuState value, $Res Function(_$_MenuState) then) =
-      __$$_MenuStateCopyWithImpl<$Res>;
+  factory _$$_MenuStateCopyWith(_$_MenuState value, $Res Function(_$_MenuState) then) = __$$_MenuStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isOpenMenu,
-      double xOffset,
-      double xOffsetSubChild,
-      double xOffsetTab,
-      double yOffset});
+  $Res call({bool isOpenMenu, double xOffset, double xOffsetSubChild, double xOffsetTab, double yOffset});
 }
 
 /// @nodoc
-class __$$_MenuStateCopyWithImpl<$Res>
-    extends _$MenuStateCopyWithImpl<$Res, _$_MenuState>
-    implements _$$_MenuStateCopyWith<$Res> {
-  __$$_MenuStateCopyWithImpl(
-      _$_MenuState _value, $Res Function(_$_MenuState) _then)
-      : super(_value, _then);
+class __$$_MenuStateCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res, _$_MenuState> implements _$$_MenuStateCopyWith<$Res> {
+  __$$_MenuStateCopyWithImpl(_$_MenuState _value, $Res Function(_$_MenuState) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -144,12 +125,7 @@ class __$$_MenuStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MenuState implements _MenuState {
-  const _$_MenuState(
-      {this.isOpenMenu = false,
-      this.xOffset = 0,
-      this.xOffsetSubChild = 0,
-      this.xOffsetTab = 0,
-      this.yOffset = 0});
+  const _$_MenuState({this.isOpenMenu = false, this.xOffset = 0, this.xOffsetSubChild = 0, this.xOffsetTab = 0, this.yOffset = 0});
 
   @override
   @JsonKey()
@@ -177,34 +153,24 @@ class _$_MenuState implements _MenuState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MenuState &&
-            (identical(other.isOpenMenu, isOpenMenu) ||
-                other.isOpenMenu == isOpenMenu) &&
+            (identical(other.isOpenMenu, isOpenMenu) || other.isOpenMenu == isOpenMenu) &&
             (identical(other.xOffset, xOffset) || other.xOffset == xOffset) &&
-            (identical(other.xOffsetSubChild, xOffsetSubChild) ||
-                other.xOffsetSubChild == xOffsetSubChild) &&
-            (identical(other.xOffsetTab, xOffsetTab) ||
-                other.xOffsetTab == xOffsetTab) &&
+            (identical(other.xOffsetSubChild, xOffsetSubChild) || other.xOffsetSubChild == xOffsetSubChild) &&
+            (identical(other.xOffsetTab, xOffsetTab) || other.xOffsetTab == xOffsetTab) &&
             (identical(other.yOffset, yOffset) || other.yOffset == yOffset));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isOpenMenu, xOffset, xOffsetSubChild, xOffsetTab, yOffset);
+  int get hashCode => Object.hash(runtimeType, isOpenMenu, xOffset, xOffsetSubChild, xOffsetTab, yOffset);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MenuStateCopyWith<_$_MenuState> get copyWith =>
-      __$$_MenuStateCopyWithImpl<_$_MenuState>(this, _$identity);
+  _$$_MenuStateCopyWith<_$_MenuState> get copyWith => __$$_MenuStateCopyWithImpl<_$_MenuState>(this, _$identity);
 }
 
 abstract class _MenuState implements MenuState {
-  const factory _MenuState(
-      {final bool isOpenMenu,
-      final double xOffset,
-      final double xOffsetSubChild,
-      final double xOffsetTab,
-      final double yOffset}) = _$_MenuState;
+  const factory _MenuState({final bool isOpenMenu, final double xOffset, final double xOffsetSubChild, final double xOffsetTab, final double yOffset}) = _$_MenuState;
 
   @override
   bool get isOpenMenu;
@@ -218,6 +184,5 @@ abstract class _MenuState implements MenuState {
   double get yOffset;
   @override
   @JsonKey(ignore: true)
-  _$$_MenuStateCopyWith<_$_MenuState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_MenuStateCopyWith<_$_MenuState> get copyWith => throw _privateConstructorUsedError;
 }

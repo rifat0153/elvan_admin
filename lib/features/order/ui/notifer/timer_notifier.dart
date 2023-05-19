@@ -16,7 +16,7 @@ class TimerNotifier extends AutoDisposeFamilyNotifier<int, Order> {
     final orderAcceptedAt = orderAcceptedAtTimestamp?.toDate();
 
     //final orderPreparationTimeInSeconds = arg.orderPreparationTime;
-   // final orderShouldBePreparedBy = orderAcceptedAt!.add(Duration(seconds: orderPreparationTimeInSeconds!));
+    // final orderShouldBePreparedBy = orderAcceptedAt!.add(Duration(seconds: orderPreparationTimeInSeconds!));
     final orderShouldBePreparedBy = orderAcceptedAt!;
 
     // if orderShouldBePreparedBy time is less than current time, set the timer to 0

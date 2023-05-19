@@ -58,13 +58,11 @@ mixin _$Result<T> {
 
 /// @nodoc
 abstract class $ResultCopyWith<T, $Res> {
-  factory $ResultCopyWith(Result<T> value, $Res Function(Result<T>) then) =
-      _$ResultCopyWithImpl<T, $Res, Result<T>>;
+  factory $ResultCopyWith(Result<T> value, $Res Function(Result<T>) then) = _$ResultCopyWithImpl<T, $Res, Result<T>>;
 }
 
 /// @nodoc
-class _$ResultCopyWithImpl<T, $Res, $Val extends Result<T>>
-    implements $ResultCopyWith<T, $Res> {
+class _$ResultCopyWithImpl<T, $Res, $Val extends Result<T>> implements $ResultCopyWith<T, $Res> {
   _$ResultCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -75,20 +73,14 @@ class _$ResultCopyWithImpl<T, $Res, $Val extends Result<T>>
 
 /// @nodoc
 abstract class _$$_Result_DataCopyWith<T, $Res> {
-  factory _$$_Result_DataCopyWith(
-          _$_Result_Data<T> value, $Res Function(_$_Result_Data<T>) then) =
-      __$$_Result_DataCopyWithImpl<T, $Res>;
+  factory _$$_Result_DataCopyWith(_$_Result_Data<T> value, $Res Function(_$_Result_Data<T>) then) = __$$_Result_DataCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T data});
 }
 
 /// @nodoc
-class __$$_Result_DataCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$_Result_Data<T>>
-    implements _$$_Result_DataCopyWith<T, $Res> {
-  __$$_Result_DataCopyWithImpl(
-      _$_Result_Data<T> _value, $Res Function(_$_Result_Data<T>) _then)
-      : super(_value, _then);
+class __$$_Result_DataCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res, _$_Result_Data<T>> implements _$$_Result_DataCopyWith<T, $Res> {
+  __$$_Result_DataCopyWithImpl(_$_Result_Data<T> _value, $Res Function(_$_Result_Data<T>) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -119,21 +111,16 @@ class _$_Result_Data<T> implements _Result_Data<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Result_Data<T> &&
-            const DeepCollectionEquality().equals(other.data, data));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Result_Data<T> && const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Result_DataCopyWith<T, _$_Result_Data<T>> get copyWith =>
-      __$$_Result_DataCopyWithImpl<T, _$_Result_Data<T>>(this, _$identity);
+  _$$_Result_DataCopyWith<T, _$_Result_Data<T>> get copyWith => __$$_Result_DataCopyWithImpl<T, _$_Result_Data<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -203,15 +190,12 @@ abstract class _Result_Data<T> implements Result<T> {
 
   T get data;
   @JsonKey(ignore: true)
-  _$$_Result_DataCopyWith<T, _$_Result_Data<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_Result_DataCopyWith<T, _$_Result_Data<T>> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_Result_ErrorCopyWith<T, $Res> {
-  factory _$$_Result_ErrorCopyWith(
-          _$_Result_Error<T> value, $Res Function(_$_Result_Error<T>) then) =
-      __$$_Result_ErrorCopyWithImpl<T, $Res>;
+  factory _$$_Result_ErrorCopyWith(_$_Result_Error<T> value, $Res Function(_$_Result_Error<T>) then) = __$$_Result_ErrorCopyWithImpl<T, $Res>;
   @useResult
   $Res call({Failure failure});
 
@@ -219,12 +203,8 @@ abstract class _$$_Result_ErrorCopyWith<T, $Res> {
 }
 
 /// @nodoc
-class __$$_Result_ErrorCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$_Result_Error<T>>
-    implements _$$_Result_ErrorCopyWith<T, $Res> {
-  __$$_Result_ErrorCopyWithImpl(
-      _$_Result_Error<T> _value, $Res Function(_$_Result_Error<T>) _then)
-      : super(_value, _then);
+class __$$_Result_ErrorCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res, _$_Result_Error<T>> implements _$$_Result_ErrorCopyWith<T, $Res> {
+  __$$_Result_ErrorCopyWithImpl(_$_Result_Error<T> _value, $Res Function(_$_Result_Error<T>) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -263,10 +243,7 @@ class _$_Result_Error<T> implements _Result_Error<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Result_Error<T> &&
-            (identical(other.failure, failure) || other.failure == failure));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Result_Error<T> && (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
@@ -275,8 +252,7 @@ class _$_Result_Error<T> implements _Result_Error<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Result_ErrorCopyWith<T, _$_Result_Error<T>> get copyWith =>
-      __$$_Result_ErrorCopyWithImpl<T, _$_Result_Error<T>>(this, _$identity);
+  _$$_Result_ErrorCopyWith<T, _$_Result_Error<T>> get copyWith => __$$_Result_ErrorCopyWithImpl<T, _$_Result_Error<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -346,6 +322,5 @@ abstract class _Result_Error<T> implements Result<T> {
 
   Failure get failure;
   @JsonKey(ignore: true)
-  _$$_Result_ErrorCopyWith<T, _$_Result_Error<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_Result_ErrorCopyWith<T, _$_Result_Error<T>> get copyWith => throw _privateConstructorUsedError;
 }

@@ -7,7 +7,6 @@ final newOrderCountProvider = Provider<int>((ref) {
   return count;
 });
 
-
 final processCountProvider = Provider<int>((ref) {
   final count = ref.watch(processStreamProvider).value?.length ?? 0;
   return count;

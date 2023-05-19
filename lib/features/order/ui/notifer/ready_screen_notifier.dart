@@ -8,8 +8,7 @@ import 'package:elvan_shared/domain_models/order/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final readyScreenProvider =
-    NotifierProvider<ReadyScreenNotifier, void>(ReadyScreenNotifier.new);
+final readyScreenProvider = NotifierProvider<ReadyScreenNotifier, void>(ReadyScreenNotifier.new);
 
 class ReadyScreenNotifier extends Notifier<void> {
   @override
@@ -18,11 +17,7 @@ class ReadyScreenNotifier extends Notifier<void> {
   }
 
   onEvent(UIEvent event) {
-    event.when(
-        onDrawer: _onDrawer,
-        selecteItem: _selecteItem,
-        onChangeStatus: _onChangeStatus,
-        refresh: _onRefresh);
+    event.when(onDrawer: _onDrawer, selecteItem: _selecteItem, onChangeStatus: _onChangeStatus, refresh: _onRefresh);
   }
 
   _onDrawer(BuildContext context) {

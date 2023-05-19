@@ -20,30 +20,21 @@ class MErrorWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Text("$errorMessage",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(color: AppColors.primaryRed)),
+            child: Text("$errorMessage", style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.primaryRed)),
           ),
           ElevatedButton(
             onPressed: onTab,
             style: ButtonStyle(
-              padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
               backgroundColor: MaterialStateProperty.all(AppColors.primaryRed),
             ),
             child: Text(
               AppStrings.refresh,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: AppColors.white),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.white),
             ),
           ),
         ],
       ),
     );
-    ;
   }
 }

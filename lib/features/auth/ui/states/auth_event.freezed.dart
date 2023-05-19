@@ -18,11 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) =>
@@ -31,8 +29,7 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) =>
@@ -41,8 +38,7 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -50,22 +46,18 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) =>
@@ -74,8 +66,7 @@ mixin _$AuthEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -85,13 +76,11 @@ mixin _$AuthEvent {
 
 /// @nodoc
 abstract class $AuthEventCopyWith<$Res> {
-  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
-      _$AuthEventCopyWithImpl<$Res, AuthEvent>;
+  factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) = _$AuthEventCopyWithImpl<$Res, AuthEvent>;
 }
 
 /// @nodoc
-class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
-    implements $AuthEventCopyWith<$Res> {
+class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent> implements $AuthEventCopyWith<$Res> {
   _$AuthEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -102,20 +91,14 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 
 /// @nodoc
 abstract class _$$_AuthEvent_IsLogginInCopyWith<$Res> {
-  factory _$$_AuthEvent_IsLogginInCopyWith(_$_AuthEvent_IsLogginIn value,
-          $Res Function(_$_AuthEvent_IsLogginIn) then) =
-      __$$_AuthEvent_IsLogginInCopyWithImpl<$Res>;
+  factory _$$_AuthEvent_IsLogginInCopyWith(_$_AuthEvent_IsLogginIn value, $Res Function(_$_AuthEvent_IsLogginIn) then) = __$$_AuthEvent_IsLogginInCopyWithImpl<$Res>;
   @useResult
   $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$$_AuthEvent_IsLogginInCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_IsLogginIn>
-    implements _$$_AuthEvent_IsLogginInCopyWith<$Res> {
-  __$$_AuthEvent_IsLogginInCopyWithImpl(_$_AuthEvent_IsLogginIn _value,
-      $Res Function(_$_AuthEvent_IsLogginIn) _then)
-      : super(_value, _then);
+class __$$_AuthEvent_IsLogginInCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_IsLogginIn> implements _$$_AuthEvent_IsLogginInCopyWith<$Res> {
+  __$$_AuthEvent_IsLogginInCopyWithImpl(_$_AuthEvent_IsLogginIn _value, $Res Function(_$_AuthEvent_IsLogginIn) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -157,8 +140,7 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
         (other.runtimeType == runtimeType &&
             other is _$_AuthEvent_IsLogginIn &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.password, password) || other.password == password));
   }
 
   @override
@@ -167,18 +149,14 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthEvent_IsLogginInCopyWith<_$_AuthEvent_IsLogginIn> get copyWith =>
-      __$$_AuthEvent_IsLogginInCopyWithImpl<_$_AuthEvent_IsLogginIn>(
-          this, _$identity);
+  _$$_AuthEvent_IsLogginInCopyWith<_$_AuthEvent_IsLogginIn> get copyWith => __$$_AuthEvent_IsLogginInCopyWithImpl<_$_AuthEvent_IsLogginIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) {
@@ -190,8 +168,7 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) {
@@ -203,8 +180,7 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -218,14 +194,11 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) {
     return loginWithPasswordAndEmail(this);
   }
@@ -235,8 +208,7 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) {
@@ -248,8 +220,7 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -262,31 +233,22 @@ class _$_AuthEvent_IsLogginIn implements _AuthEvent_IsLogginIn {
 }
 
 abstract class _AuthEvent_IsLogginIn implements AuthEvent {
-  const factory _AuthEvent_IsLogginIn(
-      {required final String email,
-      required final String password}) = _$_AuthEvent_IsLogginIn;
+  const factory _AuthEvent_IsLogginIn({required final String email, required final String password}) = _$_AuthEvent_IsLogginIn;
 
   String get email;
   String get password;
   @JsonKey(ignore: true)
-  _$$_AuthEvent_IsLogginInCopyWith<_$_AuthEvent_IsLogginIn> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AuthEvent_IsLogginInCopyWith<_$_AuthEvent_IsLogginIn> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_AuthEvent_LogginOutCopyWith<$Res> {
-  factory _$$_AuthEvent_LogginOutCopyWith(_$_AuthEvent_LogginOut value,
-          $Res Function(_$_AuthEvent_LogginOut) then) =
-      __$$_AuthEvent_LogginOutCopyWithImpl<$Res>;
+  factory _$$_AuthEvent_LogginOutCopyWith(_$_AuthEvent_LogginOut value, $Res Function(_$_AuthEvent_LogginOut) then) = __$$_AuthEvent_LogginOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AuthEvent_LogginOutCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_LogginOut>
-    implements _$$_AuthEvent_LogginOutCopyWith<$Res> {
-  __$$_AuthEvent_LogginOutCopyWithImpl(_$_AuthEvent_LogginOut _value,
-      $Res Function(_$_AuthEvent_LogginOut) _then)
-      : super(_value, _then);
+class __$$_AuthEvent_LogginOutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_LogginOut> implements _$$_AuthEvent_LogginOutCopyWith<$Res> {
+  __$$_AuthEvent_LogginOutCopyWithImpl(_$_AuthEvent_LogginOut _value, $Res Function(_$_AuthEvent_LogginOut) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -301,8 +263,7 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AuthEvent_LogginOut);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_AuthEvent_LogginOut);
   }
 
   @override
@@ -311,11 +272,9 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) {
@@ -327,8 +286,7 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) {
@@ -340,8 +298,7 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -355,14 +312,11 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) {
     return logout(this);
   }
@@ -372,8 +326,7 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) {
@@ -385,8 +338,7 @@ class _$_AuthEvent_LogginOut implements _AuthEvent_LogginOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -404,23 +356,16 @@ abstract class _AuthEvent_LogginOut implements AuthEvent {
 
 /// @nodoc
 abstract class _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<$Res> {
-  factory _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith(
-          _$_AuthEvent_RegisterWithEmailAndPassword value,
-          $Res Function(_$_AuthEvent_RegisterWithEmailAndPassword) then) =
+  factory _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith(_$_AuthEvent_RegisterWithEmailAndPassword value, $Res Function(_$_AuthEvent_RegisterWithEmailAndPassword) then) =
       __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<$Res>;
   @useResult
   $Res call({String email, String password});
 }
 
 /// @nodoc
-class __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res,
-        _$_AuthEvent_RegisterWithEmailAndPassword>
+class __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_RegisterWithEmailAndPassword>
     implements _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<$Res> {
-  __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl(
-      _$_AuthEvent_RegisterWithEmailAndPassword _value,
-      $Res Function(_$_AuthEvent_RegisterWithEmailAndPassword) _then)
-      : super(_value, _then);
+  __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl(_$_AuthEvent_RegisterWithEmailAndPassword _value, $Res Function(_$_AuthEvent_RegisterWithEmailAndPassword) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -443,10 +388,8 @@ class __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AuthEvent_RegisterWithEmailAndPassword
-    implements _AuthEvent_RegisterWithEmailAndPassword {
-  const _$_AuthEvent_RegisterWithEmailAndPassword(
-      {required this.email, required this.password});
+class _$_AuthEvent_RegisterWithEmailAndPassword implements _AuthEvent_RegisterWithEmailAndPassword {
+  const _$_AuthEvent_RegisterWithEmailAndPassword({required this.email, required this.password});
 
   @override
   final String email;
@@ -464,8 +407,7 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
         (other.runtimeType == runtimeType &&
             other is _$_AuthEvent_RegisterWithEmailAndPassword &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.password, password) || other.password == password));
   }
 
   @override
@@ -474,19 +416,15 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<
-          _$_AuthEvent_RegisterWithEmailAndPassword>
-      get copyWith => __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<
-          _$_AuthEvent_RegisterWithEmailAndPassword>(this, _$identity);
+  _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<_$_AuthEvent_RegisterWithEmailAndPassword> get copyWith =>
+      __$$_AuthEvent_RegisterWithEmailAndPasswordCopyWithImpl<_$_AuthEvent_RegisterWithEmailAndPassword>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) {
@@ -498,8 +436,7 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) {
@@ -511,8 +448,7 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -526,14 +462,11 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) {
     return registerWithEmailAndPassword(this);
   }
@@ -543,8 +476,7 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) {
@@ -556,8 +488,7 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -570,34 +501,24 @@ class _$_AuthEvent_RegisterWithEmailAndPassword
 }
 
 abstract class _AuthEvent_RegisterWithEmailAndPassword implements AuthEvent {
-  const factory _AuthEvent_RegisterWithEmailAndPassword(
-          {required final String email, required final String password}) =
-      _$_AuthEvent_RegisterWithEmailAndPassword;
+  const factory _AuthEvent_RegisterWithEmailAndPassword({required final String email, required final String password}) = _$_AuthEvent_RegisterWithEmailAndPassword;
 
   String get email;
   String get password;
   @JsonKey(ignore: true)
-  _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<
-          _$_AuthEvent_RegisterWithEmailAndPassword>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_AuthEvent_RegisterWithEmailAndPasswordCopyWith<_$_AuthEvent_RegisterWithEmailAndPassword> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_AuthEvent_ResetPasswordCopyWith<$Res> {
-  factory _$$_AuthEvent_ResetPasswordCopyWith(_$_AuthEvent_ResetPassword value,
-          $Res Function(_$_AuthEvent_ResetPassword) then) =
-      __$$_AuthEvent_ResetPasswordCopyWithImpl<$Res>;
+  factory _$$_AuthEvent_ResetPasswordCopyWith(_$_AuthEvent_ResetPassword value, $Res Function(_$_AuthEvent_ResetPassword) then) = __$$_AuthEvent_ResetPasswordCopyWithImpl<$Res>;
   @useResult
   $Res call({String email});
 }
 
 /// @nodoc
-class __$$_AuthEvent_ResetPasswordCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_ResetPassword>
-    implements _$$_AuthEvent_ResetPasswordCopyWith<$Res> {
-  __$$_AuthEvent_ResetPasswordCopyWithImpl(_$_AuthEvent_ResetPassword _value,
-      $Res Function(_$_AuthEvent_ResetPassword) _then)
-      : super(_value, _then);
+class __$$_AuthEvent_ResetPasswordCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_ResetPassword> implements _$$_AuthEvent_ResetPasswordCopyWith<$Res> {
+  __$$_AuthEvent_ResetPasswordCopyWithImpl(_$_AuthEvent_ResetPassword _value, $Res Function(_$_AuthEvent_ResetPassword) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -628,10 +549,7 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AuthEvent_ResetPassword &&
-            (identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_AuthEvent_ResetPassword && (identical(other.email, email) || other.email == email));
   }
 
   @override
@@ -640,19 +558,14 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AuthEvent_ResetPasswordCopyWith<_$_AuthEvent_ResetPassword>
-      get copyWith =>
-          __$$_AuthEvent_ResetPasswordCopyWithImpl<_$_AuthEvent_ResetPassword>(
-              this, _$identity);
+  _$$_AuthEvent_ResetPasswordCopyWith<_$_AuthEvent_ResetPassword> get copyWith => __$$_AuthEvent_ResetPasswordCopyWithImpl<_$_AuthEvent_ResetPassword>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) {
@@ -664,8 +577,7 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) {
@@ -677,8 +589,7 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -692,14 +603,11 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) {
     return resetPassword(this);
   }
@@ -709,8 +617,7 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) {
@@ -722,8 +629,7 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -736,31 +642,21 @@ class _$_AuthEvent_ResetPassword implements _AuthEvent_ResetPassword {
 }
 
 abstract class _AuthEvent_ResetPassword implements AuthEvent {
-  const factory _AuthEvent_ResetPassword({required final String email}) =
-      _$_AuthEvent_ResetPassword;
+  const factory _AuthEvent_ResetPassword({required final String email}) = _$_AuthEvent_ResetPassword;
 
   String get email;
   @JsonKey(ignore: true)
-  _$$_AuthEvent_ResetPasswordCopyWith<_$_AuthEvent_ResetPassword>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_AuthEvent_ResetPasswordCopyWith<_$_AuthEvent_ResetPassword> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_AuthEvent_GoToRegisterScreenCopyWith<$Res> {
-  factory _$$_AuthEvent_GoToRegisterScreenCopyWith(
-          _$_AuthEvent_GoToRegisterScreen value,
-          $Res Function(_$_AuthEvent_GoToRegisterScreen) then) =
-      __$$_AuthEvent_GoToRegisterScreenCopyWithImpl<$Res>;
+  factory _$$_AuthEvent_GoToRegisterScreenCopyWith(_$_AuthEvent_GoToRegisterScreen value, $Res Function(_$_AuthEvent_GoToRegisterScreen) then) = __$$_AuthEvent_GoToRegisterScreenCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AuthEvent_GoToRegisterScreenCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_GoToRegisterScreen>
-    implements _$$_AuthEvent_GoToRegisterScreenCopyWith<$Res> {
-  __$$_AuthEvent_GoToRegisterScreenCopyWithImpl(
-      _$_AuthEvent_GoToRegisterScreen _value,
-      $Res Function(_$_AuthEvent_GoToRegisterScreen) _then)
-      : super(_value, _then);
+class __$$_AuthEvent_GoToRegisterScreenCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res, _$_AuthEvent_GoToRegisterScreen> implements _$$_AuthEvent_GoToRegisterScreenCopyWith<$Res> {
+  __$$_AuthEvent_GoToRegisterScreenCopyWithImpl(_$_AuthEvent_GoToRegisterScreen _value, $Res Function(_$_AuthEvent_GoToRegisterScreen) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -775,9 +671,7 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AuthEvent_GoToRegisterScreen);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_AuthEvent_GoToRegisterScreen);
   }
 
   @override
@@ -786,11 +680,9 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password)
-        loginWithPasswordAndEmail,
+    required TResult Function(String email, String password) loginWithPasswordAndEmail,
     required TResult Function() logout,
-    required TResult Function(String email, String password)
-        registerWithEmailAndPassword,
+    required TResult Function(String email, String password) registerWithEmailAndPassword,
     required TResult Function(String email) resetPassword,
     required TResult Function() goToRegisterScreen,
   }) {
@@ -802,8 +694,7 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginWithPasswordAndEmail,
     TResult? Function()? logout,
-    TResult? Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult? Function(String email, String password)? registerWithEmailAndPassword,
     TResult? Function(String email)? resetPassword,
     TResult? Function()? goToRegisterScreen,
   }) {
@@ -815,8 +706,7 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginWithPasswordAndEmail,
     TResult Function()? logout,
-    TResult Function(String email, String password)?
-        registerWithEmailAndPassword,
+    TResult Function(String email, String password)? registerWithEmailAndPassword,
     TResult Function(String email)? resetPassword,
     TResult Function()? goToRegisterScreen,
     required TResult orElse(),
@@ -830,14 +720,11 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthEvent_IsLogginIn value)
-        loginWithPasswordAndEmail,
+    required TResult Function(_AuthEvent_IsLogginIn value) loginWithPasswordAndEmail,
     required TResult Function(_AuthEvent_LogginOut value) logout,
-    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)
-        registerWithEmailAndPassword,
+    required TResult Function(_AuthEvent_RegisterWithEmailAndPassword value) registerWithEmailAndPassword,
     required TResult Function(_AuthEvent_ResetPassword value) resetPassword,
-    required TResult Function(_AuthEvent_GoToRegisterScreen value)
-        goToRegisterScreen,
+    required TResult Function(_AuthEvent_GoToRegisterScreen value) goToRegisterScreen,
   }) {
     return goToRegisterScreen(this);
   }
@@ -847,8 +734,7 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult? Function(_AuthEvent_LogginOut value)? logout,
-    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult? Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult? Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult? Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
   }) {
@@ -860,8 +746,7 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEvent_IsLogginIn value)? loginWithPasswordAndEmail,
     TResult Function(_AuthEvent_LogginOut value)? logout,
-    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)?
-        registerWithEmailAndPassword,
+    TResult Function(_AuthEvent_RegisterWithEmailAndPassword value)? registerWithEmailAndPassword,
     TResult Function(_AuthEvent_ResetPassword value)? resetPassword,
     TResult Function(_AuthEvent_GoToRegisterScreen value)? goToRegisterScreen,
     required TResult orElse(),
@@ -874,6 +759,5 @@ class _$_AuthEvent_GoToRegisterScreen implements _AuthEvent_GoToRegisterScreen {
 }
 
 abstract class _AuthEvent_GoToRegisterScreen implements AuthEvent {
-  const factory _AuthEvent_GoToRegisterScreen() =
-      _$_AuthEvent_GoToRegisterScreen;
+  const factory _AuthEvent_GoToRegisterScreen() = _$_AuthEvent_GoToRegisterScreen;
 }

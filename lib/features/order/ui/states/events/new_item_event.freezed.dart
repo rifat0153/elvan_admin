@@ -76,14 +76,11 @@ mixin _$NewItemEvent {
 
 /// @nodoc
 abstract class $NewItemEventCopyWith<$Res> {
-  factory $NewItemEventCopyWith(
-          NewItemEvent value, $Res Function(NewItemEvent) then) =
-      _$NewItemEventCopyWithImpl<$Res, NewItemEvent>;
+  factory $NewItemEventCopyWith(NewItemEvent value, $Res Function(NewItemEvent) then) = _$NewItemEventCopyWithImpl<$Res, NewItemEvent>;
 }
 
 /// @nodoc
-class _$NewItemEventCopyWithImpl<$Res, $Val extends NewItemEvent>
-    implements $NewItemEventCopyWith<$Res> {
+class _$NewItemEventCopyWithImpl<$Res, $Val extends NewItemEvent> implements $NewItemEventCopyWith<$Res> {
   _$NewItemEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -94,9 +91,7 @@ class _$NewItemEventCopyWithImpl<$Res, $Val extends NewItemEvent>
 
 /// @nodoc
 abstract class _$$_NewItemEvent_OnAcceptCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnAcceptCopyWith(_$_NewItemEvent_OnAccept value,
-          $Res Function(_$_NewItemEvent_OnAccept) then) =
-      __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>;
+  factory _$$_NewItemEvent_OnAcceptCopyWith(_$_NewItemEvent_OnAccept value, $Res Function(_$_NewItemEvent_OnAccept) then) = __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>;
   @useResult
   $Res call({int second, Order data});
 
@@ -104,12 +99,8 @@ abstract class _$$_NewItemEvent_OnAcceptCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnAccept>
-    implements _$$_NewItemEvent_OnAcceptCopyWith<$Res> {
-  __$$_NewItemEvent_OnAcceptCopyWithImpl(_$_NewItemEvent_OnAccept _value,
-      $Res Function(_$_NewItemEvent_OnAccept) _then)
-      : super(_value, _then);
+class __$$_NewItemEvent_OnAcceptCopyWithImpl<$Res> extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnAccept> implements _$$_NewItemEvent_OnAcceptCopyWith<$Res> {
+  __$$_NewItemEvent_OnAcceptCopyWithImpl(_$_NewItemEvent_OnAccept _value, $Res Function(_$_NewItemEvent_OnAccept) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -156,10 +147,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnAccept &&
-            (identical(other.second, second) || other.second == second) &&
-            (identical(other.data, data) || other.data == data));
+        (other.runtimeType == runtimeType && other is _$_NewItemEvent_OnAccept && (identical(other.second, second) || other.second == second) && (identical(other.data, data) || other.data == data));
   }
 
   @override
@@ -168,9 +156,7 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnAcceptCopyWith<_$_NewItemEvent_OnAccept> get copyWith =>
-      __$$_NewItemEvent_OnAcceptCopyWithImpl<_$_NewItemEvent_OnAccept>(
-          this, _$identity);
+  _$$_NewItemEvent_OnAcceptCopyWith<_$_NewItemEvent_OnAccept> get copyWith => __$$_NewItemEvent_OnAcceptCopyWithImpl<_$_NewItemEvent_OnAccept>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -254,22 +240,17 @@ class _$_NewItemEvent_OnAccept implements _NewItemEvent_OnAccept {
 }
 
 abstract class _NewItemEvent_OnAccept implements NewItemEvent {
-  const factory _NewItemEvent_OnAccept(
-      {required final int second,
-      required final Order data}) = _$_NewItemEvent_OnAccept;
+  const factory _NewItemEvent_OnAccept({required final int second, required final Order data}) = _$_NewItemEvent_OnAccept;
 
   int get second;
   Order get data;
   @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnAcceptCopyWith<_$_NewItemEvent_OnAccept> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_NewItemEvent_OnAcceptCopyWith<_$_NewItemEvent_OnAccept> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_NewItemEvent_OnRejectCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnRejectCopyWith(_$_NewItemEvent_OnReject value,
-          $Res Function(_$_NewItemEvent_OnReject) then) =
-      __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>;
+  factory _$$_NewItemEvent_OnRejectCopyWith(_$_NewItemEvent_OnReject value, $Res Function(_$_NewItemEvent_OnReject) then) = __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>;
   @useResult
   $Res call({Order data});
 
@@ -277,12 +258,8 @@ abstract class _$$_NewItemEvent_OnRejectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnReject>
-    implements _$$_NewItemEvent_OnRejectCopyWith<$Res> {
-  __$$_NewItemEvent_OnRejectCopyWithImpl(_$_NewItemEvent_OnReject _value,
-      $Res Function(_$_NewItemEvent_OnReject) _then)
-      : super(_value, _then);
+class __$$_NewItemEvent_OnRejectCopyWithImpl<$Res> extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnReject> implements _$$_NewItemEvent_OnRejectCopyWith<$Res> {
+  __$$_NewItemEvent_OnRejectCopyWithImpl(_$_NewItemEvent_OnReject _value, $Res Function(_$_NewItemEvent_OnReject) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -321,10 +298,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnReject &&
-            (identical(other.data, data) || other.data == data));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_NewItemEvent_OnReject && (identical(other.data, data) || other.data == data));
   }
 
   @override
@@ -333,9 +307,7 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnRejectCopyWith<_$_NewItemEvent_OnReject> get copyWith =>
-      __$$_NewItemEvent_OnRejectCopyWithImpl<_$_NewItemEvent_OnReject>(
-          this, _$identity);
+  _$$_NewItemEvent_OnRejectCopyWith<_$_NewItemEvent_OnReject> get copyWith => __$$_NewItemEvent_OnRejectCopyWithImpl<_$_NewItemEvent_OnReject>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -419,31 +391,23 @@ class _$_NewItemEvent_OnReject implements _NewItemEvent_OnReject {
 }
 
 abstract class _NewItemEvent_OnReject implements NewItemEvent {
-  const factory _NewItemEvent_OnReject({required final Order data}) =
-      _$_NewItemEvent_OnReject;
+  const factory _NewItemEvent_OnReject({required final Order data}) = _$_NewItemEvent_OnReject;
 
   Order get data;
   @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnRejectCopyWith<_$_NewItemEvent_OnReject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_NewItemEvent_OnRejectCopyWith<_$_NewItemEvent_OnReject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_NewItemEvent_OnDrawerCopyWith<$Res> {
-  factory _$$_NewItemEvent_OnDrawerCopyWith(_$_NewItemEvent_OnDrawer value,
-          $Res Function(_$_NewItemEvent_OnDrawer) then) =
-      __$$_NewItemEvent_OnDrawerCopyWithImpl<$Res>;
+  factory _$$_NewItemEvent_OnDrawerCopyWith(_$_NewItemEvent_OnDrawer value, $Res Function(_$_NewItemEvent_OnDrawer) then) = __$$_NewItemEvent_OnDrawerCopyWithImpl<$Res>;
   @useResult
   $Res call({BuildContext context});
 }
 
 /// @nodoc
-class __$$_NewItemEvent_OnDrawerCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnDrawer>
-    implements _$$_NewItemEvent_OnDrawerCopyWith<$Res> {
-  __$$_NewItemEvent_OnDrawerCopyWithImpl(_$_NewItemEvent_OnDrawer _value,
-      $Res Function(_$_NewItemEvent_OnDrawer) _then)
-      : super(_value, _then);
+class __$$_NewItemEvent_OnDrawerCopyWithImpl<$Res> extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_OnDrawer> implements _$$_NewItemEvent_OnDrawerCopyWith<$Res> {
+  __$$_NewItemEvent_OnDrawerCopyWithImpl(_$_NewItemEvent_OnDrawer _value, $Res Function(_$_NewItemEvent_OnDrawer) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -474,10 +438,7 @@ class _$_NewItemEvent_OnDrawer implements _NewItemEvent_OnDrawer {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_NewItemEvent_OnDrawer &&
-            (identical(other.context, context) || other.context == context));
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_NewItemEvent_OnDrawer && (identical(other.context, context) || other.context == context));
   }
 
   @override
@@ -486,9 +447,7 @@ class _$_NewItemEvent_OnDrawer implements _NewItemEvent_OnDrawer {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_OnDrawerCopyWith<_$_NewItemEvent_OnDrawer> get copyWith =>
-      __$$_NewItemEvent_OnDrawerCopyWithImpl<_$_NewItemEvent_OnDrawer>(
-          this, _$identity);
+  _$$_NewItemEvent_OnDrawerCopyWith<_$_NewItemEvent_OnDrawer> get copyWith => __$$_NewItemEvent_OnDrawerCopyWithImpl<_$_NewItemEvent_OnDrawer>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -572,21 +531,16 @@ class _$_NewItemEvent_OnDrawer implements _NewItemEvent_OnDrawer {
 }
 
 abstract class _NewItemEvent_OnDrawer implements NewItemEvent {
-  const factory _NewItemEvent_OnDrawer({required final BuildContext context}) =
-      _$_NewItemEvent_OnDrawer;
+  const factory _NewItemEvent_OnDrawer({required final BuildContext context}) = _$_NewItemEvent_OnDrawer;
 
   BuildContext get context;
   @JsonKey(ignore: true)
-  _$$_NewItemEvent_OnDrawerCopyWith<_$_NewItemEvent_OnDrawer> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_NewItemEvent_OnDrawerCopyWith<_$_NewItemEvent_OnDrawer> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_NewItemEvent_SelecteItemCopyWith<$Res> {
-  factory _$$_NewItemEvent_SelecteItemCopyWith(
-          _$_NewItemEvent_SelecteItem value,
-          $Res Function(_$_NewItemEvent_SelecteItem) then) =
-      __$$_NewItemEvent_SelecteItemCopyWithImpl<$Res>;
+  factory _$$_NewItemEvent_SelecteItemCopyWith(_$_NewItemEvent_SelecteItem value, $Res Function(_$_NewItemEvent_SelecteItem) then) = __$$_NewItemEvent_SelecteItemCopyWithImpl<$Res>;
   @useResult
   $Res call({BuildContext context, Order order});
 
@@ -594,12 +548,8 @@ abstract class _$$_NewItemEvent_SelecteItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_NewItemEvent_SelecteItemCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_SelecteItem>
-    implements _$$_NewItemEvent_SelecteItemCopyWith<$Res> {
-  __$$_NewItemEvent_SelecteItemCopyWithImpl(_$_NewItemEvent_SelecteItem _value,
-      $Res Function(_$_NewItemEvent_SelecteItem) _then)
-      : super(_value, _then);
+class __$$_NewItemEvent_SelecteItemCopyWithImpl<$Res> extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_SelecteItem> implements _$$_NewItemEvent_SelecteItemCopyWith<$Res> {
+  __$$_NewItemEvent_SelecteItemCopyWithImpl(_$_NewItemEvent_SelecteItem _value, $Res Function(_$_NewItemEvent_SelecteItem) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -631,8 +581,7 @@ class __$$_NewItemEvent_SelecteItemCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NewItemEvent_SelecteItem implements _NewItemEvent_SelecteItem {
-  const _$_NewItemEvent_SelecteItem(
-      {required this.context, required this.order});
+  const _$_NewItemEvent_SelecteItem({required this.context, required this.order});
 
   @override
   final BuildContext context;
@@ -659,9 +608,7 @@ class _$_NewItemEvent_SelecteItem implements _NewItemEvent_SelecteItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NewItemEvent_SelecteItemCopyWith<_$_NewItemEvent_SelecteItem>
-      get copyWith => __$$_NewItemEvent_SelecteItemCopyWithImpl<
-          _$_NewItemEvent_SelecteItem>(this, _$identity);
+  _$$_NewItemEvent_SelecteItemCopyWith<_$_NewItemEvent_SelecteItem> get copyWith => __$$_NewItemEvent_SelecteItemCopyWithImpl<_$_NewItemEvent_SelecteItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -745,31 +692,22 @@ class _$_NewItemEvent_SelecteItem implements _NewItemEvent_SelecteItem {
 }
 
 abstract class _NewItemEvent_SelecteItem implements NewItemEvent {
-  const factory _NewItemEvent_SelecteItem(
-      {required final BuildContext context,
-      required final Order order}) = _$_NewItemEvent_SelecteItem;
+  const factory _NewItemEvent_SelecteItem({required final BuildContext context, required final Order order}) = _$_NewItemEvent_SelecteItem;
 
   BuildContext get context;
   Order get order;
   @JsonKey(ignore: true)
-  _$$_NewItemEvent_SelecteItemCopyWith<_$_NewItemEvent_SelecteItem>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_NewItemEvent_SelecteItemCopyWith<_$_NewItemEvent_SelecteItem> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_NewItemEvent_RefreshCopyWith<$Res> {
-  factory _$$_NewItemEvent_RefreshCopyWith(_$_NewItemEvent_Refresh value,
-          $Res Function(_$_NewItemEvent_Refresh) then) =
-      __$$_NewItemEvent_RefreshCopyWithImpl<$Res>;
+  factory _$$_NewItemEvent_RefreshCopyWith(_$_NewItemEvent_Refresh value, $Res Function(_$_NewItemEvent_Refresh) then) = __$$_NewItemEvent_RefreshCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NewItemEvent_RefreshCopyWithImpl<$Res>
-    extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_Refresh>
-    implements _$$_NewItemEvent_RefreshCopyWith<$Res> {
-  __$$_NewItemEvent_RefreshCopyWithImpl(_$_NewItemEvent_Refresh _value,
-      $Res Function(_$_NewItemEvent_Refresh) _then)
-      : super(_value, _then);
+class __$$_NewItemEvent_RefreshCopyWithImpl<$Res> extends _$NewItemEventCopyWithImpl<$Res, _$_NewItemEvent_Refresh> implements _$$_NewItemEvent_RefreshCopyWith<$Res> {
+  __$$_NewItemEvent_RefreshCopyWithImpl(_$_NewItemEvent_Refresh _value, $Res Function(_$_NewItemEvent_Refresh) _then) : super(_value, _then);
 }
 
 /// @nodoc
@@ -784,8 +722,7 @@ class _$_NewItemEvent_Refresh implements _NewItemEvent_Refresh {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NewItemEvent_Refresh);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_NewItemEvent_Refresh);
   }
 
   @override

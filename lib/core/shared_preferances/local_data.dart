@@ -13,8 +13,7 @@ class LocalData {
 
   LocalData._internal();
 
-  Future<void> storeOrderByMin(
-      {required String orderId, required DateTime time}) async {
+  Future<void> storeOrderByMin({required String orderId, required DateTime time}) async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString(orderId, time.toString());
   }
@@ -35,7 +34,7 @@ class LocalData {
     final SharedPreferences prefs = await _prefs;
     return prefs.getString("user_id");
   }
- 
+
   Future<bool> removeUserId() async {
     final SharedPreferences prefs = await _prefs;
     return prefs.remove("user_id");

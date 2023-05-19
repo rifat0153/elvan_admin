@@ -5,12 +5,8 @@ part 'new_item_event.freezed.dart';
 
 @freezed
 class NewItemEvent with _$NewItemEvent {
-  const factory NewItemEvent.onAccept(
-      {required int second,
-      required Order data}) = _NewItemEvent_OnAccept;
-  const factory NewItemEvent.onReject(
-      {
-      required Order data}) = _NewItemEvent_OnReject;
+  const factory NewItemEvent.onAccept({required int second, required Order data}) = _NewItemEvent_OnAccept;
+  const factory NewItemEvent.onReject({required Order data}) = _NewItemEvent_OnReject;
   const factory NewItemEvent.onDrawer({
     required BuildContext context,
   }) = _NewItemEvent_OnDrawer;

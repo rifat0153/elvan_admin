@@ -12,12 +12,7 @@ class OrderItem extends HookConsumerWidget {
   final Order order;
   final Order? selectedOrder;
   final void Function() onClick;
-  const OrderItem(
-      {Key? key,
-      required this.order,
-      this.selectedOrder,
-      required this.onClick})
-      : super(key: key);
+  const OrderItem({Key? key, required this.order, this.selectedOrder, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,12 +28,7 @@ class OrderItem extends HookConsumerWidget {
               onTap: onClick,
               child: Card(
                 shape: RoundedRectangleBorder(
-                    side: selectedOrder != null
-                        ? BorderSide(
-                            color: order.id == selectedOrder?.id
-                                ? AppColors.primaryRed
-                                : AppColors.grayA7)
-                        : const BorderSide(color: AppColors.grayA7),
+                    side: selectedOrder != null ? BorderSide(color: order.id == selectedOrder?.id ? AppColors.primaryRed : AppColors.grayA7) : const BorderSide(color: AppColors.grayA7),
                     borderRadius: BorderRadius.circular(AppSize.radiusSL)),
                 child: Container(
                   // constraints:

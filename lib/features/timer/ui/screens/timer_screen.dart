@@ -25,6 +25,7 @@ class TimerScreen extends HookConsumerWidget {
 
     useEffect(() {
       minutes.value = defaulState.minutes;
+      return null;
     }, const []);
     return Container(
       width: double.infinity,
@@ -66,14 +67,9 @@ class TimerScreen extends HookConsumerWidget {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                      bottom: 20,
-                      top: 20,
-                      right: ResponsiveLayout.isDesktop(context) ? 0 : 20),
+                  margin: EdgeInsets.only(bottom: 20, top: 20, right: ResponsiveLayout.isDesktop(context) ? 0 : 20),
                   constraints: BoxConstraints(
-                    maxWidth: ResponsiveLayout.isDesktop(context)
-                        ? AppSize.width(context) / 3.0
-                        : AppSize.width(context),
+                    maxWidth: ResponsiveLayout.isDesktop(context) ? AppSize.width(context) / 3.0 : AppSize.width(context),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,10 +78,7 @@ class TimerScreen extends HookConsumerWidget {
                         padding: const EdgeInsets.only(left: 20),
                         child: Text(
                           AppStrings.takingOrder,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: AppColors.gray),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                         ),
                       ),
                       Switch(
@@ -104,14 +97,9 @@ class TimerScreen extends HookConsumerWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
-                      bottom: 20,
-                      top: 20,
-                      right: ResponsiveLayout.isDesktop(context) ? 0 : 20),
+                  margin: EdgeInsets.only(bottom: 20, top: 20, right: ResponsiveLayout.isDesktop(context) ? 0 : 20),
                   constraints: BoxConstraints(
-                    maxWidth: ResponsiveLayout.isDesktop(context)
-                        ? AppSize.width(context) / 2.9
-                        : AppSize.width(context),
+                    maxWidth: ResponsiveLayout.isDesktop(context) ? AppSize.width(context) / 2.9 : AppSize.width(context),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,10 +108,7 @@ class TimerScreen extends HookConsumerWidget {
                         padding: const EdgeInsets.only(left: 20),
                         child: Text(
                           AppStrings.setestimatedTime,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: AppColors.gray),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.gray),
                         ),
                       ),
                       Row(
@@ -148,10 +133,8 @@ class TimerScreen extends HookConsumerWidget {
                             height: 70,
                             margin: const EdgeInsets.symmetric(horizontal: 6),
                             decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: AppColors.grayA7, width: 2),
-                              borderRadius:
-                                  BorderRadius.circular(AppSize.radiusSL),
+                              border: Border.all(color: AppColors.grayA7, width: 2),
+                              borderRadius: BorderRadius.circular(AppSize.radiusSL),
                             ),
                             child: Center(
                               child: Text(

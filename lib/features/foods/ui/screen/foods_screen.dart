@@ -15,7 +15,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
-
 class FoodsScreen extends HookConsumerWidget {
   const FoodsScreen({Key? key}) : super(key: key);
 
@@ -28,12 +27,11 @@ class FoodsScreen extends HookConsumerWidget {
 
     useEffect(() {
       scrollController.addListener(() {
-        if (scrollController.offset >=
-                scrollController.position.maxScrollExtent &&
-            !scrollController.position.outOfRange) {
+        if (scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
           notifier.nextData();
         }
       });
+      return null;
     }, const []);
     return Container(
       width: double.infinity,
@@ -49,7 +47,7 @@ class FoodsScreen extends HookConsumerWidget {
               title: AppStrings.foodItems),
           Expanded(
               child: SingleChildScrollView(
-                controller: scrollController,
+            controller: scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
@@ -68,13 +66,9 @@ class FoodsScreen extends HookConsumerWidget {
                       )
                     : Container(),
                 state.items.isEmpty
-                    ? const EmptyWidget(
-                        title: AppStrings.noFoodItem,
-                        icon: Icons.coffee_maker_outlined)
+                    ? const EmptyWidget(title: AppStrings.noFoodItem, icon: Icons.coffee_maker_outlined)
                     : AddOnItem(
-                        foodItems: state.items
-                            .map((e) => FoodItem.fromDto(FoodItemDto.fromJson(e.data()!)))
-                            .toList(),
+                        foodItems: state.items.map((e) => FoodItem.fromDto(FoodItemDto.fromJson(e.data()!))).toList(),
                       ),
                 state.haseMore
                     ? const Padding(
